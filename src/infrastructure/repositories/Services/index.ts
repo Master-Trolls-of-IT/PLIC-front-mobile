@@ -16,7 +16,7 @@ class APIServices {
         if (process.env.APP_API_ENDPOINT) {
             this.baseURL = process.env.APP_API_ENDPOINT;
         } else {
-            throw new Error("Variable d'environnement non trouvé pour l'initialisation de la classe QCHTTPRequest");
+            throw new Error("Variable d'environnement non trouvé pour l'initialisation de la classe APIServices");
         }
 
         this.baseHeaders = baseHeaders;
@@ -37,25 +37,14 @@ class APIServices {
 
     async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
         const newConfig = { ...this.baseAxiosConfig, ...config } as AxiosRequestConfig;
-        return this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig);
+        const response = await this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig);
+        return response;
     }
 
     async PUT<D>(url: string, data?: D, config?: AxiosRequestConfig) {
-        const newConfig = { ...this.baseAxiosConfig, ...config, ...data } as AxiosRequestConfig;
-
-        try {
-            const response = await this.axiosInstance.put(url, newConfig);
-            return response;
-        } catch (err: any) {
-            console.log(' depuis classe' + err);
-            if (err.response.status === 401) {
-                console.log('erreur 401');
-            } else {
-                return err.response;
-            }
-        } finally {
-            console.log('class finally');
-        }
+        const newConfig = { ...this.baseAxiosConfig, ...config } as AxiosRequestConfig;
+        const response = await this.axiosInstance.put<D>(url, data, newConfig);
+        return response;
     }
 
     async DELETE(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
@@ -69,6 +58,8 @@ class APIServices {
         const response = await this.axiosInstance.patch(url, config);
         return response;
     }
+
+
 }
 
 const APIService = new APIServices();
