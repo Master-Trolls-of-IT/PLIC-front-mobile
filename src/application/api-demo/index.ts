@@ -1,4 +1,4 @@
-import APIService from "src/infrastructure/repositories/Services"
+import APIService from "~/infrastructure/controllers/services"
 
 const AppController = async (setMessage: ((message: string) => void)) => {
 

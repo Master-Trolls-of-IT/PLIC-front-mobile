@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import AppController from 'src/infrastructure/controllers/AppControllers';
+import AppController from '~/application/api-demo';
 
 export default function App() {
 
