@@ -1,7 +1,7 @@
 interface IAPIServices {
-    baseURL: string;
+  baseURL: string;
 
-    baseBody: object;
+  baseBody: object;
 }
 
-export default IAPIServices
+export default IAPIServices;
