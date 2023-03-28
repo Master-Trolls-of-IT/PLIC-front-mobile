@@ -1,12 +1,12 @@
 import axios, { AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults, RawAxiosRequestHeaders } from 'axios'
-import { baseHeaders } from './const';
+import IAPIServices from '~/domain/interfaces/AppServices';
 
-class APIServices {
+class APIServices implements IAPIServices {
     baseURL: string;
 
-    baseHeaders: RawAxiosRequestHeaders = baseHeaders;
+    baseHeaders: RawAxiosRequestHeaders;
 
-    baseBody = null;
+    baseBody = {};
 
     baseAxiosConfig: CreateAxiosDefaults;
 
@@ -19,7 +19,7 @@ class APIServices {
             throw new Error("Variable d'environnement non trouvé pour l'initialisation de la classe APIServices");
         }
 
-        this.baseHeaders = baseHeaders;
+        this.baseHeaders = {};
 
         this.baseAxiosConfig = {
             baseURL: this.baseURL,
