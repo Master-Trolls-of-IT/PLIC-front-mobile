@@ -1,10 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import AppController from "~/application/api-demo";
 
 export default function App() {
+  const [message, setMessage] = useState(
+    "En attente de la connexion avec l'api"
+  );
+
+  const post = async () => {
+    await AppController(setMessage);
+  };
+
+  post();
+
   return (
     <View style={styles.container}>
-      <Text>COUCOU IsfdvbdqbfddfbqdfbMHAHA</Text>
+      <Text style={styles.title}>Hello Gaia !!</Text>
+      <Text style={styles.message}>{message}</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +26,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#EFECCA",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    color: "#84CF3D",
+    fontSize: 35,
+  },
+  message: {
+    color: "#000",
+    fontSize: 20,
   },
 });
