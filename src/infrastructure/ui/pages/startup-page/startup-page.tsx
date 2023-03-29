@@ -1,21 +1,26 @@
 import React, { FunctionComponent } from "react";
-import { View } from "react-native";
+import { Dimensions, View } from "react-native";
+import { WithLocalSvg } from "react-native-svg";
 import startupPageStyle from "./startup-page-style";
-import Svg from "~/infrastructure/ui/shared/svg/svg";
-import { startupPageBlobsBottom, startupPageBlobsTop } from "~/domain/entities/constants/blobs";
-import { largeClassicLogo } from "~/domain/entities/constants/logo";
 import useStartupPageService from "~/application/page-service/startup-page-service";
 
-const StartupPage: FunctionComponent<any> = ({ navigation })  => {
-    useStartupPageService(navigation.navigate, 2000);
+const StartupPage: FunctionComponent<any> = ({ navigation }) => {
+    useStartupPageService(navigation.navigate, 2500);
+
+    const startupPageBlobsTop = require('~/domain/entities/assets/startup-page/startup-page-blobs-top.svg');
+    const logoLargeClassic = require('~/domain/entities/assets/logo/logo-large-classic.svg');
+    const startupPageBlobsBottom = require('~/domain/entities/assets/startup-page/startup-page-blobs-bottom.svg')
+
+    const newHeight = Dimensions.get("screen").height / 3;
+    const newWidth = Dimensions.get("screen").width;
 
     return (
         <View style={startupPageStyle.container}>
-            <Svg xml={startupPageBlobsTop} args={{width: "100%"}}/>
-            <Svg xml={largeClassicLogo} args={{width: "100%"}}/>
-            <Svg xml={startupPageBlobsBottom} args={{width: "100%"}}/>
+            <WithLocalSvg asset={startupPageBlobsTop} width={newWidth} height={newHeight}/>
+            <WithLocalSvg asset={logoLargeClassic} width={newWidth} height={newHeight}/>
+            <WithLocalSvg asset={startupPageBlobsBottom} width={newWidth} height={newHeight}/>
         </View>
     )
-}
+};
 
 export default StartupPage;
