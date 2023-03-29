@@ -5,7 +5,7 @@ const LoginPage = () => {
     return (
         <View>
             <Text>
-                coucou les meufs
+                Login Page
             </Text>
         </View>
     )
