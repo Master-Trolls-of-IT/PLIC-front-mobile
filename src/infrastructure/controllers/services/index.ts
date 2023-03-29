@@ -8,13 +8,9 @@ import IAPIServices from "~/domain/interfaces/app-services";
 
 class APIServices implements IAPIServices {
   baseURL: string;
-
   baseHeaders: RawAxiosRequestHeaders;
-
   baseBody = {};
-
   baseAxiosConfig: CreateAxiosDefaults;
-
   axiosInstance;
 
   constructor() {
