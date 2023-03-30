@@ -1,26 +1,21 @@
-import React, { FunctionComponent } from "react";
-import { Dimensions, View } from "react-native";
-import { WithLocalSvg } from "react-native-svg";
-import startupPageStyle from "./startup-page-style";
-import useStartupPageService from "~/application/page-service/startup-page-service";
+import React, { FunctionComponent } from 'react';
+import { View } from 'react-native';
+import startupPageStyle from './startup-page-style';
+import useStartupPageService from '~/application/page-service/startup-page-service';
+import StartupPageBlobsTop from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-top';
+import StartupPageBlobsBottom from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-bottom';
+import StartupPageLargeClassicLogo from '~/infrastructure/ui/pages/startup-page/component/startup-page-large-classic-logo';
 
 const StartupPage: FunctionComponent<any> = ({ navigation }) => {
-    useStartupPageService(navigation.navigate, 2500);
-
-    const startupPageBlobsTop = require('~/domain/entities/assets/startup-page/startup-page-blobs-top.svg');
-    const logoLargeClassic = require('~/domain/entities/assets/logo/logo-large-classic.svg');
-    const startupPageBlobsBottom = require('~/domain/entities/assets/startup-page/startup-page-blobs-bottom.svg')
-
-    const newHeight = Dimensions.get("screen").height / 3;
-    const newWidth = Dimensions.get("screen").width;
+    useStartupPageService(navigation.navigate, 0);
 
     return (
         <View style={startupPageStyle.container}>
-            <WithLocalSvg asset={startupPageBlobsTop} width={newWidth} height={newHeight}/>
-            <WithLocalSvg asset={logoLargeClassic} width={newWidth} height={newHeight}/>
-            <WithLocalSvg asset={startupPageBlobsBottom} width={newWidth} height={newHeight}/>
+            <StartupPageBlobsTop />
+            <StartupPageLargeClassicLogo />
+            <StartupPageBlobsBottom />
         </View>
-    )
+    );
 };
 
 export default StartupPage;

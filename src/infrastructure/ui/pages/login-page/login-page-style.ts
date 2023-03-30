@@ -1,21 +1,18 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from 'react-native';
 
 const loginPageStyle = StyleSheet.create({
     container: {
-        backgroundColor: "#EFECCA",
-        height: Dimensions.get("screen").height,
-        display: "flex",
-        justifyContent: "space-between"
+        backgroundColor: '#EFECCA',
+        height: Dimensions.get('screen').height,
+        display: 'flex',
+        justifyContent: 'space-between'
     },
 
     tree: {
-        position: "absolute",
-        height: Dimensions.get("screen").height / 2.5,
-        width: Dimensions.get("screen").height / 3,
+        position: 'absolute',
         bottom: 0,
-        right: -40,
-        marginBottom: -20,
-    },
-})
+        right: -15
+    }
+});
 
 export default loginPageStyle;
