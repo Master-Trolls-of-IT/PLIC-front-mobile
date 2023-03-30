@@ -11,6 +11,10 @@
     "airbnb/hooks",
     "prettier"
   ],
+  "ignorePatterns": ["*.svg"],
+  "globals": {
+    "module": true
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": ["./tsconfig.json"],
@@ -20,13 +24,14 @@
     "ecmaVersion": 13,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "import", "react-hooks"],
+  "plugins": ["react", "@typescript-eslint", "import", "prettier", "react-hooks"],
   "rules": {
     "max-lines-per-function": ["error", 250],
     "max-len": ["error", 500],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": ["warn"],
+    "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/ban-types": [
       "error",
       {
@@ -58,6 +63,7 @@
         "enforceForRenamedProperties": false
       }
     ],
+    "prettier/prettier": ["error"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/lines-between-class-members": "off"

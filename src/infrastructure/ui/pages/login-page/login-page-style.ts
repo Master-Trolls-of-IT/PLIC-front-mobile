@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const startupPageStyle = StyleSheet.create({
+const loginPageStyle = StyleSheet.create({
     container: {
         backgroundColor: '#EFECCA',
         height: Dimensions.get('screen').height,
@@ -8,7 +8,11 @@ const startupPageStyle = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
-    largeClassicLogo: {}
+    tree: {
+        position: 'absolute',
+        bottom: 0,
+        right: -15
+    }
 });
 
-export default startupPageStyle;
+export default loginPageStyle;
