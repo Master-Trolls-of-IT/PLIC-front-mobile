@@ -7,7 +7,7 @@ import StartupPageBlobsBottom from '~/infrastructure/ui/pages/startup-page/compo
 import StartupPageLargeClassicLogo from '~/infrastructure/ui/pages/startup-page/component/startup-page-large-classic-logo';
 
 const StartupPage: FunctionComponent<any> = ({ navigation }) => {
-    useStartupPageService(navigation.navigate, 0);
+    useStartupPageService(navigation.navigate, 2000);
 
     return (
         <View style={startupPageStyle.container}>

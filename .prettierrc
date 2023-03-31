@@ -1,7 +1,7 @@
 {
   "arrowParens": "always",
   "singleQuote": true,
-  "endOfLine": "lf",
+  "endOfLine": "crlf",
   "printWidth": 120,
   "editor.formatOnSave": true,
   "proseWrap": "always",

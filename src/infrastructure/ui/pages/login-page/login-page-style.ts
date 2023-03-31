@@ -2,6 +2,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const loginPageStyle = StyleSheet.create({
     container: {
+        position: 'absolute',
         backgroundColor: '#EFECCA',
         height: Dimensions.get('screen').height,
         display: 'flex',

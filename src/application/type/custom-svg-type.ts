@@ -4,4 +4,4 @@ export type CustomSvgProps = {
     style?: object;
     width?: number;
     height?: number
-}
+};

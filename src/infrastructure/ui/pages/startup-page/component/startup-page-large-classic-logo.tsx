@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import CustomSvg from '~/infrastructure/ui/pages/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/pages/shared/component/custom-svg';
 import startupPageStyle from '~/infrastructure/ui/pages/startup-page/startup-page-style';
 
 const StartupPageLargeClassicLogo = () => {
