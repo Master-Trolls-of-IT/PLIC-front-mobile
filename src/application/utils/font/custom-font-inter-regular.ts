@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
-import { Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-const CustomFontInterRegular = ({ text, style }: { text: string; style?: object }) => {
+const CustomFontInterRegular = () => {
     const [fontLoaded, setFontLoaded] = useState(false);
 
     useEffect(() => {
@@ -18,10 +18,18 @@ const CustomFontInterRegular = ({ text, style }: { text: string; style?: object 
     }, []);
 
     if (!fontLoaded) {
-        return <Text>Loading...</Text>;
+        return StyleSheet.create({
+            text: {
+                fontStyle: 'normal'
+            }
+        });
     }
 
-    return <Text style={{ ...style, fontFamily: 'custom-font-regular' }}>{text}</Text>;
+    return StyleSheet.create({
+        text: {
+            fontFamily: 'custom-font-regular'
+        }
+    });
 };
 
 export default CustomFontInterRegular;

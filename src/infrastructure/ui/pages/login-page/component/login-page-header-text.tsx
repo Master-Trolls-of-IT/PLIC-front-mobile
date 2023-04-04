@@ -1,21 +1,11 @@
 import React from 'react';
-import GenericHeaderText from '~/infrastructure/ui/pages/shared/component/generic-header-text';
-import GenericHeaderTextStyle from '~/infrastructure/ui/pages/shared/style/generic-header-text-style';
-import genericHeaderTextStyle from '~/infrastructure/ui/pages/shared/style/generic-header-text-style';
+import GenericHeaderText from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text';
 
 const LoginPageHeaderText = () => {
     const firstText = 'Bonjour,';
     const secondText = 'Veuillez vous connecter';
 
-    return (
-        <GenericHeaderText
-            style={genericHeaderTextStyle.container}
-            firstText={firstText}
-            firstTextStyle={GenericHeaderTextStyle.firstText}
-            secondText={secondText}
-            secondTextStyle={GenericHeaderTextStyle.secondText}
-        />
-    );
+    return <GenericHeaderText firstText={firstText} secondText={secondText} />;
 };
 
 export default LoginPageHeaderText;
