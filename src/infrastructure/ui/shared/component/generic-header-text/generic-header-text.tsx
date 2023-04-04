@@ -6,13 +6,10 @@ import CustomFontInterRegular from '~/application/utils/font/custom-font-inter-r
 import GenericHeaderTextStyle from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text-style';
 
 const GenericHeaderText = ({ firstText = 'Header Bold', secondText = 'Header Regular' }: HeaderConfigProps) => {
-    const fontFamilyInterBold = CustomFontInterBold().text;
-    const fontFamilyInterRegular = CustomFontInterRegular().text;
-
     return (
         <View style={GenericHeaderTextStyle.container}>
-            <Text style={{ ...GenericHeaderTextStyle.firstText, ...fontFamilyInterBold }}>{firstText}</Text>
-            <Text style={{ ...GenericHeaderTextStyle.secondText, ...fontFamilyInterRegular }}>{secondText}</Text>
+            <Text style={{ ...GenericHeaderTextStyle.firstText, ...CustomFontInterBold().text }}>{firstText}</Text>
+            <Text style={{ ...GenericHeaderTextStyle.secondText, ...CustomFontInterRegular().text }}>{secondText}</Text>
         </View>
     );
 };

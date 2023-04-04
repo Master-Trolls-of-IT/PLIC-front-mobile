@@ -1,35 +1,10 @@
-import { useEffect, useState } from 'react';
-import * as Font from 'expo-font';
 import { StyleSheet } from 'react-native';
+import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 
 const CustomFontInterBold = () => {
-    const [fontLoaded, setFontLoaded] = useState(false);
+    const interBoldFont = useCustomFontInterBold();
 
-    useEffect(() => {
-        async function loadFont() {
-            await Font.loadAsync({
-                'custom-font-bold': require('~/domain/entities/assets/font/inter-bold.ttf')
-            });
-
-            setFontLoaded(true);
-        }
-
-        void loadFont();
-    }, []);
-
-    if (!fontLoaded) {
-        return StyleSheet.create({
-            text: {
-                fontStyle: 'normal'
-            }
-        });
-    }
-
-    return StyleSheet.create({
-        text: {
-            fontFamily: 'custom-font-bold'
-        }
-    });
+    return StyleSheet.create({ ...interBoldFont });
 };
 
 export default CustomFontInterBold;

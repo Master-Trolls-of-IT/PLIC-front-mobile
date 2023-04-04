@@ -5,12 +5,12 @@ import LoginPageStyle from '~/infrastructure/ui/pages/login-page/login-page-styl
 import LoginPageBlobsBottom from '~/infrastructure/ui/pages/login-page/component/background/login-page-blobs-bottom';
 import LoginPageBlobsTop from '~/infrastructure/ui/pages/login-page/component/background/login-page-blobs-top';
 import LoginPageTreeClassicLogo from '~/infrastructure/ui/pages/login-page/component/background/tree-classic-logo';
-import LoginPageHeaderText from '~/infrastructure/ui/pages/login-page/component/login-page-header-text';
 import GenericInput from '~/infrastructure/ui/shared/component/generic-input/generic-input';
 import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useLoginPageData from '~/infrastructure/ui/pages/login-page/hooks';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/generic-error-text/generic-error-message';
+import GenericHeaderText from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text';
 
 const LoginPage: FunctionComponent<any> = ({ navigation }) => {
     const { inputEmail, inputPassword, errorOnLogin, onPressSignUp, onPressLogin } = useLoginPageData(navigation);
@@ -23,7 +23,7 @@ const LoginPage: FunctionComponent<any> = ({ navigation }) => {
                 <LoginPageTreeClassicLogo />
             </View>
             <View>
-                <LoginPageHeaderText />
+                <GenericHeaderText firstText={'Bonjour,'} secondText={'Veuillez vous connecter'} />
                 <View style={LoginPageStyle.input}>
                     <GenericErrorMessage
                         text={"L'e-mail ou le mot de passe est incorrect."}

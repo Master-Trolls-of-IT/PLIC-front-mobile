@@ -1,35 +1,10 @@
-import { useEffect, useState } from 'react';
-import * as Font from 'expo-font';
 import { StyleSheet } from 'react-native';
+import useCustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular-hooks';
 
 const CustomFontInterRegular = () => {
-    const [fontLoaded, setFontLoaded] = useState(false);
+    const interRegularFont = useCustomFontInterRegular();
 
-    useEffect(() => {
-        async function loadFont() {
-            await Font.loadAsync({
-                'custom-font-regular': require('~/domain/entities/assets/font/inter-regular.ttf')
-            });
-
-            setFontLoaded(true);
-        }
-
-        void loadFont();
-    }, []);
-
-    if (!fontLoaded) {
-        return StyleSheet.create({
-            text: {
-                fontStyle: 'normal'
-            }
-        });
-    }
-
-    return StyleSheet.create({
-        text: {
-            fontFamily: 'custom-font-regular'
-        }
-    });
+    return StyleSheet.create({ ...interRegularFont });
 };
 
 export default CustomFontInterRegular;

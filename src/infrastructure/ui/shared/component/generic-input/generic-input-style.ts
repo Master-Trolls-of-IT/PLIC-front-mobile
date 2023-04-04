@@ -24,16 +24,22 @@ const GenericInputStyle = StyleSheet.create({
         fontSize: 14 * (Dimensions.get('screen').height / 725)
     },
 
-    statusIcon: {
-        position: 'absolute',
-        marginLeft: 10,
-        left: 0
-    },
-
     showTextIcon: {
         position: 'absolute',
         marginRight: 10,
         right: 0
+    },
+
+    statusIcon: {
+        position: 'absolute',
+        bottom: 5,
+        left: 5
+    },
+
+    tooltip: {
+        position: 'absolute',
+        bottom: 30,
+        left: -9
     }
 });
 
