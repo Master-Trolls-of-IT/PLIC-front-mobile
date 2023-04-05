@@ -9,6 +9,7 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 
 const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: GenericInputProps) => {
     const {
+        dispatchTooltip,
         onChangeText,
         onPressPasswordIcon,
         onPressStatusIcon,
@@ -32,20 +33,29 @@ const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: Gene
                     style={{ ...GenericInputStyle.border, ...CustomFontInterBold().text }}
                     secureTextEntry={secureTextEntry}
                     onChangeText={onChangeText}
+                    maxLength={type == InputTypeEnum.Password ? 24 : undefined}
                 />
+
                 <TouchableOpacity style={GenericInputStyle.showTextIcon} onPress={onPressPasswordIcon}>
                     {type == InputTypeEnum.Password ? showPasswordText : null}
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={GenericInputStyle.statusIcon}
-                    onPress={onPressStatusIcon}
-                    disabled={validInput}>
-                    {type != InputTypeEnum.Text && input != '' ? showRightStatusIcon : null}
-                    {showTooltip && !validInput ? (
-                        <GenericTooltip message={selectRightMessage()} style={GenericInputStyle.tooltip} />
-                    ) : null}
-                </TouchableOpacity>
+                <View style={GenericInputStyle.statusIcon}>
+                    <TouchableOpacity
+                        style={GenericInputStyle.statusIcon}
+                        onPress={onPressStatusIcon}
+                        disabled={validInput}>
+                        {type != InputTypeEnum.Text && input != '' ? showRightStatusIcon : null}
+                    </TouchableOpacity>
+                </View>
+
+                {showTooltip ? (
+                    <GenericTooltip
+                        message={selectRightMessage()}
+                        style={GenericInputStyle.tooltip}
+                        dispatch={dispatchTooltip}
+                    />
+                ) : null}
             </View>
         </View>
     );

@@ -16,7 +16,7 @@ const useGenericInputData = ({
     type: InputTypeEnum;
     dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void);
 }) => {
-    const [validInput, setValidInput] = useState(true);
+    const [validInput, setValidInput] = useState(false);
     const [secureTextEntry, setSecureTextEntry] = useState(type == InputTypeEnum.Password);
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -38,7 +38,10 @@ const useGenericInputData = ({
 
     const onChangeText = (newInput: string) => {
         dispatch(newInput);
-        if (type != InputTypeEnum.Text) setValidInput(isValidateInput(newInput, type));
+        const isValid = isValidateInput(newInput, type);
+
+        setValidInput(isValid);
+        if (isValid) setShowTooltip(false);
     };
 
     const onPressPasswordIcon = () => {
@@ -56,6 +59,7 @@ const useGenericInputData = ({
     };
 
     return {
+        dispatchTooltip: setShowTooltip,
         onChangeText,
         onPressPasswordIcon,
         onPressStatusIcon,
