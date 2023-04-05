@@ -32,14 +32,17 @@ const GenericInputStyle = StyleSheet.create({
 
     statusIcon: {
         position: 'absolute',
-        bottom: 5,
-        left: 5
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 32 * (Dimensions.get('screen').height / 900),
+        height: 43 * (Dimensions.get('screen').height / 900),
+        marginLeft: 5
     },
 
     tooltip: {
         position: 'absolute',
-        bottom: 30,
-        left: -9
+        bottom: 35,
+        left: -5
     }
 });
 
