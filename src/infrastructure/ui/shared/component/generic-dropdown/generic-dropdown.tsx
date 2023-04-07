@@ -3,18 +3,17 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 
-import { GenericInputProps } from '~/application/type/props/generic-input-props';
+import { GenericDropDownProps } from '~/application/type/props/generic-dropdown-props';
 import GenericTooltip from '~/infrastructure/ui/shared/component/generic-tooltip/generic-tooltip';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useGenericDropDownData from '~/infrastructure/ui/shared/component/generic-dropdown/hooks';
 import GenericDropDownStyle from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown-style';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 
-const GenericDropDown = ({ title, type, placeHolder, style, input, dispatch }: GenericInputProps) => {
+const GenericDropDown = ({ title, type, placeHolder, style }: GenericDropDownProps) => {
     const { dispatchTooltip, onPressDropDownIcon, secureTextEntry, selectRightMessage, showTooltip } =
         useGenericDropDownData({
-            type,
-            dispatch
+            type
         });
 
     return (

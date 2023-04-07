@@ -5,7 +5,6 @@ import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 const useSignUpPageData = (navigation: any) => {
     const [inputEmailString, setInputEmail] = useState('');
     const [inputPasswordString, setInputPassword] = useState('');
-    const [inputGenreString, setInputGenre] = useState('');
     const [inputNameString, setInputName] = useState('');
     const [inputSizeString, setInputSize] = useState('');
     const [inputWeightString, setInputWeight] = useState('');
@@ -30,7 +29,6 @@ const useSignUpPageData = (navigation: any) => {
     return {
         inputEmail: { input: inputEmailString, dispatch: setInputEmail },
         inputPassword: { input: inputPasswordString, dispatch: setInputPassword },
-        inputGenre: { input: inputGenreString, dispatch: setInputGenre },
         inputName: { input: inputNameString, dispatch: setInputName },
         inputSize: { input: inputSizeString, dispatch: setInputSize },
         inputWeight: { input: inputWeightString, dispatch: setInputWeight },

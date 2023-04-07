@@ -3,15 +3,12 @@ import { Text, View } from 'react-native';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import SignUpPageStyle from '~/infrastructure/ui/pages/sign-up-page/sign-up-page-style';
 import SignUpPageBlobsTop from '~/infrastructure/ui/pages/sign-up-page/component/background/sign-up-page-blobs-top';
-import SignUpPageTreeClassicLogo from '~/infrastructure/ui/pages/sign-up-page/component/background/tree-sign-up-classic-logo';
+import SignUpPageTreeClassicLogo from '~/infrastructure/ui/pages/sign-up-page/component/background/tree-classic-logo';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text';
 import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
-import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericDropDown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
-    const { inputGenre } = useSignUpPageData(navigation);
-
     return (
         <View>
             <View style={SignUpPageStyle.background}>
@@ -25,7 +22,7 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                     secondText={'Veuillez remplir les champs suivants'}
                 />
                 <View style={SignUpPageStyle.input}>
-                    <GenericDropDown title={'Genre'} type={InputTypeEnum.Genre} placeHolder={'Homme'} {...inputGenre} />
+                    <GenericDropDown title={'Genre'} type={InputTypeEnum.Genre} placeHolder={'Homme'} />
                 </View>
             </View>
         </View>

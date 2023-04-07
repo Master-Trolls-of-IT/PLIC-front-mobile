@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import {
@@ -7,13 +7,7 @@ import {
     passwordTooltipMessage
 } from '~/application/type/constant/tooltip-constant';
 
-const useGenericDropDownData = ({
-    type,
-    dispatch
-}: {
-    type: InputTypeEnum;
-    dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void);
-}) => {
+const useGenericDropDownData = ({ type }: { type: InputTypeEnum }) => {
     //Add implementation for the dropdown hook
     const [secureTextEntry, setSecureTextEntry] = useState(type == InputTypeEnum.Password);
     const [showTooltip, setShowTooltip] = useState(false);
