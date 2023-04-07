@@ -1,8 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
-import GenericDropDownStyle from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown-style';
-import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
 import {
     birthdateTooltipMessage,
     emailTooltipMessage,
@@ -10,9 +8,9 @@ import {
 } from '~/application/type/constant/tooltip-constant';
 
 const useGenericDropDownData = ({
-                                 type,
-                                 dispatch
-                             }: {
+    type,
+    dispatch
+}: {
     type: InputTypeEnum;
     dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void);
 }) => {
@@ -30,7 +28,6 @@ const useGenericDropDownData = ({
 
     const onPressDropDownIcon = () => {
         //Add implementation
-
     };
 
     const selectRightMessage = () => {
@@ -45,7 +42,7 @@ const useGenericDropDownData = ({
         secureTextEntry,
         selectRightMessage,
         showPasswordText,
-        showTooltip,
+        showTooltip
     };
 };
 

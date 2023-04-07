@@ -6,25 +6,16 @@ import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 import { GenericInputProps } from '~/application/type/props/generic-input-props';
 import GenericTooltip from '~/infrastructure/ui/shared/component/generic-tooltip/generic-tooltip';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import useGenericDropDownData from "~/infrastructure/ui/shared/component/generic-dropdown/hooks";
-import GenericDropDownStyle from "~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown-style";
-import CustomSvg from "~/infrastructure/ui/shared/custom-svg";
-
-
+import useGenericDropDownData from '~/infrastructure/ui/shared/component/generic-dropdown/hooks';
+import GenericDropDownStyle from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown-style';
+import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 
 const GenericDropDown = ({ title, type, placeHolder, style, input, dispatch }: GenericInputProps) => {
-    const {
-        dispatchTooltip,
-        onPressDropDownIcon,
-        secureTextEntry,
-        selectRightMessage,
-        showPasswordText,
-        showTooltip,
-    } = useGenericDropDownData({
-        type,
-        dispatch,
-
-    });
+    const { dispatchTooltip, onPressDropDownIcon, secureTextEntry, selectRightMessage, showTooltip } =
+        useGenericDropDownData({
+            type,
+            dispatch
+        });
 
     return (
         <View style={style}>
@@ -38,9 +29,14 @@ const GenericDropDown = ({ title, type, placeHolder, style, input, dispatch }: G
                 />
                 {/* Needs implementation */}
                 <TouchableOpacity style={GenericDropDownStyle.showTextIcon} onPress={onPressDropDownIcon}>
-                    {<CustomSvg asset={require('~/domain/entities/assets/icon/icon-drop-down.svg')} height={30} width={30} />}
+                    {
+                        <CustomSvg
+                            asset={require('~/domain/entities/assets/icon/icon-drop-down.svg')}
+                            height={30}
+                            width={30}
+                        />
+                    }
                 </TouchableOpacity>
-
 
                 {showTooltip ? (
                     <GenericTooltip

@@ -7,5 +7,5 @@ export enum InputTypeEnum {
     Name = 'name',
     size = 'size',
     weight = 'weight',
-    sportActivity = 'sportActivity',
+    sportActivity = 'sportActivity'
 }

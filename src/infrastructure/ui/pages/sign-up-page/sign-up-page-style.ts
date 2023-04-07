@@ -7,13 +7,13 @@ const SignUpPageStyle = StyleSheet.create({
         height: Dimensions.get('screen').height,
         width: Dimensions.get('screen').width,
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     tree: {
         position: 'absolute',
         bottom: 0,
         right: -15,
-        opacity: 0.7,
+        opacity: 0.7
     },
 
     text: {
@@ -24,7 +24,7 @@ const SignUpPageStyle = StyleSheet.create({
         alignSelf: 'center',
         top: Dimensions.get('screen').height / 5.5,
         gap: 18
-    },
+    }
 });
 
 export default SignUpPageStyle;
