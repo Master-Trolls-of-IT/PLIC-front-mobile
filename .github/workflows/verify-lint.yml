@@ -26,5 +26,8 @@ jobs:
       - name: Install Node modules
         run: yarn install
         
+      - name: verify Prettier version
+        run: prettier -v
+        
       - name: Linting
         run: yarn lint
