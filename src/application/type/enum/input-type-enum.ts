@@ -3,7 +3,7 @@ export enum InputTypeEnum {
     Email = 'email',
     Birthdate = 'birthdate',
     Password = 'password',
-    Genre = 'genre',
+    Gender = 'gender',
     Name = 'name',
     Number = 'number',
     sportActivity = 'sportActivity'

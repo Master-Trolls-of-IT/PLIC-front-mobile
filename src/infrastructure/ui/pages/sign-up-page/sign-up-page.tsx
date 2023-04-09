@@ -37,7 +37,7 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                     <View style={SignUpPageStyle.twoInputs}>
                         {/* Add two input on same line */}
                         <View style={SignUpPageStyle.leftInput}>
-                            <GenericDropDown title={'Genre'} type={InputTypeEnum.Genre} placeHolder={'Homme'} />
+                            <GenericDropDown title={'Genre'} type={InputTypeEnum.Gender} placeHolder={'Homme'} />
                         </View>
                         <View style={SignUpPageStyle.rightInput}>
                             <GenericInput
