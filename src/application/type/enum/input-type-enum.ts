@@ -5,7 +5,6 @@ export enum InputTypeEnum {
     Password = 'password',
     Genre = 'genre',
     Name = 'name',
-    size = 'size',
-    weight = 'weight',
+    Number = 'number',
     sportActivity = 'sportActivity'
 }

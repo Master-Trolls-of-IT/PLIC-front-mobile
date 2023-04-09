@@ -1,6 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 const GenericDropDownStyle = StyleSheet.create({
+    // Make the container fill the remaining space
     container: {
         justifyContent: 'center',
         marginTop: 4
@@ -14,7 +15,7 @@ const GenericDropDownStyle = StyleSheet.create({
 
     border: {
         height: 43 * (Dimensions.get('screen').height / 900),
-        width: 343 * (Dimensions.get('screen').width / 400),
+        width: '100%',
         paddingLeft: 35,
         paddingRight: 25,
         borderWidth: 2,
