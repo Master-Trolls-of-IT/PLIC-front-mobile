@@ -7,7 +7,7 @@ const GenericHeaderTextStyle = StyleSheet.create({
     },
 
     firstText: {
-        fontSize: 27 * (Dimensions.get('screen').height / 725)
+        fontSize: 29 * (Dimensions.get('screen').height / 725)
     },
 
     secondText: {

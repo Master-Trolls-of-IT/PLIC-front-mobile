@@ -9,12 +9,12 @@ const GenericInputStyle = StyleSheet.create({
     title: {
         paddingLeft: 25,
         color: '#6D4C41',
-        fontSize: 18 * (Dimensions.get('screen').height / 725)
+        fontSize: 16 * (Dimensions.get('screen').height / 725)
     },
 
     border: {
         height: 43 * (Dimensions.get('screen').height / 900),
-        width: '100%',
+        width: 360 * (Dimensions.get('screen').width / 400),
         paddingLeft: 35,
         paddingRight: 25,
         borderWidth: 2,

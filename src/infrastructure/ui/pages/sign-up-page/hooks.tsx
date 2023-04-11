@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 
 const useSignUpPageData = (navigation: any) => {
     const [inputBirthdateString, setInputBirthdate] = useState('');
@@ -12,19 +10,13 @@ const useSignUpPageData = (navigation: any) => {
     const [inputAgeString, setInputAge] = useState('');
     const [errorOnLogin, setErrorOnLogin] = useState(false);
     const [inputSportActivityString, setInputSportActivity] = useState('');
-    const onPressSignUp = () => {
-        navigation.navigate('SignUpPage');
+
+    const onPressGoBack = () => {
+        navigation.navigate('LoginPage');
     };
 
-    const onPressLogin = () => {
-        if (
-            isValidateInput(inputEmailString, InputTypeEnum.Email) &&
-            isValidateInput(inputPasswordString, InputTypeEnum.Password)
-        )
-            navigation.navigate('HomePage');
-        else {
-            setErrorOnLogin(true);
-        }
+    const onPressValidate = () => {
+        navigation.navigate('HomePage');
     };
 
     return {
@@ -37,8 +29,8 @@ const useSignUpPageData = (navigation: any) => {
         inputAge: { input: inputAgeString, dispatch: setInputAge },
         inputSportActivity: { input: inputSportActivityString, dispatch: setInputSportActivity },
         errorOnLogin,
-        onPressSignUp,
-        onPressLogin
+        onPressGoBack,
+        onPressValidate
     };
 };
 export default useSignUpPageData;

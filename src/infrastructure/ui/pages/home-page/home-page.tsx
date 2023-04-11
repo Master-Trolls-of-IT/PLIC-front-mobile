@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
-const HomePage: FunctionComponent<unknown> = () => {
+const HomePage: FunctionComponent<any> = ({ navigation }) => {
     const customFont = CustomFontInterBold().text;
 
     return (

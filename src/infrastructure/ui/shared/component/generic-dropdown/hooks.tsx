@@ -1,42 +1,10 @@
-import React, { useState } from 'react';
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
-import {
-    birthdateTooltipMessage,
-    emailTooltipMessage,
-    passwordTooltipMessage
-} from '~/application/type/constant/tooltip-constant';
-
-const useGenericDropDownData = ({ type }: { type: InputTypeEnum }) => {
-    //Add implementation for the dropdown hook
-    const [secureTextEntry, setSecureTextEntry] = useState(type == InputTypeEnum.Password);
-    const [showTooltip, setShowTooltip] = useState(false);
-
-    const assetShowTextOff = require('~/domain/entities/assets/icon/icon-show-text-off.svg');
-    const assetShowTextOn = require('~/domain/entities/assets/icon/icon-show-text-on.svg');
-    const showPasswordText = secureTextEntry ? (
-        <CustomSvg asset={assetShowTextOff} height={28} width={35} />
-    ) : (
-        <CustomSvg asset={assetShowTextOn} height={28} width={35} />
-    );
-
+const useGenericDropDownData = () => {
     const onPressDropDownIcon = () => {
         //Add implementation
     };
 
-    const selectRightMessage = () => {
-        if (type == InputTypeEnum.Email) return emailTooltipMessage;
-        else if (type == InputTypeEnum.Password) return passwordTooltipMessage;
-        else return birthdateTooltipMessage;
-    };
-
     return {
-        dispatchTooltip: setShowTooltip,
-        onPressDropDownIcon,
-        secureTextEntry,
-        selectRightMessage,
-        showPasswordText,
-        showTooltip
+        onPressDropDownIcon
     };
 };
 

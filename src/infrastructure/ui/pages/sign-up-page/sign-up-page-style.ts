@@ -9,6 +9,7 @@ const SignUpPageStyle = StyleSheet.create({
         display: 'flex',
         justifyContent: 'space-between'
     },
+
     tree: {
         position: 'absolute',
         bottom: 0,
@@ -20,48 +21,24 @@ const SignUpPageStyle = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 30
     },
-    inputContainer: {
-        marginLeft: 10,
-        marginRight: 10
-    },
+
     input: {
-        width: '100%',
-        top: Dimensions.get('screen').height / 8,
-        gap: 18
+        alignSelf: 'center',
+        top: Dimensions.get('screen').height / 6.8,
+        gap: 14
     },
-    leftInput: {
-        top: Dimensions.get('screen').height / 8,
-        left: 0,
-        gap: 18,
-        width: Dimensions.get('screen').width / 2.2,
-        overflow: 'hidden'
-    },
-    rightInput: {
-        top: Dimensions.get('screen').height / 8,
-        right: 0,
-        gap: 18,
-        width: Dimensions.get('screen').width / 2.2,
-        overflow: 'hidden'
-    },
-    //Make the inputs have the same width and be side by side
-    twoInputs: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        alignItems: 'flex-end'
-    },
+
     buttonContainer: {
-        marginTop: 15,
-        width: 343 * (Dimensions.get('screen').width / 400)
+        marginTop: 12,
+        width: 360 * (Dimensions.get('screen').width / 400)
     },
 
     brownButtonContainer: {
-        left: 0,
-        top: 0,
         backgroundColor: '#6D4C41',
         height: 43 * (Dimensions.get('screen').height / 900),
-        width: 123 * (Dimensions.get('screen').width / 400)
+        width: 96 * (Dimensions.get('screen').width / 400),
+        left: 0,
+        top: 0
     },
 
     brownButtonText: {
@@ -71,10 +48,10 @@ const SignUpPageStyle = StyleSheet.create({
 
     greenButtonContainer: {
         backgroundColor: '#84CF3D',
-        top: 0,
         height: 43 * (Dimensions.get('screen').height / 900),
-        width: 163 * (Dimensions.get('screen').width / 400),
-        right: 0
+        width: 101 * (Dimensions.get('screen').width / 400),
+        right: 0,
+        top: 0
     },
 
     greenButtonText: {

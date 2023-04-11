@@ -5,7 +5,6 @@ import SignUpPageBlobsTop from '~/infrastructure/ui/pages/sign-up-page/component
 import SignUpPageTreeClassicLogo from '~/infrastructure/ui/pages/sign-up-page/component/background/tree-classic-logo';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text';
 import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
-import GenericDropDown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
 import GenericInput from '~/infrastructure/ui/shared/component/generic-input/generic-input';
 import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
@@ -19,9 +18,10 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
         inputEmail,
         inputPassword,
         inputWeight,
-        onPressSignUp,
-        onPressLogin
+        onPressGoBack,
+        onPressValidate
     } = useSignUpPageData(navigation);
+
     return (
         <View>
             <View style={SignUpPageStyle.background}>
@@ -33,98 +33,61 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                     firstText={'Dites nous en plus,'}
                     secondText={'Veuillez remplir les champs suivants'}
                 />
-                <View style={SignUpPageStyle.inputContainer}>
-                    <View style={SignUpPageStyle.twoInputs}>
-                        {/* Add two input on same line */}
-                        <View style={SignUpPageStyle.leftInput}>
-                            <GenericDropDown title={'Genre'} type={InputTypeEnum.Gender} placeHolder={'Homme'} />
-                        </View>
-                        <View style={SignUpPageStyle.rightInput}>
-                            <GenericInput
-                                title={'Date de naissance'}
-                                type={InputTypeEnum.Birthdate}
-                                placeHolder={'04/12/2001'}
-                                {...inputBirthdate}
-                            />
-                        </View>
-                    </View>
-                    <View style={SignUpPageStyle.input}>
-                        <GenericInput
-                            title={'Prénom'}
-                            type={InputTypeEnum.Name}
-                            placeHolder={'Alexandre'}
-                            {...inputName}
+                <View style={SignUpPageStyle.input}>
+                    <GenericInput
+                        title={'datenaissance et genre'}
+                        type={InputTypeEnum.Text}
+                        placeHolder={'salut'}
+                        {...inputBirthdate}
+                    />
+                    <GenericInput title={'Prénom'} type={InputTypeEnum.Text} placeHolder={'Alexandre'} {...inputName} />
+                    <GenericInput
+                        title={'deuieme two input'}
+                        type={InputTypeEnum.Text}
+                        placeHolder={'salut'}
+                        {...inputWeight}
+                    />
+                    <GenericInput
+                        title={"Fréquence d'activité sportive"}
+                        type={InputTypeEnum.Number}
+                        placeHolder={'2'}
+                        {...inputSportActivity}
+                    />
+                    <GenericInput
+                        title={'E-mail'}
+                        type={InputTypeEnum.Email}
+                        placeHolder={'mail@example.com'}
+                        {...inputEmail}
+                    />
+                    <GenericInput
+                        title={'Mot de passe'}
+                        type={InputTypeEnum.Password}
+                        placeHolder={'********'}
+                        {...inputPassword}
+                    />
+                    <GenericInput
+                        title={'Confirmer le mot de passe'}
+                        type={InputTypeEnum.Password}
+                        placeHolder={'********'}
+                        {...inputPassword}
+                    />
+                    <View style={SignUpPageStyle.buttonContainer}>
+                        <GenericButton
+                            title={'Retour'}
+                            style={{
+                                container: SignUpPageStyle.brownButtonContainer,
+                                text: SignUpPageStyle.brownButtonText
+                            }}
+                            onPress={onPressGoBack}
                         />
-                    </View>
-                    <View style={SignUpPageStyle.twoInputs}>
-                        {/* Add two input on same line */}
-                        <View style={SignUpPageStyle.leftInput}>
-                            <GenericInput
-                                title={'Poids (Kg)'}
-                                type={InputTypeEnum.Number}
-                                placeHolder={'75'}
-                                {...inputWeight}
-                            />
-                        </View>
-                        <View style={SignUpPageStyle.rightInput}>
-                            <GenericInput
-                                title={'Taille (Cm)'}
-                                type={InputTypeEnum.Number}
-                                placeHolder={'175'}
-                                {...inputSize}
-                            />
-                        </View>
-                    </View>
-                    <View style={SignUpPageStyle.input}>
-                        <GenericInput
-                            title={"Fréquence d'activité sportive"}
-                            type={InputTypeEnum.sportActivity}
-                            placeHolder={'2'}
-                            {...inputSportActivity}
+                        <GenericButton
+                            title={'Valider'}
+                            style={{
+                                container: SignUpPageStyle.greenButtonContainer,
+                                text: SignUpPageStyle.greenButtonText
+                            }}
+                            onPress={onPressValidate}
                         />
-                    </View>
-                    <View style={SignUpPageStyle.input}>
-                        <GenericInput
-                            title={'Email'}
-                            type={InputTypeEnum.Email}
-                            placeHolder={'mail@example.com'}
-                            {...inputEmail}
-                        />
-                    </View>
-                    <View style={SignUpPageStyle.input}>
-                        <GenericInput
-                            title={'Mot de passe'}
-                            type={InputTypeEnum.Password}
-                            placeHolder={'********'}
-                            {...inputPassword}
-                        />
-                    </View>
-                    <View style={SignUpPageStyle.input}>
-                        <GenericInput
-                            title={'Confirmer le mot de passe'}
-                            type={InputTypeEnum.Password}
-                            placeHolder={'********'}
-                            {...inputPassword}
-                        />
-
-                        <View style={SignUpPageStyle.twoInputs}>
-                            <GenericButton
-                                title={"S'inscrire"}
-                                style={{
-                                    container: SignUpPageStyle.brownButtonContainer,
-                                    text: SignUpPageStyle.brownButtonText
-                                }}
-                                onPress={onPressSignUp}
-                            />
-                            <GenericButton
-                                title={'Se connecter'}
-                                style={{
-                                    container: SignUpPageStyle.greenButtonContainer,
-                                    text: SignUpPageStyle.greenButtonText
-                                }}
-                                onPress={onPressLogin}
-                            />
-                        </View>
                     </View>
                 </View>
             </View>
