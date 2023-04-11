@@ -9,6 +9,7 @@ import GenericInput from '~/infrastructure/ui/shared/component/generic-input/gen
 import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import GenericDropdown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
+import GenericBirthdate from '~/infrastructure/ui/shared/component/generique-birthdate/generic-birthdate';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -48,9 +49,8 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                             {...inputGender}
                             style={{ flex: 1 }}
                         />
-                        <GenericInput
+                        <GenericBirthdate
                             title={'Date de naissance'}
-                            type={InputTypeEnum.Birthdate}
                             placeHolder={'16/11/2000'}
                             {...inputBirthdate}
                             style={{ flex: 1.2 }}

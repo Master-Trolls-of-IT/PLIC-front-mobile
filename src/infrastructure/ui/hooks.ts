@@ -1,14 +1,16 @@
 import * as NavigationBar from 'expo-navigation-bar';
 import { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
 
 const useAppData = () => {
     const [barVisibility, setBarVisibility] = useState<'visible' | 'hidden'>();
 
-    NavigationBar.addVisibilityListener(({ visibility }) => {
-        if (visibility === 'visible') {
-            setBarVisibility(visibility);
-        }
-    });
+    if (Platform.OS === 'android')
+        NavigationBar.addVisibilityListener(({ visibility }) => {
+            if (visibility === 'visible') {
+                setBarVisibility(visibility);
+            }
+        });
     const navigationConfig = async () => {
         // Hide it
         NavigationBar.setVisibilityAsync('hidden');

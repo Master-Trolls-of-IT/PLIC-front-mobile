@@ -34,6 +34,7 @@ const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: Gene
                     secureTextEntry={secureTextEntry}
                     onChangeText={onChangeText}
                     maxLength={type == InputTypeEnum.Password ? 24 : undefined}
+                    value={input}
                 />
 
                 <TouchableOpacity style={GenericInputStyle.showTextIcon} onPress={onPressPasswordIcon}>
