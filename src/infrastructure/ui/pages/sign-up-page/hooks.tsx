@@ -8,6 +8,7 @@ const useSignUpPageData = (navigation: any) => {
     const [inputSizeString, setInputSize] = useState('');
     const [inputWeightString, setInputWeight] = useState('');
     const [inputAgeString, setInputAge] = useState('');
+    const [inputGenderString, setInputGender] = useState('');
     const [errorOnLogin, setErrorOnLogin] = useState(false);
     const [inputSportActivityString, setInputSportActivity] = useState('');
 
@@ -28,6 +29,7 @@ const useSignUpPageData = (navigation: any) => {
         inputWeight: { input: inputWeightString, dispatch: setInputWeight },
         inputAge: { input: inputAgeString, dispatch: setInputAge },
         inputSportActivity: { input: inputSportActivityString, dispatch: setInputSportActivity },
+        inputGender: { input: inputGenderString, dispatch: setInputGender },
         errorOnLogin,
         onPressGoBack,
         onPressValidate

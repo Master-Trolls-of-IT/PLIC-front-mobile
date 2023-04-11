@@ -15,35 +15,45 @@ const GenericDropDownStyle = StyleSheet.create({
 
     border: {
         height: 43 * (Dimensions.get('screen').height / 900),
-        width: '100%',
-        paddingLeft: 35,
-        paddingRight: 25,
         borderWidth: 2,
         borderColor: '#6D4C41',
         borderRadius: 20,
         backgroundColor: '#E3DEBE',
-        fontSize: 14 * (Dimensions.get('screen').height / 725)
+        fontSize: 14 * (Dimensions.get('screen').height / 725),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
 
-    showTextIcon: {
-        position: 'absolute',
-        marginRight: 10,
-        right: 0
-    },
-
-    statusIcon: {
-        position: 'absolute',
-        justifyContent: 'center',
+    button: {
+        flexDirection: 'row',
         alignItems: 'center',
-        width: 32 * (Dimensions.get('screen').height / 900),
-        height: 43 * (Dimensions.get('screen').height / 900),
-        marginLeft: 5
+        backgroundColor: '#efefef',
+        height: 50,
+        zIndex: 1
     },
-
-    tooltip: {
+    inputText: {
+        flex: 2,
+        textAlign: 'center',
+        alignSelf: 'center'
+    },
+    icon: {
+        marginRight: 10,
+        alignSelf: 'center'
+    },
+    dropdown: {
         position: 'absolute',
-        bottom: 35,
-        left: -5
+        backgroundColor: '#fff',
+        shadowColor: '#000000',
+        shadowRadius: 4,
+        shadowOffset: { height: 4, width: 0 },
+        shadowOpacity: 0.5
+    },
+    overlay: {},
+    item: {
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderBottomWidth: 1
     }
 });
 

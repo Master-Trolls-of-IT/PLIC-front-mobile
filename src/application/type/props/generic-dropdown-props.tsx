@@ -1,5 +1,5 @@
 export type GenericDropDownProps = {
     title: string;
-    placeHolder?: string;
+    options: { label: string; value: string }[];
     style?: object;
 };

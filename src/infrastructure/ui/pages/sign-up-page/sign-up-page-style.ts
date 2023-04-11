@@ -25,12 +25,20 @@ const SignUpPageStyle = StyleSheet.create({
     input: {
         alignSelf: 'center',
         top: Dimensions.get('screen').height / 6.8,
-        gap: 14
+        gap: 14,
+        paddingHorizontal: 20
     },
 
     buttonContainer: {
         marginTop: 12,
         width: 360 * (Dimensions.get('screen').width / 400)
+    },
+
+    twoInputs: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        gap: 15
     },
 
     brownButtonContainer: {

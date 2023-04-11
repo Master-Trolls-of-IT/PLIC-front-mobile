@@ -8,6 +8,7 @@ import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 import GenericInput from '~/infrastructure/ui/shared/component/generic-input/generic-input';
 import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
+import GenericDropdown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -18,6 +19,8 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
         inputEmail,
         inputPassword,
         inputWeight,
+        inputAge,
+        inputGender,
         onPressGoBack,
         onPressValidate
     } = useSignUpPageData(navigation);
@@ -34,19 +37,42 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                     secondText={'Veuillez remplir les champs suivants'}
                 />
                 <View style={SignUpPageStyle.input}>
-                    <GenericInput
-                        title={'datenaissance et genre'}
-                        type={InputTypeEnum.Text}
-                        placeHolder={'salut'}
-                        {...inputBirthdate}
-                    />
+                    <View style={SignUpPageStyle.twoInputs}>
+                        <GenericDropdown
+                            title={'Genre'}
+                            options={[
+                                { label: 'Homme', value: '0' },
+                                { label: 'Femme', value: '1' },
+                                { label: 'Autre', value: '2' }
+                            ]}
+                            {...inputGender}
+                            style={{ flex: 1 }}
+                        />
+                        <GenericInput
+                            title={'Date de naissance'}
+                            type={InputTypeEnum.Birthdate}
+                            placeHolder={'16/11/2000'}
+                            {...inputBirthdate}
+                            style={{ flex: 1.2 }}
+                        />
+                    </View>
                     <GenericInput title={'Prénom'} type={InputTypeEnum.Text} placeHolder={'Alexandre'} {...inputName} />
-                    <GenericInput
-                        title={'deuieme two input'}
-                        type={InputTypeEnum.Text}
-                        placeHolder={'salut'}
-                        {...inputWeight}
-                    />
+                    <View style={SignUpPageStyle.twoInputs}>
+                        <GenericInput
+                            title={'Poids'}
+                            type={InputTypeEnum.Number}
+                            placeHolder={'75'}
+                            {...inputWeight}
+                            style={{ flex: 1 }}
+                        />
+                        <GenericInput
+                            title={'Taille'}
+                            type={InputTypeEnum.Number}
+                            placeHolder={'176'}
+                            {...inputSize}
+                            style={{ flex: 1 }}
+                        />
+                    </View>
                     <GenericInput
                         title={"Fréquence d'activité sportive"}
                         type={InputTypeEnum.Number}
