@@ -26,7 +26,8 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
         inputGender,
         onPressGoBack,
         onPressValidate,
-        errorOnSignUp
+        errorOnSignUp,
+        errorOnDataBase
     } = useSignUpPageData(navigation);
 
     return (
@@ -45,6 +46,11 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                         text={'Un des champ est mal rempli'}
                         style={LoginPageStyle.errorMessage}
                         error={errorOnSignUp}
+                    />
+                    <GenericErrorMessage
+                        text={'La connexion à la base de donnée a échoué'}
+                        style={LoginPageStyle.errorMessage}
+                        error={errorOnDataBase}
                     />
                     <View style={SignUpPageStyle.twoInputs}>
                         <GenericDropdown

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
 import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 import { SignUpData } from '~/domain/interfaces/loginAndSignUp/signUp';
+
 const useSignUpPageData = (navigation: any) => {
     const [inputBirthdateString, setInputBirthdate] = useState('');
     const [inputEmailString, setInputEmail] = useState('');
@@ -11,9 +12,9 @@ const useSignUpPageData = (navigation: any) => {
     const [inputWeightString, setInputWeight] = useState('');
     const [inputAgeString, setInputAge] = useState('');
     const [inputGenderString, setInputGender] = useState('');
-    const [errorOnLogin, setErrorOnLogin] = useState(false);
     const [inputSportActivityString, setInputSportActivity] = useState('');
     const [errorOnSignUp, setErrorOnSignUp] = useState(false);
+    const [errorOnDataBase, setErrorOnDataBase] = useState(false);
 
     const onPressGoBack = () => {
         navigation.navigate('LoginPage');
@@ -37,13 +38,34 @@ const useSignUpPageData = (navigation: any) => {
                 Sportiveness: +inputSportActivityString,
                 BasalMetabolism: 0
             };
+
             // Send data here ( Need to know how to get Rights and Basal Metabolism )
-            navigation.navigate('HomePage');
+            // here is the api address: https://plic-back-qp6wugltyq-ew.a.run.app/
+            // and the body is the data
+            // and the method is POST
+            fetch('http://localhost:8080/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then((response) => {
+                    if (response.status === 200) {
+                        navigation.navigate('HomePage');
+                    } else {
+                        console.log(response);
+                        setErrorOnDataBase(true);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    setErrorOnDataBase(true);
+                });
         } else {
             setErrorOnSignUp(true);
         }
     };
-
     return {
         inputBirthdate: { input: inputBirthdateString, dispatch: setInputBirthdate },
         inputEmail: { input: inputEmailString, dispatch: setInputEmail },
@@ -55,6 +77,7 @@ const useSignUpPageData = (navigation: any) => {
         inputSportActivity: { input: inputSportActivityString, dispatch: setInputSportActivity },
         inputGender: { input: inputGenderString, dispatch: setInputGender },
         errorOnSignUp,
+        errorOnDataBase,
         onPressGoBack,
         onPressValidate
     };
