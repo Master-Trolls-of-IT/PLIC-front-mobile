@@ -10,6 +10,7 @@ import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import GenericDropdown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
 import GenericBirthdate from '~/infrastructure/ui/shared/component/generique-birthdate/generic-birthdate';
+import InputWithEndText from '~/infrastructure/ui/shared/component/input-with-end-text/input-with-end-text';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -57,25 +58,25 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                         />
                     </View>
                     <GenericInput title={'Prénom'} type={InputTypeEnum.Text} placeHolder={'Alexandre'} {...inputName} />
-                    <View style={SignUpPageStyle.twoInputs}>
-                        <GenericInput
+                    <View style={SignUpPageStyle.twoInputsTwo}>
+                        <InputWithEndText
                             title={'Poids'}
-                            type={InputTypeEnum.Number}
+                            endText={'Kg'}
                             placeHolder={'75'}
                             {...inputWeight}
                             style={{ flex: 1 }}
                         />
-                        <GenericInput
+                        <InputWithEndText
                             title={'Taille'}
-                            type={InputTypeEnum.Number}
+                            endText={'Cm'}
                             placeHolder={'176'}
                             {...inputSize}
                             style={{ flex: 1 }}
                         />
                     </View>
-                    <GenericInput
+                    <InputWithEndText
                         title={"Fréquence d'activité sportive"}
-                        type={InputTypeEnum.Number}
+                        endText={'fois par semaine en moyenne'}
                         placeHolder={'2'}
                         {...inputSportActivity}
                     />

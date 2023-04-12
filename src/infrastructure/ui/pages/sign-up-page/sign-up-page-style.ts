@@ -41,6 +41,13 @@ const SignUpPageStyle = StyleSheet.create({
         gap: 15
     },
 
+    twoInputsTwo: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '70%',
+        gap: 15
+    },
+
     brownButtonContainer: {
         backgroundColor: '#6D4C41',
         height: 43 * (Dimensions.get('screen').height / 900),

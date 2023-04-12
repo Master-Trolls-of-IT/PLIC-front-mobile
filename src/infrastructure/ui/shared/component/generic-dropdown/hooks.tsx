@@ -5,7 +5,7 @@ const useGenericDropDownData = (
     onSelect: (item: { label: string; value: string }) => void,
     data: { label: string; value: string }[]
 ) => {
-    const DropdownButton = useRef<TouchableOpacity>(null);
+    const DropdownButton = useRef<View>(null);
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState<{ label: string; value: string }>(data[0]);
     const [dropdownTop, setDropdownTop] = useState(0);

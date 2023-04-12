@@ -13,9 +13,9 @@ const GenericDropDown = ({ title, options, style }: GenericDropDownProps) => {
     return (
         <View style={style}>
             <Text style={{ ...GenericDropDownStyle.title, ...CustomFontInterBold().text }}>{title}</Text>
-            <View style={GenericDropDownStyle.border}>
+            <View ref={DropdownButton} style={GenericDropDownStyle.border}>
                 {renderDropdown()}
-                <Text ref={DropdownButton} style={{ ...GenericDropDownStyle.inputText, ...CustomFontInterBold().text }}>
+                <Text style={{ ...GenericDropDownStyle.inputText, ...CustomFontInterBold().text }}>
                     {(!!selected && selected.label) || options[0].label}
                 </Text>
                 <TouchableOpacity onPress={toggleDropdown} style={GenericDropdownStyle.icon}>
