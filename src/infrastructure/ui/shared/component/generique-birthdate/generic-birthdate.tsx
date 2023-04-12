@@ -5,11 +5,7 @@ import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
 import useGenericBirthdateData from '~/infrastructure/ui/shared/component/generique-birthdate/hooks';
 
 const GenericBirthdate = ({ title, input, dispatch, style, placeHolder }: GenericBirthdateProps) => {
-    const { onChange } = useGenericBirthdateData(dispatch);
-
-    useEffect(() => {
-        console.log('input: ', input);
-    }, [input]);
+    const { onChange } = useGenericBirthdateData(dispatch, input);
 
     return (
         <GenericInput

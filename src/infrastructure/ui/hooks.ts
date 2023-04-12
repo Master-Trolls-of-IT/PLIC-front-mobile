@@ -11,13 +11,14 @@ const useAppData = () => {
                 setBarVisibility(visibility);
             }
         });
+
     const navigationConfig = async () => {
         // Hide it
-        NavigationBar.setVisibilityAsync('hidden');
+        await NavigationBar.setVisibilityAsync('hidden');
     };
 
     useEffect(() => {
-        void navigationConfig();
+        if (Platform.OS === 'android') void navigationConfig();
     }, [barVisibility]);
 };
 

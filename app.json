@@ -23,6 +23,12 @@
       },
       "package": "com.gaia.natureskitchen"
     },
+    "androidNavigationBar": {
+      "barStyle": "light-content"
+    },
+    "androidStatusBar": {
+      "translucent": true
+    },
     "web": {
       "favicon": "./assets/favicon.png"
     },

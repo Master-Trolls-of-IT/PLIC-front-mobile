@@ -49,7 +49,10 @@ const GenericDropDownStyle = StyleSheet.create({
         shadowOffset: { height: 4, width: 0 },
         shadowOpacity: 0.5
     },
-    overlay: {},
+    overlay: {
+        width: '100%',
+        height: '100%'
+    },
     item: {
         paddingHorizontal: 10,
         paddingVertical: 10,
