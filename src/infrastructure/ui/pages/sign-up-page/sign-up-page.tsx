@@ -10,6 +10,8 @@ import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import GenericDropdown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
 import GenericBirthdate from '~/infrastructure/ui/shared/component/generique-birthdate/generic-birthdate';
+import LoginPageStyle from '~/infrastructure/ui/pages/login-page/login-page-style';
+import GenericErrorMessage from '~/infrastructure/ui/shared/component/generic-error-text/generic-error-message';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -23,7 +25,8 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
         inputAge,
         inputGender,
         onPressGoBack,
-        onPressValidate
+        onPressValidate,
+        errorOnSignUp
     } = useSignUpPageData(navigation);
 
     return (
@@ -38,6 +41,11 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                     secondText={'Veuillez remplir les champs suivants'}
                 />
                 <View style={SignUpPageStyle.input}>
+                    <GenericErrorMessage
+                        text={'Un des champ est mal rempli'}
+                        style={LoginPageStyle.errorMessage}
+                        error={errorOnSignUp}
+                    />
                     <View style={SignUpPageStyle.twoInputs}>
                         <GenericDropdown
                             title={'Genre'}

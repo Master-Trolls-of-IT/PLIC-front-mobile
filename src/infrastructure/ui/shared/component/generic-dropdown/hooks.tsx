@@ -1,6 +1,7 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { TouchableOpacity, Text, FlatList, View, Modal } from 'react-native';
 import GenericDropDownStyle from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown-style';
+import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 const useGenericDropDownData = (
     onSelect: (item: { label: string; value: string }) => void,
     data: { label: string; value: string }[]

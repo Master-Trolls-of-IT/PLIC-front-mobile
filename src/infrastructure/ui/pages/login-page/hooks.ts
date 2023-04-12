@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
 import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
+import { LoginData } from '~/domain/interfaces/loginAndSignUp/login';
 
 const useLoginPageData = (navigation: any) => {
     const [inputEmailString, setInputEmail] = useState('');
@@ -15,9 +16,16 @@ const useLoginPageData = (navigation: any) => {
         if (
             isValidateInput(inputEmailString, InputTypeEnum.Email) &&
             isValidateInput(inputPasswordString, InputTypeEnum.Password)
-        )
+        ) {
+            //Envoyer la data JSON au back ici
+            const data: LoginData = {
+                email: inputEmailString,
+                password: inputPasswordString
+            };
+            //Ajouter l'appel de fonction au back ici
+            // Si l'envoi de data au back se passe bien, passer à la navigation
             navigation.navigate('HomePage');
-        else {
+        } else {
             setErrorOnLogin(true);
         }
     };

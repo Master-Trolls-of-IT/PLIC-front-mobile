@@ -43,17 +43,19 @@ const GenericDropDownStyle = StyleSheet.create({
     },
     dropdown: {
         position: 'absolute',
-        backgroundColor: '#fff',
-        shadowColor: '#000000',
-        shadowRadius: 4,
-        shadowOffset: { height: 4, width: 0 },
-        shadowOpacity: 0.5
+        borderWidth: 2,
+        borderColor: '#6D4C41'
     },
     overlay: {},
     item: {
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        borderBottomWidth: 1
+        height: 45 * (Dimensions.get('screen').height / 900),
+        // width: 360 * (Dimensions.get('screen').width / 400),
+        paddingLeft: 10,
+        paddingTop: 5,
+        borderWidth: 1,
+        borderColor: '#6D4C41',
+        backgroundColor: '#E3DEBE',
+        fontSize: 14 * (Dimensions.get('screen').height / 725)
     }
 });
 
