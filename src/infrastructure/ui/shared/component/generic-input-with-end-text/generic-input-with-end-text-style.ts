@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const GenericInputStyle = StyleSheet.create({
+const GenericInputWithEndTextStyle = StyleSheet.create({
     container: {
         justifyContent: 'center',
         marginTop: 4
@@ -23,26 +23,13 @@ const GenericInputStyle = StyleSheet.create({
         fontSize: 14 * (Dimensions.get('screen').height / 725)
     },
 
-    showTextIcon: {
+    endText: {
         position: 'absolute',
-        marginRight: 10,
-        right: 0
-    },
-
-    statusIcon: {
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 32 * (Dimensions.get('screen').height / 900),
-        height: 43 * (Dimensions.get('screen').height / 900),
-        marginLeft: 5
-    },
-
-    tooltip: {
-        position: 'absolute',
-        bottom: 35,
-        left: -5
+        alignSelf: 'flex-end',
+        fontSize: 17,
+        right: '15%',
+        color: '#6D4C41'
     }
 });
 
-export default GenericInputStyle;
+export default GenericInputWithEndTextStyle;

@@ -27,7 +27,7 @@ const loginPageStyle = StyleSheet.create({
 
     buttonContainer: {
         marginTop: 15,
-        width: 343 * (Dimensions.get('screen').width / 400)
+        width: 360 * (Dimensions.get('screen').width / 400)
     },
 
     brownButtonContainer: {
