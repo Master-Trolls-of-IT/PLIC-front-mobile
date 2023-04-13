@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export type InputWithEndTextProps = {
+export type GenericInputWithEndTextProps = {
     title: string;
     placeHolder: string;
     endText: string;

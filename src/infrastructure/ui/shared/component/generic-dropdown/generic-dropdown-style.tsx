@@ -1,7 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 const GenericDropDownStyle = StyleSheet.create({
-    // Make the container fill the remaining space
     container: {
         justifyContent: 'center',
         marginTop: 4
@@ -32,15 +31,18 @@ const GenericDropDownStyle = StyleSheet.create({
         height: 50,
         zIndex: 1
     },
+
     inputText: {
         flex: 2,
         textAlign: 'center',
         alignSelf: 'center'
     },
+
     icon: {
         marginRight: 10,
         alignSelf: 'center'
     },
+
     dropdown: {
         position: 'absolute',
         backgroundColor: '#fff',
@@ -49,10 +51,12 @@ const GenericDropDownStyle = StyleSheet.create({
         shadowOffset: { height: 4, width: 0 },
         shadowOpacity: 0.5
     },
+
     overlay: {
         width: '100%',
         height: '100%'
     },
+
     item: {
         paddingHorizontal: 10,
         paddingVertical: 10,

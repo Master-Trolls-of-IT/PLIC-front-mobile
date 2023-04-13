@@ -1,6 +1,7 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+import { isNumber } from '~/infrastructure/ui/shared/helper/isNumber';
 
-const useGenericBirthdateData = (
+const useGenericInputBirthdateData = (
     dispatchInput: Dispatch<SetStateAction<string>> | ((value: string) => void),
     input: string
 ) => {
@@ -8,19 +9,19 @@ const useGenericBirthdateData = (
         for (let i = 0; i < value.length; i++) {
             switch (i) {
                 case 0:
-                    if (isNaN(parseInt(value[i]))) return false;
+                    if (!isNumber(value[i])) return false;
                     if (parseInt(value[i]) > 3) return false;
                     break;
                 case 1:
-                    if (isNaN(parseInt(value[i]))) return false;
+                    if (!isNumber(value[i])) return false;
                     if (parseInt(value[i]) > 9) return false;
                     break;
                 case 3:
-                    if (isNaN(parseInt(value[i]))) return false;
+                    if (!isNumber(value[i])) return false;
                     if (parseInt(value[i]) > 1) return false;
                     break;
                 case 4:
-                    if (isNaN(parseInt(value[i]))) return false;
+                    if (!isNumber(value[i])) return false;
                     if (parseInt(value[i - 1]) == 0) {
                         if (parseInt(value[i]) > 9) return false;
                     }
@@ -33,10 +34,11 @@ const useGenericBirthdateData = (
         }
         return true;
     };
+
     const onChange = (value: string) => {
         if (value.length > 10) return;
         const valueWithoutSlash = value.replaceAll('/', '');
-        let formattedValue = '';
+        let formattedValue: string;
         if (valueWithoutSlash.length < 3) {
             formattedValue = valueWithoutSlash;
         } else if (valueWithoutSlash.length < 5) {
@@ -63,4 +65,4 @@ const useGenericBirthdateData = (
     };
 };
 
-export default useGenericBirthdateData;
+export default useGenericInputBirthdateData;

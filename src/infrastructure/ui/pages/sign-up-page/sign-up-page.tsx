@@ -9,8 +9,8 @@ import GenericInput from '~/infrastructure/ui/shared/component/generic-input/gen
 import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import GenericDropdown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
-import GenericBirthdate from '~/infrastructure/ui/shared/component/generique-birthdate/generic-birthdate';
-import InputWithEndText from '~/infrastructure/ui/shared/component/input-with-end-text/input-with-end-text';
+import GenericInputBirthdate from '~/infrastructure/ui/shared/component/generique-input-birthdate/generic-input-birthdate';
+import GenericInputWithEndText from '~/infrastructure/ui/shared/component/generic-input-with-end-text/generic-input-with-end-text';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -39,7 +39,7 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                     secondText={'Veuillez remplir les champs suivants'}
                 />
                 <View style={SignUpPageStyle.input}>
-                    <View style={SignUpPageStyle.twoInputs}>
+                    <View style={SignUpPageStyle.genderAndBirthField}>
                         <GenericDropdown
                             title={'Genre'}
                             options={[
@@ -50,7 +50,7 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                             {...inputGender}
                             style={{ flex: 1 }}
                         />
-                        <GenericBirthdate
+                        <GenericInputBirthdate
                             title={'Date de naissance'}
                             placeHolder={'16/11/2000'}
                             {...inputBirthdate}
@@ -58,23 +58,23 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                         />
                     </View>
                     <GenericInput title={'Prénom'} type={InputTypeEnum.Text} placeHolder={'Alexandre'} {...inputName} />
-                    <View style={SignUpPageStyle.twoInputsTwo}>
-                        <InputWithEndText
+                    <View style={SignUpPageStyle.weightAndHeightField}>
+                        <GenericInputWithEndText
                             title={'Poids'}
-                            endText={'Kg'}
+                            endText={'kg'}
                             placeHolder={'75'}
                             {...inputWeight}
                             style={{ flex: 1 }}
                         />
-                        <InputWithEndText
+                        <GenericInputWithEndText
                             title={'Taille'}
-                            endText={'Cm'}
+                            endText={'cm'}
                             placeHolder={'176'}
                             {...inputSize}
                             style={{ flex: 1 }}
                         />
                     </View>
-                    <InputWithEndText
+                    <GenericInputWithEndText
                         title={"Fréquence d'activité sportive"}
                         endText={'fois par semaine en moyenne'}
                         placeHolder={'2'}

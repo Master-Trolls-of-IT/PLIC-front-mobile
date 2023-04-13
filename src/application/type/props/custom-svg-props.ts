@@ -3,5 +3,5 @@ export type CustomSvgProps = {
     asset: any;
     style?: object;
     width?: number;
-    height?: number
+    height?: number;
 };

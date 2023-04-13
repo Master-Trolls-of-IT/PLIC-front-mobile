@@ -14,7 +14,6 @@ const GenericInputStyle = StyleSheet.create({
 
     border: {
         height: 43 * (Dimensions.get('screen').height / 900),
-        // width: 360 * (Dimensions.get('screen').width / 400),
         paddingLeft: 35,
         paddingRight: 25,
         borderWidth: 2,

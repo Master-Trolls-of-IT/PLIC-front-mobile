@@ -13,7 +13,6 @@ const useAppData = () => {
         });
 
     const navigationConfig = async () => {
-        // Hide it
         await NavigationBar.setVisibilityAsync('hidden');
     };
 

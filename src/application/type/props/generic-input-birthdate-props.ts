@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export type GenericBirthdateProps = {
+export type GenericInputBirthdateProps = {
     title: string;
     placeHolder?: string;
     style?: object;

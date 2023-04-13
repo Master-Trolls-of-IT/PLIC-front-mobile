@@ -34,14 +34,14 @@ const SignUpPageStyle = StyleSheet.create({
         width: 360 * (Dimensions.get('screen').width / 400)
     },
 
-    twoInputs: {
+    genderAndBirthField: {
         display: 'flex',
         flexDirection: 'row',
         width: '100%',
         gap: 15
     },
 
-    twoInputsTwo: {
+    weightAndHeightField: {
         display: 'flex',
         flexDirection: 'row',
         width: '70%',

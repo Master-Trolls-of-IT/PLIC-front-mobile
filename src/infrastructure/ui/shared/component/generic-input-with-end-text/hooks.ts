@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useRef, useState } from 'react';
-import { TextInput } from 'react-native';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { isNumber } from '~/infrastructure/ui/shared/helper/isNumber';
 
 const useInputWithEndTextData = (
     input: string,
@@ -9,7 +9,7 @@ const useInputWithEndTextData = (
     const onChangeText = (value: string) => {
         setControlledInput((prev) => {
             if (value === '') return '';
-            if (isNaN(parseInt(value))) return prev;
+            if (isNumber(value)) return prev;
             else {
                 dispatch(value);
                 return value;

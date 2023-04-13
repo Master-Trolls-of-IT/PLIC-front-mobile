@@ -1,6 +1,7 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { TouchableOpacity, Text, FlatList, View, Modal } from 'react-native';
 import GenericDropDownStyle from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown-style';
+
 const useGenericDropDownData = (
     onSelect: (item: { label: string; value: string }) => void,
     data: { label: string; value: string }[]
@@ -12,18 +13,21 @@ const useGenericDropDownData = (
     const [dropdownLeft, setDropdownLeft] = useState(0);
     const [dropdownWidth, setDropdownWidth] = useState(0);
 
+    const dropdownIcon = require('~/domain/entities/assets/icon/icon-drop-down.svg');
+
     const openDropdown = (): void => {
-        // @ts-ignore
-        DropdownButton.current.measure((_fx: number, _fy: number, w: number, h: number, px: number, py: number) => {
-            setDropdownTop(py + h);
-            setDropdownLeft(px);
-            setDropdownWidth(w);
-        });
+        DropdownButton.current?.measure(
+            (_x: number, _y: number, weight: number, height: number, pageX: number, pageY: number) => {
+                setDropdownTop(pageY + height);
+                setDropdownLeft(pageX);
+                setDropdownWidth(weight);
+            }
+        );
         setVisible(true);
     };
 
     const toggleDropdown = (): void => {
-        setVisible((prev) => {
+        setVisible(() => {
             if (visible) return false;
             else {
                 openDropdown();
@@ -67,6 +71,7 @@ const useGenericDropDownData = (
     return {
         visible,
         selected,
+        dropdownIcon,
         renderDropdown,
         renderItem,
         toggleDropdown,

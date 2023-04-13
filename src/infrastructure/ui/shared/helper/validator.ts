@@ -8,7 +8,7 @@ const isValidateInput = (inputToCheck: string, type: InputTypeEnum): boolean => 
     } else if (type == InputTypeEnum.Password) {
         stringRegex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,24}$';
     } else {
-        stringRegex = '(?:0[1-9]|[12][0-9]|3[01])[/](?:0[1-9]|1[012])[/](?:19\\d{2}|20[01][0-9]|2020|2021|2022)';
+        stringRegex = '^[0-9]{1,3}$';
     }
 
     const regex = new RegExp(stringRegex);

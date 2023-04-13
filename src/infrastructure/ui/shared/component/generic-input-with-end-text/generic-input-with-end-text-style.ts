@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const InputWithEndTextStyle = StyleSheet.create({
+const GenericInputWithEndTextStyle = StyleSheet.create({
     container: {
         justifyContent: 'center',
         marginTop: 4
@@ -14,7 +14,6 @@ const InputWithEndTextStyle = StyleSheet.create({
 
     border: {
         height: 43 * (Dimensions.get('screen').height / 900),
-        // width: 360 * (Dimensions.get('screen').width / 400),
         paddingLeft: 35,
         paddingRight: 25,
         borderWidth: 2,
@@ -33,4 +32,4 @@ const InputWithEndTextStyle = StyleSheet.create({
     }
 });
 
-export default InputWithEndTextStyle;
+export default GenericInputWithEndTextStyle;
