@@ -8,6 +8,7 @@ import {
     emailTooltipMessage,
     passwordTooltipMessage
 } from '~/application/type/constant/tooltip-constant';
+import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 const useGenericInputData = ({
     type,
@@ -36,6 +37,11 @@ const useGenericInputData = ({
         <CustomSvg asset={assetShowTextOn} height={28} width={35} />
     );
 
+    const genericInputTitleStyle =
+        type != InputTypeEnum.Birthdate
+            ? { ...GenericInputStyle.title, ...CustomFontInterBold().text }
+            : { ...GenericInputStyle.title, ...CustomFontInterBold().text, letterSpacing: -1 };
+
     const onChangeText = (newInput: string) => {
         dispatch(newInput);
         const isValid = isValidateInput(newInput, type);
@@ -60,6 +66,7 @@ const useGenericInputData = ({
 
     return {
         dispatchTooltip: setShowTooltip,
+        genericInputTitleStyle,
         onChangeText,
         onPressPasswordIcon,
         onPressStatusIcon,

@@ -44,7 +44,7 @@ const useGenericDropDownData = (
 
     const renderItem = ({ item }: any): ReactElement<any, any> => (
         <TouchableOpacity style={GenericDropDownStyle.item} onPress={() => onItemPress(item)}>
-            <Text>{item.label}</Text>
+            <Text style={GenericDropDownStyle.itemText}>{item.label}</Text>
         </TouchableOpacity>
     );
 

@@ -26,8 +26,9 @@ const GenericInputWithEndTextStyle = StyleSheet.create({
     endText: {
         position: 'absolute',
         alignSelf: 'flex-end',
-        fontSize: 17,
-        right: '15%',
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        paddingRight: 20,
+        paddingTop: 2,
         color: '#6D4C41'
     }
 });
