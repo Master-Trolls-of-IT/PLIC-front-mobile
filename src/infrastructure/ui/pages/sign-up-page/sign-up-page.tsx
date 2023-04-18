@@ -43,7 +43,6 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                     secondText={'Veuillez remplir les champs suivants'}
                 />
                 <View style={SignUpPageStyle.input}>
-
                     <GenericErrorMessage
                         text={'Un des champ est mal rempli'}
                         style={LoginPageStyle.errorMessage}
