@@ -1,11 +1,6 @@
-import axios, {
-    AxiosError,
-    AxiosRequestConfig,
-    AxiosResponse,
-    CreateAxiosDefaults,
-    RawAxiosRequestHeaders
-} from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults, RawAxiosRequestHeaders } from 'axios';
 import IAPIServices from '~/domain/interfaces/services/IAPIServices';
+import { Response } from '~/domain/interfaces/services/APIServiceResponses';
 
 class APIServices implements IAPIServices {
     baseURL: string;
@@ -31,44 +26,59 @@ class APIServices implements IAPIServices {
         this.axiosInstance = axios.create(this.baseAxiosConfig);
     }
 
-    async GET<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    async GET<T>(url: string, config?: AxiosRequestConfig): Promise<Response> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig).catch();
+        return this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig).catch((error) => {
+            console.log(error);
+            return error;
+        });
     }
 
-    async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<Response> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig);
+        return this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig).catch((error) => {
+            console.log(error);
+            return error.response;
+        });
     }
 
-    async PUT<D>(url: string, data?: D, config?: AxiosRequestConfig) {
+    async PUT<D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<Response> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.put<D>(url, data, newConfig);
+        return this.axiosInstance.put<D>(url, data, newConfig).catch((error) => {
+            console.log(error);
+            return error.response;
+        });
     }
 
-    async DELETE(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
+    async DELETE(url: string, config?: AxiosRequestConfig): Promise<Response> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.delete(url, newConfig);
+        return this.axiosInstance.delete(url, newConfig).catch((error) => {
+            console.log(error);
+            return error.response;
+        });
     }
 
-    async PATCH(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
+    async PATCH(url: string, config?: AxiosRequestConfig): Promise<Response> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.patch(url, newConfig);
+        return this.axiosInstance.patch(url, newConfig).catch((error) => {
+            console.log(error);
+            return error.response;
+        });
     }
 }
 
