@@ -4,7 +4,7 @@ import SignUpPageStyle from '~/infrastructure/ui/pages/sign-up-page/sign-up-page
 import SignUpPageBlobsTop from '~/infrastructure/ui/pages/sign-up-page/component/background/sign-up-page-blobs-top';
 import SignUpPageTreeClassicLogo from '~/infrastructure/ui/pages/sign-up-page/component/background/tree-classic-logo';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text';
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
+import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 import GenericInput from '~/infrastructure/ui/shared/component/generic-input/generic-input';
 import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';

@@ -1,5 +1,11 @@
-import axios, { AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults, RawAxiosRequestHeaders } from 'axios';
-import IAPIServices from '~/domain/interfaces/app-services';
+import axios, {
+    AxiosError,
+    AxiosRequestConfig,
+    AxiosResponse,
+    CreateAxiosDefaults,
+    RawAxiosRequestHeaders
+} from 'axios';
+import IAPIServices from '~/domain/interfaces/services/IAPIServices';
 
 class APIServices implements IAPIServices {
     baseURL: string;
@@ -30,8 +36,7 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        const response = await this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig);
-        return response;
+        return this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig).catch();
     }
 
     async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
@@ -39,8 +44,7 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        const response = await this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig);
-        return response;
+        return this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig);
     }
 
     async PUT<D>(url: string, data?: D, config?: AxiosRequestConfig) {
@@ -48,8 +52,7 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        const response = await this.axiosInstance.put<D>(url, data, newConfig);
-        return response;
+        return this.axiosInstance.put<D>(url, data, newConfig);
     }
 
     async DELETE(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
@@ -57,8 +60,7 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        const response = await this.axiosInstance.delete(url, newConfig);
-        return response;
+        return this.axiosInstance.delete(url, newConfig);
     }
 
     async PATCH(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
@@ -66,8 +68,7 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        const response = await this.axiosInstance.patch(url, newConfig);
-        return response;
+        return this.axiosInstance.patch(url, newConfig);
     }
 }
 
