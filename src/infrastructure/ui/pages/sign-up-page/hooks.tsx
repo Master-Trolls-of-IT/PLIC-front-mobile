@@ -11,7 +11,7 @@ const useSignUpPageData = (navigation: any) => {
     const [inputSizeString, setInputSize] = useState('');
     const [inputWeightString, setInputWeight] = useState('');
     const [inputAgeString, setInputAge] = useState('');
-    const [inputGenderString, setInputGender] = useState('');
+    const [inputGenderString, setInputGender] = useState<{ label: string; value: string }>({ label: '', value: '' });
     const [inputSportActivityString, setInputSportActivity] = useState('');
     const [errorOnSignUp, setErrorOnSignUp] = useState(false);
     const [errorOnDataBase, setErrorOnDataBase] = useState(false);
