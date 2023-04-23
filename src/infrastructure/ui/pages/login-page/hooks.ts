@@ -1,4 +1,3 @@
-import * as process from 'process';
 import { useState } from 'react';
 import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
 import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
