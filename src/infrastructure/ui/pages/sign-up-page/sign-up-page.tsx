@@ -11,6 +11,8 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import GenericDropdown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
 import GenericInputBirthdate from '~/infrastructure/ui/shared/component/generique-input-birthdate/generic-input-birthdate';
 import GenericInputWithEndText from '~/infrastructure/ui/shared/component/generic-input-with-end-text/generic-input-with-end-text';
+import LoginPageStyle from '~/infrastructure/ui/pages/login-page/login-page-style';
+import GenericErrorMessage from '~/infrastructure/ui/shared/component/generic-error-text/generic-error-message';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -24,7 +26,9 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
         inputAge,
         inputGender,
         onPressGoBack,
-        onPressValidate
+        onPressValidate,
+        errorOnSignUp,
+        errorOnDataBase
     } = useSignUpPageData(navigation);
 
     return (
@@ -39,6 +43,17 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                     secondText={'Veuillez remplir les champs suivants'}
                 />
                 <View style={SignUpPageStyle.input}>
+                    <GenericErrorMessage
+                        text={'Un des champ est mal rempli'}
+                        style={LoginPageStyle.errorMessage}
+                        error={errorOnSignUp}
+                    />
+                    <GenericErrorMessage
+                        text={'La connexion à la base de donnée a échoué'}
+                        style={LoginPageStyle.errorMessage}
+                        error={errorOnDataBase}
+                    />
+
                     <View style={SignUpPageStyle.genderAndBirthField}>
                         <GenericDropdown
                             title={'Genre'}

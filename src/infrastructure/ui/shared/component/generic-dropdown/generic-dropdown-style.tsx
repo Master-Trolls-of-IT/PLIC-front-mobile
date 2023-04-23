@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 const GenericDropDownStyle = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        marginTop: 4
+        marginTop: 3
     },
 
     title: {
@@ -35,7 +35,8 @@ const GenericDropDownStyle = StyleSheet.create({
     inputText: {
         flex: 2,
         textAlign: 'center',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        fontSize: 14 * (Dimensions.get('screen').height / 725)
     },
 
     icon: {
@@ -45,11 +46,11 @@ const GenericDropDownStyle = StyleSheet.create({
 
     dropdown: {
         position: 'absolute',
-        backgroundColor: '#fff',
-        shadowColor: '#000000',
-        shadowRadius: 4,
-        shadowOffset: { height: 4, width: 0 },
-        shadowOpacity: 0.5
+        marginTop: -2,
+        borderWidth: 2,
+        borderColor: '#6D4C41',
+        borderRadius: 20,
+        backgroundColor: '#E3DEBE'
     },
 
     overlay: {
@@ -60,7 +61,16 @@ const GenericDropDownStyle = StyleSheet.create({
     item: {
         paddingHorizontal: 10,
         paddingVertical: 10,
-        borderBottomWidth: 1
+        borderBottomWidth: 0.3,
+        borderBottomEndRadius: 10,
+        borderBottomStartRadius: 10,
+        bottom: -1,
+        borderColor: '#6D4C41'
+    },
+
+    itemText: {
+        fontSize: 12 * (Dimensions.get('screen').height / 725),
+        color: '#6D4C41'
     }
 });
 

@@ -16,7 +16,7 @@ const GenericDropDown = ({ title, dispatch, options, style }: GenericDropDownPro
     return (
         <View style={style}>
             <Text style={{ ...GenericDropDownStyle.title, ...CustomFontInterBold().text }}>{title}</Text>
-            <View ref={DropdownButton} style={GenericDropDownStyle.border}>
+            <View ref={DropdownButton} style={{ ...GenericDropDownStyle.border, ...GenericDropDownStyle.container }}>
                 {renderDropdown()}
                 <Text style={{ ...GenericDropDownStyle.inputText, ...CustomFontInterBold().text }}>
                     {selected?.label || options[0].label}

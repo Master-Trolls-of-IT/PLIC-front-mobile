@@ -10,6 +10,7 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: GenericInputProps) => {
     const {
         dispatchTooltip,
+        genericInputTitleStyle,
         onChangeText,
         onPressPasswordIcon,
         onPressStatusIcon,
@@ -26,7 +27,7 @@ const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: Gene
 
     return (
         <View style={style}>
-            <Text style={{ ...GenericInputStyle.title, ...CustomFontInterBold().text }}>{title}</Text>
+            <Text style={genericInputTitleStyle}>{title}</Text>
             <View style={GenericInputStyle.container}>
                 <TextInput
                     placeholder={placeHolder}
