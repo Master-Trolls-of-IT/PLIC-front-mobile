@@ -9,7 +9,6 @@
         "web": "expo start --web",
         "lint": "prettier --write . & eslint src --ext ts,tsx",
         "test": "jest"
-
     },
     "dependencies": {
         "@expo/webpack-config": "^18.0.1",
