@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
+import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import GenericInputStyle from '~/infrastructure/ui/shared/component/generic-input/generic-input-style';
 import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
@@ -7,7 +7,7 @@ import {
     birthdateTooltipMessage,
     emailTooltipMessage,
     passwordTooltipMessage
-} from '~/application/type/constant/tooltip-constant';
+} from '~/domain/interfaces/constant/tooltip-constant';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 const useGenericInputData = ({

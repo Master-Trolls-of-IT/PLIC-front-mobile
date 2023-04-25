@@ -6,7 +6,7 @@ import LoginPageBlobsBottom from '~/infrastructure/ui/pages/login-page/component
 import LoginPageBlobsTop from '~/infrastructure/ui/pages/login-page/component/background/login-page-blobs-top';
 import LoginPageTreeClassicLogo from '~/infrastructure/ui/pages/login-page/component/background/tree-classic-logo';
 import GenericInput from '~/infrastructure/ui/shared/component/generic-input/generic-input';
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
+import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useLoginPageData from '~/infrastructure/ui/pages/login-page/hooks';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/generic-error-text/generic-error-message';

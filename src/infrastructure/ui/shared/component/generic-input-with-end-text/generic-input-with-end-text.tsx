@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { GenericInputWithEndTextProps } from '~/application/type/props/generic-input-with-end-text-props';
+import { GenericInputWithEndTextProps } from '~/domain/interfaces/props/generic-input-with-end-text-props';
 import useInputWithEndTextData from '~/infrastructure/ui/shared/component/generic-input-with-end-text/hooks';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import inputWithEndTextStyle from '~/infrastructure/ui/shared/component/generic-input-with-end-text/generic-input-with-end-text-style';

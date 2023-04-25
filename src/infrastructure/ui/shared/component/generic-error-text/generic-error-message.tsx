@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import GenericErrorMessageStyle from '~/infrastructure/ui/shared/component/generic-error-text/generic-error-message-style';
-import { GenericErrorMessageProps } from '~/application/type/props/generic-error-message-props';
+import { GenericErrorMessageProps } from '~/domain/interfaces/props/generic-error-message-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 const GenericErrorMessage = ({ text, style, error }: GenericErrorMessageProps) => {

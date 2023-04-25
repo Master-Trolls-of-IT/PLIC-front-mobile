@@ -1,4 +1,4 @@
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
+import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 
 const isValidateInput = (inputToCheck: string, type: InputTypeEnum): boolean => {
     let stringRegex = '';

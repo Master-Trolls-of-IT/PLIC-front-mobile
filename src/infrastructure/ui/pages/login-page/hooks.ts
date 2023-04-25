@@ -1,7 +1,6 @@
-import * as process from 'process';
 import { useState } from 'react';
 import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
+import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { LoginData } from '~/domain/interfaces/loginAndSignUp/login';
 import APIService from '~/infrastructure/controllers/services';
 import RefreshTokenGen from '~/infrastructure/ui/pages/login-page/services';

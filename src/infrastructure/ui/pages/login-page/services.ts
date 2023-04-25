@@ -1,6 +1,5 @@
 //This is the file for all the api calls of the login page
 
-import * as process from 'process';
 import { AxiosResponse } from 'axios';
 import APIService from '~/infrastructure/controllers/services';
 

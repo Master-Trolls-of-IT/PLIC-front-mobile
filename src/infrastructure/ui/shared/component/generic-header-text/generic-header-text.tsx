@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { HeaderConfigProps } from '~/application/type/props/header-config-props';
+import { HeaderConfigProps } from '~/domain/interfaces/props/header-config-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import CustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular';
 import GenericHeaderTextStyle from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text-style';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
+import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { SignUpData } from '~/domain/interfaces/loginAndSignUp/signUp';
 
 const useSignUpPageData = (navigation: any) => {

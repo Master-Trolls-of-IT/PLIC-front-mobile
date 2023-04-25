@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { GenericDropDownProps } from '~/application/type/props/generic-dropdown-props';
+import { GenericDropDownProps } from '~/domain/interfaces/props/generic-dropdown-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useGenericDropDownData from '~/infrastructure/ui/shared/component/generic-dropdown/hooks';
 import GenericDropDownStyle from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown-style';
