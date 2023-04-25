@@ -26,7 +26,7 @@ const useGenericInputBirthdateData = (
                         if (parseInt(value[i]) > 9) return false;
                     }
                     if (parseInt(value[i - 1]) == 1) {
-                        if (parseInt(value[i]) > 3) return false;
+                        if (parseInt(value[i]) > 2) return false;
                     }
                     break;
                 default:

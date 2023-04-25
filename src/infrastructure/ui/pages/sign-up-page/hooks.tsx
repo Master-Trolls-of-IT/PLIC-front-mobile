@@ -2,6 +2,8 @@ import { useState } from 'react';
 import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
 import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { SignUpData } from '~/domain/interfaces/loginAndSignUp/signUp';
+import APIService from '~/infrastructure/controllers/services';
+import PasswordHashing from '~/infrastructure/controllers/password-hashing';
 
 const useSignUpPageData = (navigation: any) => {
     const [inputBirthdateString, setInputBirthdate] = useState('');
@@ -21,50 +23,46 @@ const useSignUpPageData = (navigation: any) => {
     };
 
     const onPressValidate = () => {
-        if (
-            isValidateInput(inputEmailString, InputTypeEnum.Email) &&
-            isValidateInput(inputPasswordString, InputTypeEnum.Password)
-        ) {
-            const data: SignUpData = {
-                Email: inputEmailString,
-                Username: inputEmailString,
-                Password: inputPasswordString,
-                Birthdate: inputBirthdateString,
-                Weight: +inputWeightString,
-                Height: +inputSizeString,
-                Gender: +inputGenderString,
-                Pseudo: inputNameString,
-                Rights: 0,
-                Sportiveness: +inputSportActivityString,
-                BasalMetabolism: 0
-            };
+        const post = async () => {
+            if (
+                isValidateInput(inputEmailString, InputTypeEnum.Email) &&
+                isValidateInput(inputPasswordString, InputTypeEnum.Password)
+            ) {
+                const data: SignUpData = {
+                    Email: inputEmailString,
+                    Username: inputEmailString,
+                    Password: PasswordHashing(inputPasswordString),
+                    Birthdate: inputBirthdateString,
+                    Weight: +inputWeightString,
+                    Height: +inputSizeString,
+                    Gender: +inputGenderString,
+                    Pseudo: inputNameString,
+                    Rights: 0,
+                    Sportiveness: +inputSportActivityString,
+                    BasalMetabolism: 0
+                };
 
-            // Send data here ( Need to know how to get Rights and Basal Metabolism )
-            // here is the api address: https://plic-back-qp6wugltyq-ew.a.run.app/
-            // and the body is the data
-            // and the method is POST
-            fetch('http://localhost:8080/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then((response) => {
+                // Send data here ( Need to know how to get Rights and Basal Metabolism )
+                // and the body is the data
+                // and the method is POST
+                try {
+                    const response = await APIService.POST('/register', data);
+                    console.log(response.status);
                     if (response.status === 200) {
                         navigation.navigate('HomePage');
                     } else {
-                        console.log(response);
+                        // TODO : Ajout du logger
                         setErrorOnDataBase(true);
                     }
-                })
-                .catch((error) => {
-                    console.log(error);
+                } catch (e) {
+                    // TODO : Ajout du logger
                     setErrorOnDataBase(true);
-                });
-        } else {
-            setErrorOnSignUp(true);
-        }
+                }
+            } else {
+                setErrorOnSignUp(true);
+            }
+        };
+        void post();
     };
     return {
         inputBirthdate: { input: inputBirthdateString, dispatch: setInputBirthdate },
