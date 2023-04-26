@@ -9,7 +9,7 @@ const useInputWithEndTextData = (
     const onChangeText = (value: string) => {
         setControlledInput((prev) => {
             if (value === '') return '';
-            if (isNumber(value)) return prev;
+            if (!isNumber(value)) return prev;
             else {
                 dispatch(value);
                 return value;

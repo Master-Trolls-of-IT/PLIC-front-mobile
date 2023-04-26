@@ -26,24 +26,24 @@ class APIServices implements IAPIServices {
         this.axiosInstance = axios.create(this.baseAxiosConfig);
     }
 
-    async GET<T>(url: string, config?: AxiosRequestConfig): Promise<Response> {
+    async GET<T>(url: string, config?: AxiosRequestConfig): Promise<Response<T>> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
         return this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig).catch((error) => {
-            console.log(error);
+            // TODO : Ajout du logger
             return error;
         });
     }
 
-    async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<Response> {
+    async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<Response<D>> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
         return this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig).catch((error) => {
-            console.log(error);
+            // TODO : Ajout du logger
             return error.response;
         });
     }
@@ -54,7 +54,7 @@ class APIServices implements IAPIServices {
             ...config
         } as AxiosRequestConfig;
         return this.axiosInstance.put<D>(url, data, newConfig).catch((error) => {
-            console.log(error);
+            // TODO : Ajout du logger
             return error.response;
         });
     }
@@ -65,7 +65,7 @@ class APIServices implements IAPIServices {
             ...config
         } as AxiosRequestConfig;
         return this.axiosInstance.delete(url, newConfig).catch((error) => {
-            console.log(error);
+            // TODO : Ajout du logger
             return error.response;
         });
     }
@@ -76,7 +76,7 @@ class APIServices implements IAPIServices {
             ...config
         } as AxiosRequestConfig;
         return this.axiosInstance.patch(url, newConfig).catch((error) => {
-            console.log(error);
+            // TODO : Ajout du logger
             return error.response;
         });
     }
