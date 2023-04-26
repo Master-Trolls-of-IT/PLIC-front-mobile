@@ -5,12 +5,7 @@ const HomePageStyle = StyleSheet.create({
         backgroundColor: '#EFECCA',
         height: '100%',
         width: Dimensions.get('screen').width,
-        justifyContent: 'center'
-    },
-
-    text: {
-        alignSelf: 'center',
-        fontSize: 30
+        justifyContent: 'flex-start'
     }
 });
 
