@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
-import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { LoginData } from '~/domain/interfaces/loginAndSignUp/login';
 import APIService from '~/infrastructure/controllers/services';
 import RefreshTokenGen from '~/infrastructure/ui/pages/login-page/services';
+import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
+import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 
 const useLoginPageData = (navigation: any) => {
     const [inputEmailString, setInputEmail] = useState('');
@@ -17,8 +17,8 @@ const useLoginPageData = (navigation: any) => {
 
     const onPressLogin = async () => {
         if (
-            isValidateInput(inputEmailString, InputTypeEnum.Email) &&
-            isValidateInput(inputPasswordString, InputTypeEnum.Password)
+            isValidInput(inputEmailString, InputTypeEnum.Email) &&
+            isValidInput(inputPasswordString, InputTypeEnum.Password)
         ) {
             //Envoyer la data JSON au back ici
             const data: LoginData = {

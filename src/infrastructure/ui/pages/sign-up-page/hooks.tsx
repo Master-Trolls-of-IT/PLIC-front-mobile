@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import isValidateInput from '~/infrastructure/ui/shared/helper/validator';
 import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { SignUpData } from '~/domain/interfaces/loginAndSignUp/signUp';
 import APIService from '~/infrastructure/controllers/services';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
+import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 
 const useSignUpPageData = (navigation: any) => {
     const [inputBirthdateString, setInputBirthdate] = useState('');
     const [inputEmailString, setInputEmail] = useState('');
     const [inputPasswordString, setInputPassword] = useState('');
+    const [inputValidPasswordString, setValidPassword] = useState('');
     const [inputNameString, setInputName] = useState('');
-    const [inputSizeString, setInputSize] = useState('');
+    const [inputHeightString, setInputHeight] = useState('');
     const [inputWeightString, setInputWeight] = useState('');
-    const [inputAgeString, setInputAge] = useState('');
     const [inputGenderString, setInputGender] = useState<{ label: string; value: string }>({ label: '', value: '' });
     const [inputSportActivityString, setInputSportActivity] = useState('');
     const [errorOnSignUp, setErrorOnSignUp] = useState(false);
@@ -25,8 +25,15 @@ const useSignUpPageData = (navigation: any) => {
     const onPressValidate = () => {
         const post = async () => {
             if (
-                isValidateInput(inputEmailString, InputTypeEnum.Email) &&
-                isValidateInput(inputPasswordString, InputTypeEnum.Password)
+                isValidInput(inputBirthdateString, InputTypeEnum.Birthdate) &&
+                isValidInput(inputNameString, InputTypeEnum.Name) &&
+                inputWeightString != '' &&
+                inputHeightString != '' &&
+                inputSportActivityString != '' &&
+                isValidInput(inputEmailString, InputTypeEnum.Email) &&
+                isValidInput(inputPasswordString, InputTypeEnum.Password) &&
+                isValidInput(inputValidPasswordString, InputTypeEnum.Password) &&
+                inputPasswordString == inputValidPasswordString
             ) {
                 const data: SignUpData = {
                     Email: inputEmailString,
@@ -34,7 +41,7 @@ const useSignUpPageData = (navigation: any) => {
                     Password: PasswordHashing(inputPasswordString),
                     Birthdate: inputBirthdateString,
                     Weight: +inputWeightString,
-                    Height: +inputSizeString,
+                    Height: +inputHeightString,
                     Gender: +inputGenderString,
                     Pseudo: inputNameString,
                     Rights: 0,
@@ -42,9 +49,6 @@ const useSignUpPageData = (navigation: any) => {
                     BasalMetabolism: 0
                 };
 
-                // Send data here ( Need to know how to get Rights and Basal Metabolism )
-                // and the body is the data
-                // and the method is POST
                 try {
                     const response = await APIService.POST('/register', data);
                     console.log(response.status);
@@ -64,18 +68,19 @@ const useSignUpPageData = (navigation: any) => {
         };
         void post();
     };
+
     return {
-        inputBirthdate: { input: inputBirthdateString, dispatch: setInputBirthdate },
-        inputEmail: { input: inputEmailString, dispatch: setInputEmail },
-        inputPassword: { input: inputPasswordString, dispatch: setInputPassword },
-        inputName: { input: inputNameString, dispatch: setInputName },
-        inputSize: { input: inputSizeString, dispatch: setInputSize },
-        inputWeight: { input: inputWeightString, dispatch: setInputWeight },
-        inputAge: { input: inputAgeString, dispatch: setInputAge },
-        inputSportActivity: { input: inputSportActivityString, dispatch: setInputSportActivity },
-        inputGender: { input: inputGenderString, dispatch: setInputGender },
         errorOnSignUp,
         errorOnDataBase,
+        inputBirthdate: { input: inputBirthdateString, dispatch: setInputBirthdate },
+        inputEmail: { input: inputEmailString, dispatch: setInputEmail },
+        inputGender: { input: inputGenderString, dispatch: setInputGender },
+        inputName: { input: inputNameString, dispatch: setInputName },
+        inputPassword: { input: inputPasswordString, dispatch: setInputPassword },
+        inputHeight: { input: inputHeightString, dispatch: setInputHeight },
+        inputSportActivity: { input: inputSportActivityString, dispatch: setInputSportActivity },
+        inputValidPassword: { input: inputValidPasswordString, dispatch: setValidPassword },
+        inputWeight: { input: inputWeightString, dispatch: setInputWeight },
         onPressGoBack,
         onPressValidate
     };
