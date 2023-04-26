@@ -15,23 +15,44 @@ const loginPageStyle = StyleSheet.create({
         right: -15
     },
 
+    errorMessages: {
+        marginTop: 55
+    },
+
     errorMessage: {
-        left: Dimensions.get('screen').width / 25
+        alignSelf: 'center',
+        width: 360 * (Dimensions.get('screen').width / 400)
+    },
+
+    container: {
+        height: Dimensions.get('screen').height,
+        display: 'flex',
+        flexDirection: 'column'
+    },
+
+    contentContainer: {
+        height: Dimensions.get('screen').height,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 5
     },
 
     input: {
         alignSelf: 'center',
-        top: Dimensions.get('screen').height / 5.5,
-        gap: 18
+        width: 360 * (Dimensions.get('screen').width / 400),
+        gap: 13 * (Dimensions.get('screen').height / 1000)
     },
 
     buttonContainer: {
-        marginTop: 15,
-        width: 360 * (Dimensions.get('screen').width / 400)
+        alignSelf: 'center',
+        width: 360 * (Dimensions.get('screen').width / 400),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10
     },
 
     brownButtonContainer: {
-        left: 0,
         backgroundColor: '#6D4C41',
         height: 43 * (Dimensions.get('screen').height / 900),
         width: 123 * (Dimensions.get('screen').width / 400)
@@ -45,8 +66,7 @@ const loginPageStyle = StyleSheet.create({
     greenButtonContainer: {
         backgroundColor: '#84CF3D',
         height: 43 * (Dimensions.get('screen').height / 900),
-        width: 163 * (Dimensions.get('screen').width / 400),
-        right: 0
+        width: 163 * (Dimensions.get('screen').width / 400)
     },
 
     greenButtonText: {

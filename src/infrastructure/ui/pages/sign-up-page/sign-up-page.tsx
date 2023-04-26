@@ -33,13 +33,13 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
 
     return (
         <KeyboardAwareScrollView scrollEnabled={false}>
-            <View>
+            <View style={SignUpPageStyle.container}>
                 <View style={SignUpPageStyle.background}>
                     <SignUpPageBlobsTop />
                     <TreeClassicLogo />
                 </View>
 
-                <View>
+                <View style={SignUpPageStyle.contentContainer}>
                     <GenericHeaderText
                         firstText={'Dites nous en plus,'}
                         secondText={'Veuillez remplir les champs suivants'}

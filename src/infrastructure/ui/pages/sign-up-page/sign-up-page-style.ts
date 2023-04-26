@@ -23,16 +23,26 @@ const SignUpPageStyle = StyleSheet.create({
     },
 
     errorMessage: {
-        top: Dimensions.get('screen').height / 6.5,
         marginLeft: Dimensions.get('screen').width / 15,
         marginRight: Dimensions.get('screen').width / 15
+    },
+
+    container: {
+        height: Dimensions.get('screen').height,
+        display: 'flex',
+        flexDirection: 'column'
+    },
+
+    contentContainer: {
+        height: Dimensions.get('screen').height,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 20
     },
 
     input: {
         alignSelf: 'center',
         width: 360 * (Dimensions.get('screen').width / 400),
-        top: Dimensions.get('screen').height / 5.6,
-        paddingBottom: Dimensions.get('screen').height / 5,
         gap: 13 * (Dimensions.get('screen').height / 1000)
     },
 
@@ -52,14 +62,16 @@ const SignUpPageStyle = StyleSheet.create({
 
     buttonContainer: {
         alignSelf: 'center',
-        width: 360 * (Dimensions.get('screen').width / 400)
+        width: 360 * (Dimensions.get('screen').width / 400),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
 
     brownButtonContainer: {
         backgroundColor: '#6D4C41',
         height: 43 * (Dimensions.get('screen').height / 900),
-        width: 96 * (Dimensions.get('screen').width / 400),
-        left: 0
+        width: 96 * (Dimensions.get('screen').width / 400)
     },
 
     brownButtonText: {
@@ -70,8 +82,7 @@ const SignUpPageStyle = StyleSheet.create({
     greenButtonContainer: {
         backgroundColor: '#84CF3D',
         height: 43 * (Dimensions.get('screen').height / 900),
-        width: 101 * (Dimensions.get('screen').width / 400),
-        right: 0
+        width: 101 * (Dimensions.get('screen').width / 400)
     },
 
     greenButtonText: {

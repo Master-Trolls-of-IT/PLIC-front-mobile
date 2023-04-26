@@ -2,8 +2,8 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const GenericHeaderTextStyle = StyleSheet.create({
     container: {
-        top: Dimensions.get('screen').height / 8,
-        left: Dimensions.get('screen').width / 9.5
+        marginTop: Dimensions.get('screen').height / 8,
+        marginLeft: Dimensions.get('screen').width / 9.5
     },
 
     firstText: {
