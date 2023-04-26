@@ -1,4 +1,4 @@
-export interface SignUpData {
+export type SignUpData = {
     Email: string;
     Username: string;
     Password: string;
@@ -10,4 +10,4 @@ export interface SignUpData {
     Rights: number;
     Sportiveness: number;
     BasalMetabolism: number;
-}
+};

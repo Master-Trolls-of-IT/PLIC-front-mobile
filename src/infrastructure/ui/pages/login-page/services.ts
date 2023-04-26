@@ -1,8 +1,5 @@
-//This is the file for all the api calls of the login page
-
-import { AxiosResponse } from 'axios';
 import APIService from '~/infrastructure/controllers/services';
-import { Response } from '~/domain/interfaces/services/APIServiceResponses';
+import { Response } from '~/domain/interfaces/services/api-service-responses';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
 
 export default async function RefreshTokenGen(password: string): Promise<string> {

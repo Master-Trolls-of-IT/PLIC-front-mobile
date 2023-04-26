@@ -6,7 +6,8 @@ const GenericTooltipStyle = StyleSheet.create({
         backgroundColor: '#6D4C41',
         borderRadius: 10,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        overflow: 'visible'
     },
 
     text: {

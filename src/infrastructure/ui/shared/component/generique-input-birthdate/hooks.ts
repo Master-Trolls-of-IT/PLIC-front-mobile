@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { isNumber } from '~/infrastructure/ui/shared/helper/isNumber';
+import { isNumber } from '~/infrastructure/ui/shared/helper/is-number';
 
 const useGenericInputBirthdateData = (
     dispatchInput: Dispatch<SetStateAction<string>> | ((value: string) => void),

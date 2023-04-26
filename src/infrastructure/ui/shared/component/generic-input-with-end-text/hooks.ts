@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { isNumber } from '~/infrastructure/ui/shared/helper/isNumber';
+import { isNumber } from '~/infrastructure/ui/shared/helper/is-number';
 
 const useInputWithEndTextData = (
     input: string,

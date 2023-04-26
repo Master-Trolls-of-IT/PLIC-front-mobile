@@ -2,10 +2,10 @@ import React from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import GenericInputStyle from '~/infrastructure/ui/shared/component/generic-input/generic-input-style';
 import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
-import useGenericInputData from '~/infrastructure/ui/shared/component/generic-input/hooks';
 import { GenericInputProps } from '~/domain/interfaces/props/generic-input-props';
 import GenericTooltip from '~/infrastructure/ui/shared/component/generic-tooltip/generic-tooltip';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
+import useInputData from '~/infrastructure/ui/shared/helper/input-hooks';
 
 const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: GenericInputProps) => {
     const {
@@ -20,10 +20,7 @@ const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: Gene
         showRightStatusIcon,
         showTooltip,
         validInput
-    } = useGenericInputData({
-        type,
-        dispatch
-    });
+    } = useInputData({ type, dispatch });
 
     return (
         <View style={style}>
@@ -34,7 +31,7 @@ const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: Gene
                     style={{ ...GenericInputStyle.border, ...CustomFontInterBold().text }}
                     secureTextEntry={secureTextEntry}
                     onChangeText={onChangeText}
-                    maxLength={type == InputTypeEnum.Password ? 24 : undefined}
+                    maxLength={type == InputTypeEnum.Password || type == InputTypeEnum.Name ? 24 : undefined}
                     value={input}
                 />
 
@@ -46,8 +43,8 @@ const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: Gene
                     <TouchableOpacity
                         style={GenericInputStyle.statusIcon}
                         onPress={onPressStatusIcon}
-                        disabled={validInput}>
-                        {type != InputTypeEnum.Text && input != '' ? showRightStatusIcon : null}
+                        disabled={validInput || input == ''}>
+                        {input != '' ? showRightStatusIcon : null}
                     </TouchableOpacity>
                 </View>
 

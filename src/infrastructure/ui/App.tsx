@@ -11,6 +11,7 @@ import useAppData from '~/infrastructure/ui/hooks';
 function App() {
     const Stack = createNativeStackNavigator();
     useAppData();
+
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="StartupPage" screenOptions={{ headerShown: false }}>
