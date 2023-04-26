@@ -32,7 +32,7 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     } = useSignUpPageData(navigation);
 
     return (
-        <KeyboardAwareScrollView scrollEnabled={false}>
+        <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>
             <View style={SignUpPageStyle.container}>
                 <View style={SignUpPageStyle.background}>
                     <SignUpPageBlobsTop />
