@@ -32,14 +32,14 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     } = useSignUpPageData(navigation);
 
     return (
-        <KeyboardAwareScrollView scrollEnabled={false}>
-            <View>
+        <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>
+            <View style={SignUpPageStyle.container}>
                 <View style={SignUpPageStyle.background}>
                     <SignUpPageBlobsTop />
                     <TreeClassicLogo />
                 </View>
 
-                <View>
+                <View style={SignUpPageStyle.contentContainer}>
                     <GenericHeaderText
                         firstText={'Dites nous en plus,'}
                         secondText={'Veuillez remplir les champs suivants'}
