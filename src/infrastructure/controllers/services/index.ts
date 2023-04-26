@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults, RawAxiosRequestHeaders } from 'axios';
 import IAPIServices from '~/domain/interfaces/services/IAPIServices';
-import { Response } from '~/domain/interfaces/services/APIServiceResponses';
+import { Response } from '~/domain/interfaces/services/api-service-responses';
 
 class APIServices implements IAPIServices {
     baseURL: string;

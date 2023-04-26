@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LoginData } from '~/domain/interfaces/loginAndSignUp/login';
+import { LoginData } from '~/domain/interfaces/type/login';
 import APIService from '~/infrastructure/controllers/services';
 import RefreshTokenGen from '~/infrastructure/ui/pages/login-page/services';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';

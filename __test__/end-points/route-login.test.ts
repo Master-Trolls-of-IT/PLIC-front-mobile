@@ -1,22 +1,22 @@
 import APIService from '~/infrastructure/controllers/services';
-import { LoginRequest } from '~/domain/interfaces/services/login';
+import { LoginData } from '~/domain/interfaces/services/login';
 
-const goodLoginData: LoginRequest = {
+const goodLoginData: LoginData = {
     email: 'testtesttest@test.com',
     password: 'Test1234+.'
 };
 
-const badIdLoginData: LoginRequest = {
+const badIdLoginData: LoginData = {
     email: 'badbad@test.com',
     password: 'Test1234+.'
 };
 
-const badPasswordLoginData: LoginRequest = {
+const badPasswordLoginData: LoginData = {
     email: 'testtesttest@test.com',
     password: 'BadBadTest1234+.'
 };
 
-const badIdAndPasswordLoginData: LoginRequest = {
+const badIdAndPasswordLoginData: LoginData = {
     email: 'badbad@test.com',
     password: 'BadBadTest1234+.'
 };

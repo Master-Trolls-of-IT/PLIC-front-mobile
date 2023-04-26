@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { InputTypeEnum } from '~/application/type/enum/input-type-enum';
+import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
 
 export type GenericInputWithEndTextProps = {
     title: string;

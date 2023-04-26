@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
-import { SignUpData } from '~/domain/interfaces/loginAndSignUp/signUp';
 import APIService from '~/infrastructure/controllers/services';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
+import { SignUpData } from '~/domain/interfaces/services/sign-up';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 
 const useSignUpPageData = (navigation: any) => {
