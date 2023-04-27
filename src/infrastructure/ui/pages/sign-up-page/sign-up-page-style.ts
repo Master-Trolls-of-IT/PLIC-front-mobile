@@ -37,13 +37,13 @@ const SignUpPageStyle = StyleSheet.create({
         height: Dimensions.get('screen').height,
         display: 'flex',
         flexDirection: 'column',
-        gap: 20
+        justifyContent: 'space-evenly'
     },
 
     input: {
         alignSelf: 'center',
         width: 360 * (Dimensions.get('screen').width / 400),
-        gap: 13 * (Dimensions.get('screen').height / 1000)
+        gap: 10 * (Dimensions.get('screen').height / 1000)
     },
 
     genderAndBirthField: {
