@@ -13,7 +13,7 @@ const useGenericDropDownData = (
     const [dropdownLeft, setDropdownLeft] = useState(0);
     const [dropdownWidth, setDropdownWidth] = useState(0);
 
-    const dropdownIcon = require('~/domain/entities/assets/icon/icon-drop-down.svg');
+    const dropdownIcon = require('~/domain/entities/assets/icon/input-icon/icon-drop-down.svg');
 
     const openDropdown = (): void => {
         DropdownButton.current?.measure(

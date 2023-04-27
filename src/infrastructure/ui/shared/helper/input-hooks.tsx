@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Dimensions } from 'react-native';
-import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import {
     birthdateTooltipMessage,
@@ -17,16 +17,16 @@ const useInputData = ({
     type,
     dispatch
 }: {
-    type: InputTypeEnum;
+    type: InputEnum;
     dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void);
 }) => {
     const [showTooltip, setShowTooltip] = useState(false);
-    const [secureTextEntry, setSecureTextEntry] = useState(type == InputTypeEnum.Password);
+    const [secureTextEntry, setSecureTextEntry] = useState(type == InputEnum.Password);
     const [validInput, setValidInput] = useState(false);
     const [controlledInput, setControlledInput] = useState('');
 
     const genericInputTitleStyle =
-        type != InputTypeEnum.Birthdate
+        type != InputEnum.Birthdate
             ? { ...GenericInputStyle.title, ...CustomFontInterBold().text }
             : {
                   ...GenericInputStyle.title,
@@ -34,16 +34,16 @@ const useInputData = ({
                   letterSpacing: -1 * (Dimensions.get('screen').width / 300)
               };
 
-    const assetShowTextOff = require('~/domain/entities/assets/icon/icon-show-text-off.svg');
-    const assetShowTextOn = require('~/domain/entities/assets/icon/icon-show-text-on.svg');
+    const assetShowTextOff = require('~/domain/entities/assets/icon/input-icon/icon-show-text-off.svg');
+    const assetShowTextOn = require('~/domain/entities/assets/icon/input-icon/icon-show-text-on.svg');
     const showPasswordText = secureTextEntry ? (
         <CustomSvg asset={assetShowTextOff} height={28} width={35} />
     ) : (
         <CustomSvg asset={assetShowTextOn} height={28} width={35} />
     );
 
-    const assetRightInput = require('~/domain/entities/assets/icon/icon-input-valid.svg');
-    const assetWrongInput = require('~/domain/entities/assets/icon/icon-input-invalid.svg');
+    const assetRightInput = require('~/domain/entities/assets/icon/input-icon/icon-input-valid.svg');
+    const assetWrongInput = require('~/domain/entities/assets/icon/input-icon/icon-input-invalid.svg');
     const showRightStatusIcon = validInput ? (
         <CustomSvg asset={assetRightInput} style={GenericInputStyle.statusIcon} height={22} width={22} />
     ) : (
@@ -59,14 +59,14 @@ const useInputData = ({
     };
 
     const selectRightMessage = () => {
-        if (type == InputTypeEnum.Email) return emailTooltipMessage;
-        else if (type == InputTypeEnum.Password) return passwordTooltipMessage;
-        else if (type == InputTypeEnum.Birthdate) return birthdateTooltipMessage;
+        if (type == InputEnum.Email) return emailTooltipMessage;
+        else if (type == InputEnum.Password) return passwordTooltipMessage;
+        else if (type == InputEnum.Birthdate) return birthdateTooltipMessage;
         else return nameTooltipMessage;
     };
 
     const onChangeText = (value: string) => {
-        if (type == InputTypeEnum.Number) {
+        if (type == InputEnum.Number) {
             setControlledInput((prev) => {
                 if (value === '') return '';
                 if (!isNumber(value)) return prev;

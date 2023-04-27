@@ -3,7 +3,8 @@ import { LoginData } from '~/domain/interfaces/services/login';
 import APIService from '~/infrastructure/controllers/services';
 import RefreshTokenGen from '~/infrastructure/ui/pages/login-page/services';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
-import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const useLoginPageData = (navigation: any) => {
     const [inputEmailString, setInputEmail] = useState('');
@@ -12,14 +13,11 @@ const useLoginPageData = (navigation: any) => {
     const [errorOnDataBase, setErrorOnDataBase] = useState(false);
 
     const onPressSignUp = () => {
-        navigation.navigate('SignUpPage');
+        navigation.navigate(PagesEnum.SignUpPage);
     };
 
     const onPressLogin = async () => {
-        if (
-            isValidInput(inputEmailString, InputTypeEnum.Email) &&
-            isValidInput(inputPasswordString, InputTypeEnum.Password)
-        ) {
+        if (isValidInput(inputEmailString, InputEnum.Email) && isValidInput(inputPasswordString, InputEnum.Password)) {
             //Envoyer la data JSON au back ici
             const data: LoginData = {
                 email: inputEmailString,
@@ -37,7 +35,7 @@ const useLoginPageData = (navigation: any) => {
                     } else {
                         // Gérer l'erreur des tokens ici
                     }
-                    navigation.navigate('HomePage');
+                    navigation.navigate(PagesEnum.RootPage);
                 } else {
                     console.log(response);
                     setErrorOnDataBase(true);

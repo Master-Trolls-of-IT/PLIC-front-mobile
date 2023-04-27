@@ -1,4 +1,4 @@
-export enum InputTypeEnum {
+export enum InputEnum {
     Name = 'name',
     Email = 'email',
     Birthdate = 'birthdate',

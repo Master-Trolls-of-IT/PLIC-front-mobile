@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import APIService from '~/infrastructure/controllers/services';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
 import { SignUpData } from '~/domain/interfaces/services/sign-up';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const useSignUpPageData = (navigation: any) => {
     const [inputBirthdateString, setInputBirthdate] = useState('');
@@ -19,20 +20,20 @@ const useSignUpPageData = (navigation: any) => {
     const [errorOnDataBase, setErrorOnDataBase] = useState(false);
 
     const onPressGoBack = () => {
-        navigation.navigate('LoginPage');
+        navigation.navigate(PagesEnum.LoginPage);
     };
 
     const onPressValidate = () => {
         const post = async () => {
             if (
-                isValidInput(inputBirthdateString, InputTypeEnum.Birthdate) &&
-                isValidInput(inputNameString, InputTypeEnum.Name) &&
+                isValidInput(inputBirthdateString, InputEnum.Birthdate) &&
+                isValidInput(inputNameString, InputEnum.Name) &&
                 inputWeightString != '' &&
                 inputHeightString != '' &&
                 inputSportActivityString != '' &&
-                isValidInput(inputEmailString, InputTypeEnum.Email) &&
-                isValidInput(inputPasswordString, InputTypeEnum.Password) &&
-                isValidInput(inputValidPasswordString, InputTypeEnum.Password) &&
+                isValidInput(inputEmailString, InputEnum.Email) &&
+                isValidInput(inputPasswordString, InputEnum.Password) &&
+                isValidInput(inputValidPasswordString, InputEnum.Password) &&
                 inputPasswordString == inputValidPasswordString
             ) {
                 const data: SignUpData = {
@@ -53,7 +54,7 @@ const useSignUpPageData = (navigation: any) => {
                     const response = await APIService.POST('/register', data);
                     console.log(response.status);
                     if (response.status === 200) {
-                        navigation.navigate('HomePage');
+                        navigation.navigate(PagesEnum.RootPage);
                     } else {
                         // TODO : Ajout du logger
                         setErrorOnDataBase(true);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 
-const StartupPageBlobsBottom = () => {
+const StartUpPageBlobsBottom = () => {
     const asset = require('~/domain/entities/assets/startup-page/startup-page-blobs-bottom.svg');
 
     const newHeight: number = Dimensions.get('screen').height / 4;
@@ -11,4 +11,4 @@ const StartupPageBlobsBottom = () => {
     return <CustomSvg asset={asset} height={newHeight} width={newWidth} />;
 };
 
-export default StartupPageBlobsBottom;
+export default StartUpPageBlobsBottom;

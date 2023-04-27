@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
-import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 
 export type GenericInputProps = {
     title: string;
-    type: InputTypeEnum;
+    type: InputEnum;
     placeHolder?: string;
     style?: object;
     input: string;

@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const startupPageStyle = StyleSheet.create({
+const StartUpPageStyle = StyleSheet.create({
     container: {
         backgroundColor: '#EFECCA',
         height: Dimensions.get('screen').height,
@@ -11,4 +11,4 @@ const startupPageStyle = StyleSheet.create({
     largeClassicLogo: {}
 });
 
-export default startupPageStyle;
+export default StartUpPageStyle;

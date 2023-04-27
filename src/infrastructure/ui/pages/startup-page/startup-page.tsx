@@ -1,21 +1,21 @@
 import React, { FunctionComponent } from 'react';
 import { View } from 'react-native';
-import startupPageStyle from './startup-page-style';
-import useStartupPageService from '~/application/page-service/startup-page-service';
-import StartupPageBlobsTop from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-top';
-import StartupPageBlobsBottom from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-bottom';
-import StartupPageLargeClassicLogo from '~/infrastructure/ui/pages/startup-page/component/startup-page-large-classic-logo';
+import StartUpPageStyle from './startup-page-style';
+import useStartUpPageService from '~/application/page-service/startup-page-service';
+import StartUpPageBlobsTop from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-top';
+import StartUpPageBlobsBottom from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-bottom';
+import StartUpPageLargeClassicLogo from '~/infrastructure/ui/pages/startup-page/component/startup-page-large-classic-logo';
 
-const StartupPage: FunctionComponent<any> = ({ navigation }) => {
-    useStartupPageService(navigation.navigate, 2000);
+const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
+    useStartUpPageService(navigation.navigate, 2000);
 
     return (
-        <View style={startupPageStyle.container}>
-            <StartupPageBlobsTop />
-            <StartupPageLargeClassicLogo />
-            <StartupPageBlobsBottom />
+        <View style={StartUpPageStyle.container}>
+            <StartUpPageBlobsTop />
+            <StartUpPageLargeClassicLogo />
+            <StartUpPageBlobsBottom />
         </View>
     );
 };
 
-export default StartupPage;
+export default StartUpPage;
