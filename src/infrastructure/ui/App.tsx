@@ -14,7 +14,7 @@ function App() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="LoginPage" screenOptions={{ headerShown: false }}>
+            <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="StartupPage" component={StartupPage} />
                 <Stack.Screen name="LoginPage" component={LoginPage} options={{ gestureEnabled: false }} />
                 <Stack.Screen name="SignUpPage" component={SignUpPage} options={{ gestureEnabled: true }} />

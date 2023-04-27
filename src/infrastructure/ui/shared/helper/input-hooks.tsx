@@ -8,7 +8,7 @@ import {
     nameTooltipMessage,
     passwordTooltipMessage
 } from '~/domain/interfaces/constant/tooltip-constant';
-import GenericInputStyle from '~/infrastructure/ui/shared/component/generic-input/generic-input-style';
+import GenericInputStyle from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { isNumber } from '~/infrastructure/ui/shared/helper/is-number';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';

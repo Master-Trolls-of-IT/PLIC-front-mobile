@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { TouchableOpacity, Text, FlatList, View, Modal } from 'react-native';
-import GenericDropDownStyle from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown-style';
+import GenericDropDownStyle from './generic-dropdown-style';
 
 const useGenericDropDownData = (
     onSelect: (item: { label: string; value: string }) => void,
