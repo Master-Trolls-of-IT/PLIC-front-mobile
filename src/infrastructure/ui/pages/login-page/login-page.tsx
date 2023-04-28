@@ -4,14 +4,12 @@ import LoginPageStyle from '~/infrastructure/ui/pages/login-page/login-page-styl
 import LoginPageBlobsBottom from '~/infrastructure/ui/pages/login-page/component/background/login-page-blobs-bottom';
 import LoginPageBlobsTop from '~/infrastructure/ui/pages/login-page/component/background/login-page-blobs-top';
 import LoginPageTreeClassicLogo from '~/infrastructure/ui/pages/login-page/component/background/tree-classic-logo';
-
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useLoginPageData from '~/infrastructure/ui/pages/login-page/hooks';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
-import SignUpPageStyle from '~/infrastructure/ui/pages/sign-up-page/sign-up-page-style';
 
 const LoginPage: FunctionComponent<any> = ({ navigation }) => {
     const { inputEmail, inputPassword, errorOnLogin, onPressSignUp, onPressLogin, errorOnDataBase } =
