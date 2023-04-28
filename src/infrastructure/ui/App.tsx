@@ -1,12 +1,12 @@
 import React from 'react';
 import { registerRootComponent } from 'expo';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import StartupPage from './pages/startup-page/startup-page';
+import { NavigationContainer } from '@react-navigation/native';
+import useAppData from '~/infrastructure/ui/hooks';
+import StartupPage from '~/infrastructure/ui/pages/startup-page/startup-page';
 import LoginPage from '~/infrastructure/ui/pages/login-page/login-page';
 import SignUpPage from '~/infrastructure/ui/pages/sign-up-page/sign-up-page';
 import HomePage from '~/infrastructure/ui/pages/home-page/home-page';
-import useAppData from '~/infrastructure/ui/hooks';
 
 function App() {
     const Stack = createNativeStackNavigator();
