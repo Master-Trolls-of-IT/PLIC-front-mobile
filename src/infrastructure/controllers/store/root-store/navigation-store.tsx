@@ -2,11 +2,12 @@ import { action, makeAutoObservable, observable } from 'mobx';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 class NavigationStore {
-    navigate: any = () => {};
+    navigate: (route: string) => void;
     activeScreen: PagesEnum;
 
     constructor() {
         this.activeScreen = PagesEnum.HomePage;
+        this.navigate = () => {};
 
         makeAutoObservable(
             this,
@@ -20,7 +21,7 @@ class NavigationStore {
         );
     }
 
-    setNavigate = (navigate: any) => {
+    setNavigate = (navigate: (route: string) => void) => {
         this.navigate = navigate;
     };
 

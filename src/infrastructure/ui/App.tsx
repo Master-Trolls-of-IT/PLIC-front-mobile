@@ -15,7 +15,7 @@ function App() {
     return (
         <StoreProvider value={rootStore}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName={PagesEnum.StartUpPage} screenOptions={{ headerShown: false }}>
+                <Stack.Navigator initialRouteName={PagesEnum.RootPage} screenOptions={{ headerShown: false }}>
                     <Stack.Screen name={PagesEnum.StartUpPage} component={StartUpPage} />
                     <Stack.Screen
                         name={PagesEnum.LoginPage}

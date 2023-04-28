@@ -19,23 +19,24 @@ const useSignUpPageData = (navigation: any) => {
     const [errorOnSignUp, setErrorOnSignUp] = useState(false);
     const [errorOnDataBase, setErrorOnDataBase] = useState(false);
 
+    const checkAllInputs =
+        isValidInput(inputBirthdateString, InputEnum.Birthdate) &&
+        isValidInput(inputNameString, InputEnum.Name) &&
+        inputWeightString != '' &&
+        inputHeightString != '' &&
+        inputSportActivityString != '' &&
+        isValidInput(inputEmailString, InputEnum.Email) &&
+        isValidInput(inputPasswordString, InputEnum.Password) &&
+        isValidInput(inputValidPasswordString, InputEnum.Password) &&
+        inputPasswordString == inputValidPasswordString;
+
     const onPressGoBack = () => {
         navigation.navigate(PagesEnum.LoginPage);
     };
 
     const onPressValidate = () => {
         const post = async () => {
-            if (
-                isValidInput(inputBirthdateString, InputEnum.Birthdate) &&
-                isValidInput(inputNameString, InputEnum.Name) &&
-                inputWeightString != '' &&
-                inputHeightString != '' &&
-                inputSportActivityString != '' &&
-                isValidInput(inputEmailString, InputEnum.Email) &&
-                isValidInput(inputPasswordString, InputEnum.Password) &&
-                isValidInput(inputValidPasswordString, InputEnum.Password) &&
-                inputPasswordString == inputValidPasswordString
-            ) {
+            if (checkAllInputs) {
                 const data: SignUpData = {
                     Email: inputEmailString,
                     Username: inputEmailString,

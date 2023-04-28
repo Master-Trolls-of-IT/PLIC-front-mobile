@@ -22,7 +22,7 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
 
     footerRef.current?.measure(
         (_x: number, _y: number, _weight: number, _height: number, _pageX: number, pageY: number) => {
-            setFooterY(pageY);
+            setFooterY(pageY - 5);
         }
     );
 
@@ -59,6 +59,9 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
     const newHeight = 50;
     const newWidth = 50;
 
+    const gestureEnbaled = { gestureEnabled: true };
+    const gestureDisbaled = { gestureEnbaled: false };
+
     const returnObject = {
         animatedGameIconStyle,
         animatedHistoricalIconStyle,
@@ -73,6 +76,8 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
         homePageAsset,
         recipePageAsset,
         scanPageAsset,
+        gestureEnbaled,
+        gestureDisbaled,
         newHeight,
         newWidth,
         onPressIcon,

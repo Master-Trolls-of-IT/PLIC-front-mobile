@@ -27,6 +27,8 @@ const RootPage: FunctionComponent<any> = ({ oldNavigation }) => {
         homePageAsset,
         recipePageAsset,
         scanPageAsset,
+        gestureEnbaled,
+        gestureDisbaled,
         newHeight,
         newWidth,
         onPressIcon,
@@ -35,7 +37,7 @@ const RootPage: FunctionComponent<any> = ({ oldNavigation }) => {
 
     return (
         <View style={RootPageStyle.background}>
-            <View style={{ ...RootPageStyle.slideBar, ...animatedSlideBar.slideBar, top: footerY - 5 }}></View>
+            <View style={{ ...RootPageStyle.slideBar, ...animatedSlideBar.slideBar, top: footerY }}></View>
             <View ref={footerRef} style={RootPageStyle.footerContainer}>
                 <View style={RootPageStyle.footerBrownContainer}>
                     <View style={RootPageStyle.iconContainer}>
@@ -97,28 +99,12 @@ const RootPage: FunctionComponent<any> = ({ oldNavigation }) => {
                         <Stack.Screen
                             name={PagesEnum.HistoricalPage}
                             component={HistoricalPage}
-                            options={{ gestureEnabled: false }}
+                            options={gestureEnbaled}
                         />
-                        <Stack.Screen
-                            name={PagesEnum.ScanPage}
-                            component={ScanPage}
-                            options={{ gestureEnabled: false }}
-                        />
-                        <Stack.Screen
-                            name={PagesEnum.HomePage}
-                            component={HomePage}
-                            options={{ gestureEnabled: false }}
-                        />
-                        <Stack.Screen
-                            name={PagesEnum.RecipePage}
-                            component={RecipePage}
-                            options={{ gestureEnabled: false }}
-                        />
-                        <Stack.Screen
-                            name={PagesEnum.GamePage}
-                            component={GamePage}
-                            options={{ gestureEnabled: false }}
-                        />
+                        <Stack.Screen name={PagesEnum.ScanPage} component={ScanPage} options={gestureEnbaled} />
+                        <Stack.Screen name={PagesEnum.HomePage} component={HomePage} options={gestureEnbaled} />
+                        <Stack.Screen name={PagesEnum.RecipePage} component={RecipePage} options={gestureEnbaled} />
+                        <Stack.Screen name={PagesEnum.GamePage} component={GamePage} options={gestureEnbaled} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>

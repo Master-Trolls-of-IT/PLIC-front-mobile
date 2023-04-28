@@ -2,6 +2,7 @@ import NavigationStore from '~/infrastructure/controllers/store/root-store/navig
 
 class RootStore {
     NavigationStore: NavigationStore;
+
     constructor() {
         this.NavigationStore = new NavigationStore();
     }
