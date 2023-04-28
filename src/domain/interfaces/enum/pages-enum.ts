@@ -3,9 +3,10 @@ export enum PagesEnum {
     LoginPage = 'LoginPage',
     SignUpPage = 'SignUpPage',
     RootPage = 'RootPage',
-    HistoricalPage = 'HistoricalPage',
+    MealPage = 'MealPage',
     ScanPage = 'ScanPage',
     HomePage = 'HomePage',
     RecipePage = 'RecipePage',
-    GamePage = 'GamePage'
+    GamePage = 'GamePage',
+    HistoricalPage = 'HistoricalPage'
 }

@@ -26,15 +26,15 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
         }
     );
 
-    const animatedHistoricalIconStyle = StyleSheet.create({ icon: {} });
+    const animatedMealIconStyle = StyleSheet.create({ icon: {} });
     const animatedScanIconStyle = StyleSheet.create({ icon: {} });
     const animatedHomeIconStyle = StyleSheet.create({ icon: {} });
     const animatedRecipeIconStyle = StyleSheet.create({ icon: {} });
     const animatedGameIconStyle = StyleSheet.create({ icon: {} });
     const animatedSlideBar = StyleSheet.create({ slideBar: {} });
 
-    if (activeScreen == PagesEnum.HistoricalPage) {
-        animatedHistoricalIconStyle.icon = { marginBottom: 20 };
+    if (activeScreen == PagesEnum.MealPage) {
+        animatedMealIconStyle.icon = { marginBottom: 20 };
         animatedSlideBar.slideBar = { left: 12 };
     } else if (activeScreen == PagesEnum.ScanPage) {
         animatedScanIconStyle.icon = { marginBottom: 20 };
@@ -50,7 +50,7 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
         animatedSlideBar.slideBar = { left: 12 + (2 * Dimensions.get('screen').width) / 5 };
     }
 
-    const historicalPageAsset = require('~/domain/entities/assets/icon/footer-icon/icon-historical-page.svg');
+    const mealPageAsset = require('~/domain/entities/assets/icon/footer-icon/icon-meal-page.svg');
     const scanPageAsset = require('~/domain/entities/assets/icon/footer-icon/icon-scan-page.svg');
     const homePageAsset = require('~/domain/entities/assets/icon/footer-icon/icon-small-white-logo.svg');
     const recipePageAsset = require('~/domain/entities/assets/icon/footer-icon/icon-recipe-page.svg');
@@ -59,12 +59,12 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
     const newHeight = 50;
     const newWidth = 50;
 
-    const gestureEnbaled = { gestureEnabled: true };
-    const gestureDisbaled = { gestureEnbaled: false };
+    const gestureEnabled = { gestureEnabled: true };
+    const gestureDisabled = { gestureEnabled: false };
 
     const returnObject = {
         animatedGameIconStyle,
-        animatedHistoricalIconStyle,
+        animatedMealIconStyle,
         animatedHomeIconStyle,
         animatedRecipeIconStyle,
         animatedScanIconStyle,
@@ -72,12 +72,12 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
         footerRef,
         footerY,
         gamePageAsset,
-        historicalPageAsset,
+        mealPageAsset,
         homePageAsset,
         recipePageAsset,
         scanPageAsset,
-        gestureEnbaled,
-        gestureDisbaled,
+        gestureEnabled,
+        gestureDisabled,
         newHeight,
         newWidth,
         onPressIcon,
