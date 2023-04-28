@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import GenericInputStyle from '~/infrastructure/ui/shared/component/generic-input/generic-input-style';
-import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { GenericInputProps } from '~/domain/interfaces/props/generic-input-props';
 import GenericTooltip from '~/infrastructure/ui/shared/component/generic-tooltip/generic-tooltip';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
@@ -31,12 +31,12 @@ const GenericInput = ({ title, type, placeHolder, style, input, dispatch }: Gene
                     style={{ ...GenericInputStyle.border, ...CustomFontInterBold().text }}
                     secureTextEntry={secureTextEntry}
                     onChangeText={onChangeText}
-                    maxLength={type == InputTypeEnum.Password || type == InputTypeEnum.Name ? 24 : undefined}
+                    maxLength={type == InputEnum.Password || type == InputEnum.Name ? 24 : undefined}
                     value={input}
                 />
 
                 <TouchableOpacity style={GenericInputStyle.showTextIcon} onPress={onPressPasswordIcon}>
-                    {type == InputTypeEnum.Password ? showPasswordText : null}
+                    {type == InputEnum.Password ? showPasswordText : null}
                 </TouchableOpacity>
 
                 <View style={GenericInputStyle.statusIcon}>

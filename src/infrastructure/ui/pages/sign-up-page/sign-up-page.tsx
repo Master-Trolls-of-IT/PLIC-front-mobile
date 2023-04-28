@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import SignUpPageStyle from '~/infrastructure/ui/pages/sign-up-page/sign-up-page-style';
 import SignUpPageBlobsTop from '~/infrastructure/ui/pages/sign-up-page/component/background/sign-up-page-blobs-top';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text';
-import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import GenericInput from '~/infrastructure/ui/shared/component/generic-input/generic-input';
 import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
@@ -70,17 +70,12 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                                 style={{ flex: 1.5 }}
                             />
                         </View>
-                        <GenericInput
-                            title={'Prénom'}
-                            type={InputTypeEnum.Name}
-                            placeHolder={'Alexandre'}
-                            {...inputName}
-                        />
+                        <GenericInput title={'Prénom'} type={InputEnum.Name} placeHolder={'Alexandre'} {...inputName} />
                         <View style={SignUpPageStyle.weightAndHeightField}>
                             <GenericInputWithEndText
                                 title={'Poids'}
                                 endText={'kg'}
-                                type={InputTypeEnum.Number}
+                                type={InputEnum.Number}
                                 placeHolder={'75'}
                                 {...inputWeight}
                                 style={{ flex: 1 }}
@@ -88,7 +83,7 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                             <GenericInputWithEndText
                                 title={'Taille'}
                                 endText={'cm'}
-                                type={InputTypeEnum.Number}
+                                type={InputEnum.Number}
                                 placeHolder={'176'}
                                 {...inputHeight}
                                 style={{ flex: 1 }}
@@ -97,25 +92,25 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
                         <GenericInputWithEndText
                             title={"Fréquence d'activité sportive"}
                             endText={'fois par semaine en moyenne'}
-                            type={InputTypeEnum.Number}
+                            type={InputEnum.Number}
                             placeHolder={'2'}
                             {...inputSportActivity}
                         />
                         <GenericInput
                             title={'E-mail'}
-                            type={InputTypeEnum.Email}
+                            type={InputEnum.Email}
                             placeHolder={'mail@example.com'}
                             {...inputEmail}
                         />
                         <GenericInput
                             title={'Mot de passe'}
-                            type={InputTypeEnum.Password}
+                            type={InputEnum.Password}
                             placeHolder={'********'}
                             {...inputPassword}
                         />
                         <GenericInput
                             title={'Confirmer le mot de passe'}
-                            type={InputTypeEnum.Password}
+                            type={InputEnum.Password}
                             placeHolder={'********'}
                             {...inputValidPassword}
                         />

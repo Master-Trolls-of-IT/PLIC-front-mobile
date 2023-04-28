@@ -1,7 +1,7 @@
 import React from 'react';
 import GenericInput from '~/infrastructure/ui/shared/component/generic-input/generic-input';
 import { GenericInputBirthdateProps } from '~/domain/interfaces/props/generic-input-birthdate-props';
-import { InputTypeEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import useGenericInputBirthdateData from '~/infrastructure/ui/shared/component/generique-input-birthdate/hooks';
 
 const GenericInputBirthdate = ({ title, input, dispatch, style, placeHolder }: GenericInputBirthdateProps) => {
@@ -10,7 +10,7 @@ const GenericInputBirthdate = ({ title, input, dispatch, style, placeHolder }: G
     return (
         <GenericInput
             title={title}
-            type={InputTypeEnum.Birthdate}
+            type={InputEnum.Birthdate}
             input={input}
             dispatch={onChange}
             placeHolder={placeHolder}

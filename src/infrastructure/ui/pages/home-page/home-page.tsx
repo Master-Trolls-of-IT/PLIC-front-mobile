@@ -1,16 +1,24 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Text, View } from 'react-native';
+import { observer } from 'mobx-react';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
+import { useStore } from '~/infrastructure/controllers/store';
 
 const HomePage: FunctionComponent<any> = ({ navigation }) => {
-    const customFont = CustomFontInterBold().text;
+    const {
+        NavigationStore: { setNavigate }
+    } = useStore();
+
+    useEffect(() => {
+        setNavigate(navigation.navigate);
+    }, []);
 
     return (
         <View style={HomePageStyle.background}>
-            <Text style={{ ...HomePageStyle.text, ...customFont }}>Home Page</Text>
+            <Text style={{ ...HomePageStyle.text, ...CustomFontInterBold().text }}>Home Page</Text>
         </View>
     );
 };
 
-export default HomePage;
+export default observer(HomePage);

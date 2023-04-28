@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const HomePageStyle = StyleSheet.create({
+const RecipePageStyle = StyleSheet.create({
     background: {
         backgroundColor: '#EFECCA',
         height: '100%',
@@ -14,4 +14,4 @@ const HomePageStyle = StyleSheet.create({
     }
 });
 
-export default HomePageStyle;
+export default RecipePageStyle;
