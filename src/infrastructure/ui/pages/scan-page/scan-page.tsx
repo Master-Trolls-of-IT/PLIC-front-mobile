@@ -8,7 +8,7 @@ import ScanPageBlobsTop from '~/infrastructure/ui/pages/scan-page/component/back
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useScanPageData from '~/infrastructure/ui/pages/scan-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import GenericInputWithSearchIcon from '~/infrastructure/ui/shared/component/generic-input-with-search-icon/generic-input-with-search-icon';
+import GenericInputWithSearchIcon from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon/generic-input-with-search-icon';
 
 const ScanPage: FunctionComponent<any> = ({ navigation }) => {
     const { inputBarCode, onPressHistoricalButton } = useScanPageData(navigation);
