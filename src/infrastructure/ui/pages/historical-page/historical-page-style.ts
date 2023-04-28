@@ -1,16 +1,17 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 const HistoricalPageStyle = StyleSheet.create({
-    background: {
-        backgroundColor: '#EFECCA',
+    container: {
         height: '100%',
-        width: Dimensions.get('screen').width,
-        justifyContent: 'center'
+        display: 'flex',
+        flexDirection: 'column'
     },
 
-    text: {
-        alignSelf: 'center',
-        fontSize: 30
+    background: {
+        position: 'absolute',
+        backgroundColor: '#EFECCA',
+        height: '100%',
+        width: Dimensions.get('screen').width
     }
 });
 

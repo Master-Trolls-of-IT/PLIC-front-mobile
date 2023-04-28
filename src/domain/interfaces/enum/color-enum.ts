@@ -27,6 +27,7 @@ export enum ColorEnum {
     ClassicLightGreen = '#A2CB6E42',
 
     // Grey
+    ClassicGrey = '#2E2E2E',
     SlightlyOpaqueGrey = '#2E2E2EBF',
     ExtraOpaqueGrey = '#2E2E2E33',
 

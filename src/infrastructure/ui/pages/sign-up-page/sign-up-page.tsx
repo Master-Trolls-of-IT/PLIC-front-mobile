@@ -9,7 +9,7 @@ import GenericInput from '~/infrastructure/ui/shared/component/generic-input/gen
 import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import GenericDropdown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
-import GenericInputBirthdate from '~/infrastructure/ui/shared/component/generique-input-birthdate/generic-input-birthdate';
+import GenericInputBirthdate from '~/infrastructure/ui/shared/component/generic-input-birthdate/generic-input-birthdate';
 import GenericInputWithEndText from '~/infrastructure/ui/shared/component/generic-input-with-end-text/generic-input-with-end-text';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/generic-error-text/generic-error-message';
 import TreeClassicLogo from '~/infrastructure/ui/pages/sign-up-page/component/background/tree-classic-logo';
