@@ -2,7 +2,7 @@ import React from 'react';
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { GenericInputBirthdateProps } from '~/domain/interfaces/props/generic-input-birthdate-props';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import useGenericInputBirthdateData from '~/infrastructure/ui/shared/component/inputs/generique-input-birthdate/hooks';
+import useGenericInputBirthdateData from '~/infrastructure/ui/shared/component/inputs/generic-input-birthdate/hooks';
 
 const GenericInputBirthdate = ({ title, input, dispatch, style, placeHolder }: GenericInputBirthdateProps) => {
     const { onChange } = useGenericInputBirthdateData(dispatch, input);

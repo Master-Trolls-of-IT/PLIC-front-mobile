@@ -12,7 +12,7 @@ import GenericDropdown from '~/infrastructure/ui/shared/component/inputs/generic
 import GenericInputWithEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/generic-input-with-end-text';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import TreeClassicLogo from '~/infrastructure/ui/pages/sign-up-page/component/background/tree-classic-logo';
-import GenericInputBirthdate from '~/infrastructure/ui/shared/component/inputs/generique-input-birthdate/generic-input-birthdate';
+import GenericInputBirthdate from '~/infrastructure/ui/shared/component/inputs/generic-input-birthdate/generic-input-birthdate';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {

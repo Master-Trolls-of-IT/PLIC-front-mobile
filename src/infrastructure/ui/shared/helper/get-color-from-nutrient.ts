@@ -1,21 +1,22 @@
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GetColorFromNutrient = (nutrientType: NutrientsEnum) => {
     switch (nutrientType) {
         case NutrientsEnum.Sugar:
         case NutrientsEnum.Carbohydrate:
-            return '#FF000099';
+            return ColorEnum.VeryOpaqueDarkRed;
         case NutrientsEnum.FattyAcid:
-            return '#E0E42099';
+            return ColorEnum.ClassicYellowWidget;
         case NutrientsEnum.Lipid:
-            return '#0F900C99';
+            return ColorEnum.SlightlyOpaqueDarkGreen;
         case NutrientsEnum.Salt:
         case NutrientsEnum.Protein:
-            return '#05128399';
+            return ColorEnum.SlightlyOpaqueBlue;
         case NutrientsEnum.Energy:
         case NutrientsEnum.Fiber:
         default:
-            return '#0F900C99';
+            return ColorEnum.SlightlyOpaqueDarkGreen;
     }
 };
 
