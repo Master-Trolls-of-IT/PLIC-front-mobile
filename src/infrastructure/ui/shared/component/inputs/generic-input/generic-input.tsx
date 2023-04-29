@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import GenericInputStyle from '~/infrastructure/ui/shared/component/generic-input/generic-input-style';
+import GenericInputStyle from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input-style';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { GenericInputProps } from '~/domain/interfaces/props/generic-input-props';
 import GenericTooltip from '~/infrastructure/ui/shared/component/generic-tooltip/generic-tooltip';

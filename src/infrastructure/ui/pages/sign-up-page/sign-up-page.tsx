@@ -3,16 +3,16 @@ import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SignUpPageStyle from '~/infrastructure/ui/pages/sign-up-page/sign-up-page-style';
 import SignUpPageBlobsTop from '~/infrastructure/ui/pages/sign-up-page/component/background/sign-up-page-blobs-top';
-import GenericHeaderText from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text';
+import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import GenericInput from '~/infrastructure/ui/shared/component/generic-input/generic-input';
+import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import useSignUpPageData from '~/infrastructure/ui/pages/sign-up-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import GenericDropdown from '~/infrastructure/ui/shared/component/generic-dropdown/generic-dropdown';
-import GenericInputBirthdate from '~/infrastructure/ui/shared/component/generic-input-birthdate/generic-input-birthdate';
-import GenericInputWithEndText from '~/infrastructure/ui/shared/component/generic-input-with-end-text/generic-input-with-end-text';
-import GenericErrorMessage from '~/infrastructure/ui/shared/component/generic-error-text/generic-error-message';
+import GenericDropdown from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/generic-dropdown';
+import GenericInputWithEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/generic-input-with-end-text';
+import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import TreeClassicLogo from '~/infrastructure/ui/pages/sign-up-page/component/background/tree-classic-logo';
+import GenericInputBirthdate from '~/infrastructure/ui/shared/component/inputs/generic-input-birthdate/generic-input-birthdate';
 
 const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {

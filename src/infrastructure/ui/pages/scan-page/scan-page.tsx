@@ -3,12 +3,12 @@ import { Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ScanPageStyle from '~/infrastructure/ui/pages/scan-page/scan-page-style';
-import GenericHeaderText from '~/infrastructure/ui/shared/component/generic-header-text/generic-header-text';
+import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import ScanPageBlobsTop from '~/infrastructure/ui/pages/scan-page/component/background/scan-page-blobs-top';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useScanPageData from '~/infrastructure/ui/pages/scan-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import GenericInputWithSearchIcon from '~/infrastructure/ui/shared/component/generic-input-with-search-icon/generic-input-with-search-icon';
+import GenericInputWithSearchIcon from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon/generic-input-with-search-icon';
 
 const ScanPage: FunctionComponent<any> = ({ navigation }) => {
     const { inputBarCode, onPressHistoricalButton } = useScanPageData(navigation);
