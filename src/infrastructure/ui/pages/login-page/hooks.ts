@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LoginData } from '~/domain/interfaces/services/login';
 import APIService from '~/infrastructure/controllers/services';
 import RefreshTokenGen from '~/infrastructure/ui/pages/login-page/services';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import passwordHashing from '~/infrastructure/controllers/password-hashing';
 
 const useLoginPageData = (navigation: any) => {
     const [inputEmailString, setInputEmail] = useState('');
@@ -21,17 +23,17 @@ const useLoginPageData = (navigation: any) => {
             //Envoyer la data JSON au back ici
             const data: LoginData = {
                 email: inputEmailString,
-                password: inputPasswordString
+                password: passwordHashing(inputPasswordString)
             };
             try {
-                const response = await APIService.POST(process.env.APP_API_ENDPOINT + '/login', JSON.stringify(data));
+                const response = await APIService.POST(process.env.APP_API_ENDPOINT + '/login', data);
                 if (response.status === 202) {
                     // We need to create an access and a refresh token here and save it in the local storage
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
                     const accessToken = await RefreshTokenGen(inputPasswordString);
                     if (refreshToken != '' && accessToken != '') {
-                        localStorage.setItem('refreshToken', refreshToken);
-                        localStorage.setItem('accessToken', accessToken);
+                        // await AsyncStorage.setItem('refreshToken', refreshToken);
+                        // await AsyncStorage.setItem('accessToken', accessToken);
                     } else {
                         // Gérer l'erreur des tokens ici
                     }

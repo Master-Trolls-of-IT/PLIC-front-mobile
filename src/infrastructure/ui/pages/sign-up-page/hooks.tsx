@@ -44,7 +44,7 @@ const useSignUpPageData = (navigation: any) => {
                     Birthdate: inputBirthdateString,
                     Weight: +inputWeightString,
                     Height: +inputHeightString,
-                    Gender: +inputGenderString,
+                    Gender: +inputGenderString.value,
                     Pseudo: inputNameString,
                     Rights: 0,
                     Sportiveness: +inputSportActivityString,
@@ -53,7 +53,6 @@ const useSignUpPageData = (navigation: any) => {
 
                 try {
                     const response = await APIService.POST('/register', data);
-                    console.log(response.status);
                     if (response.status === 200) {
                         navigation.navigate(PagesEnum.RootPage);
                     } else {
