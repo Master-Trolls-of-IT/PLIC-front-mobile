@@ -6,7 +6,7 @@ const HomePageBlobsTop = () => {
     const asset = require('~/domain/entities/assets/home-page/home-page-blobs.svg');
 
     const newWidth = Dimensions.get('screen').width;
-    const newHeight = Dimensions.get('screen').height / 3.5;
+    const newHeight = Dimensions.get('screen').height / 5;
     return <CustomSvg asset={asset} height={newHeight} width={newWidth}></CustomSvg>;
 };
 

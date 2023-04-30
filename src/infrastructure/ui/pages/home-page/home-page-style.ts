@@ -5,16 +5,17 @@ const HomePageStyle = StyleSheet.create({
         position: 'absolute',
         backgroundColor: '#EFECCA',
         height: Dimensions.get('screen').height,
-        width: Dimensions.get('screen').width,
-        justifyContent: 'flex-start'
+        width: Dimensions.get('screen').width
+    },
+    container: {
+        display: 'flex',
+        height: '100%',
+        justifyContent: 'space-between'
     },
     header: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignContent: 'center',
-        alignItems: 'center'
+        marginTop: -55
     },
+
     widgetContainer: {
         display: 'flex',
         flexDirection: 'row',
@@ -25,6 +26,17 @@ const HomePageStyle = StyleSheet.create({
     },
     ecoScoreBox: {
         marginRight: Dimensions.get('screen').width * 0.05
+    },
+    headerButtons: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginRight: 30
+    },
+
+    headerSecondText: {
+        fontSize: 27 * (Dimensions.get('screen').height / 725)
     }
 });
 
