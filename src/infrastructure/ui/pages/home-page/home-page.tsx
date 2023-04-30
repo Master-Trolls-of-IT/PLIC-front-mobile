@@ -12,7 +12,7 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
 
     useEffect(() => {
         setNavigate(navigation.navigate);
-    }, []);
+    }, [setNavigate, navigation]);
 
     return (
         <View style={HomePageStyle.background}>
