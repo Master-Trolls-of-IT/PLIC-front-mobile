@@ -1,23 +1,12 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const RootPageStyle = StyleSheet.create({
-    background: {
-        backgroundColor: '#EFECCA',
-        height: Dimensions.get('screen').height,
-        width: Dimensions.get('screen').width,
-        display: 'flex',
-        flexDirection: 'column-reverse'
-    },
-
-    pageContainer: {
-        flex: 7.5
-    },
-
+const AppContainerStyle = StyleSheet.create({
     footerContainer: {
+        position: 'absolute',
         height: 90 * (Dimensions.get('screen').height / 900),
-        flex: 1,
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        bottom: 0
     },
 
     slideBar: {
@@ -32,7 +21,8 @@ const RootPageStyle = StyleSheet.create({
         backgroundColor: '#6D4C41',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
-        flex: 16
+        height: 90 * (Dimensions.get('screen').height / 900),
+        bottom: 0
     },
 
     iconContainer: {
@@ -51,4 +41,4 @@ const RootPageStyle = StyleSheet.create({
     }
 });
 
-export default RootPageStyle;
+export default AppContainerStyle;

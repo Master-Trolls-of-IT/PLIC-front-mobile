@@ -1,19 +1,23 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useEffect, useRef, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { useRef, useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import isContentGroup from '~/infrastructure/ui/shared/helper/isContentGroup';
 
-const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
-    const Stack = createNativeStackNavigator();
+const useAppContainerData = () => {
     const {
-        NavigationStore: { activeScreen, navigate, setActiveScreen }
+        NavigationStore: { activeScreen, navigate }
     } = useStore();
+
+    const [isFooterEnable, setIsFooterEnable] = useState(false);
+
+    useEffect(() => {
+        setIsFooterEnable(isContentGroup(activeScreen));
+    }, [activeScreen, isFooterEnable, navigate]);
 
     const onPressIcon = (route: PagesEnum) => {
         return () => {
             navigate(route);
-            setActiveScreen(route);
         };
     };
 
@@ -59,10 +63,7 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
     const newHeight = 50;
     const newWidth = 50;
 
-    const gestureEnabled = { gestureEnabled: true };
-    const gestureDisabled = { gestureEnabled: false };
-
-    const returnObject = {
+    return {
         animatedGameIconStyle,
         animatedMealIconStyle,
         animatedHomeIconStyle,
@@ -72,25 +73,15 @@ const useRootPageData = ({ oldNavigation }: { oldNavigation: any }) => {
         footerRef,
         footerY,
         gamePageAsset,
+        isFooterEnable,
         mealPageAsset,
         homePageAsset,
         recipePageAsset,
         scanPageAsset,
-        gestureEnabled,
-        gestureDisabled,
         newHeight,
         newWidth,
-        onPressIcon,
-        Stack
+        onPressIcon
     };
-
-    try {
-        oldNavigation.reset({ index: 0, root: [{ name: PagesEnum.RootPage }] });
-    } catch (e) {
-        return returnObject;
-    }
-
-    return returnObject;
 };
 
-export default useRootPageData;
+export default useAppContainerData;
