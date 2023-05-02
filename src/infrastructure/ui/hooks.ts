@@ -24,7 +24,10 @@ const useAppData = () => {
         if (Platform.OS === 'android') void navigationConfig();
     }, [barVisibility]);
 
-    return { rootStore, Stack };
+    const gestureEnabled = { gestureEnabled: true };
+    const gestureDisabled = { gestureEnabled: false };
+
+    return { rootStore, Stack, gestureDisabled, gestureEnabled };
 };
 
 export default useAppData;

@@ -5,8 +5,9 @@ import PasswordHashing from '~/infrastructure/controllers/password-hashing';
 import { SignUpData } from '~/domain/interfaces/services/sign-up';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 
-const useSignUpPageData = (navigation: any) => {
+const useSignUpPageData = (navigate: NavigateProps) => {
     const [inputBirthdateString, setInputBirthdate] = useState('');
     const [inputEmailString, setInputEmail] = useState('');
     const [inputPasswordString, setInputPassword] = useState('');
@@ -31,7 +32,7 @@ const useSignUpPageData = (navigation: any) => {
         inputPasswordString == inputValidPasswordString;
 
     const onPressGoBack = () => {
-        navigation.navigate(PagesEnum.LoginPage);
+        navigate(PagesEnum.LoginPage);
     };
 
     const onPressValidate = () => {
@@ -44,7 +45,7 @@ const useSignUpPageData = (navigation: any) => {
                     Birthdate: inputBirthdateString,
                     Weight: +inputWeightString,
                     Height: +inputHeightString,
-                    Gender: +inputGenderString,
+                    Gender: +inputGenderString.value,
                     Pseudo: inputNameString,
                     Rights: 0,
                     Sportiveness: +inputSportActivityString,
@@ -53,9 +54,8 @@ const useSignUpPageData = (navigation: any) => {
 
                 try {
                     const response = await APIService.POST('/register', data);
-                    console.log(response.status);
                     if (response.status === 200) {
-                        navigation.navigate(PagesEnum.RootPage);
+                        navigate(PagesEnum.HomePage);
                     } else {
                         // TODO : Ajout du logger
                         setErrorOnDataBase(true);

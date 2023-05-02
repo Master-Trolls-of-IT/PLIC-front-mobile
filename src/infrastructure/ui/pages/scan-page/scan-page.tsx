@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -9,9 +9,13 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import useScanPageData from '~/infrastructure/ui/pages/scan-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import GenericInputWithSearchIcon from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon/generic-input-with-search-icon';
+import { useStore } from '~/infrastructure/controllers/store';
 
-const ScanPage: FunctionComponent<any> = ({ navigation }) => {
-    const { inputBarCode, onPressHistoricalButton } = useScanPageData(navigation);
+const ScanPage = () => {
+    const {
+        NavigationStore: { navigate }
+    } = useStore();
+    const { inputBarCode, onPressHistoricalButton } = useScanPageData(navigate);
 
     return (
         <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>

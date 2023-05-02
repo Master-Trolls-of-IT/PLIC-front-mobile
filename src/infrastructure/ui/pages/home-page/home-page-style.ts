@@ -3,7 +3,8 @@ import { Dimensions, StyleSheet } from 'react-native';
 const HomePageStyle = StyleSheet.create({
     background: {
         backgroundColor: '#EFECCA',
-        height: '100%',
+        height: Dimensions.get('screen').height,
+        paddingBottom: 90 * (Dimensions.get('screen').height / 900),
         width: Dimensions.get('screen').width,
         justifyContent: 'center'
     },
