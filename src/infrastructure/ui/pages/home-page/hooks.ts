@@ -1,6 +1,7 @@
-const retrieveName = (): string => {
+const useHomePageData = () => {
+    const username = 'Alexandre';
     //TO DO: retrieve User name and return it
-    return 'Alexandre';
+    return { username };
 };
 
-export default retrieveName;
+export default useHomePageData;

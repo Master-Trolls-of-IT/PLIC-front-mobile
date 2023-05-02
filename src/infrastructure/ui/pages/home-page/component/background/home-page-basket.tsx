@@ -1,3 +1,4 @@
+import React from 'react';
 import { Dimensions } from 'react-native';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 

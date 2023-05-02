@@ -1,22 +1,22 @@
+import React from 'react';
 import { observer } from 'mobx-react';
-
-import React, { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { View } from 'react-native';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import { useStore } from '~/infrastructure/controllers/store';
-
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
 import GenericHeaderText from '../../shared/component/texts/generic-header-text/generic-header-text';
 import HomePageBasket from './component/background/home-page-basket';
 import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
 import EcoScore from '../../shared/component/widgets/ecoscore/widget-ecoscore';
-import retrieveName from './hooks';
 import HomePageTemporaryIntake from '../../shared/component/widgets/anecdote/widget-temporary-intake';
+import useHomePageData from './hooks';
 
 const HomePage: FunctionComponent<any> = ({ navigation }) => {
     const {
         NavigationStore: { setNavigate }
     } = useStore();
+    const { username } = useHomePageData();
 
     useEffect(() => {
         setNavigate(navigation.navigate);
@@ -31,7 +31,7 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                 <View style={HomePageStyle.header}>
                     <GenericHeaderText
                         firstText={'Votre Résumé'}
-                        secondText={`Bonjour ${retrieveName()}`}
+                        secondText={`Bonjour ${username}`}
                         showHomePageHeader={true}
                     />
                 </View>
@@ -51,7 +51,7 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                         />
                     </View>
                     <View style={HomePageStyle.ecoScoreBox}>
-                        <EcoScore percentage={24} />
+                        <EcoScore percentage={80} />
                     </View>
                 </View>
             </View>

@@ -1,6 +1,6 @@
+import React from 'react';
 import { Dimensions } from 'react-native';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
-import React from 'react';
 
 const HomePageBlobsTop = () => {
     const asset = require('~/domain/entities/assets/home-page/home-page-blobs.svg');
