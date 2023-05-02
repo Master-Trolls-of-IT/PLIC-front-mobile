@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const EcoScoreStyle = (color: string) =>
+const EcoScoreStyle = () =>
     StyleSheet.create({
         content: {
             backgroundColor: '#6D4C412C',

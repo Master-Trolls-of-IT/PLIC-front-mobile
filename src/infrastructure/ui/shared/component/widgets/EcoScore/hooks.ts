@@ -1,14 +1,25 @@
-import { useEffect, useState } from 'react';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
-import { NutrientsUnitEnum } from '~/domain/interfaces/enum/nutrients-unit-enum';
-import GetColorFromNutrient from '~/infrastructure/ui/shared/helper/get-color-from-nutrient';
-import GetUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
-import SmallBasicIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes-style.';
+import { useState } from 'react';
 import EcoScoreStyle from './widget-ecoscore-style';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
+const colorSelector = (percentage: number): string => {
+    let color: ColorEnum;
+    if (0 <= percentage && percentage < 25) {
+        color = ColorEnum.ClassicRedWidget;
+    } else if (25 <= percentage && percentage < 50) {
+        color = ColorEnum.ClassicOrangeWidget;
+    } else if (50 <= percentage && percentage < 75) {
+        color = ColorEnum.ClassicYellowWidget;
+    } else if (75 <= percentage && percentage <= 100) {
+        color = ColorEnum.ClassicGreen;
+    } else {
+        throw new Error('Percentage range should be between 0 and 100 !');
+    }
+    return color;
+};
 
-const useEcoScoreData = () => {
-    const [color, setColor] = useState('#84CF3D99');
-
+const useEcoScoreData = (percentage: number) => {
+    //TODO : retrieve percentage and pass it to colorSelector function
+    const [color, setColor] = useState(colorSelector(percentage));
     const pageStyle = EcoScoreStyle(color);
 
     return {

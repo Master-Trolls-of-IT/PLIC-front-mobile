@@ -2,20 +2,16 @@ import React from 'react';
 import { Dimensions, Text, View } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
-import useSmallBasicIntakesData from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/hooks';
 import useEcoScoreData from './hooks';
-import WidgetIconGaia from '../widget-icon-gaia';
+import WidgetIconGaia from '../anecdote/widget-icon-gaia';
 
-const EcoScore = ({ earned, goal }: { earned: number; goal: number }) => {
-    const { color, pageStyle } = useEcoScoreData();
+const EcoScore = ({ percentage }: { percentage: number }) => {
+    const { color, pageStyle } = useEcoScoreData(percentage);
 
     return (
         <View style={pageStyle.content}>
             <Text style={{ ...pageStyle.title, ...CustomFontInterBold().text }}>Eco-score</Text>
-            <Text style={{ ...pageStyle.percentage, ...CustomFontInterBold().text }}>
-                {`${(earned * 100) / goal}`}%
-            </Text>
+            <Text style={{ ...pageStyle.percentage, ...CustomFontInterBold().text }}>{`${percentage}`}%</Text>
             <View
                 style={{
                     position: 'absolute',
@@ -29,7 +25,7 @@ const EcoScore = ({ earned, goal }: { earned: number; goal: number }) => {
                 style={pageStyle.circle}
                 size={140}
                 width={12}
-                fill={(earned * 100) / goal}
+                fill={percentage}
                 tintColor={color}
                 backgroundColor="#2E2E2E33"
                 arcSweepAngle={360}

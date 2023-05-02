@@ -1,5 +1,4 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 const anecdoteWidgetStyle = StyleSheet.create({
     anecdoteContainer: {
@@ -9,7 +8,8 @@ const anecdoteWidgetStyle = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#6D4C412C',
         borderRadius: 20,
-        padding: 10
+        padding: 10,
+        marginRight: Dimensions.get('screen').width * 0.05
     },
 
     title: {

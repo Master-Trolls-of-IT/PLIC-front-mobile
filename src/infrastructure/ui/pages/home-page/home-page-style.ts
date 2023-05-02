@@ -10,7 +10,6 @@ const HomePageStyle = StyleSheet.create({
     container: {
         display: 'flex',
         height: '100%'
-        //justifyContent: 'space-evenly'
     },
     header: {
         marginTop: -55
@@ -18,8 +17,7 @@ const HomePageStyle = StyleSheet.create({
 
     widgetContainer: {
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around'
+        flexDirection: 'row'
     },
     anecdoteBox: {
         marginLeft: Dimensions.get('screen').width * 0.05

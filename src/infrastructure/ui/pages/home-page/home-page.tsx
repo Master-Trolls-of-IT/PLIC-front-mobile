@@ -8,10 +8,10 @@ import { useStore } from '~/infrastructure/controllers/store';
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
 import GenericHeaderText from '../../shared/component/texts/generic-header-text/generic-header-text';
 import HomePageBasket from './component/background/home-page-basket';
-import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/widget-anecdote';
-import SmallBasicIntakes from '../../shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
-import EcoScoreStyle from '../../shared/component/widgets/EcoScore/widget-ecoscore-style';
-import EcoScore from '../../shared/component/widgets/EcoScore/widget-ecoscore';
+import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
+import EcoScore from '../../shared/component/widgets/ecoscore/widget-ecoscore';
+import retrieveName from './hooks';
+import HomePageTemporaryIntake from '../../shared/component/widgets/anecdote/widget-temporary-intake';
 
 const HomePage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -31,14 +31,16 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                 <View style={HomePageStyle.header}>
                     <GenericHeaderText
                         firstText={'Votre Résumé'}
-                        secondText={'Bonjour Alexandre,'}
+                        secondText={`Bonjour ${retrieveName()}`}
                         showHomePageHeader={true}
                     />
                 </View>
                 <View>
                     <HomePageBasket />
                 </View>
-
+                <View style={HomePageStyle.anecdoteBox}>
+                    <HomePageTemporaryIntake title={''} anecdote={'Mes Apports'} />
+                </View>
                 <View style={HomePageStyle.widgetContainer}>
                     <View style={HomePageStyle.anecdoteBox}>
                         <HomePageAnecdote
@@ -49,7 +51,7 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                         />
                     </View>
                     <View style={HomePageStyle.ecoScoreBox}>
-                        <EcoScore earned={82} goal={100} />
+                        <EcoScore percentage={24} />
                     </View>
                 </View>
             </View>
