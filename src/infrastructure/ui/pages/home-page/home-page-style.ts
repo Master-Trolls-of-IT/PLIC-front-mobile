@@ -2,14 +2,15 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const HomePageStyle = StyleSheet.create({
     background: {
+        position: 'absolute',
         backgroundColor: '#EFECCA',
         height: Dimensions.get('screen').height,
         width: Dimensions.get('screen').width
     },
     container: {
         display: 'flex',
-        height: '100%',
-        justifyContent: 'space-between'
+        height: '100%'
+        //justifyContent: 'space-evenly'
     },
     header: {
         marginTop: -55

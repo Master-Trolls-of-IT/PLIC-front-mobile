@@ -9,6 +9,9 @@ import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/back
 import GenericHeaderText from '../../shared/component/texts/generic-header-text/generic-header-text';
 import HomePageBasket from './component/background/home-page-basket';
 import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/widget-anecdote';
+import SmallBasicIntakes from '../../shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
+import EcoScoreStyle from '../../shared/component/widgets/EcoScore/widget-ecoscore-style';
+import EcoScore from '../../shared/component/widgets/EcoScore/widget-ecoscore';
 
 const HomePage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -46,10 +49,7 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                         />
                     </View>
                     <View style={HomePageStyle.ecoScoreBox}>
-                        <HomePageAnecdote // is to be replaced by HomePageEcoscore
-                            title={'Anecdote'}
-                            anecdote={'Aujourd’hui, les pommes contiennent moins de vitamines C qu’en 1960 !'}
-                        />
+                        <EcoScore earned={82} goal={100} />
                     </View>
                 </View>
             </View>
