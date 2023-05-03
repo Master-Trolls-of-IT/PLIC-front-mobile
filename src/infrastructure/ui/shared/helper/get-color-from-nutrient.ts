@@ -5,7 +5,7 @@ const GetColorFromNutrient = (nutrientType: NutrientsEnum) => {
     switch (nutrientType) {
         case NutrientsEnum.Sugar:
         case NutrientsEnum.Carbohydrate:
-            return ColorEnum.VeryOpaqueDarkRed;
+            return ColorEnum.SlightlyOpaqueDarkRed;
         case NutrientsEnum.FattyAcid:
             return ColorEnum.ClassicYellowWidget;
         case NutrientsEnum.Lipid:

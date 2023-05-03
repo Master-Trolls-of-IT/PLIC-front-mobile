@@ -18,7 +18,7 @@ const SmallBasicIntakes = ({
 
     return (
         <View style={pageStyle.content}>
-            <Text style={{ ...pageStyle.title, ...CustomFontInterBold().text }}>Mes apports</Text>
+            <Text style={{ ...pageStyle.title, ...CustomFontInterBold().text }}>Mes Apports</Text>
             <View style={pageStyle.circularView}>
                 <AnimatedCircularProgress
                     style={pageStyle.circle}
