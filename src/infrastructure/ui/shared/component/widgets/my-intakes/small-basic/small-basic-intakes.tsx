@@ -4,6 +4,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import useSmallBasicIntakesData from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/hooks';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const SmallBasicIntakes = ({
     nutrientType,
@@ -26,7 +27,7 @@ const SmallBasicIntakes = ({
                     width={12}
                     fill={(earned * 100) / goal}
                     tintColor={color}
-                    backgroundColor="#2E2E2E33"
+                    backgroundColor={ColorEnum.ExtraOpaqueGrey}
                     arcSweepAngle={230}
                     rotation={245}
                     lineCap={'round'}

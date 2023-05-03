@@ -6,69 +6,77 @@ import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
+import SmallMultipleIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes-style.';
 
 const SmallMultipleIntakes = ({
-    nutrient1,
-    nutrient2,
-    nutrient3
+    firstNutrient,
+    secondNutrient,
+    thirdNutrient
 }: {
-    nutrient1: NutrientData;
-    nutrient2: NutrientData;
-    nutrient3: NutrientData;
+    firstNutrient: NutrientData;
+    secondNutrient: NutrientData;
+    thirdNutrient: NutrientData;
 }) => {
-    const { pageStyle } = useSmallMultipleData(nutrient1, nutrient2, nutrient3);
+    const { firstPercentage, secondPercentage, thirdPercentage } = useSmallMultipleData(
+        firstNutrient,
+        secondNutrient,
+        thirdNutrient
+    );
     return (
-        <View style={pageStyle.container}>
-            <Text style={{ ...pageStyle.title, ...CustomFontInterBold().text }}>Mes Apports</Text>
-            <View style={pageStyle.content}>
-                <View style={pageStyle.barContainer}>
-                    <View style={pageStyle.innerTitleContainer}>
-                        <Text style={{ ...pageStyle.innerTitle1, ...customFontInterBold() }}>
-                            {nutrient1.nutrientType}
+        <View style={SmallMultipleIntakesStyle.container}>
+            <Text style={{ ...SmallMultipleIntakesStyle.title, ...CustomFontInterBold().text }}>Mes Apports</Text>
+            <View style={SmallMultipleIntakesStyle.content}>
+                <View style={SmallMultipleIntakesStyle.barContainer}>
+                    <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.firstInnerTitle, ...customFontInterBold() }}>
+                            {firstNutrient.nutrientType}
                         </Text>
-                        <Text style={{ ...pageStyle.innerTitle1, ...customFontInterBold() }}>
-                            {nutrient1.earned} / {nutrient1.goal}
-                            {getUnitFromNutrient(nutrient1.nutrientType)}
+                        <Text style={{ ...SmallMultipleIntakesStyle.firstInnerTitle, ...customFontInterBold() }}>
+                            {firstNutrient.earned} / {firstNutrient.goal}
+                            {getUnitFromNutrient(firstNutrient.nutrientType)}
                         </Text>
                     </View>
                     <Bar
-                        {...pageStyle.progressBar1}
+                        style={{ width: '100%' }}
+                        {...SmallMultipleIntakesStyle.firstProgressBar}
                         animated={true}
-                        progress={nutrient1.earned / nutrient1.goal}
+                        progress={firstNutrient.earned / firstNutrient.goal}
                         borderWidth={0}
                     />
                 </View>
-                <View style={pageStyle.barContainer}>
-                    <View style={pageStyle.innerTitleContainer}>
-                        <Text style={{ ...pageStyle.innerTitle2, ...customFontInterBold() }}>
-                            {nutrient2.nutrientType}
+                <View style={SmallMultipleIntakesStyle.barContainer}>
+                    <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.secondInnerTitle, ...customFontInterBold() }}>
+                            {secondNutrient.nutrientType}
                         </Text>
-                        <Text style={{ ...pageStyle.innerTitle2, ...customFontInterBold() }}>
-                            {nutrient2.earned} / {nutrient2.goal}
-                            {getUnitFromNutrient(nutrient2.nutrientType)}
+                        <Text style={{ ...SmallMultipleIntakesStyle.secondInnerTitle, ...customFontInterBold() }}>
+                            {secondNutrient.earned} / {secondNutrient.goal}
+                            {getUnitFromNutrient(secondNutrient.nutrientType)}
                         </Text>
                     </View>
                     <Bar
-                        {...pageStyle.progressBar2}
+                        style={{ width: '100%' }}
+                        {...SmallMultipleIntakesStyle.secondProgressBar}
                         animated={true}
-                        progress={nutrient2.earned / nutrient2.goal}
+                        progress={secondNutrient.earned / secondNutrient.goal}
                         borderWidth={0}
                     />
                 </View>
-                <View style={pageStyle.barContainer}>
-                    <View style={pageStyle.innerTitleContainer}>
-                        <Text style={{ ...pageStyle.innerTitle3, ...customFontInterBold() }}>
-                            {nutrient3.nutrientType}
+                <View style={SmallMultipleIntakesStyle.barContainer}>
+                    <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.thirdInnerTitle, ...customFontInterBold() }}>
+                            {thirdNutrient.nutrientType}
                         </Text>
-                        <Text style={{ ...pageStyle.innerTitle3, ...customFontInterBold() }}>
-                            {nutrient3.earned} / {nutrient3.goal}
-                            {getUnitFromNutrient(nutrient3.nutrientType)}
+                        <Text style={{ ...SmallMultipleIntakesStyle.thirdInnerTitle, ...customFontInterBold() }}>
+                            {thirdNutrient.earned} / {thirdNutrient.goal}
+                            {getUnitFromNutrient(thirdNutrient.nutrientType)}
                         </Text>
                     </View>
                     <Bar
-                        {...pageStyle.progressBar3}
+                        style={{ width: '100%' }}
+                        {...SmallMultipleIntakesStyle.thirdProgressBar}
                         animated={true}
-                        progress={nutrient3.earned / nutrient3.goal}
+                        progress={thirdNutrient.earned / thirdNutrient.goal}
                         borderWidth={0}
                     />
                 </View>

@@ -8,99 +8,107 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
+import LargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes-style.';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const LargeIntakes = ({
     energy,
-    nutrient1,
-    nutrient2,
-    nutrient3
+    firstNutrient,
+    secondNutrient,
+    thirdNutrient
 }: {
     energy: NutrientData;
-    nutrient1: NutrientData;
-    nutrient2: NutrientData;
-    nutrient3: NutrientData;
+    firstNutrient: NutrientData;
+    secondNutrient: NutrientData;
+    thirdNutrient: NutrientData;
 }) => {
-    const { pageStyle } = useLargeIntakesData(nutrient1, nutrient2, nutrient3);
+    const { firstPercentage, secondPercentage, thirdPercentage } = useLargeIntakesData(
+        firstNutrient,
+        secondNutrient,
+        thirdNutrient
+    );
 
     return (
-        <View style={pageStyle.container}>
-            <View style={pageStyle.content}>
-                <View style={pageStyle.leftSide}>
-                    <Text style={{ ...pageStyle.title, ...CustomFontInterBold().text }}>Mes Apports</Text>
-                    <View style={pageStyle.circularView}>
+        <View style={LargeIntakesStyle.container}>
+            <View style={LargeIntakesStyle.content}>
+                <View style={LargeIntakesStyle.leftSide}>
+                    <Text style={{ ...LargeIntakesStyle.title, ...CustomFontInterBold().text }}>Mes Apports</Text>
+                    <View style={LargeIntakesStyle.circularView}>
                         <AnimatedCircularProgress
-                            style={pageStyle.circle}
+                            style={LargeIntakesStyle.circle}
                             size={120}
                             width={12}
                             fill={(energy.earned * 100) / energy.goal}
                             tintColor={ColorEnum.ClassicGreen}
-                            backgroundColor="#2E2E2E33"
+                            backgroundColor={ColorEnum.ExtraOpaqueGrey}
                             arcSweepAngle={230}
                             rotation={245}
                             lineCap={'round'}
                         />
-                        <Text style={{ ...pageStyle.leftInnerTitle, ...CustomFontInterBold().text }}>
+                        <Text style={{ ...LargeIntakesStyle.leftInnerTitle, ...CustomFontInterBold().text }}>
                             {energy.nutrientType}
                         </Text>
-                        <Text style={{ ...pageStyle.leftEarned, ...CustomFontInterBold().text }}>{energy.earned}</Text>
-                        <Text style={{ ...pageStyle.leftGoal, ...CustomFontInterBold().text }}>
+                        <Text style={{ ...LargeIntakesStyle.leftEarned, ...CustomFontInterBold().text }}>
+                            {energy.earned}
+                        </Text>
+                        <Text style={{ ...LargeIntakesStyle.leftGoal, ...CustomFontInterBold().text }}>
                             {'/' + energy.goal}
                         </Text>
                     </View>
                 </View>
 
-                <View style={pageStyle.rightSide}>
-                    <View style={pageStyle.barContainer}>
-                        <View style={pageStyle.innerTitleContainer}>
-                            <Text style={{ ...pageStyle.innerTitle1, ...customFontInterBold() }}>
-                                {nutrient1.nutrientType}
+                <View style={LargeIntakesStyle.rightSide}>
+                    <View style={LargeIntakesStyle.barContainer}>
+                        <View style={LargeIntakesStyle.innerTitleContainer}>
+                            <Text style={{ ...LargeIntakesStyle.firstInnerTitle, ...customFontInterBold() }}>
+                                {firstNutrient.nutrientType}
                             </Text>
-                            <Text style={{ ...pageStyle.innerTitle1, ...customFontInterBold() }}>
-                                {nutrient1.earned} / {nutrient1.goal}
-                                {getUnitFromNutrient(nutrient1.nutrientType)}
+                            <Text style={{ ...LargeIntakesStyle.firstInnerTitle, ...customFontInterBold() }}>
+                                {firstNutrient.earned} / {firstNutrient.goal}
+                                {getUnitFromNutrient(firstNutrient.nutrientType)}
                             </Text>
                         </View>
                         <Bar
                             style={{ width: '100%' }}
-                            {...pageStyle.progressBar1}
+                            {...LargeIntakesStyle.firstProgressBar}
                             animated={true}
-                            progress={nutrient1.earned / nutrient1.goal}
+                            progress={firstPercentage}
                             borderWidth={0}
                         />
                     </View>
-                    <View style={pageStyle.barContainer}>
-                        <View style={pageStyle.innerTitleContainer}>
-                            <Text style={{ ...pageStyle.innerTitle2, ...customFontInterBold() }}>
-                                {nutrient2.nutrientType}
+                    <View style={LargeIntakesStyle.barContainer}>
+                        <View style={LargeIntakesStyle.innerTitleContainer}>
+                            <Text style={{ ...LargeIntakesStyle.secondInnerTitle, ...customFontInterBold() }}>
+                                {secondNutrient.nutrientType}
                             </Text>
-                            <Text style={{ ...pageStyle.innerTitle2, ...customFontInterBold() }}>
-                                {nutrient2.earned} / {nutrient2.goal}
-                                {getUnitFromNutrient(nutrient2.nutrientType)}
+                            <Text style={{ ...LargeIntakesStyle.secondInnerTitle, ...customFontInterBold() }}>
+                                {secondNutrient.earned} / {secondNutrient.goal}
+                                {getUnitFromNutrient(secondNutrient.nutrientType)}
                             </Text>
                         </View>
                         <Bar
                             style={{ width: '100%' }}
-                            {...pageStyle.progressBar2}
+                            {...LargeIntakesStyle.secondProgressBar}
                             animated={true}
-                            progress={nutrient2.earned / nutrient2.goal}
+                            progress={secondPercentage}
                             borderWidth={0}
                         />
                     </View>
-                    <View style={pageStyle.barContainer}>
-                        <View style={pageStyle.innerTitleContainer}>
-                            <Text style={{ ...pageStyle.innerTitle3, ...customFontInterBold() }}>
-                                {nutrient3.nutrientType}
+                    <View style={LargeIntakesStyle.barContainer}>
+                        <View style={LargeIntakesStyle.innerTitleContainer}>
+                            <Text style={{ ...LargeIntakesStyle.thirdInnerTitle, ...customFontInterBold() }}>
+                                {thirdNutrient.nutrientType}
                             </Text>
-                            <Text style={{ ...pageStyle.innerTitle3, ...customFontInterBold() }}>
-                                {nutrient3.earned} / {nutrient3.goal}
-                                {getUnitFromNutrient(nutrient3.nutrientType)}
+                            <Text style={{ ...LargeIntakesStyle.thirdInnerTitle, ...customFontInterBold() }}>
+                                {thirdNutrient.earned} / {thirdNutrient.goal}
+                                {getUnitFromNutrient(thirdNutrient.nutrientType)}
                             </Text>
                         </View>
                         <Bar
                             style={{ width: '100%' }}
-                            {...pageStyle.progressBar3}
+                            {...LargeIntakesStyle.thirdProgressBar}
                             animated={true}
-                            progress={nutrient3.earned / nutrient3.goal}
+                            progress={thirdPercentage}
                             borderWidth={0}
                         />
                     </View>

@@ -1,15 +1,32 @@
+import { useMemo, useState } from 'react';
 import LargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes-style.';
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
-import getColorFromNutrient from '~/infrastructure/ui/shared/helper/get-color-from-nutrient';
 
-const useLargeIntakesData = (nutrient1: NutrientData, nutrient2: NutrientData, nutrient3: NutrientData) => {
-    const pageStyle = LargeIntakesStyle(
-        getColorFromNutrient(nutrient1.nutrientType),
-        getColorFromNutrient(nutrient2.nutrientType),
-        getColorFromNutrient(nutrient3.nutrientType)
+const useLargeIntakesData = (
+    firstNutrient: NutrientData,
+    secondNutrient: NutrientData,
+    thirdNutrient: NutrientData
+) => {
+    const [firstPercentage, setFirstPercentage] = useState(firstNutrient.earned / firstNutrient.goal);
+    const [secondPercentage, setSecondPercentage] = useState(secondNutrient.earned / secondNutrient.goal);
+    const [thirdPercentage, setThirdPercentage] = useState(thirdNutrient.earned / thirdNutrient.goal);
+
+    useMemo(
+        () => setFirstPercentage(firstNutrient.earned / firstNutrient.goal),
+        [firstNutrient.earned, firstNutrient.goal]
     );
 
-    return { pageStyle };
+    useMemo(
+        () => setSecondPercentage(secondNutrient.earned / secondNutrient.goal),
+        [secondNutrient.earned, secondNutrient.goal]
+    );
+
+    useMemo(
+        () => setThirdPercentage(thirdNutrient.earned / thirdNutrient.goal),
+        [thirdNutrient.earned, thirdNutrient.goal]
+    );
+
+    return { firstPercentage, secondPercentage, thirdPercentage };
 };
 
 export default useLargeIntakesData;
