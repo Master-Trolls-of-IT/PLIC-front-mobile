@@ -3,7 +3,7 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const SmallMultipleIntakesStyle = StyleSheet.create({
     container: {
-        backgroundColor: '#6D4C412C',
+        backgroundColor: ColorEnum.ClassicDarkBeige,
         borderRadius: 20,
         width: 0.4 * Dimensions.get('screen').width,
         height: 0.4 * Dimensions.get('screen').width,
@@ -20,7 +20,7 @@ const SmallMultipleIntakesStyle = StyleSheet.create({
 
     title: {
         fontSize: 24 * (Dimensions.get('screen').height / 900),
-        color: '#2E2E2EBF'
+        color: ColorEnum.SlightlyOpaqueGrey
     },
 
     innerTitleContainer: {

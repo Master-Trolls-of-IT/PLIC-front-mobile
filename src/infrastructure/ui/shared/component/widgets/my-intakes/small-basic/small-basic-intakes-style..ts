@@ -1,9 +1,10 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const SmallBasicIntakesStyle = (color: string) =>
     StyleSheet.create({
         content: {
-            backgroundColor: '#6D4C412C',
+            backgroundColor: ColorEnum.ClassicDarkBeige,
             borderRadius: 20,
             width: 0.4 * Dimensions.get('screen').width,
             height: 0.4 * Dimensions.get('screen').width,
@@ -13,7 +14,7 @@ const SmallBasicIntakesStyle = (color: string) =>
 
         title: {
             fontSize: 24 * (Dimensions.get('screen').height / 900),
-            color: '#2E2E2EBF'
+            color: ColorEnum.SlightlyOpaqueGrey
         },
 
         circularView: {

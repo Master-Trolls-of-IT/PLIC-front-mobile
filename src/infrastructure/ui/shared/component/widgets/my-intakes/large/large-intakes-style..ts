@@ -3,7 +3,7 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const LargeIntakesStyle = StyleSheet.create({
     container: {
-        backgroundColor: '#6D4C412C',
+        backgroundColor: ColorEnum.ClassicDarkBeige,
         borderRadius: 20,
         width: 0.85 * Dimensions.get('screen').width,
         height: 0.4 * Dimensions.get('screen').width,
@@ -19,7 +19,7 @@ const LargeIntakesStyle = StyleSheet.create({
 
     title: {
         fontSize: 20 * (Dimensions.get('screen').height / 900),
-        color: '#2E2E2EBF',
+        color: ColorEnum.SlightlyOpaqueGrey,
         marginTop: 6,
         marginBottom: 15,
         marginLeft: 10
