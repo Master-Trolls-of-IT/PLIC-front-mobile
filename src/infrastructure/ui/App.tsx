@@ -1,20 +1,19 @@
 import React from 'react';
 import { registerRootComponent } from 'expo';
 import { NavigationContainer } from '@react-navigation/native';
-import StartUpPage from './pages/startup-page/startup-page';
-import LoginPage from '~/infrastructure/ui/pages/login-page/login-page';
-import SignUpPage from '~/infrastructure/ui/pages/sign-up-page/sign-up-page';
 import useAppData from '~/infrastructure/ui/hooks';
+import AppContainer from '~/infrastructure/ui/shared/component/app-container/app-container';
 import { StoreProvider } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
-import AppContainer from '~/infrastructure/ui/shared/component/app-container/app-container';
+import StartUpPage from '~/infrastructure/ui/pages/startup-page/startup-page';
+import LoginPage from '~/infrastructure/ui/pages/login-page/login-page';
+import SignUpPage from '~/infrastructure/ui/pages/sign-up-page/sign-up-page';
 import MealPage from '~/infrastructure/ui/pages/meal-page/meal-page';
 import ScanPage from '~/infrastructure/ui/pages/scan-page/scan-page';
 import HomePage from '~/infrastructure/ui/pages/home-page/home-page';
 import RecipePage from '~/infrastructure/ui/pages/recipes-page/recipe-page';
 import GamePage from '~/infrastructure/ui/pages/game-page/game-page';
 import HistoricalPage from '~/infrastructure/ui/pages/historical-page/historical-page';
-
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
 
