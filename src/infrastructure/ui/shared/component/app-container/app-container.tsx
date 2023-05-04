@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, Animated } from 'react-native';
 import { observer } from 'mobx-react';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
@@ -14,8 +14,6 @@ const AppContainer = ({ children }: { children: JSX.Element }) => {
         animatedRecipeIconStyle,
         animatedScanIconStyle,
         animatedSlideBar,
-        footerRef,
-        footerY,
         gamePageAsset,
         isFooterEnable,
         mealPageAsset,
@@ -32,8 +30,8 @@ const AppContainer = ({ children }: { children: JSX.Element }) => {
 
             {isFooterEnable ? (
                 <>
-                    <View style={{ ...AppContainerStyle.slideBar, ...animatedSlideBar.slideBar, top: footerY }}></View>
-                    <View ref={footerRef} style={AppContainerStyle.footerContainer}>
+                    <View style={{ ...AppContainerStyle.slideBar, ...animatedSlideBar.slideBar }}></View>
+                    <View style={AppContainerStyle.footerContainer}>
                         <View style={AppContainerStyle.footerBrownContainer}>
                             <View style={AppContainerStyle.iconContainer}>
                                 <TouchableOpacity

@@ -13,6 +13,7 @@ const AppContainerStyle = StyleSheet.create({
         position: 'absolute',
         backgroundColor: '#84CF3D',
         width: Dimensions.get('screen').width / 5 - 24,
+        bottom: 90 * (Dimensions.get('screen').height / 900),
         height: 5,
         zIndex: 2
     },
