@@ -21,21 +21,12 @@ const useAppContainerData = () => {
         };
     };
 
-    const [footerY, setFooterY] = useState(750);
-    const footerRef = useRef<View>(null);
-
-    footerRef.current?.measure(
-        (_x: number, _y: number, _weight: number, _height: number, _pageX: number, pageY: number) => {
-            setFooterY(pageY - 5);
-        }
-    );
-
     const animatedMealIconStyle = StyleSheet.create({ icon: {} });
     const animatedScanIconStyle = StyleSheet.create({ icon: {} });
     const animatedHomeIconStyle = StyleSheet.create({ icon: {} });
     const animatedRecipeIconStyle = StyleSheet.create({ icon: {} });
     const animatedGameIconStyle = StyleSheet.create({ icon: {} });
-    const animatedSlideBar = StyleSheet.create({ slideBar: {} });
+    const animatedSlideBar = StyleSheet.create({ slideBar: { left: 12 } });
 
     if (activeScreen == PagesEnum.MealPage) {
         animatedMealIconStyle.icon = { marginBottom: 20 };
@@ -70,8 +61,6 @@ const useAppContainerData = () => {
         animatedRecipeIconStyle,
         animatedScanIconStyle,
         animatedSlideBar,
-        footerRef,
-        footerY,
         gamePageAsset,
         isFooterEnable,
         mealPageAsset,
