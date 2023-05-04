@@ -44,7 +44,7 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                     <View style={HomePageStyle.widgetContainerSecondRow}>
                         <HomePageAnecdote {...anecdotesObject.appleVitamin} />
 
-                        <EcoScore percentage={ecoscore} />
+                        <EcoScore ecoScore={ecoscore} />
                     </View>
                 </View>
             </View>
