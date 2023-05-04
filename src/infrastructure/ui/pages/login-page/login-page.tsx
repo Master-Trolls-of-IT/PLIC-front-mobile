@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { View } from 'react-native';
+import { observer } from 'mobx-react';
 import LoginPageStyle from '~/infrastructure/ui/pages/login-page/login-page-style';
 import LoginPageBlobsBottom from '~/infrastructure/ui/pages/login-page/component/background/login-page-blobs-bottom';
 import LoginPageBlobsTop from '~/infrastructure/ui/pages/login-page/component/background/login-page-blobs-top';
@@ -10,10 +11,14 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import useLoginPageData from '~/infrastructure/ui/pages/login-page/hooks';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
+import { useStore } from '~/infrastructure/controllers/store';
 
-const LoginPage: FunctionComponent<any> = ({ navigation }) => {
+const LoginPage = () => {
+    const {
+        NavigationStore: { navigate }
+    } = useStore();
     const { inputEmail, inputPassword, errorOnLogin, onPressSignUp, onPressLogin, errorOnDataBase } =
-        useLoginPageData(navigation);
+        useLoginPageData(navigate);
 
     return (
         <View style={LoginPageStyle.container}>
@@ -73,4 +78,4 @@ const LoginPage: FunctionComponent<any> = ({ navigation }) => {
     );
 };
 
-export default LoginPage;
+export default observer(LoginPage);

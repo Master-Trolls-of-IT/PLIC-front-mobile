@@ -16,11 +16,14 @@ class APIServices implements IAPIServices {
             throw new Error("Variable d'environnement non trouvé pour l'initialisation de la classe APIServices");
         }
 
-        this.baseHeaders = {};
+        this.baseHeaders = {
+            'Content-Type': 'application/json'
+        };
 
         this.baseAxiosConfig = {
             baseURL: this.baseURL,
-            withCredentials: true
+            withCredentials: true,
+            ...this.baseHeaders
         };
 
         this.axiosInstance = axios.create(this.baseAxiosConfig);

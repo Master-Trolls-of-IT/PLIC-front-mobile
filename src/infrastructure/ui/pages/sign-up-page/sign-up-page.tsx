@@ -1,7 +1,6 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import GenericInputBirthdate from '~/infrastructure/ui/shared/component/inputs/generic-input-birthdate/generic-input-birthdate';
 import SignUpPageStyle from '~/infrastructure/ui/pages/sign-up-page/sign-up-page-style';
 import SignUpPageBlobsTop from '~/infrastructure/ui/pages/sign-up-page/component/background/sign-up-page-blobs-top';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
@@ -13,11 +12,15 @@ import GenericDropdown from '~/infrastructure/ui/shared/component/inputs/generic
 import GenericInputWithEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/generic-input-with-end-text';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import TreeClassicLogo from '~/infrastructure/ui/pages/sign-up-page/component/background/tree-classic-logo';
+import GenericInputBirthdate from '~/infrastructure/ui/shared/component/inputs/generic-input-birthdate/generic-input-birthdate';
+import { useStore } from '~/infrastructure/controllers/store';
 
-const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
+const SignUpPage = () => {
+    const {
+        NavigationStore: { navigate }
+    } = useStore();
     const {
         errorOnSignUp,
-        errorOnDataBase,
         inputBirthdate,
         inputEmail,
         inputGender,
@@ -29,7 +32,7 @@ const SignUpPage: FunctionComponent<any> = ({ navigation }) => {
         inputWeight,
         onPressGoBack,
         onPressValidate
-    } = useSignUpPageData(navigation);
+    } = useSignUpPageData(navigate);
 
     return (
         <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>

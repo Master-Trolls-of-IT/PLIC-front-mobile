@@ -5,8 +5,8 @@ import { GenericBackArrowIconProps } from '~/domain/interfaces/props/generic-bac
 import useGenericBackArrowIconData from '~/infrastructure/ui/shared/component/generic-back-arrow-icon/hooks';
 import GenericBackArrowIconStyle from '~/infrastructure/ui/shared/component/generic-back-arrow-icon/generic-back-arrow-icon-style';
 
-const GenericBackArrowIcon = ({ navigation }: GenericBackArrowIconProps) => {
-    const { asset, newHeight, newWidth, onPressBackArrow } = useGenericBackArrowIconData(navigation);
+const GenericBackArrowIcon = ({ goBack }: GenericBackArrowIconProps) => {
+    const { asset, newHeight, newWidth, onPressBackArrow } = useGenericBackArrowIconData(goBack);
 
     return (
         <TouchableOpacity style={GenericBackArrowIconStyle.container} onPress={onPressBackArrow}>

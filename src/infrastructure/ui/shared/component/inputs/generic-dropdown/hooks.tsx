@@ -36,19 +36,19 @@ const useGenericDropDownData = (
         });
     };
 
-    const onItemPress = (item: any): void => {
+    const onItemPress = (item: { label: string; value: string }): void => {
         setSelected(item);
         onSelect(item);
         setVisible(false);
     };
 
-    const renderItem = ({ item }: any): ReactElement<any, any> => (
+    const renderItem = ({ item }: { item: { label: string; value: string } }): ReactElement => (
         <TouchableOpacity style={GenericDropDownStyle.item} onPress={() => onItemPress(item)}>
             <Text style={GenericDropDownStyle.itemText}>{item.label}</Text>
         </TouchableOpacity>
     );
 
-    const renderDropdown = (): ReactElement<any, any> => {
+    const renderDropdown = (): ReactElement => {
         return (
             <Modal visible={visible} transparent animationType="fade">
                 <TouchableOpacity style={GenericDropDownStyle.overlay} onPress={() => setVisible(false)}>
