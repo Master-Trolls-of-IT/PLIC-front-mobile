@@ -2,21 +2,22 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { FunctionComponent, useEffect } from 'react';
 import { View } from 'react-native';
+import EcoScore from '~/infrastructure/ui/shared/component/widgets/ecoscore/widget-ecoscore';
+import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
+import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
+import HomePageBasket from '~/infrastructure/ui/pages/home-page/component/background/home-page-basket';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import { useStore } from '~/infrastructure/controllers/store';
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
-import GenericHeaderText from '../../shared/component/texts/generic-header-text/generic-header-text';
-import HomePageBasket from './component/background/home-page-basket';
-import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
-import EcoScore from '../../shared/component/widgets/ecoscore/widget-ecoscore';
-import HomePageTemporaryIntake from '../../shared/component/widgets/anecdote/widget-temporary-intake';
-import useHomePageData from './hooks';
+import HomePageTemporaryIntake from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-temporary-intake';
+import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 
 const HomePage: FunctionComponent<any> = ({ navigation }) => {
     const {
         NavigationStore: { setNavigate }
     } = useStore();
-    const { username } = useHomePageData();
+
+    const { username, basketAsset, anecdote, ecoscore } = useHomePageData();
 
     useEffect(() => {
         setNavigate(navigation.navigate);
@@ -31,27 +32,21 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                 <View style={HomePageStyle.header}>
                     <GenericHeaderText
                         firstText={'Votre Résumé'}
-                        secondText={`Bonjour ${username}`}
+                        secondText={`Bonjour ${username},`}
                         showHomePageHeader={true}
                     />
                 </View>
-                <View>
-                    <HomePageBasket />
-                </View>
-                <View style={HomePageStyle.anecdoteBox}>
-                    <HomePageTemporaryIntake title={''} anecdote={'Mes Apports'} />
-                </View>
+
+                <HomePageBasket asset={basketAsset} />
+
                 <View style={HomePageStyle.widgetContainer}>
-                    <View style={HomePageStyle.anecdoteBox}>
-                        <HomePageAnecdote
-                            title={'Anecdote'}
-                            anecdote={
-                                'Un mégot peut polluer jusqu’à 500 litres d’eau. Environ 1000 sont jetés par terre chaque seconde en France.'
-                            }
-                        />
+                    <View style={HomePageStyle.widgetContainerFirstRow}>
+                        <HomePageTemporaryIntake title={''} anecdote={'Mes Apports'} />
                     </View>
-                    <View style={HomePageStyle.ecoScoreBox}>
-                        <EcoScore percentage={80} />
+                    <View style={HomePageStyle.widgetContainerSecondRow}>
+                        <HomePageAnecdote title={'Anecdote'} anecdote={anecdote} />
+
+                        <EcoScore percentage={ecoscore} />
                     </View>
                 </View>
             </View>

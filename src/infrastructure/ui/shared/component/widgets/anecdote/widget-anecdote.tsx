@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import CustomSvg from '../../../custom-svg';
-import anecdoteWidgetStyle from './widget-anecdote-style';
+import anecdoteWidgetStyle from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote-style';
+import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 
 const HomePageAnecdote = ({ title, anecdote }: { title: string; anecdote: string }) => {
     //TODO: add an input to be able to choose the icon
-    const applesvg = require('~/domain/entities/assets/icon/icon-anecdote-plage.svg');
+    const applesvg = require('~/domain/entities/assets/icon/icon-anecdote-apple.svg');
     return (
         <View style={anecdoteWidgetStyle.anecdoteContainer}>
             <Text style={{ ...CustomFontInterBold().text, ...anecdoteWidgetStyle.title }}>{title}</Text>

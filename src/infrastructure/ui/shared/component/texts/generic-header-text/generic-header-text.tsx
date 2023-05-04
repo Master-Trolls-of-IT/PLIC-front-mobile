@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { HeaderConfigProps } from '~/domain/interfaces/props/header-config-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import CustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular';

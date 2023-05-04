@@ -1,19 +1,16 @@
-import { Dimensions, View, Text } from 'react-native';
+import React from 'react';
+import { View, Text } from 'react-native';
+import anecdoteWidgetStyle from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import CustomSvg from '../../../custom-svg';
-import anecdoteWidgetStyle from './widget-anecdote-style';
+import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 
+//TO DELETE
 const HomePageTemporaryIntake = ({ title, anecdote }: { title: string; anecdote: string }) => {
-    const applesvg = require('~/domain/entities/assets/icon/icon-anecdote-plage.svg');
+    const applesvg = require('~/domain/entities/assets/icon/icon-anecdote-sea.svg');
     return (
         <View
             style={{
-                height: Dimensions.get('screen').width * 0.35,
-                width: Dimensions.get('screen').width * 0.85,
-                backgroundColor: '#6D4C412C',
-                borderRadius: 20,
-                padding: 10,
-                marginBottom: Dimensions.get('screen').height / 30,
+                ...anecdoteWidgetStyle.temporaryIntake,
                 ...CustomFontInterBold().text
             }}>
             <Text style={anecdoteWidgetStyle.title}>{title}</Text>
