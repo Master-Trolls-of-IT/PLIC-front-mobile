@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { FunctionComponent, useEffect } from 'react';
 import { View } from 'react-native';
-import EcoScore from '~/infrastructure/ui/shared/component/widgets/ecoScore/widget-ecoscore';
+import EcoScore from '~/infrastructure/ui/shared/component/widgets/ecoscore/widget-ecoscore';
 import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import HomePageBasket from '~/infrastructure/ui/pages/home-page/component/background/home-page-basket';
