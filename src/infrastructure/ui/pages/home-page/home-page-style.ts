@@ -48,6 +48,11 @@ const HomePageStyle = StyleSheet.create({
 
     headerSecondText: {
         fontSize: 27 * (Dimensions.get('screen').height / 725)
+    },
+
+    basketImage: {
+        marginBottom: Dimensions.get('screen').height / 40,
+        alignSelf: 'center'
     }
 });
 

@@ -19,7 +19,7 @@ const EcoScoreStyle = StyleSheet.create({
 
     percentage: {
         position: 'absolute',
-        fontSize: 32 * (Dimensions.get('screen').height / 900),
+        fontSize: 30 * (Dimensions.get('screen').height / 900),
         color: ColorEnum.SlightlyOpaqueGrey,
         alignSelf: 'center',
         paddingTop: 0.06 * Dimensions.get('screen').width

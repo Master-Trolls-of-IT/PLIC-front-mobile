@@ -9,15 +9,15 @@ import HomePageBasket from '~/infrastructure/ui/pages/home-page/component/backgr
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import { useStore } from '~/infrastructure/controllers/store';
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
-import HomePageTemporaryIntake from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-temporary-intake';
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
+import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
 
 const HomePage: FunctionComponent<any> = ({ navigation }) => {
     const {
         NavigationStore: { setNavigate }
     } = useStore();
 
-    const { username, basketAsset, anecdote, ecoscore } = useHomePageData();
+    const { username, chooseRightDynamicImage, ecoscore } = useHomePageData();
 
     useEffect(() => {
         setNavigate(navigation.navigate);
@@ -37,14 +37,12 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                     />
                 </View>
 
-                <HomePageBasket asset={basketAsset} />
+                <HomePageBasket asset={chooseRightDynamicImage()} />
 
                 <View style={HomePageStyle.widgetContainer}>
-                    <View style={HomePageStyle.widgetContainerFirstRow}>
-                        <HomePageTemporaryIntake title={''} anecdote={'Mes Apports'} />
-                    </View>
+                    <View style={HomePageStyle.widgetContainerFirstRow}></View>
                     <View style={HomePageStyle.widgetContainerSecondRow}>
-                        <HomePageAnecdote title={'Anecdote'} anecdote={anecdote} />
+                        <HomePageAnecdote {...anecdotesObject.appleVitamin} />
 
                         <EcoScore percentage={ecoscore} />
                     </View>
