@@ -7,7 +7,7 @@ const useGenericInputWithSearchIconData = (
 ) => {
     const [controlledInput, setControlledInput] = useState('');
 
-    const assetSearchInput = require('~/domain/entities/assets/icon/icon-search-input.svg');
+    const assetSearchInput = require('~/domain/entities/assets/icon/input-icon/icon-search-input.svg');
 
     const newHeight = 22;
     const newWidth = 22;

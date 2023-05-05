@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, View, Animated } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
