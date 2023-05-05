@@ -1,7 +1,7 @@
 export const anecdotesObject = {
     appleVitamin: {
         text: 'Aujourd’hui, les pommes contiennent moins de vitamines C qu’en 1960 !',
-        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-water.svg')
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-apple.svg')
     },
 
     avocadoFat: {

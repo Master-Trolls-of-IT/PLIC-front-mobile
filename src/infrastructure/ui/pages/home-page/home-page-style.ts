@@ -33,17 +33,20 @@ const HomePageStyle = StyleSheet.create({
         height: 0.85 * Dimensions.get('screen').width,
         alignSelf: 'center',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
 
     widgetContainerFirstRow: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
 
     widgetContainerSecondRow: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
 
     headerSecondText: {

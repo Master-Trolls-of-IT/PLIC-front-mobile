@@ -9,6 +9,8 @@ import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/back
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
 import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
+import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 
 const HomePage = () => {
     const { username, chooseRightDynamicImage, ecoScore } = useHomePageData();
@@ -30,10 +32,33 @@ const HomePage = () => {
                 <HomePageBasket asset={chooseRightDynamicImage()} />
 
                 <View style={HomePageStyle.widgetContainer}>
-                    <View style={HomePageStyle.widgetContainerFirstRow}></View>
+                    <View style={HomePageStyle.widgetContainerFirstRow}>
+                        <LargeIntakes
+                            energy={{
+                                nutrientType: NutrientsEnum.Energy,
+                                earned: 1652,
+                                goal: 2234
+                            }}
+                            firstNutrient={{
+                                nutrientType: NutrientsEnum.Protein,
+                                earned: 15,
+                                goal: 79
+                            }}
+                            secondNutrient={{
+                                nutrientType: NutrientsEnum.Lipid,
+                                earned: 23,
+                                goal: 58
+                            }}
+                            thirdNutrient={{
+                                nutrientType: NutrientsEnum.Carbohydrate,
+                                earned: 156,
+                                goal: 314
+                            }}
+                        />
+                    </View>
+
                     <View style={HomePageStyle.widgetContainerSecondRow}>
                         <HomePageAnecdote {...anecdotesObject.appleVitamin} />
-
                         <EcoScore ecoScore={ecoScore} />
                     </View>
                 </View>

@@ -22,6 +22,7 @@ const SmallMultipleIntakes = ({
         secondNutrient,
         thirdNutrient
     );
+
     return (
         <View style={SmallMultipleIntakesStyle.container}>
             <Text style={{ ...SmallMultipleIntakesStyle.title, ...CustomFontInterBold().text }}>Mes Apports</Text>
@@ -40,7 +41,7 @@ const SmallMultipleIntakes = ({
                         style={{ width: '100%' }}
                         {...SmallMultipleIntakesStyle.firstProgressBar}
                         animated={true}
-                        progress={firstNutrient.earned / firstNutrient.goal}
+                        progress={firstPercentage}
                         borderWidth={0}
                     />
                 </View>
@@ -58,7 +59,7 @@ const SmallMultipleIntakes = ({
                         style={{ width: '100%' }}
                         {...SmallMultipleIntakesStyle.secondProgressBar}
                         animated={true}
-                        progress={secondNutrient.earned / secondNutrient.goal}
+                        progress={secondPercentage}
                         borderWidth={0}
                     />
                 </View>
@@ -76,7 +77,7 @@ const SmallMultipleIntakes = ({
                         style={{ width: '100%' }}
                         {...SmallMultipleIntakesStyle.thirdProgressBar}
                         animated={true}
-                        progress={thirdNutrient.earned / thirdNutrient.goal}
+                        progress={thirdPercentage}
                         borderWidth={0}
                     />
                 </View>

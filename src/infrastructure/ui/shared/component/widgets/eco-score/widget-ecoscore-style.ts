@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
-const EcoScoreStyle = StyleSheet.create({
+const WidgetEcoScoreStyle = StyleSheet.create({
     content: {
         backgroundColor: ColorEnum.ClassicLightGreen,
         borderRadius: 20,
@@ -37,4 +37,4 @@ const EcoScoreStyle = StyleSheet.create({
     }
 });
 
-export default EcoScoreStyle;
+export default WidgetEcoScoreStyle;

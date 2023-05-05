@@ -1,14 +1,16 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
-const anecdoteWidgetStyle = StyleSheet.create({
+const WidgetAnecdoteStyle = StyleSheet.create({
     anecdoteContainer: {
         height: Dimensions.get('screen').width * 0.4,
         width: Dimensions.get('screen').width * 0.4,
         padding: 10,
         borderRadius: 20,
         marginRight: Dimensions.get('screen').width * 0.05,
-        backgroundColor: ColorEnum.ExtraOpaqueBrown
+        backgroundColor: ColorEnum.ExtraOpaqueBrown,
+        display: 'flex',
+        flexDirection: 'column'
     },
 
     title: {
@@ -16,20 +18,22 @@ const anecdoteWidgetStyle = StyleSheet.create({
         fontSize: 12 * (Dimensions.get('screen').height / 500)
     },
 
+    textContainer: {
+        height: '80%',
+        justifyContent: 'center'
+    },
+
     text: {
-        height: '100%',
-        bottom: '20%',
-        textAlignVertical: 'center',
         color: ColorEnum.SlightlyOpaqueGrey,
-        fontSize: 7 * (Dimensions.get('screen').height / 500)
+        fontSize: 8 * (Dimensions.get('screen').height / 530),
+        marginBottom: 10
     },
 
     icon: {
         position: 'absolute',
-        alignSelf: 'flex-end',
         bottom: 0,
         right: Dimensions.get('screen').width * 0.01
     }
 });
 
-export default anecdoteWidgetStyle;
+export default WidgetAnecdoteStyle;

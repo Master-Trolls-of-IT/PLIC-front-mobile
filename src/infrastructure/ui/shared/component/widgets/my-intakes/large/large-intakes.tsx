@@ -68,7 +68,6 @@ const LargeIntakes = ({
                             </Text>
                         </View>
                         <Bar
-                            style={{ width: '100%' }}
                             {...LargeIntakesStyle.firstProgressBar}
                             animated={true}
                             progress={firstPercentage}
@@ -86,7 +85,6 @@ const LargeIntakes = ({
                             </Text>
                         </View>
                         <Bar
-                            style={{ width: '100%' }}
                             {...LargeIntakesStyle.secondProgressBar}
                             animated={true}
                             progress={secondPercentage}
@@ -104,7 +102,6 @@ const LargeIntakes = ({
                             </Text>
                         </View>
                         <Bar
-                            style={{ width: '100%' }}
                             {...LargeIntakesStyle.thirdProgressBar}
                             animated={true}
                             progress={thirdPercentage}
