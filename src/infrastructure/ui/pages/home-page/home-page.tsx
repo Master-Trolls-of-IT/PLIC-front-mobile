@@ -1,27 +1,18 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { FunctionComponent, useEffect } from 'react';
 import { View } from 'react-native';
-import EcoScore from '~/infrastructure/ui/shared/component/widgets/ecoscore/widget-ecoscore';
 import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import HomePageBasket from '~/infrastructure/ui/pages/home-page/component/background/home-page-basket';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
-import { useStore } from '~/infrastructure/controllers/store';
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
+import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
 
-const HomePage: FunctionComponent<any> = ({ navigation }) => {
-    const {
-        NavigationStore: { setNavigate }
-    } = useStore();
+const HomePage = () => {
+    const { username, chooseRightDynamicImage, ecoScore } = useHomePageData();
 
-    const { username, chooseRightDynamicImage, ecoscore } = useHomePageData();
-
-    useEffect(() => {
-        setNavigate(navigation.navigate);
-    }, []);
     return (
         <View>
             <View style={HomePageStyle.background}>
@@ -43,7 +34,7 @@ const HomePage: FunctionComponent<any> = ({ navigation }) => {
                     <View style={HomePageStyle.widgetContainerSecondRow}>
                         <HomePageAnecdote {...anecdotesObject.appleVitamin} />
 
-                        <EcoScore ecoScore={ecoscore} />
+                        <EcoScore ecoScore={ecoScore} />
                     </View>
                 </View>
             </View>

@@ -9,7 +9,6 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
 import LargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes-style.';
-import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const LargeIntakes = ({
     energy,
