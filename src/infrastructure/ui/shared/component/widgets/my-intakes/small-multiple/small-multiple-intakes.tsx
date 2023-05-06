@@ -29,10 +29,10 @@ const SmallMultipleIntakes = ({
             <View style={SmallMultipleIntakesStyle.content}>
                 <View style={SmallMultipleIntakesStyle.barContainer}>
                     <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
-                        <Text style={{ ...SmallMultipleIntakesStyle.firstInnerTitle, ...customFontInterBold() }}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.firstInnerTitle, ...customFontInterBold().text }}>
                             {firstNutrient.nutrientType}
                         </Text>
-                        <Text style={{ ...SmallMultipleIntakesStyle.firstInnerTitle, ...customFontInterBold() }}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.firstInnerTitle, ...customFontInterBold().text }}>
                             {firstNutrient.earned} / {firstNutrient.goal}
                             {getUnitFromNutrient(firstNutrient.nutrientType)}
                         </Text>
@@ -47,10 +47,10 @@ const SmallMultipleIntakes = ({
                 </View>
                 <View style={SmallMultipleIntakesStyle.barContainer}>
                     <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
-                        <Text style={{ ...SmallMultipleIntakesStyle.secondInnerTitle, ...customFontInterBold() }}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.secondInnerTitle, ...customFontInterBold().text }}>
                             {secondNutrient.nutrientType}
                         </Text>
-                        <Text style={{ ...SmallMultipleIntakesStyle.secondInnerTitle, ...customFontInterBold() }}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.secondInnerTitle, ...customFontInterBold().text }}>
                             {secondNutrient.earned} / {secondNutrient.goal}
                             {getUnitFromNutrient(secondNutrient.nutrientType)}
                         </Text>
@@ -65,10 +65,10 @@ const SmallMultipleIntakes = ({
                 </View>
                 <View style={SmallMultipleIntakesStyle.barContainer}>
                     <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
-                        <Text style={{ ...SmallMultipleIntakesStyle.thirdInnerTitle, ...customFontInterBold() }}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.thirdInnerTitle, ...customFontInterBold().text }}>
                             {thirdNutrient.nutrientType}
                         </Text>
-                        <Text style={{ ...SmallMultipleIntakesStyle.thirdInnerTitle, ...customFontInterBold() }}>
+                        <Text style={{ ...SmallMultipleIntakesStyle.thirdInnerTitle, ...customFontInterBold().text }}>
                             {thirdNutrient.earned} / {thirdNutrient.goal}
                             {getUnitFromNutrient(thirdNutrient.nutrientType)}
                         </Text>

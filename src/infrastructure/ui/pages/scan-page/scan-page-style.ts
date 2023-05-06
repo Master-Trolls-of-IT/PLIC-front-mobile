@@ -5,8 +5,7 @@ const ScanPageStyle = StyleSheet.create({
     container: {
         height: '100%',
         display: 'flex',
-        flexDirection: 'column',
-        gap: 24
+        flexDirection: 'column'
     },
 
     background: {
@@ -17,9 +16,8 @@ const ScanPageStyle = StyleSheet.create({
     },
 
     scanContainer: {
-        height: '80%',
-        marginLeft: 15,
-        marginRight: 15,
+        height: Dimensions.get('screen').height * 0.4,
+        margin: 20,
         borderWidth: 5,
         borderColor: ColorEnum.ClassicBrown,
         borderRadius: 25,
@@ -29,7 +27,7 @@ const ScanPageStyle = StyleSheet.create({
     firstBoxScan: {
         position: 'absolute',
         backgroundColor: ColorEnum.ClassicBeige,
-        height: '103%',
+        height: '104%',
         width: '70%',
         alignSelf: 'center'
     },
@@ -43,6 +41,7 @@ const ScanPageStyle = StyleSheet.create({
     },
 
     text: {
+        marginBottom: 15,
         alignSelf: 'center',
         color: ColorEnum.ClassicBrown,
         fontSize: 18
@@ -50,8 +49,11 @@ const ScanPageStyle = StyleSheet.create({
 
     inputContainer: {
         alignSelf: 'center',
+        height: '17%',
         width: 360 * (Dimensions.get('screen').width / 400),
-        gap: 20 * (Dimensions.get('screen').height / 1000)
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
 
     buttonContainer: {

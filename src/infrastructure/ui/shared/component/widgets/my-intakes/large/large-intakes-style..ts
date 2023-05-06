@@ -71,18 +71,15 @@ const LargeIntakesStyle = StyleSheet.create({
     },
 
     firstInnerTitle: {
-        color: ColorEnum.SlightlyOpaqueBlue,
-        fontWeight: 'bold'
+        color: ColorEnum.SlightlyOpaqueBlue
     },
 
     secondInnerTitle: {
-        color: ColorEnum.SlightlyOpaqueDarkGreen,
-        fontWeight: 'bold'
+        color: ColorEnum.SlightlyOpaqueDarkGreen
     },
 
     thirdInnerTitle: {
-        color: ColorEnum.SlightlyOpaqueDarkRed,
-        fontWeight: 'bold'
+        color: ColorEnum.SlightlyOpaqueDarkRed
     },
 
     firstProgressBar: {
