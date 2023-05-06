@@ -9,8 +9,8 @@ import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/back
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
 import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
-import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import SmallBasicIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
 
 const HomePage = () => {
     const { username, chooseRightDynamicImage, ecoScore } = useHomePageData();
@@ -33,10 +33,26 @@ const HomePage = () => {
 
                 <View style={HomePageStyle.widgetContainer}>
                     <View style={HomePageStyle.widgetContainerFirstRow}>
-                        <LargeIntakes
+                        <SmallBasicIntakes nutrientType={NutrientsEnum.Energy} earned={1850} goal={2232} />
+                    </View>
+
+                    <View style={HomePageStyle.widgetContainerSecondRow}>
+                        <HomePageAnecdote {...anecdotesObject.appleVitamin} />
+                        <EcoScore ecoScore={ecoScore} />
+                    </View>
+                </View>
+            </View>
+        </View>
+    );
+};
+
+export default observer(HomePage);
+
+/*
+<LargeIntakes
                             energy={{
                                 nutrientType: NutrientsEnum.Energy,
-                                earned: 1652,
+                                earned: 1825,
                                 goal: 2234
                             }}
                             firstNutrient={{
@@ -55,16 +71,4 @@ const HomePage = () => {
                                 goal: 314
                             }}
                         />
-                    </View>
-
-                    <View style={HomePageStyle.widgetContainerSecondRow}>
-                        <HomePageAnecdote {...anecdotesObject.appleVitamin} />
-                        <EcoScore ecoScore={ecoScore} />
-                    </View>
-                </View>
-            </View>
-        </View>
-    );
-};
-
-export default observer(HomePage);
+ */
