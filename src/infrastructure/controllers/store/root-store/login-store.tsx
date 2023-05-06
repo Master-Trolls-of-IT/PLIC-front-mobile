@@ -1,6 +1,6 @@
 import { action, makeAutoObservable, observable } from 'mobx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isPersisting, makePersistable } from 'mobx-persist-store';
+import { makePersistable } from 'mobx-persist-store';
 import { UserData } from '~/domain/interfaces/services/user-data';
 import { defaultUserData } from '~/domain/interfaces/constant/default-user-data';
 

@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import APIService from '~/infrastructure/controllers/services';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
 import { SignUpData } from '~/domain/interfaces/services/sign-up';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
-import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import useSingnUpPageService from '~/application/page-service/sign-up-page-service';
 
