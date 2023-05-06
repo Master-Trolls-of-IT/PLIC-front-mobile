@@ -1,6 +1,7 @@
 import * as NavigationBar from 'expo-navigation-bar';
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
+import { LogBox } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStore } from '~/infrastructure/controllers/store';
 
@@ -15,6 +16,8 @@ const useAppData = () => {
                 setBarVisibility(visibility);
             }
         });
+
+    LogBox.ignoreLogs([/.*mobx-persist-store.*/]);
 
     const navigationConfig = async () => {
         await NavigationBar.setVisibilityAsync('hidden');

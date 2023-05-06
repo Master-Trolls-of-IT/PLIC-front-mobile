@@ -1,13 +1,3 @@
-export type SignUpData = {
-    Email: string;
-    Username: string;
-    Password: string;
-    Birthdate: string;
-    Weight: number;
-    Height: number;
-    Gender: number;
-    Pseudo: string;
-    Rights: number;
-    Sportiveness: number;
-    BasalMetabolism: number;
-};
+import { UserData } from '~/domain/interfaces/services/user-data';
+
+export type SignUpData = UserData & { Password: string };

@@ -1,15 +1,21 @@
 import { useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LoginData } from '~/domain/interfaces/services/login';
 import APIService from '~/infrastructure/controllers/services';
-import RefreshTokenGen from '~/infrastructure/ui/pages/login-page/services';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import passwordHashing from '~/infrastructure/controllers/password-hashing';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
+import { useStore } from '~/infrastructure/controllers/store';
+import useLoginPageService from '~/application/page-service/login-page-service';
+import { UserData } from '~/domain/interfaces/services/user-data';
 
 const useLoginPageData = (navigate: NavigateProps) => {
+    const {
+        LoginStore: { setRefreshToken, setAccessToken, setUserData }
+    } = useStore();
+    const { RefreshTokenGen } = useLoginPageService();
+
     const [inputEmailString, setInputEmail] = useState('');
     const [inputPasswordString, setInputPassword] = useState('');
     const [errorOnLogin, setErrorOnLogin] = useState(false);
@@ -27,17 +33,21 @@ const useLoginPageData = (navigate: NavigateProps) => {
                 password: passwordHashing(inputPasswordString)
             };
             try {
-                const response = await APIService.POST(process.env.APP_API_ENDPOINT + '/login', data);
+                const response = await APIService.POST<UserData, LoginData>(
+                    process.env.APP_API_ENDPOINT + '/login',
+                    data
+                );
                 if (response.status === 202) {
                     // We need to create an access and a refresh token here and save it in the local storage
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
                     const accessToken = await RefreshTokenGen(inputPasswordString);
                     if (refreshToken != '' && accessToken != '') {
-                        await AsyncStorage.setItem('refreshToken', refreshToken);
-                        await AsyncStorage.setItem('accessToken', accessToken);
+                        setRefreshToken(refreshToken);
+                        setAccessToken(accessToken);
                     } else {
                         // Gérer l'erreur des tokens ici
                     }
+                    setUserData(response.data);
                     navigate(PagesEnum.HomePage);
                 } else {
                     setErrorOnDataBase(true);
