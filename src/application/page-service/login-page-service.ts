@@ -11,11 +11,11 @@ const useLoginPageService = () => {
             if (response.status === 200) {
                 return response.data.token;
             } else {
-                console.log(response);
+                // TODO: Ajout du logger
                 return '';
             }
         } catch (error) {
-            console.log(error);
+            // TODO: Ajout du logger
             return '';
         }
     };
