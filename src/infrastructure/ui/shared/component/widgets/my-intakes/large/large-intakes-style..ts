@@ -3,7 +3,7 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const LargeIntakesStyle = StyleSheet.create({
     container: {
-        backgroundColor: ColorEnum.ClassicDarkBeige,
+        backgroundColor: ColorEnum.ExtraOpaqueBrown,
         borderRadius: 20,
         width: 0.85 * Dimensions.get('screen').width,
         height: 0.4 * Dimensions.get('screen').width,
@@ -18,7 +18,7 @@ const LargeIntakesStyle = StyleSheet.create({
     },
 
     title: {
-        fontSize: 20 * (Dimensions.get('screen').height / 900),
+        fontSize: 21 * (Dimensions.get('screen').height / 900),
         color: ColorEnum.SlightlyOpaqueGrey,
         marginTop: 6,
         marginBottom: 15,
@@ -26,7 +26,7 @@ const LargeIntakesStyle = StyleSheet.create({
     },
 
     rightSide: {
-        width: 0.45 * Dimensions.get('screen').width,
+        width: 0.48 * Dimensions.get('screen').width,
         marginTop: 10
     },
 
@@ -36,8 +36,7 @@ const LargeIntakesStyle = StyleSheet.create({
 
     circularView: {
         alignSelf: 'flex-start',
-        marginLeft: 35,
-        gap: -5
+        marginLeft: '25%'
     },
 
     circle: {
@@ -55,19 +54,16 @@ const LargeIntakesStyle = StyleSheet.create({
     leftEarned: {
         fontSize: 32 * (Dimensions.get('screen').height / 900),
         alignSelf: 'center',
-        color: ColorEnum.ClassicGrey + 'C0',
-        marginTop: -7
+        color: ColorEnum.ClassicGrey + 'C0'
     },
 
     leftGoal: {
         fontSize: 15 * (Dimensions.get('screen').height / 900),
         alignSelf: 'center',
-        color: ColorEnum.ClassicGrey + 'C0',
-        marginTop: -5
+        color: ColorEnum.ClassicGrey + 'C0'
     },
 
     innerTitleContainer: {
-        fontSize: 21 * (Dimensions.get('screen').height / 900),
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
@@ -76,8 +72,7 @@ const LargeIntakesStyle = StyleSheet.create({
 
     firstInnerTitle: {
         color: ColorEnum.SlightlyOpaqueBlue,
-        fontWeight: 'bold',
-        borderRadius: 5
+        fontWeight: 'bold'
     },
 
     secondInnerTitle: {
@@ -109,7 +104,7 @@ const LargeIntakesStyle = StyleSheet.create({
     },
 
     barContainer: {
-        width: '85%',
+        width: '75%',
         alignSelf: 'center',
         marginTop: 15
     }

@@ -1,7 +1,5 @@
 import { useMemo, useState } from 'react';
-import SmallMultipleIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes-style.';
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
-import getColorFromNutrient from '~/infrastructure/ui/shared/helper/get-color-from-nutrient';
 
 const useSmallMultipleData = (
     firstNutrient: NutrientData,

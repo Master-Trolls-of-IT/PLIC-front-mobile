@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import LargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes-style.';
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 
 const useLargeIntakesData = (

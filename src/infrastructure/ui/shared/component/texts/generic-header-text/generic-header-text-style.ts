@@ -13,6 +13,11 @@ const GenericHeaderTextStyle = StyleSheet.create({
     secondText: {
         fontSize: 14 * (Dimensions.get('screen').height / 725),
         marginTop: 5
+    },
+
+    textOnlyContainer: {
+        display: 'flex',
+        flexDirection: 'row'
     }
 });
 

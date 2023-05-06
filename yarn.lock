@@ -9666,7 +9666,7 @@ mobx-react@^7.6.0:
 
 mobx@^6.9.0:
   version "6.9.0"
-  resolved "https://registry.npmjs.org/mobx/-/mobx-6.9.0.tgz"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.9.0.tgz#8a894c26417c05bed2cf7499322e589ee9787397"
   integrity sha512-HdKewQEREEJgsWnErClfbFoVebze6rGazxFLU/XUyrII8dORfVszN1V0BMRnQSzcgsNNtkX8DHj3nC6cdWE9YQ==
 
 move-concurrently@^1.0.1:
