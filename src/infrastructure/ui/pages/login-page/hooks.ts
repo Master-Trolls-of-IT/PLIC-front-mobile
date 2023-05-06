@@ -47,7 +47,6 @@ const useLoginPageData = (navigate: NavigateProps) => {
                     } else {
                         // Gérer l'erreur des tokens ici
                     }
-                    console.log(response.data);
                     setUserData(response.data);
                     navigate(PagesEnum.HomePage);
                 } else {
