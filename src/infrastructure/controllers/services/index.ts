@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults, RawAxiosRequestHeaders } from 'axios';
 import IAPIServices from '~/domain/interfaces/services/IAPIServices';
-import { Response } from '~/domain/interfaces/services/api-service-responses';
+import { GenericResponse } from '~/domain/interfaces/services/generic-response';
 
 class APIServices implements IAPIServices {
     baseURL: string;
@@ -29,26 +29,30 @@ class APIServices implements IAPIServices {
         this.axiosInstance = axios.create(this.baseAxiosConfig);
     }
 
-    async GET<T>(url: string, config?: AxiosRequestConfig): Promise<Response<T>> {
+    async GET<T>(url: string, config?: AxiosRequestConfig): Promise<GenericResponse<T>> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig).catch((error) => {
+        const returnValue = await this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig).catch((error) => {
             // TODO : Ajout du logger
             return error;
         });
+        return returnValue.data;
     }
 
-    async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<Response<D>> {
+    async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<GenericResponse<T>> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig).catch((error) => {
-            // TODO : Ajout du logger
-            return error.response;
-        });
+        const returnValue = await this.axiosInstance
+            .post<T, AxiosResponse<T>, D>(url, data, newConfig)
+            .catch((error) => {
+                // TODO : Ajout du logger
+                return error.response;
+            });
+        return returnValue.data;
     }
 
     async PUT<D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<Response> {
@@ -56,10 +60,11 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.put<D>(url, data, newConfig).catch((error) => {
+        const returnValue = await this.axiosInstance.put<D>(url, data, newConfig).catch((error) => {
             // TODO : Ajout du logger
             return error.response;
         });
+        return returnValue.data;
     }
 
     async DELETE(url: string, config?: AxiosRequestConfig): Promise<Response> {
@@ -67,10 +72,11 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.delete(url, newConfig).catch((error) => {
+        const returnValue = await this.axiosInstance.delete(url, newConfig).catch((error) => {
             // TODO : Ajout du logger
             return error.response;
         });
+        return returnValue.data;
     }
 
     async PATCH(url: string, config?: AxiosRequestConfig): Promise<Response> {
@@ -78,10 +84,11 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        return this.axiosInstance.patch(url, newConfig).catch((error) => {
+        const returnValue = await this.axiosInstance.patch(url, newConfig).catch((error) => {
             // TODO : Ajout du logger
             return error.response;
         });
+        return returnValue.data;
     }
 }
 

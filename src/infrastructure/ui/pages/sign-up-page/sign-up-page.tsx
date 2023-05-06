@@ -17,7 +17,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const SignUpPage = () => {
     const {
-        NavigationStore: { navigate }
+        NavigationStore: { navigate, goBack }
     } = useStore();
     const {
         errorOnSignUp,
@@ -32,7 +32,7 @@ const SignUpPage = () => {
         inputWeight,
         onPressGoBack,
         onPressValidate
-    } = useSignUpPageData(navigate);
+    } = useSignUpPageData(navigate, goBack);
 
     return (
         <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>

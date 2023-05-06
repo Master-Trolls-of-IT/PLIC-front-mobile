@@ -6,8 +6,11 @@ import { SignUpData } from '~/domain/interfaces/services/sign-up';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
+import useSingnUpPageService from '~/application/page-service/sign-up-page-service';
 
-const useSignUpPageData = (navigate: NavigateProps) => {
+const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
+    const { SignUp } = useSingnUpPageService();
+
     const [inputBirthdateString, setInputBirthdate] = useState('');
     const [inputEmailString, setInputEmail] = useState('');
     const [inputPasswordString, setInputPassword] = useState('');
@@ -31,9 +34,7 @@ const useSignUpPageData = (navigate: NavigateProps) => {
         isValidInput(inputValidPasswordString, InputEnum.Password) &&
         inputPasswordString == inputValidPasswordString;
 
-    const onPressGoBack = () => {
-        navigate(PagesEnum.LoginPage);
-    };
+    const onPressGoBack = goBack;
 
     const onPressValidate = () => {
         const post = async () => {
@@ -52,18 +53,7 @@ const useSignUpPageData = (navigate: NavigateProps) => {
                     BasalMetabolism: 0
                 };
 
-                try {
-                    const response = await APIService.POST('/register', data);
-                    if (response.status === 200) {
-                        navigate(PagesEnum.HomePage);
-                    } else {
-                        // TODO : Ajout du logger
-                        setErrorOnDataBase(true);
-                    }
-                } catch (e) {
-                    // TODO : Ajout du logger
-                    setErrorOnDataBase(true);
-                }
+                await SignUp(data, setErrorOnDataBase);
             } else {
                 setErrorOnSignUp(true);
             }
