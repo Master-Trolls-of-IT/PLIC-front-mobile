@@ -31,7 +31,7 @@ const LoginPage = () => {
                 <GenericHeaderText firstText={'Bonjour,'} secondText={'Veuillez vous connecter'} />
                 <View style={LoginPageStyle.errorMessages}>
                     <GenericErrorMessage
-                        text={'Erreur pendant la connexion à la base de donnée.'}
+                        text={'Erreur pendant la connexion à la base de données.'}
                         style={LoginPageStyle.errorMessage}
                         error={errorOnDataBase}
                     />

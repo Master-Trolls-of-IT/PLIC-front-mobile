@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GenericInputStyle = StyleSheet.create({
     container: {
@@ -8,7 +9,7 @@ const GenericInputStyle = StyleSheet.create({
 
     title: {
         paddingLeft: 25,
-        color: '#6D4C41',
+        color: ColorEnum.ClassicBrown,
         fontSize: 16 * (Dimensions.get('screen').height / 725)
     },
 
@@ -17,9 +18,9 @@ const GenericInputStyle = StyleSheet.create({
         paddingLeft: 35,
         paddingRight: 25,
         borderWidth: 2,
-        borderColor: '#6D4C41',
+        borderColor: ColorEnum.ClassicBrown,
         borderRadius: 20,
-        backgroundColor: '#E3DEBE',
+        backgroundColor: ColorEnum.ClassicDarkBeige,
         fontSize: 14 * (Dimensions.get('screen').height / 725)
     },
 

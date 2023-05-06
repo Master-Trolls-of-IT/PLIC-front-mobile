@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
-import isContentGroup from '~/infrastructure/ui/shared/helper/isContentGroup';
+import isContentGroup from '~/infrastructure/ui/shared/helper/is-content-group';
 
 const useAppContainerData = () => {
     const {

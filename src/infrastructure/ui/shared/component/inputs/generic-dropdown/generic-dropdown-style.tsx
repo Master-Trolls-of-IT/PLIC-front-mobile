@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GenericDropDownStyle = StyleSheet.create({
     container: {
@@ -8,28 +9,20 @@ const GenericDropDownStyle = StyleSheet.create({
 
     title: {
         paddingLeft: 25,
-        color: '#6D4C41',
+        color: ColorEnum.ClassicBrown,
         fontSize: 16 * (Dimensions.get('screen').height / 725)
     },
 
     border: {
         height: 43 * (Dimensions.get('screen').height / 900),
         borderWidth: 2,
-        borderColor: '#6D4C41',
+        borderColor: ColorEnum.ClassicBrown,
         borderRadius: 20,
-        backgroundColor: '#E3DEBE',
+        backgroundColor: ColorEnum.ClassicDarkBeige,
         fontSize: 14 * (Dimensions.get('screen').height / 725),
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
-    },
-
-    button: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#efefef',
-        height: 50,
-        zIndex: 1
     },
 
     inputText: {
@@ -48,9 +41,9 @@ const GenericDropDownStyle = StyleSheet.create({
         position: 'absolute',
         marginTop: -2,
         borderWidth: 2,
-        borderColor: '#6D4C41',
+        borderColor: ColorEnum.ClassicBrown,
         borderRadius: 20,
-        backgroundColor: '#E3DEBE'
+        backgroundColor: ColorEnum.ClassicDarkBeige
     },
 
     overlay: {
@@ -65,12 +58,12 @@ const GenericDropDownStyle = StyleSheet.create({
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
         bottom: -1,
-        borderColor: '#6D4C41'
+        borderColor: ColorEnum.ClassicBrown
     },
 
     itemText: {
         fontSize: 12 * (Dimensions.get('screen').height / 725),
-        color: '#6D4C41'
+        color: ColorEnum.ClassicBrown
     }
 });
 

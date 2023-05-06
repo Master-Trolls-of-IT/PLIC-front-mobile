@@ -1,16 +1,16 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const HistoricalPageStyle = StyleSheet.create({
     container: {
-        height: Dimensions.get('screen').height,
-        paddingBottom: 90 * (Dimensions.get('screen').height / 900),
+        height: '100%',
         display: 'flex',
         flexDirection: 'column'
     },
 
     background: {
         position: 'absolute',
-        backgroundColor: '#EFECCA',
+        backgroundColor: ColorEnum.ClassicBeige,
         height: '100%',
         width: Dimensions.get('screen').width
     }

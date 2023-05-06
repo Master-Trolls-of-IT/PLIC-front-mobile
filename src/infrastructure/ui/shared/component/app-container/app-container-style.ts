@@ -1,17 +1,17 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const AppContainerStyle = StyleSheet.create({
     footerContainer: {
-        position: 'absolute',
-        height: 90 * (Dimensions.get('screen').height / 900),
         display: 'flex',
         flexDirection: 'column',
+        backgroundColor: ColorEnum.ClassicBeige,
         bottom: 0
     },
 
     slideBar: {
         position: 'absolute',
-        backgroundColor: '#84CF3D',
+        backgroundColor: ColorEnum.ClassicGreen,
         width: Dimensions.get('screen').width / 5 - 24,
         bottom: 90 * (Dimensions.get('screen').height / 900),
         height: 5,
@@ -19,7 +19,7 @@ const AppContainerStyle = StyleSheet.create({
     },
 
     footerBrownContainer: {
-        backgroundColor: '#6D4C41',
+        backgroundColor: ColorEnum.ClassicBrown,
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
         height: 90 * (Dimensions.get('screen').height / 900),

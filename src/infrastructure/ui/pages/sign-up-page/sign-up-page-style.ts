@@ -1,9 +1,10 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const SignUpPageStyle = StyleSheet.create({
     background: {
         position: 'absolute',
-        backgroundColor: '#EFECCA',
+        backgroundColor: ColorEnum.ClassicBeige,
         height: Dimensions.get('screen').height,
         width: Dimensions.get('screen').width,
         display: 'flex',
@@ -69,25 +70,25 @@ const SignUpPageStyle = StyleSheet.create({
     },
 
     brownButtonContainer: {
-        backgroundColor: '#6D4C41',
+        backgroundColor: ColorEnum.ClassicBrown,
         height: 43 * (Dimensions.get('screen').height / 900),
         width: 96 * (Dimensions.get('screen').width / 400)
     },
 
     brownButtonText: {
         fontSize: 16 * (Dimensions.get('screen').height / 725),
-        color: '#EFECCA'
+        color: ColorEnum.ClassicBeige
     },
 
     greenButtonContainer: {
-        backgroundColor: '#84CF3D',
+        backgroundColor: ColorEnum.ClassicGreen,
         height: 43 * (Dimensions.get('screen').height / 900),
         width: 101 * (Dimensions.get('screen').width / 400)
     },
 
     greenButtonText: {
         fontSize: 16 * (Dimensions.get('screen').height / 725),
-        color: '#4B4B4B'
+        color: ColorEnum.SlightlyOpaqueGrey
     }
 });
 

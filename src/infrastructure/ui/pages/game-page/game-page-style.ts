@@ -1,10 +1,10 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GamePageStyle = StyleSheet.create({
     background: {
-        backgroundColor: '#EFECCA',
-        height: Dimensions.get('screen').height,
-        paddingBottom: 90 * (Dimensions.get('screen').height / 900),
+        backgroundColor: ColorEnum.ClassicBeige,
+        height: '100%',
         width: Dimensions.get('screen').width,
         justifyContent: 'center'
     },

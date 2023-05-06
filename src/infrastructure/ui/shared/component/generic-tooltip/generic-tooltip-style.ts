@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GenericTooltipStyle = StyleSheet.create({
     box: {
         padding: 10,
-        backgroundColor: '#6D4C41',
+        backgroundColor: ColorEnum.ClassicBrown,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -11,7 +12,7 @@ const GenericTooltipStyle = StyleSheet.create({
     },
 
     text: {
-        color: '#EFECCA',
+        color: ColorEnum.ClassicBeige,
         lineHeight: 20
     },
 
@@ -25,7 +26,7 @@ const GenericTooltipStyle = StyleSheet.create({
         borderRightWidth: 10,
         borderRightColor: 'transparent',
         borderBottomWidth: 10,
-        borderBottomColor: '#6D4C41',
+        borderBottomColor: ColorEnum.ClassicBrown,
         transform: [{ rotate: '180deg' }]
     }
 });
