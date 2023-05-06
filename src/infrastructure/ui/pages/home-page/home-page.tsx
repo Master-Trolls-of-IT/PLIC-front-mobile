@@ -10,7 +10,7 @@ import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
 import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
-import SmallBasicIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
+import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
 
 const HomePage = () => {
     const { username, chooseRightDynamicImage, ecoScore } = useHomePageData();
@@ -33,31 +33,15 @@ const HomePage = () => {
 
                 <View style={HomePageStyle.widgetContainer}>
                     <View style={HomePageStyle.widgetContainerFirstRow}>
-                        <SmallBasicIntakes nutrientType={NutrientsEnum.Energy} earned={1850} goal={2232} />
-                    </View>
-
-                    <View style={HomePageStyle.widgetContainerSecondRow}>
-                        <HomePageAnecdote {...anecdotesObject.appleVitamin} />
-                        <EcoScore ecoScore={ecoScore} />
-                    </View>
-                </View>
-            </View>
-        </View>
-    );
-};
-
-export default observer(HomePage);
-
-/*
-<LargeIntakes
+                        <LargeIntakes
                             energy={{
                                 nutrientType: NutrientsEnum.Energy,
-                                earned: 1825,
-                                goal: 2234
+                                earned: 1854,
+                                goal: 2253
                             }}
                             firstNutrient={{
                                 nutrientType: NutrientsEnum.Protein,
-                                earned: 15,
+                                earned: 62,
                                 goal: 79
                             }}
                             secondNutrient={{
@@ -71,4 +55,16 @@ export default observer(HomePage);
                                 goal: 314
                             }}
                         />
- */
+                    </View>
+
+                    <View style={HomePageStyle.widgetContainerSecondRow}>
+                        <HomePageAnecdote {...anecdotesObject.appleVitamin} />
+                        <EcoScore ecoScore={ecoScore} />
+                    </View>
+                </View>
+            </View>
+        </View>
+    );
+};
+
+export default observer(HomePage);

@@ -70,7 +70,7 @@ const SignUpPage = () => {
                                 title={'Date de naissance'}
                                 placeHolder={'16/11/2000'}
                                 {...inputBirthdate}
-                                style={{ flex: 1.5 }}
+                                style={{ flex: 1.5, paddingLeft: '5%' }}
                             />
                         </View>
                         <GenericInput title={'Prénom'} type={InputEnum.Name} placeHolder={'Alexandre'} {...inputName} />
@@ -81,7 +81,7 @@ const SignUpPage = () => {
                                 type={InputEnum.Number}
                                 placeHolder={'75'}
                                 {...inputWeight}
-                                style={{ flex: 1 }}
+                                style={{ flex: 1, paddingRight: '5%' }}
                             />
                             <GenericInputWithEndText
                                 title={'Taille'}

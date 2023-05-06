@@ -38,14 +38,13 @@ const useLoginPageData = (navigate: NavigateProps) => {
                     data
                 );
                 if (response.status === 202) {
-                    // We need to create an access and a refresh token here and save it in the local storage
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
                     const accessToken = await RefreshTokenGen(inputPasswordString);
                     if (refreshToken != '' && accessToken != '') {
                         setRefreshToken(refreshToken);
                         setAccessToken(accessToken);
                     } else {
-                        // Gérer l'erreur des tokens ici
+                        // TODO: Ajout du Logger
                     }
                     setUserData(response.data);
                     navigate(PagesEnum.HomePage);

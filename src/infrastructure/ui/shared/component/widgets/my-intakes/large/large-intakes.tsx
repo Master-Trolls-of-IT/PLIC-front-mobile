@@ -60,10 +60,10 @@ const LargeIntakes = ({
                 <View style={LargeIntakesStyle.rightSide}>
                     <View style={LargeIntakesStyle.barContainer}>
                         <View style={LargeIntakesStyle.innerTitleContainer}>
-                            <Text style={{ ...LargeIntakesStyle.firstInnerTitle, ...customFontInterBold() }}>
+                            <Text style={{ ...LargeIntakesStyle.firstInnerTitle, ...customFontInterBold().text }}>
                                 {firstNutrient.nutrientType}
                             </Text>
-                            <Text style={{ ...LargeIntakesStyle.firstInnerTitle, ...customFontInterBold() }}>
+                            <Text style={{ ...LargeIntakesStyle.firstInnerTitle, ...customFontInterBold().text }}>
                                 {firstNutrient.earned} / {firstNutrient.goal}
                                 {getUnitFromNutrient(firstNutrient.nutrientType)}
                             </Text>
@@ -77,10 +77,10 @@ const LargeIntakes = ({
                     </View>
                     <View style={LargeIntakesStyle.barContainer}>
                         <View style={LargeIntakesStyle.innerTitleContainer}>
-                            <Text style={{ ...LargeIntakesStyle.secondInnerTitle, ...customFontInterBold() }}>
+                            <Text style={{ ...LargeIntakesStyle.secondInnerTitle, ...customFontInterBold().text }}>
                                 {secondNutrient.nutrientType}
                             </Text>
-                            <Text style={{ ...LargeIntakesStyle.secondInnerTitle, ...customFontInterBold() }}>
+                            <Text style={{ ...LargeIntakesStyle.secondInnerTitle, ...customFontInterBold().text }}>
                                 {secondNutrient.earned} / {secondNutrient.goal}
                                 {getUnitFromNutrient(secondNutrient.nutrientType)}
                             </Text>
@@ -94,10 +94,10 @@ const LargeIntakes = ({
                     </View>
                     <View style={LargeIntakesStyle.barContainer}>
                         <View style={LargeIntakesStyle.innerTitleContainer}>
-                            <Text style={{ ...LargeIntakesStyle.thirdInnerTitle, ...customFontInterBold() }}>
+                            <Text style={{ ...LargeIntakesStyle.thirdInnerTitle, ...customFontInterBold().text }}>
                                 {thirdNutrient.nutrientType}
                             </Text>
-                            <Text style={{ ...LargeIntakesStyle.thirdInnerTitle, ...customFontInterBold() }}>
+                            <Text style={{ ...LargeIntakesStyle.thirdInnerTitle, ...customFontInterBold().text }}>
                                 {thirdNutrient.earned} / {thirdNutrient.goal}
                                 {getUnitFromNutrient(thirdNutrient.nutrientType)}
                             </Text>

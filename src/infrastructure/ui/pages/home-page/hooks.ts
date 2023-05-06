@@ -5,7 +5,7 @@ const useHomePageData = () => {
     // TODO : retrieve User name and store it inside "username"
     const username = 'Alexandre';
 
-    // TODO : retrieve anecdotes from Database and store it inside "anecdore"
+    // TODO : retrieve anecdotes from Database and store it inside "anecdote"
     const anecdote =
         'Un mégot peut polluer jusqu’à 500 litres d’eau. Environ 1000 sont jetés par terre chaque seconde en France.';
 

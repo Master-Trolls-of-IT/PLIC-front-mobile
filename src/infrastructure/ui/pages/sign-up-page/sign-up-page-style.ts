@@ -44,21 +44,22 @@ const SignUpPageStyle = StyleSheet.create({
     input: {
         alignSelf: 'center',
         width: 360 * (Dimensions.get('screen').width / 400),
-        gap: 10 * (Dimensions.get('screen').height / 1000)
+        height: '62%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
 
     genderAndBirthField: {
         display: 'flex',
         flexDirection: 'row',
-        width: '100%',
-        gap: 15
+        width: '100%'
     },
 
     weightAndHeightField: {
         display: 'flex',
         flexDirection: 'row',
-        width: Dimensions.get('screen').width / 1.5,
-        gap: 15
+        width: '70%'
     },
 
     buttonContainer: {

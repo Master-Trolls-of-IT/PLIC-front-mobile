@@ -33,15 +33,16 @@ const loginPageStyle = StyleSheet.create({
 
     contentContainer: {
         height: Dimensions.get('screen').height,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 5
+        display: 'flex'
     },
 
     input: {
         alignSelf: 'center',
         width: 360 * (Dimensions.get('screen').width / 400),
-        gap: 13 * (Dimensions.get('screen').height / 1000)
+        height: '26%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
 
     buttonContainer: {
