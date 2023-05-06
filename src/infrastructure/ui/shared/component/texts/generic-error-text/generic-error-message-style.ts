@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GenericErrorMessageStyle = StyleSheet.create({
     container: {
@@ -6,7 +7,7 @@ const GenericErrorMessageStyle = StyleSheet.create({
     },
 
     message: {
-        color: '#E63E11'
+        color: ColorEnum.ClassicRedIcon
     }
 });
 

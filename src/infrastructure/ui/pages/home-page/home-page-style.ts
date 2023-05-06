@@ -5,7 +5,7 @@ const HomePageStyle = StyleSheet.create({
     background: {
         position: 'absolute',
         backgroundColor: ColorEnum.ClassicBeige,
-        height: Dimensions.get('screen').height,
+        height: '100%',
         width: Dimensions.get('screen').width
     },
 

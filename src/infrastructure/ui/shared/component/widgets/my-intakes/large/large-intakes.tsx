@@ -21,7 +21,8 @@ const LargeIntakes = ({
     secondNutrient: NutrientData;
     thirdNutrient: NutrientData;
 }) => {
-    const { firstPercentage, secondPercentage, thirdPercentage } = useLargeIntakesData(
+    const { energyColor, energyPercentage, firstPercentage, secondPercentage, thirdPercentage } = useLargeIntakesData(
+        energy,
         firstNutrient,
         secondNutrient,
         thirdNutrient
@@ -37,8 +38,8 @@ const LargeIntakes = ({
                             style={LargeIntakesStyle.circle}
                             size={120}
                             width={12}
-                            fill={(energy.earned * 100) / energy.goal}
-                            tintColor={ColorEnum.ClassicGreen}
+                            fill={energyPercentage}
+                            tintColor={energyColor}
                             backgroundColor={ColorEnum.ExtraOpaqueGrey}
                             arcSweepAngle={230}
                             rotation={245}
