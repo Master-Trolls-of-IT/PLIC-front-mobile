@@ -1,5 +1,5 @@
 import { SignUpData } from '~/domain/interfaces/services/sign-up';
-import APIService from '~/infrastructure/controllers/services';
+import APIService from '~/infrastructure/controllers/services/api';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { useStore } from '~/infrastructure/controllers/store';
 import { UserData } from '~/domain/interfaces/services/user-data';

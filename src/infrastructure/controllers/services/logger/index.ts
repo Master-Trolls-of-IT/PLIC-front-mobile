@@ -1,3 +1,7 @@
+import APIService from '~/infrastructure/controllers/services/api';
+import { Animated } from 'react-native';
+import delay = Animated.delay;
+
 enum Level {
     Info,
     Warn,
@@ -31,11 +35,18 @@ class CustomLogger {
         this.addLog(message, Level.Error);
     }
 
-    public sendLogsWithDelay(): void {
-        // TODO : Sends Log to API via special endpoint
+    public sendLogsWithDelay(seconds: number): void {
+        setTimeout(this.sendLogs, seconds * 1000);
     }
-    public sendLogs(): void {
-        // TODO : Sends Log to API via special endpoint
+    public async sendLogs(): Promise<void> {
+        const response = await APIService.POST('/logs', this.logs);
+        if (response.status !== 200) {
+            console.log(
+                'SendLogs function returned code error %d\n message error : %s',
+                response.status,
+                response.message
+            );
+        }
     }
 
     private addLog(message: string, level: Level): void {

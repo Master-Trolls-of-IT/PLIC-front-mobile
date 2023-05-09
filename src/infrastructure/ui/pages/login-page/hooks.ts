@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LoginData } from '~/domain/interfaces/services/login';
-import APIService from '~/infrastructure/controllers/services';
+import APIService from '~/infrastructure/controllers/services/api';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';

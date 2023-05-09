@@ -1,5 +1,5 @@
 import { GenericResponse } from '~/domain/interfaces/services/generic-response';
-import APIService from '~/infrastructure/controllers/services';
+import APIService from '~/infrastructure/controllers/services/api';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
 
 const useLoginPageService = () => {
