@@ -7,7 +7,8 @@ import { UserData } from '~/domain/interfaces/services/user-data';
 const useSingnUpPageService = () => {
     const {
         NavigationStore: { navigate },
-        LoginStore: { setUserData }
+        LoginStore: { setUserData },
+        LogStore: { error }
     } = useStore();
     const SignUp = async (data: SignUpData, setErrorOnDataBase: (value: boolean) => void) => {
         try {
@@ -17,10 +18,12 @@ const useSingnUpPageService = () => {
                 setUserData(data as UserData);
             } else {
                 // TODO : Ajout du logger
+                error(`Sign up failed , received code error : ${response.status}`, response.message);
                 setErrorOnDataBase(true);
             }
         } catch (e) {
             // TODO : Ajout du logger
+            error('Caught an exception', e.toString());
             setErrorOnDataBase(true);
         }
     };

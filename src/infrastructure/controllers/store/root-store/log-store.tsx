@@ -1,4 +1,4 @@
-import { action, makeAutoObservable, observable } from 'mobx';
+import { action, makeAutoObservable, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomLog from '~/infrastructure/controllers/services/logger';
@@ -6,16 +6,22 @@ import APIService from '~/infrastructure/controllers/services/api';
 import { LogsLevelEnum } from '~/domain/interfaces/enum/Logs-enum';
 
 class LogStore {
-    logs: CustomLog[] = [];
+    logs: CustomLog[];
 
     constructor(storageKey: string) {
-        makeAutoObservable(this, {
-            logs: observable,
+        this.logs = [];
+        makeObservable(
+            this,
+            {
+                logs: observable,
 
-            log: action,
-            warn: action,
-            error: action
-        });
+                addLog: action.bound,
+                log: action.bound,
+                warn: action.bound,
+                error: action.bound
+            },
+            { autoBind: true }
+        );
 
         void makePersistable(
             this,
@@ -24,18 +30,18 @@ class LogStore {
                 properties: ['logs'],
                 storage: AsyncStorage
             },
-            { requiresObservable: true }
+            {}
         );
     }
-    public log(message: string): void {
-        this.addLog(message, LogsLevelEnum.Info);
+    public log(message: string, details: string): void {
+        this.addLog(LogsLevelEnum.Info, message, details);
     }
-    public warn(message: string): void {
-        this.addLog(message, LogsLevelEnum.Warn);
+    public warn(message: string, details: string): void {
+        this.addLog(LogsLevelEnum.Warn, message, details);
     }
 
-    public error(message: string): void {
-        this.addLog(message, LogsLevelEnum.Error);
+    public error(message: string, details: string): void {
+        this.addLog(LogsLevelEnum.Error, message, details);
     }
 
     public sendLogsWithDelay(seconds: number): void {
@@ -52,8 +58,12 @@ class LogStore {
         }
     }
 
-    private addLog(message: string, level: LogsLevelEnum): void {
-        const customLog = new CustomLog(level, message);
+    public resetStore(): void {
+        this.logs = [];
+    }
+
+    addLog(level: LogsLevelEnum, message: string, details: string): void {
+        const customLog = new CustomLog(level, message, details);
         this.logs.push(customLog);
     }
 }

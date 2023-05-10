@@ -11,15 +11,17 @@ class RootStore {
     constructor() {
         this.NavigationStore = new NavigationStore();
         this.LoginStore = new LoginStore('LoginStore');
-        this.LogStore = new LogStore('LoggingStore');
+        this.LogStore = new LogStore('LogStore');
     }
 
     resetAllObservables = () => {
         this.LoginStore.resetStore();
+        this.LogStore.resetStore();
     };
 
     clearAllDomainStores = () => {
         stopPersisting(this.LoginStore);
+        stopPersisting(this.LogStore);
     };
 }
 

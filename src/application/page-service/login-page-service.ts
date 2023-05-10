@@ -1,8 +1,12 @@
 import { GenericResponse } from '~/domain/interfaces/services/generic-response';
 import APIService from '~/infrastructure/controllers/services/api';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
+import { useStore } from '~/infrastructure/controllers/store';
 
 const useLoginPageService = () => {
+    const {
+        LogStore: { error }
+    } = useStore();
     const RefreshTokenGen = async (password: string): Promise<string> => {
         try {
             const response: GenericResponse<{ token: string }> = await APIService.GET(
@@ -12,10 +16,12 @@ const useLoginPageService = () => {
                 return response.data.token;
             } else {
                 // TODO: Ajout du logger
+                error(`Failed generating refresh token, received error code ${response.status}`, response.message);
                 return '';
             }
-        } catch (error) {
+        } catch (err) {
             // TODO: Ajout du logger
+            error('RefreshTokenGen : Caught an exception ', err.toString());
             return '';
         }
     };
@@ -29,10 +35,12 @@ const useLoginPageService = () => {
                 return response.data.token;
             } else {
                 // TODO: Ajout du logger
+                error(`Failed generating access token, received error code ${response.status}`, response.message);
                 return '';
             }
-        } catch (error) {
+        } catch (err) {
             // TODO: Ajout du logger
+            error('AccessTokenGen : Caught an exception ', err.toString());
             return '';
         }
     };
