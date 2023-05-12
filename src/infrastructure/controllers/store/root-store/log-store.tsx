@@ -43,6 +43,8 @@ class LogStore {
                 response.status,
                 response.message
             );
+        } else {
+            this.resetStore();
         }
     };
 
