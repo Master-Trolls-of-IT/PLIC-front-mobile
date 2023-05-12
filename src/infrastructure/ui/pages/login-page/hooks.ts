@@ -13,7 +13,7 @@ import { UserData } from '~/domain/interfaces/services/user-data';
 const useLoginPageData = (navigate: NavigateProps) => {
     const {
         LoginStore: { setRefreshToken, setAccessToken, setUserData },
-        LogStore: { warn }
+        LogStore: { warn, sendLogs }
     } = useStore();
     const { RefreshTokenGen } = useLoginPageService();
 
@@ -45,7 +45,6 @@ const useLoginPageData = (navigate: NavigateProps) => {
                         setRefreshToken(refreshToken);
                         setAccessToken(accessToken);
                     } else {
-                        // TODO : logger
                         warn('useLoginPageData', 'Received an empty access or refresh token', '');
                     }
                     setUserData(response.data);

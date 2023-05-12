@@ -10,6 +10,8 @@ class LogStore {
 
     constructor(storageKey: string) {
         this.logs = [];
+        //sends log to API every 10 seconds
+        //setInterval(this.sendLogs, 10000);
         makeObservable(
             this,
             {
@@ -36,14 +38,8 @@ class LogStore {
     }
 
     sendLogs = async (): Promise<void> => {
-        const response = await APIService.POST('/logs', this.logs);
-        if (response.status !== 200) {
-            console.log(
-                'SendLogs function returned code error %d\n message error : %s',
-                response.status,
-                response.message
-            );
-        } else {
+        if (this.logs.length !== 0) {
+            await APIService.POST('/logs', JSON.stringify(this.logs));
             this.resetStore();
         }
     };
@@ -62,10 +58,6 @@ class LogStore {
 
     resetStore = () => {
         this.logs = [];
-    };
-
-    sendLogsWithDelay = (seconds: number) => {
-        setTimeout(this.sendLogs, seconds * 1000);
     };
 
     addLog = (source: string, level: LogsLevelEnum, message: string, details: string) => {

@@ -15,7 +15,6 @@ const useLoginPageService = () => {
             if (response.status === 200) {
                 return response.data.token;
             } else {
-                // TODO: Ajout du logger
                 error(
                     'useLoginPageService',
                     `Failed generating refresh token, received error code ${response.status}`,
@@ -24,7 +23,6 @@ const useLoginPageService = () => {
                 return '';
             }
         } catch (err) {
-            // TODO: Ajout du logger
             error('useLoginPageService', 'RefreshTokenGen : Caught an exception ', err.toString());
             return '';
         }
@@ -38,7 +36,6 @@ const useLoginPageService = () => {
             if (response.status === 200) {
                 return response.data.token;
             } else {
-                // TODO: Ajout du logger
                 error(
                     'useLoginPageService',
                     `Failed generating access token, received error code ${response.status}`,
@@ -47,7 +44,6 @@ const useLoginPageService = () => {
                 return '';
             }
         } catch (err) {
-            // TODO: Ajout du logger
             error('useLoginPageService', 'AccessTokenGen : Caught an exception ', err.toString());
             return '';
         }

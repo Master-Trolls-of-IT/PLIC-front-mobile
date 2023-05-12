@@ -17,7 +17,6 @@ const useSignUpPageService = () => {
                 navigate(PagesEnum.HomePage);
                 setUserData(data as UserData);
             } else {
-                // TODO : Ajout du logger
                 error(
                     'useSignUpPageService',
                     `Sign up failed , received code error : ${response.status}`,
@@ -26,7 +25,6 @@ const useSignUpPageService = () => {
                 setErrorOnDataBase(true);
             }
         } catch (e) {
-            // TODO : Ajout du logger
             error('useSignUpPageService', 'Caught an exception', e.toString());
             setErrorOnDataBase(true);
         }
