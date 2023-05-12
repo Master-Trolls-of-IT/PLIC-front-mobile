@@ -1,14 +1,21 @@
 import axios, { AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults, RawAxiosRequestHeaders } from 'axios';
 import IAPIServices from '~/domain/interfaces/services/IAPIServices';
 import { GenericResponse } from '~/domain/interfaces/services/generic-response';
+import { useStore } from '~/infrastructure/controllers/store';
 
+const useLogger = () => {
+    const {
+        LogStore: { error }
+    } = useStore();
+    return { error };
+};
 class APIServices implements IAPIServices {
     baseURL: string;
     baseHeaders: RawAxiosRequestHeaders;
     baseBody = {};
     baseAxiosConfig: CreateAxiosDefaults;
     axiosInstance;
-
+    logger = useLogger();
     constructor() {
         if (process.env.APP_API_ENDPOINT) {
             this.baseURL = process.env.APP_API_ENDPOINT;
@@ -36,6 +43,7 @@ class APIServices implements IAPIServices {
         } as AxiosRequestConfig;
         const returnValue = await this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig).catch((error) => {
             // TODO : Ajout du logger
+            this.logger.error('APIServices', 'Caught an exception in GET method', error.toString());
             return error;
         });
         return returnValue.data;
@@ -50,6 +58,7 @@ class APIServices implements IAPIServices {
             .post<T, AxiosResponse<T>, D>(url, data, newConfig)
             .catch((error) => {
                 // TODO : Ajout du logger
+                this.logger.error('APIServices', 'Caught an exception in POST method', error.toString());
                 return error.response;
             });
         return returnValue.data;
@@ -62,6 +71,7 @@ class APIServices implements IAPIServices {
         } as AxiosRequestConfig;
         const returnValue = await this.axiosInstance.put<D>(url, data, newConfig).catch((error) => {
             // TODO : Ajout du logger
+            this.logger.error('APIServices', 'Caught an exception in PUT method', error.toString());
             return error.response;
         });
         return returnValue.data;
@@ -74,6 +84,7 @@ class APIServices implements IAPIServices {
         } as AxiosRequestConfig;
         const returnValue = await this.axiosInstance.delete(url, newConfig).catch((error) => {
             // TODO : Ajout du logger
+            this.logger.error('APIServices', 'Caught an exception in DELETE method', error.toString());
             return error.response;
         });
         return returnValue.data;
@@ -86,6 +97,7 @@ class APIServices implements IAPIServices {
         } as AxiosRequestConfig;
         const returnValue = await this.axiosInstance.patch(url, newConfig).catch((error) => {
             // TODO : Ajout du logger
+            this.logger.error('APIServices', 'Caught an exception in PATCH method', error.toString());
             return error.response;
         });
         return returnValue.data;

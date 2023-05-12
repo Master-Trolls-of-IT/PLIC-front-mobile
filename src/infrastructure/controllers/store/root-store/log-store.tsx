@@ -1,4 +1,4 @@
-import { action, makeAutoObservable, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomLog from '~/infrastructure/controllers/services/logger';
@@ -15,10 +15,11 @@ class LogStore {
             {
                 logs: observable,
 
-                addLog: action.bound,
-                log: action.bound,
-                warn: action.bound,
-                error: action.bound
+                addLog: action,
+                log: action,
+                warn: action,
+                error: action,
+                resetStore: action
             },
             { autoBind: true }
         );
@@ -33,21 +34,8 @@ class LogStore {
             {}
         );
     }
-    public log(message: string, details: string): void {
-        this.addLog(LogsLevelEnum.Info, message, details);
-    }
-    public warn(message: string, details: string): void {
-        this.addLog(LogsLevelEnum.Warn, message, details);
-    }
 
-    public error(message: string, details: string): void {
-        this.addLog(LogsLevelEnum.Error, message, details);
-    }
-
-    public sendLogsWithDelay(seconds: number): void {
-        setTimeout(this.sendLogs, seconds * 1000);
-    }
-    public async sendLogs(): Promise<void> {
+    sendLogs = async (): Promise<void> => {
         const response = await APIService.POST('/logs', this.logs);
         if (response.status !== 200) {
             console.log(
@@ -56,15 +44,31 @@ class LogStore {
                 response.message
             );
         }
-    }
+    };
 
-    public resetStore(): void {
+    log = (source: string, message: string, details: string) => {
+        this.addLog(source, LogsLevelEnum.Info, message, details);
+    };
+
+    warn = (source: string, message: string, details: string) => {
+        this.addLog(source, LogsLevelEnum.Warn, message, details);
+    };
+
+    error = (source: string, message: string, details: string) => {
+        this.addLog(source, LogsLevelEnum.Error, message, details);
+    };
+
+    resetStore = () => {
         this.logs = [];
-    }
+    };
 
-    addLog(level: LogsLevelEnum, message: string, details: string): void {
-        const customLog = new CustomLog(level, message, details);
+    sendLogsWithDelay = (seconds: number) => {
+        setTimeout(this.sendLogs, seconds * 1000);
+    };
+
+    addLog = (source: string, level: LogsLevelEnum, message: string, details: string) => {
+        const customLog = new CustomLog(source, level, message, details);
         this.logs.push(customLog);
-    }
+    };
 }
 export default LogStore;

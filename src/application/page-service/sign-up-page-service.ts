@@ -4,7 +4,7 @@ import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { useStore } from '~/infrastructure/controllers/store';
 import { UserData } from '~/domain/interfaces/services/user-data';
 
-const useSingnUpPageService = () => {
+const useSignUpPageService = () => {
     const {
         NavigationStore: { navigate },
         LoginStore: { setUserData },
@@ -18,12 +18,16 @@ const useSingnUpPageService = () => {
                 setUserData(data as UserData);
             } else {
                 // TODO : Ajout du logger
-                error(`Sign up failed , received code error : ${response.status}`, response.message);
+                error(
+                    'useSignUpPageService',
+                    `Sign up failed , received code error : ${response.status}`,
+                    response.message
+                );
                 setErrorOnDataBase(true);
             }
         } catch (e) {
             // TODO : Ajout du logger
-            error('Caught an exception', e.toString());
+            error('useSignUpPageService', 'Caught an exception', e.toString());
             setErrorOnDataBase(true);
         }
     };
@@ -33,4 +37,4 @@ const useSingnUpPageService = () => {
     };
 };
 
-export default useSingnUpPageService;
+export default useSignUpPageService;

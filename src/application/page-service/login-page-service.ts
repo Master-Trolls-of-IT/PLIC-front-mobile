@@ -16,12 +16,16 @@ const useLoginPageService = () => {
                 return response.data.token;
             } else {
                 // TODO: Ajout du logger
-                error(`Failed generating refresh token, received error code ${response.status}`, response.message);
+                error(
+                    'useLoginPageService',
+                    `Failed generating refresh token, received error code ${response.status}`,
+                    response.message
+                );
                 return '';
             }
         } catch (err) {
             // TODO: Ajout du logger
-            error('RefreshTokenGen : Caught an exception ', err.toString());
+            error('useLoginPageService', 'RefreshTokenGen : Caught an exception ', err.toString());
             return '';
         }
     };
@@ -35,12 +39,16 @@ const useLoginPageService = () => {
                 return response.data.token;
             } else {
                 // TODO: Ajout du logger
-                error(`Failed generating access token, received error code ${response.status}`, response.message);
+                error(
+                    'useLoginPageService',
+                    `Failed generating access token, received error code ${response.status}`,
+                    response.message
+                );
                 return '';
             }
         } catch (err) {
             // TODO: Ajout du logger
-            error('AccessTokenGen : Caught an exception ', err.toString());
+            error('useLoginPageService', 'AccessTokenGen : Caught an exception ', err.toString());
             return '';
         }
     };

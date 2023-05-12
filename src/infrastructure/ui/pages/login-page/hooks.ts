@@ -9,7 +9,6 @@ import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import { useStore } from '~/infrastructure/controllers/store';
 import useLoginPageService from '~/application/page-service/login-page-service';
 import { UserData } from '~/domain/interfaces/services/user-data';
-import logger from '~/infrastructure/controllers/services/logger';
 
 const useLoginPageData = (navigate: NavigateProps) => {
     const {
@@ -47,7 +46,7 @@ const useLoginPageData = (navigate: NavigateProps) => {
                         setAccessToken(accessToken);
                     } else {
                         // TODO : logger
-                        warn('Received an empty access or refresh token', '');
+                        warn('useLoginPageData', 'Received an empty access or refresh token', '');
                     }
                     setUserData(response.data);
                     navigate(PagesEnum.HomePage);

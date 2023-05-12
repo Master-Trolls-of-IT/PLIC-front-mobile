@@ -4,10 +4,10 @@ import PasswordHashing from '~/infrastructure/controllers/password-hashing';
 import { SignUpData } from '~/domain/interfaces/services/sign-up';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
-import useSingnUpPageService from '~/application/page-service/sign-up-page-service';
+import useSignUpPageService from '~/application/page-service/sign-up-page-service';
 
 const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
-    const { SignUp } = useSingnUpPageService();
+    const { SignUp } = useSignUpPageService();
 
     const [inputBirthdateString, setInputBirthdate] = useState('');
     const [inputEmailString, setInputEmail] = useState('');
