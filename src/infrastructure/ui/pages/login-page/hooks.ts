@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LoginData } from '~/domain/interfaces/services/login';
-import APIService from '~/infrastructure/controllers/services';
+import APIService from '~/infrastructure/controllers/services/api';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
@@ -12,7 +12,8 @@ import { UserData } from '~/domain/interfaces/services/user-data';
 
 const useLoginPageData = (navigate: NavigateProps) => {
     const {
-        LoginStore: { setRefreshToken, setAccessToken, setUserData }
+        LoginStore: { setRefreshToken, setAccessToken, setUserData },
+        LogStore: { warn }
     } = useStore();
     const { RefreshTokenGen } = useLoginPageService();
 
@@ -44,7 +45,7 @@ const useLoginPageData = (navigate: NavigateProps) => {
                         setRefreshToken(refreshToken);
                         setAccessToken(accessToken);
                     } else {
-                        // TODO: Ajout du Logger
+                        warn('useLoginPageData', 'Received an empty access or refresh token', '');
                     }
                     setUserData(response.data);
                     navigate(PagesEnum.HomePage);

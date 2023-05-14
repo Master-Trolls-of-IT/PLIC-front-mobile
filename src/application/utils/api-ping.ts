@@ -1,4 +1,4 @@
-import APIService from '~/infrastructure/controllers/services';
+import APIService from '~/infrastructure/controllers/services/api';
 
 const APIPing = async () => {
     const apiServices = APIService;

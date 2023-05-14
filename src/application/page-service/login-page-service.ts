@@ -1,8 +1,12 @@
 import { GenericResponse } from '~/domain/interfaces/services/generic-response';
-import APIService from '~/infrastructure/controllers/services';
+import APIService from '~/infrastructure/controllers/services/api';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
+import { useStore } from '~/infrastructure/controllers/store';
 
 const useLoginPageService = () => {
+    const {
+        LogStore: { error }
+    } = useStore();
     const RefreshTokenGen = async (password: string): Promise<string> => {
         try {
             const response: GenericResponse<{ token: string }> = await APIService.GET(
@@ -11,11 +15,15 @@ const useLoginPageService = () => {
             if (response.status === 200) {
                 return response.data.token;
             } else {
-                // TODO: Ajout du logger
+                error(
+                    'useLoginPageService',
+                    `Failed generating refresh token, received error code ${response.status}`,
+                    response.message
+                );
                 return '';
             }
-        } catch (error) {
-            // TODO: Ajout du logger
+        } catch (err) {
+            error('useLoginPageService', 'RefreshTokenGen : Caught an exception ', err.toString());
             return '';
         }
     };
@@ -28,11 +36,15 @@ const useLoginPageService = () => {
             if (response.status === 200) {
                 return response.data.token;
             } else {
-                // TODO: Ajout du logger
+                error(
+                    'useLoginPageService',
+                    `Failed generating access token, received error code ${response.status}`,
+                    response.message
+                );
                 return '';
             }
-        } catch (error) {
-            // TODO: Ajout du logger
+        } catch (err) {
+            error('useLoginPageService', 'AccessTokenGen : Caught an exception ', err.toString());
             return '';
         }
     };
