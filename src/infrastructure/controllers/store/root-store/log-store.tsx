@@ -1,9 +1,9 @@
 import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CustomLog from '~/infrastructure/controllers/services/logger';
 import APIService from '~/infrastructure/controllers/services/api';
 import { LogsLevelEnum } from '~/domain/interfaces/enum/Logs-enum';
+import { CustomLog } from '~/domain/interfaces/services/custom-log';
 
 class LogStore {
     logs: CustomLog[];
@@ -61,7 +61,8 @@ class LogStore {
     };
 
     addLog = (source: string, level: LogsLevelEnum, message: string, details: string) => {
-        const customLog = new CustomLog(source, level, message, details);
+        const date = new Date().toISOString();
+        const customLog: CustomLog = { level, message, details, source, date };
         this.logs.push(customLog);
     };
 }

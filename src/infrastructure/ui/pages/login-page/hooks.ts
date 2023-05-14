@@ -13,7 +13,7 @@ import { UserData } from '~/domain/interfaces/services/user-data';
 const useLoginPageData = (navigate: NavigateProps) => {
     const {
         LoginStore: { setRefreshToken, setAccessToken, setUserData },
-        LogStore: { warn, sendLogs }
+        LogStore: { warn }
     } = useStore();
     const { RefreshTokenGen } = useLoginPageService();
 
