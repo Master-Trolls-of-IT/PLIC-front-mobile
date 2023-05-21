@@ -37,7 +37,7 @@ const useGenericInputBirthdateData = (
 
     const onChange = (value: string) => {
         if (value.length > 10) return;
-        const valueWithoutSlash = value.replaceAll('/', '');
+        const valueWithoutSlash = value.replace(/\//g, '');
         let formattedValue: string;
         if (valueWithoutSlash.length < 3) {
             formattedValue = valueWithoutSlash;
