@@ -13,7 +13,6 @@ const useStartUpPageService = (timeout: number, navigate: NavigateProps) => {
             if (resultAPIPing) navigate(PagesEnum.LoginPage);
         } catch (err) {
             error('useStartUpPageService', 'Could not ping the API ', err.toString());
-            navigate(PagesEnum.LoginPage);
         }
     };
 
