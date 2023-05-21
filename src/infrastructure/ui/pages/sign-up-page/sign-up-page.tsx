@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { observer } from 'mobx-react';
 import SignUpPageStyle from '~/infrastructure/ui/pages/sign-up-page/sign-up-page-style';
 import SignUpPageBlobsTop from '~/infrastructure/ui/pages/sign-up-page/component/background/sign-up-page-blobs-top';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
@@ -142,4 +143,4 @@ const SignUpPage = () => {
     );
 };
 
-export default SignUpPage;
+export default observer(SignUpPage);

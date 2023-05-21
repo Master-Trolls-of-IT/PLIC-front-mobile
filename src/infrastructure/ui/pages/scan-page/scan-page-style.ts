@@ -18,10 +18,16 @@ const ScanPageStyle = StyleSheet.create({
     scanContainer: {
         height: Dimensions.get('screen').height * 0.4,
         margin: 20,
-        borderWidth: 5,
+        borderWidth: 4,
         borderColor: ColorEnum.ClassicBrown,
         borderRadius: 25,
         justifyContent: 'center'
+    },
+
+    scanBox: {
+        height: '100%',
+        overflow: 'hidden',
+        borderRadius: 21
     },
 
     firstBoxScan: {
@@ -40,8 +46,19 @@ const ScanPageStyle = StyleSheet.create({
         alignSelf: 'center'
     },
 
+    reloadIconContainer: {
+        position: 'absolute',
+        bottom: '3%',
+        right: '3%'
+    },
+
+    errorMessageContainer: {
+        marginLeft: '5%'
+    },
+
     text: {
         marginBottom: 15,
+        marginTop: 25,
         alignSelf: 'center',
         color: ColorEnum.ClassicBrown,
         fontSize: 18

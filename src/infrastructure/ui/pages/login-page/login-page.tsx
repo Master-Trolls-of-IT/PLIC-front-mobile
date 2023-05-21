@@ -11,14 +11,10 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import useLoginPageData from '~/infrastructure/ui/pages/login-page/hooks';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
-import { useStore } from '~/infrastructure/controllers/store';
 
 const LoginPage = () => {
-    const {
-        NavigationStore: { navigate }
-    } = useStore();
     const { inputEmail, inputPassword, errorOnLogin, onPressSignUp, onPressLogin, errorOnDataBase } =
-        useLoginPageData(navigate);
+        useLoginPageData();
 
     return (
         <View style={LoginPageStyle.container}>
