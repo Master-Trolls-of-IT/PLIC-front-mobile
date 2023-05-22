@@ -5,15 +5,15 @@ import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import passwordHashing from '~/infrastructure/controllers/password-hashing';
-import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import { useStore } from '~/infrastructure/controllers/store';
 import useLoginPageService from '~/application/page-service/login-page-service';
 import { UserData } from '~/domain/interfaces/services/user-data';
 
-const useLoginPageData = (navigate: NavigateProps) => {
+const useLoginPageData = () => {
     const {
         LoginStore: { setRefreshToken, setAccessToken, setUserData },
-        LogStore: { warn }
+        LogStore: { warn },
+        NavigationStore: { navigate }
     } = useStore();
     const { RefreshTokenGen } = useLoginPageService();
 

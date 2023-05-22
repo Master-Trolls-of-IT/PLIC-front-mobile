@@ -7,6 +7,7 @@ const useStartUpPageService = (timeout: number, navigate: NavigateProps) => {
     const {
         LogStore: { error }
     } = useStore();
+
     const APIPing = async () => {
         try {
             const resultAPIPing = await ApiPing();
