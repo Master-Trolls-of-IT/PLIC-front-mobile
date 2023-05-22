@@ -6,4 +6,5 @@ export type GenericInputWithSearchIconProps = {
     style?: object;
     input: string;
     dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void);
+    onPressSearchIcon: (value: void) => void;
 };

@@ -11,10 +11,13 @@ const GenericInputWithSearchIcon = ({
     placeHolder,
     style,
     input,
-    dispatch
+    dispatch,
+    onPressSearchIcon
 }: GenericInputWithSearchIconProps) => {
-    const { assetSearchInput, controlledInput, newHeight, newWidth, onChangeText, onPressSearchIcon } =
-        useGenericInputWithSearchIconData(input, dispatch);
+    const { assetSearchInput, controlledInput, newHeight, newWidth, onChangeText } = useGenericInputWithSearchIconData(
+        input,
+        dispatch
+    );
 
     return (
         <View style={style}>
@@ -30,7 +33,9 @@ const GenericInputWithSearchIcon = ({
 
                 <TouchableOpacity
                     style={GenericInputWithSearchIconStyle.containerSearchIcon}
-                    onPress={onPressSearchIcon}>
+                    onPress={() => {
+                        onPressSearchIcon();
+                    }}>
                     <CustomSvg
                         asset={assetSearchInput}
                         style={GenericInputWithSearchIconStyle.searchIcon}

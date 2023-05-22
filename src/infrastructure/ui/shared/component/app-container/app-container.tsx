@@ -28,7 +28,7 @@ const AppContainer = ({ children }: { children: JSX.Element }) => {
         <>
             {children}
 
-            {isFooterEnable ? (
+            {true ? (
                 <>
                     <View style={{ ...AppContainerStyle.slideBar, ...animatedSlideBar.slideBar }}></View>
                     <View style={AppContainerStyle.footerContainer}>

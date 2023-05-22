@@ -24,7 +24,9 @@ const ScanPage = () => {
         reloadCircleAsset,
         scanned,
         inputBarCode,
+        inputResponse,
         onPressHistoricalButton,
+        onPressSearchIcon,
         onPressScanAgain
     } = useScanPageData(navigate);
 
@@ -53,8 +55,8 @@ const ScanPage = () => {
                 </View>
 
                 <GenericErrorMessage
-                    text={'Accès caméra refusé'}
-                    error={!hasPermission}
+                    text={inputResponse.input != '' ? inputResponse.input : 'Accès caméra refusé'}
+                    error={!hasPermission || inputResponse.input != ''}
                     style={ScanPageStyle.errorMessageContainer}
                 />
 
@@ -64,6 +66,7 @@ const ScanPage = () => {
                     <GenericInputWithSearchIcon
                         title={'Entrer le numéro du code barre'}
                         placeHolder={'3068320122946'}
+                        onPressSearchIcon={onPressSearchIcon}
                         {...inputBarCode}
                     />
                     <GenericButton

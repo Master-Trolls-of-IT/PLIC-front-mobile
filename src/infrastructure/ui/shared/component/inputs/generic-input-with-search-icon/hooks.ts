@@ -23,11 +23,7 @@ const useGenericInputWithSearchIconData = (
         });
     };
 
-    const onPressSearchIcon = () => {
-        // TODO: Ajout de l'appel API pour chercher le produit avec le code-barres
-    };
-
-    return { assetSearchInput, controlledInput, newHeight, newWidth, onChangeText, onPressSearchIcon };
+    return { assetSearchInput, controlledInput, newHeight, newWidth, onChangeText };
 };
 
 export default useGenericInputWithSearchIconData;
