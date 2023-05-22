@@ -3,7 +3,8 @@ import { isNumber } from '~/infrastructure/ui/shared/helper/is-number';
 
 const useGenericInputWithSearchIconData = (
     input: string,
-    dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void)
+    dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void),
+    onPressSearchIcon: (value: void) => void
 ) => {
     const [controlledInput, setControlledInput] = useState('');
 
@@ -11,6 +12,8 @@ const useGenericInputWithSearchIconData = (
 
     const newHeight = 22;
     const newWidth = 22;
+
+    const onPressSearch = () => onPressSearchIcon();
 
     const onChangeText = (value: string) => {
         setControlledInput((prev) => {
@@ -23,7 +26,7 @@ const useGenericInputWithSearchIconData = (
         });
     };
 
-    return { assetSearchInput, controlledInput, newHeight, newWidth, onChangeText };
+    return { assetSearchInput, controlledInput, newHeight, newWidth, onChangeText, onPressSearch };
 };
 
 export default useGenericInputWithSearchIconData;
