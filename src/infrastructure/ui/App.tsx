@@ -23,7 +23,7 @@ function App() {
             <AppContainer>
                 <NavigationContainer>
                     <Stack.Navigator
-                        initialRouteName={PagesEnum.ScanPage}
+                        initialRouteName={PagesEnum.StartUpPage}
                         screenOptions={{
                             headerShown: false
                         }}>
