@@ -13,8 +13,7 @@ import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/gene
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 
 const LoginPage = () => {
-    const { inputEmail, inputPassword, errorOnLogin, onPressSignUp, onPressLogin, errorOnDataBase } =
-        useLoginPageData();
+    const { inputEmail, inputPassword, errorOnLogin, onPressSignUp, onPressLogin, errorOnServer } = useLoginPageData();
 
     return (
         <View style={LoginPageStyle.container}>
@@ -33,7 +32,7 @@ const LoginPage = () => {
                     <GenericErrorMessage
                         text={'Erreur pendant la connexion à la base de données.'}
                         style={LoginPageStyle.errorMessage}
-                        error={errorOnDataBase}
+                        error={errorOnServer}
                     />
                     <GenericErrorMessage
                         text={"L'e-mail ou le mot de passe est incorrect."}
