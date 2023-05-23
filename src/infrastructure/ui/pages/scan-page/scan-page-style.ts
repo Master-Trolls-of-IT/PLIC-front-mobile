@@ -3,7 +3,7 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const ScanPageStyle = StyleSheet.create({
     container: {
-        height: '100%',
+        height: Dimensions.get('screen').height - 90 * (Dimensions.get('screen').height / 900),
         display: 'flex',
         flexDirection: 'column'
     },
@@ -25,7 +25,8 @@ const ScanPageStyle = StyleSheet.create({
     },
 
     scanBox: {
-        height: '100%',
+        height: Dimensions.get('screen').height * 0.4,
+        width: Dimensions.get('screen').height * 0.4,
         overflow: 'hidden',
         borderRadius: 21
     },

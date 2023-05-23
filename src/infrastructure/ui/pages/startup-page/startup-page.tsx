@@ -7,6 +7,7 @@ import StartUpPageBlobsTop from '~/infrastructure/ui/pages/startup-page/componen
 import StartUpPageBlobsBottom from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-bottom';
 import StartUpPageLargeClassicLogo from '~/infrastructure/ui/pages/startup-page/component/startup-page-large-classic-logo';
 import { useStore } from '~/infrastructure/controllers/store';
+import useEffectOnce from '~/infrastructure/ui/shared/helper/useEffectOnce';
 
 const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -18,7 +19,7 @@ const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
         setGoBack(navigation.goBack);
     }, [navigation.goBack, navigation.navigate, setGoBack, setNavigate]);
 
-    useStartUpPageService(2500, navigation.navigate);
+    useStartUpPageService(1750, navigation.navigate);
 
     return (
         <View style={StartUpPageStyle.container}>
@@ -29,4 +30,4 @@ const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
     );
 };
 
-export default observer(StartUpPage);
+export default StartUpPage;
