@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import ApiPing from '~/application/utils/api-ping';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { useStore } from '~/infrastructure/controllers/store';
@@ -13,7 +14,7 @@ const useStartUpPageService = (timeout: number) => {
             const resultAPIPing = await ApiPing();
             if (resultAPIPing) navigate(PagesEnum.LoginPage);
         } catch (err) {
-            error('useStartUpPageService', 'Could not ping the API ', '');
+            if (err instanceof AxiosError) error('useStartUpPageService', 'Could not ping the API ', err.message);
         }
     };
 

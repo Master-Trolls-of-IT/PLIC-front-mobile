@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { SignUpData } from '~/domain/interfaces/services/sign-up';
 import APIService from '~/infrastructure/controllers/services/api';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
@@ -25,7 +26,7 @@ const useSignUpPageService = () => {
                 setErrorOnDataBase(true);
             }
         } catch (err) {
-            error('useSignUpPageService', 'Caught an exception', '');
+            if (err instanceof AxiosError) error('useSignUpPageService', 'Caught an exception', err.message);
             setErrorOnDataBase(true);
         }
     };
