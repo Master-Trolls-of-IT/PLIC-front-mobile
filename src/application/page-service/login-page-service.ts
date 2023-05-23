@@ -23,7 +23,7 @@ const useLoginPageService = () => {
                 return '';
             }
         } catch (err) {
-            error('useLoginPageService', 'RefreshTokenGen : Caught an exception ', err.toString());
+            error('useLoginPageService', 'RefreshTokenGen : Caught an exception ', '');
             return '';
         }
     };
@@ -44,7 +44,7 @@ const useLoginPageService = () => {
                 return '';
             }
         } catch (err) {
-            error('useLoginPageService', 'AccessTokenGen : Caught an exception ', err.toString());
+            error('useLoginPageService', 'AccessTokenGen : Caught an exception ', '');
             return '';
         }
     };

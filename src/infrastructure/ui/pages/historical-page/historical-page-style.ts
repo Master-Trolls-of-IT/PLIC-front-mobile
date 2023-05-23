@@ -13,6 +13,11 @@ const HistoricalPageStyle = StyleSheet.create({
         backgroundColor: ColorEnum.ClassicBeige,
         height: '100%',
         width: Dimensions.get('screen').width
+    },
+
+    headerContainer: {
+        marginTop: '28%',
+        marginLeft: '10%'
     }
 });
 

@@ -24,8 +24,8 @@ const useSignUpPageService = () => {
                 );
                 setErrorOnDataBase(true);
             }
-        } catch (e) {
-            error('useSignUpPageService', 'Caught an exception', e.toString());
+        } catch (err) {
+            error('useSignUpPageService', 'Caught an exception', '');
             setErrorOnDataBase(true);
         }
     };

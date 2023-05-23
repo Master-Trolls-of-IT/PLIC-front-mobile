@@ -30,7 +30,7 @@ const useLoginPageData = () => {
         if (isValidInput(inputEmailString, InputEnum.Email) && isValidInput(inputPasswordString, InputEnum.Password)) {
             //Envoyer la data JSON au back ici
             const data: LoginData = {
-                email: inputEmailString,
+                email: inputEmailString.toLowerCase(),
                 password: passwordHashing(inputPasswordString)
             };
             try {

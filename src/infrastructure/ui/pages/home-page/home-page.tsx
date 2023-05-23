@@ -25,6 +25,7 @@ const HomePage = () => {
                     <GenericHeaderText
                         firstText={'Votre Résumé'}
                         secondText={`Bonjour ${username},`}
+                        containerStyle={HomePageStyle.headerContainer}
                         showHomePageHeader={true}
                     />
                 </View>

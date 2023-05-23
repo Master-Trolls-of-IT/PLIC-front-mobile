@@ -6,7 +6,7 @@ import isContentGroup from '~/infrastructure/ui/shared/helper/is-content-group';
 
 const useAppContainerData = () => {
     const {
-        NavigationStore: { activeScreen, navigate }
+        NavigationStore: { activeScreen, previousScreen, navigate }
     } = useStore();
 
     const [isFooterEnable, setIsFooterEnable] = useState(false);
@@ -28,10 +28,17 @@ const useAppContainerData = () => {
     const animatedGameIconStyle = StyleSheet.create({ icon: {} });
     const animatedSlideBar = StyleSheet.create({ slideBar: { left: 12 } });
 
-    if (activeScreen == PagesEnum.MealPage) {
+    const isMealPageSlideBar =
+        activeScreen == PagesEnum.MealPage ||
+        (previousScreen == PagesEnum.MealPage && activeScreen == PagesEnum.HistoricalPage);
+    const isScanPageSlideBar =
+        activeScreen == PagesEnum.ScanPage ||
+        (previousScreen == PagesEnum.ScanPage && activeScreen == PagesEnum.HistoricalPage);
+
+    if (isMealPageSlideBar) {
         animatedMealIconStyle.icon = { marginBottom: 20 };
         animatedSlideBar.slideBar = { left: 12 };
-    } else if (activeScreen == PagesEnum.ScanPage) {
+    } else if (isScanPageSlideBar) {
         animatedScanIconStyle.icon = { marginBottom: 20 };
         animatedSlideBar.slideBar = { left: 12 + Dimensions.get('screen').width / 5 };
     } else if (activeScreen == PagesEnum.RecipePage) {

@@ -11,10 +11,11 @@ import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 const GenericHeaderText = ({
     firstText = 'Header Bold',
     secondText = 'Header Regular',
-    showHomePageHeader = false
+    showHomePageHeader = false,
+    containerStyle
 }: HeaderConfigProps) => {
     return (
-        <View style={GenericHeaderTextStyle.container}>
+        <View style={containerStyle}>
             {showHomePageHeader ? (
                 <View style={GenericHeaderTextStyle.textOnlyContainer}>
                     <View style={{ flex: 3 }}>
