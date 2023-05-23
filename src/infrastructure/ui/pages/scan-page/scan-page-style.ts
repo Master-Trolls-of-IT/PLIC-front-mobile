@@ -15,8 +15,13 @@ const ScanPageStyle = StyleSheet.create({
         width: Dimensions.get('screen').width
     },
 
+    headerContainer: {
+        marginTop: '20%',
+        marginLeft: '10%'
+    },
+
     scanContainer: {
-        height: Dimensions.get('screen').height * 0.4,
+        height: Dimensions.get('screen').height * 0.43,
         margin: 20,
         borderWidth: 4,
         borderColor: ColorEnum.ClassicBrown,

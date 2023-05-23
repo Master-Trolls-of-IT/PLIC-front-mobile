@@ -18,6 +18,11 @@ const SignUpPageStyle = StyleSheet.create({
         opacity: 0.7
     },
 
+    headerContainer: {
+        marginTop: '20%',
+        marginLeft: '10%'
+    },
+
     text: {
         alignSelf: 'center',
         fontSize: 30

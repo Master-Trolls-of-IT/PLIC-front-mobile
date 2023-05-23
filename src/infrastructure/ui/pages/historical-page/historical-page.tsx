@@ -11,6 +11,7 @@ const HistoricalPage = () => {
     const {
         NavigationStore: { goBack }
     } = useStore();
+
     return (
         <View style={HistoricalPageStyle.container}>
             <View style={HistoricalPageStyle.background}>
@@ -21,6 +22,7 @@ const HistoricalPage = () => {
             <GenericHeaderText
                 firstText={'Votre Historique'}
                 secondText={'Recherchez un produit précedemment enregistré'}
+                containerStyle={HistoricalPageStyle.headerContainer}
             />
         </View>
     );

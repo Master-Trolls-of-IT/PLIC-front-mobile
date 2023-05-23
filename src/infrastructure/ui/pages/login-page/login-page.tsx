@@ -24,7 +24,11 @@ const LoginPage = () => {
                 <LoginPageTreeClassicLogo />
             </View>
             <View style={LoginPageStyle.contentContainer}>
-                <GenericHeaderText firstText={'Bonjour,'} secondText={'Veuillez vous connecter'} />
+                <GenericHeaderText
+                    firstText={'Bonjour,'}
+                    secondText={'Veuillez vous connecter'}
+                    containerStyle={LoginPageStyle.headerContainer}
+                />
                 <View style={LoginPageStyle.errorMessages}>
                     <GenericErrorMessage
                         text={'Erreur pendant la connexion à la base de données.'}

@@ -10,15 +10,15 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
-        NavigationStore: { setNavigate, setGoBack }
+        NavigationStore: { setNavigate, goBack }
     } = useStore();
 
     useEffect(() => {
         setNavigate(navigation.navigate);
-        setGoBack(navigation.goBack);
-    }, [navigation.goBack, navigation.navigate, setGoBack, setNavigate]);
+        goBack();
+    }, [navigation.goBack, navigation.navigate, goBack, setNavigate]);
 
-    useStartUpPageService(2500, navigation.navigate);
+    useStartUpPageService(2500);
 
     return (
         <View style={StartUpPageStyle.container}>
