@@ -21,6 +21,7 @@ const useSignUpPageService = () => {
             if (response.status === 200) {
                 navigate(PagesEnum.HomePage);
                 setUserData(data as UserData);
+                // TODO : Ajout de l'erreur lorsque l'email envoyé existe déjà
             } else {
                 error(
                     'useSignUpPageService',
