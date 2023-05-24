@@ -19,7 +19,9 @@ const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
     const [inputGenderString, setInputGender] = useState<{ label: string; value: string }>({ label: '', value: '' });
     const [inputSportActivityString, setInputSportActivity] = useState('');
     const [errorOnSignUp, setErrorOnSignUp] = useState(false);
-    const [errorOnDataBase, setErrorOnDataBase] = useState(false);
+    const [errorOnServer, setErrorOnServer] = useState(false);
+    const [errorOnEmailAlreadyExists, setErrorOnEmailAlreadyExists] = useState(false);
+    const [loader, setLoader] = useState(false);
 
     const checkAllInputs =
         isValidInput(inputBirthdateString, InputEnum.Birthdate) &&
@@ -32,10 +34,22 @@ const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
         isValidInput(inputValidPasswordString, InputEnum.Password) &&
         inputPasswordString == inputValidPasswordString;
 
-    const onPressGoBack = goBack;
+    const resetAllError = () => {
+        setErrorOnSignUp(false);
+        setErrorOnServer(false);
+        setErrorOnEmailAlreadyExists(false);
+    };
+
+    const onPressGoBack = () => {
+        goBack();
+        resetAllError();
+    };
 
     const onPressValidate = () => {
+        resetAllError();
+
         const post = async () => {
+            setLoader(true);
             if (checkAllInputs) {
                 const data: SignUpData = {
                     Email: inputEmailString.toLowerCase(),
@@ -51,17 +65,23 @@ const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
                     BasalMetabolism: 0
                 };
 
-                await SignUp(data, setErrorOnDataBase);
+                await SignUp(data, setErrorOnServer, setErrorOnEmailAlreadyExists);
             } else {
                 setErrorOnSignUp(true);
             }
+            setLoader(false);
         };
         void post();
     };
 
+    const selectRightErrorMessage = () => {
+        if (errorOnSignUp) return 'Un champ est invalide ou les mots de passe ne sont pas identiques';
+        else if (errorOnEmailAlreadyExists) return 'Cet e-mail est déjà utilisé';
+        else return 'Erreur de connexion au serveur';
+    };
+
     return {
-        errorOnSignUp,
-        errorOnDataBase,
+        errorEnabled: errorOnSignUp || errorOnServer || errorOnEmailAlreadyExists,
         inputBirthdate: { input: inputBirthdateString, dispatch: setInputBirthdate },
         inputEmail: { input: inputEmailString, dispatch: setInputEmail },
         inputGender: { input: inputGenderString, dispatch: setInputGender },
@@ -72,7 +92,9 @@ const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
         inputValidPassword: { input: inputValidPasswordString, dispatch: setValidPassword },
         inputWeight: { input: inputWeightString, dispatch: setInputWeight },
         onPressGoBack,
-        onPressValidate
+        onPressValidate,
+        selectRightErrorMessage,
+        loader
     };
 };
 export default useSignUpPageData;
