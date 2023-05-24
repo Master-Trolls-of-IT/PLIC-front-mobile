@@ -7,7 +7,6 @@ import StartUpPageBlobsTop from '~/infrastructure/ui/pages/startup-page/componen
 import StartUpPageBlobsBottom from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-bottom';
 import StartUpPageLargeClassicLogo from '~/infrastructure/ui/pages/startup-page/component/startup-page-large-classic-logo';
 import { useStore } from '~/infrastructure/controllers/store';
-import useEffectOnce from '~/infrastructure/ui/shared/helper/useEffectOnce';
 
 const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
@@ -30,4 +29,4 @@ const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
     );
 };
 
-export default StartUpPage;
+export default observer(StartUpPage);
