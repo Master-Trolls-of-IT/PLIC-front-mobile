@@ -34,7 +34,6 @@ class APIServices implements IAPIServices {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        console.log(url.substring(0, 5));
         const returnValue = await this.axiosInstance.get<T, AxiosResponse<T>>(url, newConfig);
         return returnValue.data as GenericResponse<T>;
     }
