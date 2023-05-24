@@ -11,16 +11,21 @@ const useSignUpPageService = () => {
         LoginStore: { setUserData },
         LogStore: { error }
     } = useStore();
-    const SignUp = async (data: SignUpData, setErrorOnDataBase: (value: boolean) => void) => {
+    const SignUp = async (
+        data: SignUpData,
+        setErrorOnDataBase: (value: boolean) => void,
+        setErrorOnEmailAlreadyExists: (value: boolean) => void
+    ) => {
         try {
             const response = await APIService.POST('/register', data);
             if (response.status === 200) {
                 navigate(PagesEnum.HomePage);
                 setUserData(data as UserData);
+                // TODO : Ajout de l'erreur lorsque l'email envoyé existe déjà
             } else {
                 error(
                     'useSignUpPageService',
-                    `Sign up failed , received code error : ${response.status}`,
+                    `Sign up failed, received code error : ${response.status}`,
                     response.message
                 );
                 setErrorOnDataBase(true);

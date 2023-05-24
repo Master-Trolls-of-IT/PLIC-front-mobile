@@ -17,17 +17,12 @@ const loginPageStyle = StyleSheet.create({
     },
 
     headerContainer: {
-        marginTop: '30%',
         marginLeft: '10%'
     },
 
-    errorMessages: {
-        marginTop: 55
-    },
-
     errorMessage: {
-        alignSelf: 'center',
-        width: 360 * (Dimensions.get('screen').width / 400)
+        marginLeft: Dimensions.get('screen').width / 15,
+        marginRight: Dimensions.get('screen').width / 15
     },
 
     container: {
@@ -37,14 +32,17 @@ const loginPageStyle = StyleSheet.create({
     },
 
     contentContainer: {
-        height: Dimensions.get('screen').height,
-        display: 'flex'
+        height: '40%',
+        marginTop: '30%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
 
     input: {
         alignSelf: 'center',
         width: 360 * (Dimensions.get('screen').width / 400),
-        height: '26%',
+        height: '65%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between'

@@ -6,7 +6,7 @@ const GenericButtonStyle = StyleSheet.create({
         borderRadius: 20
     },
 
-    buttonText: {
+    buttonContent: {
         alignSelf: 'center'
     }
 });

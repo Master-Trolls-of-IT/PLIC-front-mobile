@@ -13,7 +13,8 @@ import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/gene
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 
 const LoginPage = () => {
-    const { inputEmail, inputPassword, errorOnLogin, onPressSignUp, onPressLogin, errorOnServer } = useLoginPageData();
+    const { inputEmail, inputPassword, errorEnabled, onPressSignUp, onPressLogin, loader, selectRightErrorMessage } =
+        useLoginPageData();
 
     return (
         <View style={LoginPageStyle.container}>
@@ -22,24 +23,20 @@ const LoginPage = () => {
                 <LoginPageBlobsBottom />
                 <LoginPageTreeClassicLogo />
             </View>
+
             <View style={LoginPageStyle.contentContainer}>
                 <GenericHeaderText
                     firstText={'Bonjour,'}
                     secondText={'Veuillez vous connecter'}
                     containerStyle={LoginPageStyle.headerContainer}
                 />
-                <View style={LoginPageStyle.errorMessages}>
-                    <GenericErrorMessage
-                        text={'Erreur pendant la connexion à la base de données.'}
-                        style={LoginPageStyle.errorMessage}
-                        error={errorOnServer}
-                    />
-                    <GenericErrorMessage
-                        text={"L'e-mail ou le mot de passe est incorrect."}
-                        style={LoginPageStyle.errorMessage}
-                        error={errorOnLogin}
-                    />
-                </View>
+
+                <GenericErrorMessage
+                    text={selectRightErrorMessage()}
+                    style={LoginPageStyle.errorMessage}
+                    error={errorEnabled}
+                />
+
                 <View style={LoginPageStyle.input}>
                     <GenericInput
                         title={'E-mail'}
@@ -68,6 +65,7 @@ const LoginPage = () => {
                                 container: LoginPageStyle.greenButtonContainer,
                                 text: LoginPageStyle.greenButtonText
                             }}
+                            loader={loader}
                             onPress={onPressLogin}
                         />
                     </View>

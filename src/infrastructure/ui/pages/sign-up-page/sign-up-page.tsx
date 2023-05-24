@@ -21,7 +21,7 @@ const SignUpPage = () => {
         NavigationStore: { navigate, goBack }
     } = useStore();
     const {
-        errorOnSignUp,
+        errorEnabled,
         inputBirthdate,
         inputEmail,
         inputGender,
@@ -32,7 +32,9 @@ const SignUpPage = () => {
         inputValidPassword,
         inputWeight,
         onPressGoBack,
-        onPressValidate
+        onPressValidate,
+        selectRightErrorMessage,
+        loader
     } = useSignUpPageData(navigate, goBack);
 
     return (
@@ -51,9 +53,9 @@ const SignUpPage = () => {
                     />
 
                     <GenericErrorMessage
-                        text={'Un champ est invalide ou les mots de passe ne sont pas identiques'}
+                        text={selectRightErrorMessage()}
                         style={SignUpPageStyle.errorMessage}
-                        error={errorOnSignUp}
+                        error={errorEnabled}
                     />
 
                     <View style={SignUpPageStyle.input}>
@@ -140,6 +142,7 @@ const SignUpPage = () => {
                                 container: SignUpPageStyle.greenButtonContainer,
                                 text: SignUpPageStyle.greenButtonText
                             }}
+                            loader={loader}
                             onPress={onPressValidate}
                         />
                     </View>
