@@ -20,6 +20,11 @@ const HomePageStyle = StyleSheet.create({
         marginTop: -55
     },
 
+    headerContainer: {
+        marginTop: '30%',
+        marginLeft: '10%'
+    },
+
     headerButtons: {
         flex: 1,
         flexDirection: 'row',

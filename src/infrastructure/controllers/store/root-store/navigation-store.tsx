@@ -4,24 +4,25 @@ import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 
 class NavigationStore {
     navigate: NavigateProps;
-    goBack: () => void;
     activeScreen: PagesEnum;
+    previousScreen: PagesEnum;
 
     constructor() {
         this.activeScreen = PagesEnum.StartUpPage;
+        this.previousScreen = PagesEnum.StartUpPage;
         this.navigate = () => {};
-        this.goBack = () => {};
 
         makeAutoObservable(
             this,
             {
                 navigate: observable,
                 activeScreen: observable,
-                goBack: observable,
+                previousScreen: observable,
 
                 setNavigate: action,
                 setActiveScreen: action,
-                setGoBack: action
+                setPreviousScreen: action,
+                goBack: action
             },
             { autoBind: true }
         );
@@ -29,6 +30,7 @@ class NavigationStore {
 
     setNavigate = (navigate: NavigateProps) => {
         this.navigate = (routeName: PagesEnum) => {
+            this.setPreviousScreen(this.activeScreen);
             this.setActiveScreen(routeName);
             navigate(routeName);
         };
@@ -38,8 +40,12 @@ class NavigationStore {
         this.activeScreen = activeScreen;
     };
 
-    setGoBack = (goBack: () => void) => {
-        this.goBack = goBack;
+    setPreviousScreen = (previousScreen: PagesEnum) => {
+        this.previousScreen = previousScreen;
+    };
+
+    goBack = () => {
+        this.navigate(this.previousScreen);
     };
 }
 

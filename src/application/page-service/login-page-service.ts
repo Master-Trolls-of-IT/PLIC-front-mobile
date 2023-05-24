@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { GenericResponse } from '~/domain/interfaces/services/generic-response';
 import APIService from '~/infrastructure/controllers/services/api';
 import PasswordHashing from '~/infrastructure/controllers/password-hashing';
@@ -20,12 +21,12 @@ const useLoginPageService = () => {
                     `Failed generating refresh token, received error code ${response.status}`,
                     response.message
                 );
-                return '';
             }
         } catch (err) {
-            error('useLoginPageService', 'RefreshTokenGen : Caught an exception ', err.toString());
-            return '';
+            if (err instanceof AxiosError)
+                error('useLoginPageService', 'RefreshTokenGen : Caught an exception ', err.message);
         }
+        return '';
     };
 
     const AccessTokenGen = async (password: string, refreshToken: string): Promise<string> => {
@@ -41,12 +42,12 @@ const useLoginPageService = () => {
                     `Failed generating access token, received error code ${response.status}`,
                     response.message
                 );
-                return '';
             }
         } catch (err) {
-            error('useLoginPageService', 'AccessTokenGen : Caught an exception ', err.toString());
-            return '';
+            if (err instanceof AxiosError)
+                error('useLoginPageService', 'AccessTokenGen : Caught an exception ', err.message);
         }
+        return '';
     };
 
     return {

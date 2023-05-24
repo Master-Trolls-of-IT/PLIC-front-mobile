@@ -20,7 +20,7 @@ const useLoginPageData = () => {
     const [inputEmailString, setInputEmail] = useState('');
     const [inputPasswordString, setInputPassword] = useState('');
     const [errorOnLogin, setErrorOnLogin] = useState(false);
-    const [errorOnDataBase, setErrorOnDataBase] = useState(false);
+    const [errorOnServer, setErrorOnServer] = useState(false);
 
     const onPressSignUp = () => {
         navigate(PagesEnum.SignUpPage);
@@ -30,7 +30,7 @@ const useLoginPageData = () => {
         if (isValidInput(inputEmailString, InputEnum.Email) && isValidInput(inputPasswordString, InputEnum.Password)) {
             //Envoyer la data JSON au back ici
             const data: LoginData = {
-                email: inputEmailString,
+                email: inputEmailString.toLowerCase(),
                 password: passwordHashing(inputPasswordString)
             };
             try {
@@ -50,10 +50,10 @@ const useLoginPageData = () => {
                     setUserData(response.data);
                     navigate(PagesEnum.HomePage);
                 } else {
-                    setErrorOnDataBase(true);
+                    setErrorOnServer(true);
                 }
             } catch (error) {
-                setErrorOnDataBase(true);
+                setErrorOnLogin(true);
             }
         } else {
             setErrorOnLogin(true);
@@ -66,7 +66,7 @@ const useLoginPageData = () => {
         errorOnLogin,
         onPressSignUp,
         onPressLogin,
-        errorOnDataBase
+        errorOnServer
     };
 };
 export default useLoginPageData;

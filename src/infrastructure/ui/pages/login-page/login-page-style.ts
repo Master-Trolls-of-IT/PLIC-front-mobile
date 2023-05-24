@@ -16,6 +16,11 @@ const loginPageStyle = StyleSheet.create({
         right: -15
     },
 
+    headerContainer: {
+        marginTop: '30%',
+        marginLeft: '10%'
+    },
+
     errorMessages: {
         marginTop: 55
     },

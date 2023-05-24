@@ -47,6 +47,7 @@ const SignUpPage = () => {
                     <GenericHeaderText
                         firstText={'Dites nous en plus,'}
                         secondText={'Veuillez remplir les champs suivants'}
+                        containerStyle={SignUpPageStyle.headerContainer}
                     />
 
                     <GenericErrorMessage
@@ -74,7 +75,12 @@ const SignUpPage = () => {
                                 style={{ flex: 1.5, paddingLeft: '5%' }}
                             />
                         </View>
-                        <GenericInput title={'Prénom'} type={InputEnum.Name} placeHolder={'Alexandre'} {...inputName} />
+                        <GenericInput
+                            title={"Nom d'utilisateur"}
+                            type={InputEnum.Name}
+                            placeHolder={'Alexandre'}
+                            {...inputName}
+                        />
                         <View style={SignUpPageStyle.weightAndHeightField}>
                             <GenericInputWithEndText
                                 title={'Poids'}

@@ -36,7 +36,15 @@ const ScanPage = () => {
                 <ScanPageBlobsTop />
             </View>
             <View style={ScanPageStyle.container}>
-                <GenericHeaderText firstText={'Scan'} secondText={'Veuillez scanner le code barre de votre produit'} />
+                <View style={ScanPageStyle.background}>
+                    <ScanPageBlobsTop />
+                </View>
+
+                <GenericHeaderText
+                    firstText={'Scan'}
+                    secondText={'Veuillez scanner le code barre de votre produit'}
+                    containerStyle={ScanPageStyle.headerContainer}
+                />
 
                 <View style={ScanPageStyle.scanContainer}>
                     <View style={ScanPageStyle.firstBoxScan} />

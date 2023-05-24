@@ -38,7 +38,7 @@ const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
         const post = async () => {
             if (checkAllInputs) {
                 const data: SignUpData = {
-                    Email: inputEmailString,
+                    Email: inputEmailString.toLowerCase(),
                     Username: inputEmailString,
                     Password: PasswordHashing(inputPasswordString),
                     Birthdate: inputBirthdateString,

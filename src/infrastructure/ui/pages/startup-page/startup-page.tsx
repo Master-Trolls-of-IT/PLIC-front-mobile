@@ -11,15 +11,15 @@ import useEffectOnce from '~/infrastructure/ui/shared/helper/useEffectOnce';
 
 const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
     const {
-        NavigationStore: { setNavigate, setGoBack }
+        NavigationStore: { setNavigate, goBack }
     } = useStore();
 
     useEffect(() => {
         setNavigate(navigation.navigate);
-        setGoBack(navigation.goBack);
-    }, [navigation.goBack, navigation.navigate, setGoBack, setNavigate]);
+        goBack();
+    }, [navigation.goBack, navigation.navigate, goBack, setNavigate]);
 
-    useStartUpPageService(1750, navigation.navigate);
+    useStartUpPageService(2000);
 
     return (
         <View style={StartUpPageStyle.container}>
