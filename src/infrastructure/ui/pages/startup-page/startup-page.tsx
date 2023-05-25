@@ -18,7 +18,7 @@ const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
         goBack();
     }, [navigation.goBack, navigation.navigate, goBack, setNavigate]);
 
-    useStartUpPageService(2500);
+    useStartUpPageService(2000);
 
     return (
         <View style={StartUpPageStyle.container}>

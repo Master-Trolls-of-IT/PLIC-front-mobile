@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import ApiPing from '~/application/utils/api-ping';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { useStore } from '~/infrastructure/controllers/store';
+import useEffectOnce from '~/infrastructure/ui/shared/helper/useEffectOnce';
 
 const useStartUpPageService = (timeout: number) => {
     const {
@@ -18,7 +19,9 @@ const useStartUpPageService = (timeout: number) => {
         }
     };
 
-    setTimeout(() => void APIPing(), timeout);
+    useEffectOnce(() => {
+        setTimeout(() => void APIPing(), timeout);
+    });
 };
 
 export default useStartUpPageService;

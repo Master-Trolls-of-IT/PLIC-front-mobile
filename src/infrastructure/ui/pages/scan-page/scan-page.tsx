@@ -32,11 +32,10 @@ const ScanPage = () => {
 
     return (
         <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>
+            <View style={ScanPageStyle.background}>
+                <ScanPageBlobsTop />
+            </View>
             <View style={ScanPageStyle.container}>
-                <View style={ScanPageStyle.background}>
-                    <ScanPageBlobsTop />
-                </View>
-
                 <GenericHeaderText
                     firstText={'Scan'}
                     secondText={'Veuillez scanner le code barre de votre produit'}
