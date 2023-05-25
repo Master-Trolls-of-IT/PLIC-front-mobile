@@ -1,6 +1,7 @@
 import { EffectCallback, useEffect, useRef } from 'react';
 
 function useEffectOnce(effect: EffectCallback) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const destroyFunc = useRef<void | any>();
     const calledOnce = useRef(false);
     const renderAfterCalled = useRef(false);
@@ -26,6 +27,7 @@ function useEffectOnce(effect: EffectCallback) {
                 destroyFunc.current();
             }
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 }
 
