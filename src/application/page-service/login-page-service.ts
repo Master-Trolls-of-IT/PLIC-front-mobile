@@ -45,7 +45,7 @@ const useLoginPageService = () => {
             }
         } catch (err) {
             if (err instanceof AxiosError)
-                error('useLoginPageService', 'AccessTokenGen : Caught an exception ', err.message);
+                error('useLoginPageService', 'AccessTokenGen : Caught an exception', err.message);
         }
         return '';
     };

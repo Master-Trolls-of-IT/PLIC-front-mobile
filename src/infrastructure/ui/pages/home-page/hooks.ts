@@ -1,13 +1,26 @@
+import { useStore } from '~/infrastructure/controllers/store';
+import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
+import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
+import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
+
 const useHomePageData = () => {
-    // TODO : compute ecoScore of the user then store it inside "ecoscore"
+    const {
+        LoginStore: { userData }
+    } = useStore();
+
+    // TODO : calculate eco-score from daily products eaten
     const ecoScore = 82;
 
-    // TODO : retrieve User name and store it inside "username"
-    const username = 'Alexandre';
+    const username = userData.Pseudo;
 
-    // TODO : retrieve anecdotes from Database and store it inside "anecdote"
-    const anecdote =
-        'Un mégot peut polluer jusqu’à 500 litres d’eau. Environ 1000 sont jetés par terre chaque seconde en France.';
+    // TODO : retrieve the right nutrients earned from daily products eaten for all nutrients type
+    const dailyNutrientsGoal = GetDailyNutrientsGoal(userData.BasalMetabolism);
+    const dailyNutrientsEarned = {
+        energy: Math.round(userData.BasalMetabolism * 0.82),
+        protein: Math.round(dailyNutrientsGoal.protein * 0.6),
+        carbohydrate: Math.round(dailyNutrientsGoal.carbohydrate * 0.4),
+        lipid: Math.round(dailyNutrientsGoal.lipid * 0.8)
+    } as DailyNutrientsType;
 
     const chooseRightDynamicImage = () => {
         switch (true) {
@@ -35,7 +48,21 @@ const useHomePageData = () => {
                 return require('~/domain/entities/assets/home-page/home-page-basket-level-11.svg');
         }
     };
-    return { username, chooseRightDynamicImage, anecdote, ecoScore };
+
+    const getRandomNumberInArrayLength = (arrayLength: number): number => {
+        return Math.round(Math.random() * arrayLength);
+    };
+
+    const anecdoteObject = anecdotesObject[getRandomNumberInArrayLength(anecdotesObject.length)];
+
+    return {
+        anecdoteObject,
+        dailyNutrientsGoal,
+        dailyNutrientsEarned,
+        username,
+        chooseRightDynamicImage,
+        ecoScore
+    };
 };
 
 export default useHomePageData;
