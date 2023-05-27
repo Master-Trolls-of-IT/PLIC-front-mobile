@@ -4,7 +4,7 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 const SmallBasicIntakesStyle = (color: string) =>
     StyleSheet.create({
         content: {
-            backgroundColor: ColorEnum.ClassicDarkBeige,
+            backgroundColor: ColorEnum.ExtraOpaqueBrown,
             borderRadius: 20,
             width: 0.4 * Dimensions.get('screen').width,
             height: 0.4 * Dimensions.get('screen').width,

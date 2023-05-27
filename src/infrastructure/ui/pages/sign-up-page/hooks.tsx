@@ -5,6 +5,7 @@ import { SignUpData } from '~/domain/interfaces/services/sign-up';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import useSignUpPageService from '~/application/page-service/sign-up-page-service';
+import GetBasalMetabolism from '~/infrastructure/ui/shared/helper/get-basal-metabolism';
 
 const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
     const { SignUp } = useSignUpPageService();
@@ -16,12 +17,23 @@ const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
     const [inputNameString, setInputName] = useState('');
     const [inputHeightString, setInputHeight] = useState('');
     const [inputWeightString, setInputWeight] = useState('');
-    const [inputGenderString, setInputGender] = useState<{ label: string; value: string }>({ label: '', value: '' });
+    const [inputGenderString, setInputGender] = useState<{ label: string; value: string }>({
+        label: 'Homme',
+        value: '0'
+    });
     const [inputSportActivityString, setInputSportActivity] = useState('');
     const [errorOnSignUp, setErrorOnSignUp] = useState(false);
     const [errorOnServer, setErrorOnServer] = useState(false);
     const [errorOnEmailAlreadyExists, setErrorOnEmailAlreadyExists] = useState(false);
     const [loader, setLoader] = useState(false);
+
+    const basalMetabolism = GetBasalMetabolism(
+        parseInt(inputGenderString.value),
+        parseInt(inputWeightString),
+        parseInt(inputHeightString),
+        inputBirthdateString,
+        parseInt(inputSportActivityString)
+    );
 
     const checkAllInputs =
         isValidInput(inputBirthdateString, InputEnum.Birthdate) &&
@@ -62,7 +74,7 @@ const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
                     Pseudo: inputNameString,
                     Rights: 0,
                     Sportiveness: +inputSportActivityString,
-                    BasalMetabolism: 0
+                    BasalMetabolism: basalMetabolism
                 };
 
                 await SignUp(data, setErrorOnServer, setErrorOnEmailAlreadyExists);

@@ -7,13 +7,13 @@ import HomePageBasket from '~/infrastructure/ui/pages/home-page/component/backgr
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
-import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
 import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
 
 const HomePage = () => {
-    const { username, chooseRightDynamicImage, ecoScore } = useHomePageData();
+    const { anecdoteObject, dailyNutrientsGoal, dailyNutrientsEarned, username, chooseRightDynamicImage, ecoScore } =
+        useHomePageData();
 
     return (
         <View>
@@ -37,29 +37,29 @@ const HomePage = () => {
                         <LargeIntakes
                             energy={{
                                 nutrientType: NutrientsEnum.Energy,
-                                earned: 1854,
-                                goal: 2253
+                                earned: dailyNutrientsEarned.energy,
+                                goal: dailyNutrientsGoal.energy
                             }}
                             firstNutrient={{
                                 nutrientType: NutrientsEnum.Protein,
-                                earned: 62,
-                                goal: 79
+                                earned: dailyNutrientsEarned.protein,
+                                goal: dailyNutrientsGoal.protein
                             }}
                             secondNutrient={{
                                 nutrientType: NutrientsEnum.Lipid,
-                                earned: 23,
-                                goal: 58
+                                earned: dailyNutrientsEarned.lipid,
+                                goal: dailyNutrientsGoal.lipid
                             }}
                             thirdNutrient={{
                                 nutrientType: NutrientsEnum.Carbohydrate,
-                                earned: 156,
-                                goal: 314
+                                earned: dailyNutrientsEarned.carbohydrate,
+                                goal: dailyNutrientsGoal.carbohydrate
                             }}
                         />
                     </View>
 
                     <View style={HomePageStyle.widgetContainerSecondRow}>
-                        <HomePageAnecdote {...anecdotesObject.appleVitamin} />
+                        <HomePageAnecdote {...anecdoteObject} />
                         <EcoScore ecoScore={ecoScore} />
                     </View>
                 </View>
