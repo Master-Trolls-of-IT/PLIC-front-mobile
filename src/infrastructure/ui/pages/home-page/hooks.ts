@@ -2,6 +2,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
 import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
 import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
+import getRandomNumberInArrayLength from '~/infrastructure/ui/shared/helper/get-random-number-in-array-length';
 
 const useHomePageData = () => {
     const {
@@ -47,10 +48,6 @@ const useHomePageData = () => {
             case ecoScore <= 100:
                 return require('~/domain/entities/assets/home-page/home-page-basket-level-11.svg');
         }
-    };
-
-    const getRandomNumberInArrayLength = (arrayLength: number): number => {
-        return Math.round(Math.random() * arrayLength);
     };
 
     const anecdoteObject = anecdotesObject[getRandomNumberInArrayLength(anecdotesObject.length)];

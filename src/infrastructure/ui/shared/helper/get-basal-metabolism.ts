@@ -20,6 +20,14 @@ const getRightSportivenessFactor = (sportiveness: number): number => {
     }
 };
 
+const getMaleBasalMetabolism = (weight: number, height: number, userAge: number) => {
+    return 13.7516 * weight + 500.33 * (height / 100) - 6.755 * userAge + 66.479;
+};
+
+const getFemaleBasalMetabolism = (weight: number, height: number, userAge: number) => {
+    return 9.74 * weight + 184.96 * (height / 100) - 4.6756 * userAge + 655.0955;
+};
+
 const GetBasalMetabolism = (
     gender: number,
     weight: number,
@@ -29,13 +37,10 @@ const GetBasalMetabolism = (
 ) => {
     const userAge = getAgeFromBirthdate(birthdate);
 
-    const maleCalcul = 13.7516 * weight + 500.33 * (height / 100) - 6.755 * userAge + 66.479;
-    const femaleCalcul = 9.74 * weight + 184.96 * (height / 100) - 4.6756 * userAge + 655.0955;
-
     if (gender == 0) {
-        return Math.round(maleCalcul * getRightSportivenessFactor(sportiveness));
+        return Math.round(getMaleBasalMetabolism(weight, height, userAge) * getRightSportivenessFactor(sportiveness));
     } else {
-        return Math.round(femaleCalcul * getRightSportivenessFactor(sportiveness));
+        return Math.round(getFemaleBasalMetabolism(weight, height, userAge) * getRightSportivenessFactor(sportiveness));
     }
 };
 
