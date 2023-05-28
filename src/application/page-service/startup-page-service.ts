@@ -6,7 +6,7 @@ import APIServices from '~/infrastructure/controllers/services/api';
 const useStartUpPageService = () => {
     const APIPing = async () => {
         try {
-            const response = await APIServices.GET('/pingwha');
+            const response = await APIServices.GET('/ping');
             console.log(response);
             return response.status == 200;
         } catch (err) {
