@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
+
 const CustomModalStyle = StyleSheet.create({
     container: {
         height: '100%',
