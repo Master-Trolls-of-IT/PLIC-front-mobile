@@ -10,6 +10,7 @@ const useStartUpPageService = () => {
             console.log(response);
             return response.status == 200;
         } catch (err) {
+            if (err instanceof AxiosError) error('useStartUpPageService', 'Could not ping the API', err.message);
             return false;
         }
     };

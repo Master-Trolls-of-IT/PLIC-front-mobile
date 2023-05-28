@@ -11,6 +11,7 @@ const useSignUpPageService = () => {
         LoginStore: { setUserData },
         LogStore: { error }
     } = useStore();
+
     const SignUp = async (
         data: SignUpData,
         setErrorOnDataBase: (value: boolean) => void,
@@ -21,17 +22,14 @@ const useSignUpPageService = () => {
             if (response.status === 200) {
                 navigate(PagesEnum.HomePage);
                 setUserData(data as UserData);
-                // TODO : Ajout de l'erreur lorsque l'email envoyé existe déjà
-            } else {
-                error(
-                    'useSignUpPageService',
-                    `Sign up failed, received code error : ${response.status}`,
-                    response.message
-                );
-                setErrorOnDataBase(true);
             }
         } catch (err) {
-            if (err instanceof AxiosError) error('useSignUpPageService', 'Caught an exception', err.message);
+            if (err instanceof AxiosError) {
+                if (err.response?.status == 409) {
+                    error('useSignUpPageService', 'Caught an exception', err.message);
+                    setErrorOnEmailAlreadyExists(true);
+                } else setErrorOnDataBase(true);
+            }
             setErrorOnDataBase(true);
         }
     };

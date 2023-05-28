@@ -3,6 +3,5 @@ export enum InputEnum {
     Email = 'email',
     Birthdate = 'birthdate',
     Password = 'password',
-    Number = 'number',
-    BarCode = 'barCode'
+    Number = 'number'
 }
