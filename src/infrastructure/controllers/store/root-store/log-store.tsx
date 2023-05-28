@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import APIService from '~/infrastructure/controllers/services/api';
+import APIServices from '~/infrastructure/controllers/services/api';
 import { LogsLevelEnum } from '~/domain/interfaces/enum/Logs-enum';
 import { CustomLog } from '~/domain/interfaces/services/custom-log';
 
@@ -39,7 +39,7 @@ class LogStore {
 
     sendLogs = async (): Promise<void> => {
         if (this.logs.length !== 0) {
-            await APIService.POST('/logs', JSON.stringify(this.logs));
+            await APIServices.POST('/logs', JSON.stringify(this.logs));
             this.resetStore();
         }
     };

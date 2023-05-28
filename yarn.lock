@@ -11396,6 +11396,11 @@ react-native-svg@12.3.0:
     css-select "^4.2.1"
     css-tree "^1.0.0-alpha.39"
 
+react-native-system-navigation-bar@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-system-navigation-bar/-/react-native-system-navigation-bar-2.6.0.tgz#97cd8e4477864c683bf3168a22cd40a237fc492e"
+  integrity sha512-6zVzmyPj4gOQgB7OYZXM3tt/8Sj8RDwRY5U6GEvb3ftk3misoVMBK02qqaMVC7rj5QiCHQ8BkyAAziWbg4v5dw==
+
 react-native-web@~0.18.10:
   version "0.18.12"
   resolved "https://registry.npmjs.org/react-native-web/-/react-native-web-0.18.12.tgz"

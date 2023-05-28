@@ -1,27 +1,22 @@
 import { AxiosError } from 'axios';
-import ApiPing from '~/application/utils/api-ping';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { useStore } from '~/infrastructure/controllers/store';
-import useEffectOnce from '~/infrastructure/ui/shared/helper/useEffectOnce';
+import APIServices from '~/infrastructure/controllers/services/api';
 
-const useStartUpPageService = (timeout: number) => {
-    const {
-        LogStore: { error },
-        NavigationStore: { navigate }
-    } = useStore();
-
+const useStartUpPageService = () => {
     const APIPing = async () => {
         try {
-            const resultAPIPing = await ApiPing();
-            if (resultAPIPing) navigate(PagesEnum.LoginPage);
+            const response = await APIServices.GET('/pingwha');
+            console.log(response);
+            return response.status == 200;
         } catch (err) {
-            if (err instanceof AxiosError) error('useStartUpPageService', 'Could not ping the API ', err.message);
+            return false;
         }
     };
 
-    useEffectOnce(() => {
-        setTimeout(() => void APIPing(), timeout);
-    });
+    return {
+        APIPing
+    };
 };
 
 export default useStartUpPageService;

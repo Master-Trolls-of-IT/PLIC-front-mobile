@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { SignUpData } from '~/domain/interfaces/services/sign-up';
-import APIService from '~/infrastructure/controllers/services/api';
+import APIServices from '~/infrastructure/controllers/services/api';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { useStore } from '~/infrastructure/controllers/store';
 import { UserData } from '~/domain/interfaces/services/user-data';
@@ -17,7 +17,7 @@ const useSignUpPageService = () => {
         setErrorOnEmailAlreadyExists: (value: boolean) => void
     ) => {
         try {
-            const response = await APIService.POST('/register', data);
+            const response = await APIServices.POST('/register', data);
             if (response.status === 200) {
                 navigate(PagesEnum.HomePage);
                 setUserData(data as UserData);
