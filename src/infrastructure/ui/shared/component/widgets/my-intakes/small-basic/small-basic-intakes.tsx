@@ -25,7 +25,7 @@ const SmallBasicIntakes = ({
                     style={pageStyle.circle}
                     size={120}
                     width={12}
-                    fill={(earned * 100) / goal}
+                    fill={(earned * 100) / (goal === 0 ? 1 : goal)}
                     tintColor={color}
                     backgroundColor={ColorEnum.ExtraOpaqueGrey}
                     arcSweepAngle={230}

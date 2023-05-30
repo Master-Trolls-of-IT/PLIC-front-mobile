@@ -6,22 +6,28 @@ const useSmallMultipleData = (
     secondNutrient: NutrientData,
     thirdNutrient: NutrientData
 ) => {
-    const [firstPercentage, setFirstPercentage] = useState(firstNutrient.earned / firstNutrient.goal);
-    const [secondPercentage, setSecondPercentage] = useState(secondNutrient.earned / secondNutrient.goal);
-    const [thirdPercentage, setThirdPercentage] = useState(thirdNutrient.earned / thirdNutrient.goal);
+    const [firstPercentage, setFirstPercentage] = useState(
+        firstNutrient.earned / (firstNutrient.goal === 0 ? 1 : firstNutrient.goal)
+    );
+    const [secondPercentage, setSecondPercentage] = useState(
+        secondNutrient.earned / (secondNutrient.goal === 0 ? 1 : secondNutrient.goal)
+    );
+    const [thirdPercentage, setThirdPercentage] = useState(
+        thirdNutrient.earned / (thirdNutrient.goal === 0 ? 1 : thirdNutrient.goal)
+    );
 
     useMemo(
-        () => setFirstPercentage(firstNutrient.earned / firstNutrient.goal),
+        () => setFirstPercentage(firstNutrient.earned / (firstNutrient.goal === 0 ? 1 : firstNutrient.goal)),
         [firstNutrient.earned, firstNutrient.goal]
     );
 
     useMemo(
-        () => setSecondPercentage(secondNutrient.earned / secondNutrient.goal),
+        () => setSecondPercentage(secondNutrient.earned / (secondNutrient.goal === 0 ? 1 : secondNutrient.goal)),
         [secondNutrient.earned, secondNutrient.goal]
     );
 
     useMemo(
-        () => setThirdPercentage(thirdNutrient.earned / thirdNutrient.goal),
+        () => setThirdPercentage(thirdNutrient.earned / (thirdNutrient.goal === 0 ? 1 : thirdNutrient.goal)),
         [thirdNutrient.earned, thirdNutrient.goal]
     );
 
