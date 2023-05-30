@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStore } from '~/infrastructure/controllers/store';
 
 const useAppData = () => {
-    const [barVisibility, setBarVisibility] = useState<'visible' | 'hidden'>();
+    const [barVisibility, setBarVisibility] = useState<'visible' | 'hidden'>('hidden');
     const Stack = createNativeStackNavigator();
     const rootStore = createStore();
 
@@ -19,11 +19,11 @@ const useAppData = () => {
 
     LogBox.ignoreLogs([/.*mobx-persist-store.*/]);
 
-    const navigationConfig = async () => {
-        await NavigationBar.setVisibilityAsync('hidden');
-    };
-
     useEffect(() => {
+        const navigationConfig = async () => {
+            await NavigationBar.setVisibilityAsync(barVisibility);
+        };
+
         if (Platform.OS === 'android') void navigationConfig();
     }, [barVisibility]);
 

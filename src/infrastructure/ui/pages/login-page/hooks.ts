@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { LoginData } from '~/domain/interfaces/services/login';
-import APIService from '~/infrastructure/controllers/services/api';
+import APIServices from '~/infrastructure/controllers/services/api';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
@@ -33,7 +33,7 @@ const useLoginPageData = () => {
         navigate(PagesEnum.SignUpPage);
     };
 
-    const onPressLogin = async () => {
+    const onPressLogin = useCallback(async () => {
         resetAllError();
         setLoader(true);
         if (isValidInput(inputEmailString, InputEnum.Email) && isValidInput(inputPasswordString, InputEnum.Password)) {
@@ -43,10 +43,7 @@ const useLoginPageData = () => {
             };
 
             try {
-                const response = await APIService.POST<UserData, LoginData>(
-                    process.env.APP_API_ENDPOINT + '/login',
-                    data
-                );
+                const response = await APIServices.POST<UserData, LoginData>('/login', data);
 
                 if (response.status === 202) {
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
@@ -70,7 +67,16 @@ const useLoginPageData = () => {
             setErrorOnLogin(true);
         }
         setLoader(false);
-    };
+    }, [
+        RefreshTokenGen,
+        inputEmailString,
+        inputPasswordString,
+        navigate,
+        setAccessToken,
+        setRefreshToken,
+        setUserData,
+        warn
+    ]);
 
     const selectRightErrorMessage = () => {
         if (errorOnLogin) return "L'e-mail ou le mot de passe est incorrect.";

@@ -30,6 +30,7 @@ export enum ColorEnum {
     ClassicGrey = '#2E2E2E',
     SlightlyOpaqueGrey = '#2E2E2EBF',
     ExtraOpaqueGrey = '#2E2E2E33',
+    VeryOpaqueGrey = '#2E2E2EAA',
 
     // Orange
     ClassicOrangeWidget = '#FAB400',
