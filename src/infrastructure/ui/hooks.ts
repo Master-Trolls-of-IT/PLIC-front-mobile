@@ -38,7 +38,7 @@ const useAppData = () => {
     }, []);
 
     useEffect(() => {
-        navigationConfig();
+        if (Platform.OS === 'android') void navigationConfig();
     }, [barVisibility, navigationConfig]);
 
     return { rootStore, Stack, gestureDisabled, gestureEnabled };
