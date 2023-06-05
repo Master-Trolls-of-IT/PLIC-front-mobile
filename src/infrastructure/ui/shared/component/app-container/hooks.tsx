@@ -1,19 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import isContentGroup from '~/infrastructure/ui/shared/helper/is-content-group';
+import { navigationRef } from '~/infrastructure/ui/shared/helper/navigation-ref';
 
 const useAppContainerData = () => {
     const {
-        NavigationStore: { activeScreen, previousScreen, navigate }
+        NavigationStore: { navigate }
     } = useStore();
 
+    const [activeScreen, setActiveScreen] = useState(PagesEnum.StartUpPage);
+    const [previousScreen, setPreviousScreen] = useState(PagesEnum.StartUpPage);
     const [isFooterEnable, setIsFooterEnable] = useState(false);
 
-    useEffect(() => {
+    navigationRef.addListener('state', (event) => {
+        setPreviousScreen((prevState) => {
+            if (event.data.state != undefined) {
+                return activeScreen;
+            } else {
+                return prevState;
+            }
+        });
+
+        setActiveScreen((prevState) => {
+            if (event.data.state != undefined) {
+                return event.data.state.routes[event.data.state.routes.length - 1].name as PagesEnum;
+            } else {
+                return prevState;
+            }
+        });
+    });
+
+    useMemo(() => {
         setIsFooterEnable(isContentGroup(activeScreen));
-    }, [activeScreen, isFooterEnable, navigate]);
+    }, [activeScreen]);
 
     const onPressIcon = (route: PagesEnum) => {
         return () => {
@@ -76,7 +97,8 @@ const useAppContainerData = () => {
         scanPageAsset,
         newHeight,
         newWidth,
-        onPressIcon
+        onPressIcon,
+        setIsFooterEnable
     };
 };
 

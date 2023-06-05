@@ -10,7 +10,6 @@ import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
-import SmallMultipleIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes';
 
 const HomePage = () => {
     const { anecdoteObject, dailyNutrientsGoal, dailyNutrientsEarned, username, chooseRightDynamicImage, ecoScore } =
@@ -63,42 +62,6 @@ const HomePage = () => {
                         <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
                             <HomePageAnecdote {...anecdoteObject} />
                             <EcoScore ecoScore={ecoScore} />
-                        </View>
-                        <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
-                            <SmallMultipleIntakes
-                                firstNutrient={{
-                                    nutrientType: NutrientsEnum.Protein,
-                                    earned: dailyNutrientsEarned.protein,
-                                    goal: dailyNutrientsGoal.protein
-                                }}
-                                secondNutrient={{
-                                    nutrientType: NutrientsEnum.Lipid,
-                                    earned: dailyNutrientsEarned.lipid,
-                                    goal: dailyNutrientsGoal.lipid
-                                }}
-                                thirdNutrient={{
-                                    nutrientType: NutrientsEnum.Carbohydrate,
-                                    earned: dailyNutrientsEarned.carbohydrate,
-                                    goal: dailyNutrientsGoal.carbohydrate
-                                }}
-                            />
-                            <SmallMultipleIntakes
-                                firstNutrient={{
-                                    nutrientType: NutrientsEnum.Protein,
-                                    earned: dailyNutrientsEarned.protein,
-                                    goal: dailyNutrientsGoal.protein
-                                }}
-                                secondNutrient={{
-                                    nutrientType: NutrientsEnum.Lipid,
-                                    earned: dailyNutrientsEarned.lipid,
-                                    goal: dailyNutrientsGoal.lipid
-                                }}
-                                thirdNutrient={{
-                                    nutrientType: NutrientsEnum.Carbohydrate,
-                                    earned: dailyNutrientsEarned.carbohydrate,
-                                    goal: dailyNutrientsGoal.carbohydrate
-                                }}
-                            />
                         </View>
                     </View>
                 </ScrollView>

@@ -1,51 +1,29 @@
-import { action, makeAutoObservable, observable } from 'mobx';
+import { action, makeAutoObservable } from 'mobx';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
-import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
+import { navigationRef } from '~/infrastructure/ui/shared/helper/navigation-ref';
 
 class NavigationStore {
-    navigate: NavigateProps;
-    activeScreen: PagesEnum;
-    previousScreen: PagesEnum;
-
     constructor() {
-        this.activeScreen = PagesEnum.StartUpPage;
-        this.previousScreen = PagesEnum.StartUpPage;
-        this.navigate = () => {};
-
         makeAutoObservable(
             this,
             {
-                navigate: observable,
-                activeScreen: observable,
-                previousScreen: observable,
-
-                setNavigate: action,
-                setActiveScreen: action,
-                setPreviousScreen: action,
+                navigate: action,
                 goBack: action
             },
             { autoBind: true }
         );
     }
 
-    setNavigate = (navigate: NavigateProps) => {
-        this.navigate = (routeName: PagesEnum) => {
-            this.setPreviousScreen(this.activeScreen);
-            this.setActiveScreen(routeName);
-            navigate(routeName);
-        };
-    };
-
-    setActiveScreen = (activeScreen: PagesEnum) => {
-        this.activeScreen = activeScreen;
-    };
-
-    setPreviousScreen = (previousScreen: PagesEnum) => {
-        this.previousScreen = previousScreen;
-    };
+    navigate = action((routeTo: PagesEnum) => {
+        if (navigationRef.isReady()) {
+            navigationRef.navigate(routeTo as never);
+        }
+    });
 
     goBack = () => {
-        this.navigate(this.previousScreen);
+        if (navigationRef.isReady()) {
+            navigationRef.goBack();
+        }
     };
 }
 

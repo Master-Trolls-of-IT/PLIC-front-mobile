@@ -1,5 +1,5 @@
 import * as NavigationBar from 'expo-navigation-bar';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Keyboard, Platform } from 'react-native';
 import { LogBox } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -35,7 +35,7 @@ const useAppData = () => {
             showSubscription.remove();
             hideSubscription.remove();
         };
-    }, []);
+    }, [navigationConfig]);
 
     useEffect(() => {
         if (Platform.OS === 'android') void navigationConfig();
