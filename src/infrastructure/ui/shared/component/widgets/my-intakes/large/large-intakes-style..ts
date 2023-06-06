@@ -35,8 +35,7 @@ const LargeIntakesStyle = StyleSheet.create({
     },
 
     circularView: {
-        alignSelf: 'flex-start',
-        marginLeft: '25%'
+        alignSelf: 'center'
     },
 
     circle: {

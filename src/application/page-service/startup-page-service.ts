@@ -1,9 +1,11 @@
 import { AxiosError } from 'axios';
-import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
-import { useStore } from '~/infrastructure/controllers/store';
 import APIServices from '~/infrastructure/controllers/services/api';
+import { useStore } from '~/infrastructure/controllers/store';
 
 const useStartUpPageService = () => {
+    const {
+        LogStore: { error }
+    } = useStore();
     const APIPing = async () => {
         try {
             const response = await APIServices.GET('/ping');

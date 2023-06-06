@@ -24,6 +24,7 @@ const AppContainer = ({ children }: { children: JSX.Element }) => {
         newWidth,
         onPressIcon
     } = useAppContainerData();
+
     return (
         <>
             {children}

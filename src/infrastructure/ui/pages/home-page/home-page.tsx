@@ -58,7 +58,7 @@ const HomePage = () => {
                         />
                     </View>
 
-                    <View style={HomePageStyle.widgetContainerSecondRow}>
+                    <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
                         <HomePageAnecdote {...anecdoteObject} />
                         <EcoScore ecoScore={ecoScore} />
                     </View>

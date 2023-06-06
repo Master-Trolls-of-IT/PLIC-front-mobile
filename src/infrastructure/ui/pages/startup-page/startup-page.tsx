@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { View, Animated, Text } from 'react-native';
+import React from 'react';
+import { Animated, Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 import StartUpPageStyle from './startup-page-style';
 import StartUpPageBlobsTop from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-top';
@@ -10,9 +10,15 @@ import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import QuitApp from '~/infrastructure/ui/shared/helper/quit-app';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
+import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
 
-const StartUpPage: FunctionComponent<any> = ({ navigation }) => {
-    const { slideAnimTop, slideAnimBottom, isErrorOnAPI, modalButtonStyle } = useStartupPageData(navigation.navigate);
+const StartUpPage = () => {
+    const { slideAnimTop, slideAnimBottom, isErrorOnAPI, modalButtonStyle, startupPageLifecycle } =
+        useStartupPageData();
+
+    useEffectOnce(() => {
+        void startupPageLifecycle();
+    });
 
     return (
         <View style={StartUpPageStyle.container}>

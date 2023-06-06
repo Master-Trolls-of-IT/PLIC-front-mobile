@@ -5,14 +5,14 @@ const HomePageStyle = StyleSheet.create({
     background: {
         position: 'absolute',
         backgroundColor: ColorEnum.ClassicBeige,
-        height: '100%',
+        height: Dimensions.get('screen').height,
         width: Dimensions.get('screen').width
     },
 
     container: {
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',
+        height: Dimensions.get('screen').height - 90 * (Dimensions.get('screen').height / 900),
         gap: 7
     },
 
@@ -35,11 +35,10 @@ const HomePageStyle = StyleSheet.create({
 
     widgetContainer: {
         width: '85%',
-        height: 0.85 * Dimensions.get('screen').width,
         alignSelf: 'center',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        paddingBottom: 0.1 * Dimensions.get('screen').height
     },
 
     widgetContainerFirstRow: {
@@ -48,10 +47,11 @@ const HomePageStyle = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
-    widgetContainerSecondRow: {
+    widgetContainerTwoWidgetRow: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginTop: 20
     },
 
     headerSecondText: {
