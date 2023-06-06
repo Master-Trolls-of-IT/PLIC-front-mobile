@@ -30,41 +30,39 @@ const HomePage = () => {
                     />
                 </View>
 
-                <ScrollView>
-                    <HomePageBasket asset={chooseRightDynamicImage()} />
+                <HomePageBasket asset={chooseRightDynamicImage()} />
 
-                    <View style={HomePageStyle.widgetContainer}>
-                        <View style={HomePageStyle.widgetContainerFirstRow}>
-                            <LargeIntakes
-                                energy={{
-                                    nutrientType: NutrientsEnum.Energy,
-                                    earned: dailyNutrientsEarned.energy,
-                                    goal: dailyNutrientsGoal.energy
-                                }}
-                                firstNutrient={{
-                                    nutrientType: NutrientsEnum.Protein,
-                                    earned: dailyNutrientsEarned.protein,
-                                    goal: dailyNutrientsGoal.protein
-                                }}
-                                secondNutrient={{
-                                    nutrientType: NutrientsEnum.Lipid,
-                                    earned: dailyNutrientsEarned.lipid,
-                                    goal: dailyNutrientsGoal.lipid
-                                }}
-                                thirdNutrient={{
-                                    nutrientType: NutrientsEnum.Carbohydrate,
-                                    earned: dailyNutrientsEarned.carbohydrate,
-                                    goal: dailyNutrientsGoal.carbohydrate
-                                }}
-                            />
-                        </View>
-
-                        <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
-                            <HomePageAnecdote {...anecdoteObject} />
-                            <EcoScore ecoScore={ecoScore} />
-                        </View>
+                <View style={HomePageStyle.widgetContainer}>
+                    <View style={HomePageStyle.widgetContainerFirstRow}>
+                        <LargeIntakes
+                            energy={{
+                                nutrientType: NutrientsEnum.Energy,
+                                earned: dailyNutrientsEarned.energy,
+                                goal: dailyNutrientsGoal.energy
+                            }}
+                            firstNutrient={{
+                                nutrientType: NutrientsEnum.Protein,
+                                earned: dailyNutrientsEarned.protein,
+                                goal: dailyNutrientsGoal.protein
+                            }}
+                            secondNutrient={{
+                                nutrientType: NutrientsEnum.Lipid,
+                                earned: dailyNutrientsEarned.lipid,
+                                goal: dailyNutrientsGoal.lipid
+                            }}
+                            thirdNutrient={{
+                                nutrientType: NutrientsEnum.Carbohydrate,
+                                earned: dailyNutrientsEarned.carbohydrate,
+                                goal: dailyNutrientsGoal.carbohydrate
+                            }}
+                        />
                     </View>
-                </ScrollView>
+
+                    <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
+                        <HomePageAnecdote {...anecdoteObject} />
+                        <EcoScore ecoScore={ecoScore} />
+                    </View>
+                </View>
             </View>
         </View>
     );
