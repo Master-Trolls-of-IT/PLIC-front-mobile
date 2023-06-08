@@ -24,7 +24,7 @@ function App() {
             <AppContainer>
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator
-                        initialRouteName={PagesEnum.StartUpPage}
+                        initialRouteName={PagesEnum.HistoricalPage}
                         screenOptions={{
                             headerShown: false
                         }}>
