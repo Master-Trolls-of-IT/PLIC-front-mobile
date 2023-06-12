@@ -8,4 +8,5 @@ export type HistoricalCardProps = {
     isFavourite: boolean;
     toggleFavourite: () => void;
     data: AllNutritionalIntakes;
+    style: object;
 };

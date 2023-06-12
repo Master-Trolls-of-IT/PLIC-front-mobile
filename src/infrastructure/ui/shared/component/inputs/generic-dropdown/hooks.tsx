@@ -1,14 +1,16 @@
 import React, { ReactElement, useRef, useState } from 'react';
-import { TouchableOpacity, Text, FlatList, View, Modal } from 'react-native';
+import { TouchableOpacity, Text, FlatList, View, Modal, TextInput } from 'react-native';
 import GenericDropDownStyle from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/generic-dropdown-style';
 
 const useGenericDropDownData = (
-    onSelect: (item: { label: string; value: string }) => void,
-    data: { label: string; value: string }[]
+    onSelect: ((item: { label: string; value: string }) => void) | undefined,
+    data: { label: string; value: string }[] | undefined
 ) => {
-    const DropdownButton = useRef<View>(null);
+    const DropdownButton = useRef<View | TextInput>(null);
     const [visible, setVisible] = useState(false);
-    const [selected, setSelected] = useState<{ label: string; value: string }>(data[0]);
+    const [selected, setSelected] = useState<{ label: string; value: string }>(
+        data !== undefined ? data[0] : { label: 'null', value: 'null' }
+    );
     const [dropdownTop, setDropdownTop] = useState(0);
     const [dropdownLeft, setDropdownLeft] = useState(0);
     const [dropdownWidth, setDropdownWidth] = useState(0);
@@ -38,7 +40,9 @@ const useGenericDropDownData = (
 
     const onItemPress = (item: { label: string; value: string }): void => {
         setSelected(item);
-        onSelect(item);
+        if (onSelect) {
+            onSelect(item);
+        }
         setVisible(false);
     };
 

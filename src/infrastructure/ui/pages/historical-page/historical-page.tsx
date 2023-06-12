@@ -44,7 +44,7 @@ const HistoricalPage = () => {
                 containerStyle={HistoricalPageStyle.headerContainer}
             />
 
-            <SearchList itemType={CardEnum.Historical} />
+            <SearchList />
         </View>
     );
 };

@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Dimensions } from 'react-native';
+import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import { Dimensions, View } from 'react-native';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import {
@@ -49,7 +49,8 @@ const useInputData = ({
     ) : (
         <CustomSvg asset={assetWrongInput} style={GenericInputStyle.statusIcon} height={22} width={22} />
     );
-
+    const assetFilterIcon = require('~/domain/entities/assets/icon/input-icon/icon-filter.svg');
+    const filterIcon = <CustomSvg asset={assetFilterIcon} height={22} width={22} />;
     const onPressPasswordIcon = () => {
         setSecureTextEntry(!secureTextEntry);
     };
@@ -78,9 +79,13 @@ const useInputData = ({
         } else {
             dispatch(value);
         }
+        if (type === InputEnum.Search) {
+            return;
+        }
         const isValid = isValidInput(value, type);
 
         setValidInput(isValid);
+        console.log(type);
         if (isValid) setShowTooltip(false);
     };
 
@@ -96,6 +101,7 @@ const useInputData = ({
         showPasswordText,
         showRightStatusIcon,
         showTooltip,
+        filterIcon,
         validInput
     };
 };

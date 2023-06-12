@@ -8,7 +8,17 @@ class RootStore {
     LoginStore: LoginStore;
     LogStore: LogStore;
 
-    constructor() {
+    static instance: RootStore;
+
+    public static getInstance(): RootStore {
+        if (!this.instance) {
+            this.instance = new this();
+        }
+
+        return this.instance;
+    }
+
+    public constructor() {
         this.NavigationStore = new NavigationStore();
         this.LoginStore = new LoginStore('LoginStore');
         this.LogStore = new LogStore('LogStore');

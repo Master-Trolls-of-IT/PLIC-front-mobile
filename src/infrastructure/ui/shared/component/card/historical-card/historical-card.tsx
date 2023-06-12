@@ -1,14 +1,6 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import Animated, {
-    FadeIn,
-    FadeInDown,
-    FadeInLeft,
-    FadeInUp,
-    FadeOutLeft,
-    FadeOutUp,
-    SlideInUp
-} from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
 import { Bar } from 'react-native-progress';
 import { HistoricalCardProps } from '~/domain/interfaces/props/historical-card-props';
 import useHistoricalCardData from '~/infrastructure/ui/shared/component/card/historical-card/hooks';
@@ -25,7 +17,8 @@ const HistoricalCard = ({
     image,
     isFavourite,
     toggleFavourite,
-    data
+    data,
+    style
 }: HistoricalCardProps) => {
     const {
         isExpended,
@@ -38,7 +31,7 @@ const HistoricalCard = ({
         customInterBold
     } = useHistoricalCardData(isFavourite, score);
     return (
-        <Animated.View style={[animatedCardStyle, HistoricalCardStyle.card]}>
+        <Animated.View style={[animatedCardStyle, HistoricalCardStyle.card, style]}>
             <TouchableOpacity style={HistoricalCardStyle.container} activeOpacity={1} onPress={onPress}>
                 <View style={HistoricalCardStyle.header}>
                     {image ? (
@@ -53,9 +46,9 @@ const HistoricalCard = ({
                         />
                     )}
                     <View style={HistoricalCardStyle.titleField}>
-                        <Text style={{ ...HistoricalCardStyle.title, ...useCustomFontInterBold() }}>{name}</Text>
+                        <Text style={{ ...HistoricalCardStyle.title, ...useCustomFontInterBold().text }}>{name}</Text>
                         <Text
-                            style={{ ...HistoricalCardStyle.description, ...useCustomFontInterRegular() }}
+                            style={{ ...HistoricalCardStyle.description, ...useCustomFontInterRegular().text }}
                             numberOfLines={3}>
                             {description}
                         </Text>
@@ -72,7 +65,7 @@ const HistoricalCard = ({
                                 unfilledColor={ColorEnum.ExtraOpaqueGrey}
                             />
                         </View>
-                        <Text style={{ ...HistoricalCardStyle.score, ...useCustomFontInterBold() }}>{score}</Text>
+                        <Text style={{ ...HistoricalCardStyle.score, ...useCustomFontInterBold().text }}>{score}</Text>
                     </View>
                     <TouchableOpacity onPress={toggleFavourite} style={HistoricalCardStyle.favourite}>
                         <CustomSvg asset={favouriteIcon} height={30} width={30} />
@@ -83,7 +76,9 @@ const HistoricalCard = ({
                         entering={FadeIn.duration(1100)}
                         exiting={FadeOutUp.duration(300)}
                         style={HistoricalCardStyle.content}>
-                        <Text style={{ ...HistoricalCardStyle.contentTitle }}>Apports pour 100g</Text>
+                        <Text style={{ ...HistoricalCardStyle.contentTitle, ...customInterBold.text }}>
+                            Apports pour 100g
+                        </Text>
                         <View style={HistoricalCardStyle.contentInfo}>
                             <View style={HistoricalCardStyle.contentLine}>
                                 <Text style={HistoricalCardStyle.lineContent}>Matières grasses</Text>

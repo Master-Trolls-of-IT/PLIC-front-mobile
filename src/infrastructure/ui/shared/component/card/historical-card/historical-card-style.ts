@@ -4,12 +4,13 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 const HistoricalCardStyle = (isExpanded: boolean, scoreColor: ColorEnum) =>
     StyleSheet.create({
         card: {
-            width: 0.9 * Dimensions.get('screen').width,
+            width: '100%',
             height: 0.1 * Dimensions.get('screen').height,
             minHeight: 100,
             backgroundColor: ColorEnum.ExtraOpaqueBrown,
             borderRadius: 20,
-            alignSelf: 'center'
+            alignSelf: 'center',
+            marginTop: 20
         },
 
         container: {
@@ -29,7 +30,6 @@ const HistoricalCardStyle = (isExpanded: boolean, scoreColor: ColorEnum) =>
             height: 65,
             margin: 13,
             marginRight: 0,
-            borderStyle: 'solid',
             borderColor: ColorEnum.ClassicBrown,
             borderRadius: 20,
             borderWidth: 1

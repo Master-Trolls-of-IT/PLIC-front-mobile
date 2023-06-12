@@ -18,7 +18,6 @@ import { navigationRef } from '~/infrastructure/ui/shared/helper/navigation-ref'
 
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
-
     return (
         <StoreProvider value={rootStore}>
             <AppContainer>

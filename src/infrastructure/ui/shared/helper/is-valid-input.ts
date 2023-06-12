@@ -11,6 +11,8 @@ export const isValidInput = (inputToCheck: string, type: InputEnum): boolean => 
         stringRegex = '^[0-9]{1,3}$';
     } else if (type == InputEnum.Birthdate) {
         stringRegex = '(?:0[1-9]|[12][0-9]|3[01])[/](?:0[1-9]|1[012])[/](?:19\\d{2}|20[01][0-9]|2020|2021|2022)';
+    } else if (type == InputEnum.Search) {
+        return true;
     } else {
         return inputToCheck.length >= 5;
     }

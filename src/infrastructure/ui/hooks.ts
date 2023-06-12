@@ -1,16 +1,14 @@
 import * as NavigationBar from 'expo-navigation-bar';
 import { useCallback, useEffect } from 'react';
 import { Keyboard, Platform } from 'react-native';
-import { LogBox } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStore } from '~/infrastructure/controllers/store';
 
 const useAppData = () => {
     const barVisibility = NavigationBar.useVisibility();
     const Stack = createNativeStackNavigator();
-    const rootStore = createStore();
 
-    LogBox.ignoreLogs([/.*mobx-persist-store.*/]);
+    const rootStore = createStore();
 
     if (Platform.OS === 'android') NavigationBar.setBackgroundColorAsync('#00000000');
 
