@@ -7,9 +7,11 @@ import { CustomLog } from '~/domain/interfaces/services/custom-log';
 
 class LogStore {
     logs: CustomLog[];
+    discordWebhookURL: string;
 
     constructor(storageKey: string) {
         this.logs = [];
+        this.discordWebhookURL = process.env.DISCORD_WEBHOOK_URL + '';
         //sends log to API every 10 seconds
         //setInterval(this.sendLogs, 10000);
         makeObservable(
@@ -64,6 +66,30 @@ class LogStore {
         const date = new Date().toISOString();
         const customLog: CustomLog = { level, message, details, source, date };
         this.logs.push(customLog);
+        if (level !== LogsLevelEnum.Info) {
+            this.sendDiscordNotification(this.discordWebhookURL, customLog);
+        }
+    };
+
+    sendDiscordNotification = async (webhookUrl: string, customLog: CustomLog) => {
+        try {
+            const payload = {
+                embeds: [
+                    {
+                        title: customLog.level,
+                        fields: [
+                            { name: 'Message', value: customLog.message },
+                            { name: 'Details', value: customLog.details },
+                            { name: 'Source', value: customLog.source },
+                            { name: 'Date', value: customLog.date }
+                        ]
+                    }
+                ]
+            };
+            await APIServices.POST(webhookUrl, payload);
+        } catch (error) {
+            console.error('Failed to send Discord notification:', error);
+        }
     };
 }
 export default LogStore;
