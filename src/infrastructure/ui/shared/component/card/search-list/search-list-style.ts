@@ -4,6 +4,7 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 const SearchListStyle = StyleSheet.create({
     container: {
         width: 0.9 * Dimensions.get('screen').width,
+        height: 0.68 * Dimensions.get('screen').height,
         alignSelf: 'center'
     },
 
@@ -18,9 +19,16 @@ const SearchListStyle = StyleSheet.create({
     listContainer: {
         display: 'flex',
         flexDirection: 'column',
-        height: 0.6 * Dimensions.get('screen').height,
+        height: '100%',
         marginTop: 20,
         paddingTop: -20
+    },
+
+    noData: {
+        fontSize: 21,
+        color: ColorEnum.ClassicBrown,
+        alignSelf: 'center',
+        marginTop: '50%'
     }
 });
 

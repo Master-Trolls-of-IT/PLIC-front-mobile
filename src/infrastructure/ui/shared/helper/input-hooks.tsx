@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
-import { Dimensions, View } from 'react-native';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dimensions } from 'react-native';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import {
@@ -85,7 +85,6 @@ const useInputData = ({
         const isValid = isValidInput(value, type);
 
         setValidInput(isValid);
-        console.log(type);
         if (isValid) setShowTooltip(false);
     };
 

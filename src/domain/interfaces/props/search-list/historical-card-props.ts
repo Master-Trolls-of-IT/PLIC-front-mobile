@@ -4,9 +4,9 @@ export type HistoricalCardProps = {
     name: string;
     description: string;
     score: number;
-    image?: File;
+    image?: string;
     isFavourite: boolean;
     toggleFavourite: () => void;
     data: AllNutritionalIntakes;
-    style: object;
+    style?: object;
 };

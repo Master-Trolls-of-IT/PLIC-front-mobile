@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
 import { Bar } from 'react-native-progress';
-import { HistoricalCardProps } from '~/domain/interfaces/props/historical-card-props';
+import { HistoricalCardProps } from '~/domain/interfaces/props/search-list/historical-card-props';
 import useHistoricalCardData from '~/infrastructure/ui/shared/component/card/historical-card/hooks';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import useCustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular-hooks';
@@ -35,10 +35,7 @@ const HistoricalCard = ({
             <TouchableOpacity style={HistoricalCardStyle.container} activeOpacity={1} onPress={onPress}>
                 <View style={HistoricalCardStyle.header}>
                     {image ? (
-                        <Image
-                            style={HistoricalCardStyle.image}
-                            source={require('~/domain/entities/assets/default-images/apple.png')}
-                        />
+                        <Image style={HistoricalCardStyle.image} source={{ uri: image }} />
                     ) : (
                         <Image
                             style={HistoricalCardStyle.image}
