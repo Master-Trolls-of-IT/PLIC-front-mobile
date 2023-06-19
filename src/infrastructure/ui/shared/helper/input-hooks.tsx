@@ -49,7 +49,8 @@ const useInputData = ({
     ) : (
         <CustomSvg asset={assetWrongInput} style={GenericInputStyle.statusIcon} height={22} width={22} />
     );
-
+    const assetFilterIcon = require('~/domain/entities/assets/icon/input-icon/icon-filter.svg');
+    const filterIcon = <CustomSvg asset={assetFilterIcon} height={22} width={22} />;
     const onPressPasswordIcon = () => {
         setSecureTextEntry(!secureTextEntry);
     };
@@ -78,6 +79,9 @@ const useInputData = ({
         } else {
             dispatch(value);
         }
+        if (type === InputEnum.Search) {
+            return;
+        }
         const isValid = isValidInput(value, type);
 
         setValidInput(isValid);
@@ -96,6 +100,7 @@ const useInputData = ({
         showPasswordText,
         showRightStatusIcon,
         showTooltip,
+        filterIcon,
         validInput
     };
 };
