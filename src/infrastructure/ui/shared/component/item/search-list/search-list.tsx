@@ -1,12 +1,12 @@
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import useSearchListData from '~/infrastructure/ui/shared/component/card/search-list/hooks';
-import SearchListStyle from '~/infrastructure/ui/shared/component/card/search-list/search-list-style';
-import HistoricalCard from '~/infrastructure/ui/shared/component/card/historical-card/historical-card';
+import useSearchListData from '~/infrastructure/ui/shared/component/item/search-list/hooks';
+import SearchListStyle from '~/infrastructure/ui/shared/component/item/search-list/search-list-style';
+import HistoricalItem from '~/infrastructure/ui/shared/component/item/historical-item/historical-item';
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { SearchListProps } from '~/domain/interfaces/props/search-list/search-list-props';
-import { CardEnum } from '~/domain/interfaces/enum/card-enum';
+import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
@@ -30,9 +30,9 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                 {displayData.length > 0 ? (
                     displayData.map((item, idx) => {
                         switch (itemType) {
-                            case CardEnum.Historical:
+                            case ItemEnum.Historical:
                                 return (
-                                    <HistoricalCard
+                                    <HistoricalItem
                                         key={idx}
                                         {...(item as HistoricalItemProps)}
                                         style={idx === 0 ? { marginTop: 0 } : {}}

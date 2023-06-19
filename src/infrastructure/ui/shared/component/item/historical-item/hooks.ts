@@ -1,21 +1,21 @@
 import { useMemo, useState } from 'react';
 import { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
-import ComponentStyle from '~/infrastructure/ui/shared/component/card/historical-card/historical-card-style';
+import ComponentStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 
-const useHistoricalCardData = (isFavourite: boolean, score: number) => {
+const useHistoricalItemData = (isFavourite: boolean, score: number) => {
     const [isExpended, setIsExpended] = useState(false);
 
-    const cardHeight = useSharedValue(100);
+    const ItemHeight = useSharedValue(100);
     const scorePercentage = score / 100;
 
     const scoreColor = getColorFromPercentage(score);
-    const HistoricalCardStyle = ComponentStyle(isExpended, scoreColor);
+    const HistoricalItemStyle = ComponentStyle(isExpended, scoreColor);
 
-    const animatedCardStyle = useAnimatedStyle(() => {
+    const animatedItemStyle = useAnimatedStyle(() => {
         return {
-            height: withTiming(cardHeight.value * (isExpended ? 4 : 1), { duration: 500 })
+            height: withTiming(ItemHeight.value * (isExpended ? 4 : 1), { duration: 500 })
         };
     });
 
@@ -33,9 +33,9 @@ const useHistoricalCardData = (isFavourite: boolean, score: number) => {
 
     return {
         isExpended,
-        HistoricalCardStyle,
+        HistoricalItemStyle,
         onPress,
-        animatedCardStyle,
+        animatedItemStyle,
         favouriteIcon,
         scoreColor,
         scorePercentage,
@@ -43,4 +43,4 @@ const useHistoricalCardData = (isFavourite: boolean, score: number) => {
     };
 };
 
-export default useHistoricalCardData;
+export default useHistoricalItemData;

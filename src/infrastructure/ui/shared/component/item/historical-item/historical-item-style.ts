@@ -1,9 +1,9 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
-const HistoricalCardStyle = (isExpanded: boolean, scoreColor: ColorEnum) =>
+const HistoricalItemStyle = (isExpanded: boolean, scoreColor: ColorEnum) =>
     StyleSheet.create({
-        card: {
+        Item: {
             width: '100%',
             height: 0.1 * Dimensions.get('screen').height,
             minHeight: 100,
@@ -131,4 +131,4 @@ const HistoricalCardStyle = (isExpanded: boolean, scoreColor: ColorEnum) =>
         }
     });
 
-export default HistoricalCardStyle;
+export default HistoricalItemStyle;

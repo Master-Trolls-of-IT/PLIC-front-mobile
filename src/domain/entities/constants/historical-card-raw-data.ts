@@ -1,6 +1,6 @@
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 
-export const historicalCardRawData: HistoricalItemProps[] = [
+export const historicalItemRawData: HistoricalItemProps[] = [
     {
         name: 'Bonsoir',
         description: 'Mélange de fruits secs et pétales chocolat',

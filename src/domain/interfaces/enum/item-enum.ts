@@ -1,4 +1,4 @@
-export enum CardEnum {
+export enum ItemEnum {
     Historical = 'Historical',
     Meal = 'Meal'
 }

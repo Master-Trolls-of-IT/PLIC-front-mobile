@@ -5,8 +5,8 @@ import HistoricalPageStyle from '~/infrastructure/ui/pages/historical-page/histo
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import HistoricalPageBlobsTop from '~/infrastructure/ui/pages/historical-page/component/background/historical-page-blosb-top';
 import GenericBackArrowIcon from '~/infrastructure/ui/shared/component/generic-back-arrow-icon/generic-back-arrow-icon';
-import SearchList from '~/infrastructure/ui/shared/component/card/search-list/search-list';
-import { CardEnum } from '~/domain/interfaces/enum/card-enum';
+import SearchList from '~/infrastructure/ui/shared/component/item/search-list/search-list';
+import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import useHistoricalPageData from '~/infrastructure/ui/pages/historical-page/hooks';
 
 const HistoricalPage = () => {
@@ -25,7 +25,7 @@ const HistoricalPage = () => {
                 containerStyle={HistoricalPageStyle.headerContainer}
             />
 
-            <SearchList itemType={CardEnum.Historical} data={history} />
+            <SearchList itemType={ItemEnum.Historical} data={history} />
         </View>
     );
 };

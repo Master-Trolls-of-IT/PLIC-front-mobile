@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
-import { CardEnum } from '~/domain/interfaces/enum/card-enum';
+import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { SearchListData, SearchListInputType } from '~/domain/interfaces/props/search-list/search-list-data-props';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
@@ -10,9 +10,9 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
 
     const mockedData = (() => {
         switch (inputType) {
-            case CardEnum.Meal:
+            case ItemEnum.Meal:
                 return data as MealItemProps[];
-            case CardEnum.Historical:
+            case ItemEnum.Historical:
                 return data as HistoricalItemProps[];
         }
     })();
@@ -23,9 +23,9 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
         setSearchedText(search);
         setDisplayData((prevState) => {
             switch (inputType) {
-                case CardEnum.Historical:
+                case ItemEnum.Historical:
                     return (mockedData as HistoricalItemProps[]).filter(
-                        (card) => card.name.includes(search) || card.description.includes(search)
+                        (Item) => Item.name.includes(search) || Item.description.includes(search)
                     );
                 default:
                     return prevState;
@@ -36,7 +36,7 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
     const onSelectedFilter = useCallback(
         (item: { label: string; value: string }) => {
             switch (inputType) {
-                case CardEnum.Historical:
+                case ItemEnum.Historical:
                     return (() => {
                         switch (item.value) {
                             case 'aphaasc':
@@ -86,7 +86,7 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
     const filterOptions: { label: string; value: string }[] = (() => {
         const baseFilters = [{ label: 'Aucun', value: 'none' }];
         switch (inputType) {
-            case CardEnum.Historical:
+            case ItemEnum.Historical:
                 return baseFilters.concat([
                     { label: 'Nom par ordre alphabétique \u{25B2}', value: 'aphaasc' },
                     { label: 'Nom par ordre alphabétique \u{25BC}', value: 'aphades' },
