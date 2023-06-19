@@ -52,7 +52,8 @@ const HistoricalItemStyle = (isExpanded: boolean, scoreColor: ColorEnum) =>
             fontSize: 16,
             textAlign: 'center',
             flexWrap: 'wrap',
-            color: ColorEnum.ClassicBrown
+            color: ColorEnum.ClassicBrown,
+            marginTop: 5
         },
 
         scoreField: {
