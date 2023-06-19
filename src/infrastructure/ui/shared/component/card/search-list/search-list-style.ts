@@ -14,8 +14,6 @@ const SearchListStyle = StyleSheet.create({
         paddingBottom: 15
     },
 
-    search: {},
-
     listContainer: {
         display: 'flex',
         flexDirection: 'column',

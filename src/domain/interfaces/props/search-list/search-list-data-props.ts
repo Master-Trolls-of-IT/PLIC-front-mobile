@@ -1,10 +1,10 @@
 import { CardEnum } from '~/domain/interfaces/enum/card-enum';
-import { HistoricalCardProps } from '~/domain/interfaces/props/search-list/historical-card-props';
-import { MealCardProps } from '~/domain/interfaces/props/search-list/meal-card-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 
 export type SearchListDataProps =
-    | ((inputType: CardEnum.Historical, data: HistoricalCardProps[]) => object)
-    | ((inputType: CardEnum.Meal, data: MealCardProps[]) => object);
+    | ((inputType: CardEnum.Historical, data: HistoricalItemProps[]) => object)
+    | ((inputType: CardEnum.Meal, data: MealItemProps[]) => object);
 
 export type SearchListInputType = CardEnum.Historical | CardEnum.Meal;
-export type SearchListData = HistoricalCardProps[] | MealCardProps[];
+export type SearchListData = HistoricalItemProps[] | MealItemProps[];

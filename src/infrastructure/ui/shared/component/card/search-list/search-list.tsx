@@ -7,7 +7,7 @@ import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-in
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { SearchListProps } from '~/domain/interfaces/props/search-list/search-list-props';
 import { CardEnum } from '~/domain/interfaces/enum/card-enum';
-import { HistoricalCardProps } from '~/domain/interfaces/props/search-list/historical-card-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
     const { displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } = useSearchListData(
@@ -34,7 +34,7 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                 return (
                                     <HistoricalCard
                                         key={idx}
-                                        {...(item as HistoricalCardProps)}
+                                        {...(item as HistoricalItemProps)}
                                         style={idx === 0 ? { marginTop: 0 } : {}}
                                     />
                                 );

@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
 import { Bar } from 'react-native-progress';
-import { HistoricalCardProps } from '~/domain/interfaces/props/search-list/historical-card-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import useHistoricalCardData from '~/infrastructure/ui/shared/component/card/historical-card/hooks';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import useCustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular-hooks';
@@ -19,7 +19,7 @@ const HistoricalCard = ({
     toggleFavourite,
     data,
     style
-}: HistoricalCardProps) => {
+}: HistoricalItemProps) => {
     const {
         isExpended,
         HistoricalCardStyle,

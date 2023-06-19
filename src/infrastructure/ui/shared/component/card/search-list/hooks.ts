@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
-import { HistoricalCardProps } from '~/domain/interfaces/props/search-list/historical-card-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import { CardEnum } from '~/domain/interfaces/enum/card-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { SearchListData, SearchListInputType } from '~/domain/interfaces/props/search-list/search-list-data-props';
-import { MealCardProps } from '~/domain/interfaces/props/search-list/meal-card-props';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 
 const useSearchListData = (inputType: SearchListInputType, data: SearchListData) => {
     const [searchedText, setSearchedText] = useState('');
@@ -11,20 +11,20 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
     const mockedData = (() => {
         switch (inputType) {
             case CardEnum.Meal:
-                return data as MealCardProps[];
+                return data as MealItemProps[];
             case CardEnum.Historical:
-                return data as HistoricalCardProps[];
+                return data as HistoricalItemProps[];
         }
     })();
 
-    const [displayData, setDisplayData] = useState<HistoricalCardProps[] | MealCardProps[]>(mockedData);
+    const [displayData, setDisplayData] = useState<HistoricalItemProps[] | MealItemProps[]>(mockedData);
 
     const onSearch = (search: string) => {
         setSearchedText(search);
         setDisplayData((prevState) => {
             switch (inputType) {
                 case CardEnum.Historical:
-                    return (mockedData as HistoricalCardProps[]).filter(
+                    return (mockedData as HistoricalItemProps[]).filter(
                         (card) => card.name.includes(search) || card.description.includes(search)
                     );
                 default:
@@ -41,36 +41,36 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                         switch (item.value) {
                             case 'aphaasc':
                                 setDisplayData(
-                                    [...(mockedData as HistoricalCardProps[])].sort((a, b) =>
+                                    [...(mockedData as HistoricalItemProps[])].sort((a, b) =>
                                         a.name.localeCompare(b.name)
                                     )
                                 );
                                 break;
                             case 'aphades':
                                 setDisplayData(
-                                    [...(mockedData as HistoricalCardProps[])]
+                                    [...(mockedData as HistoricalItemProps[])]
                                         .sort((a, b) => a.name.localeCompare(b.name))
                                         .reverse()
                                 );
                                 break;
                             case 'scoreasc':
                                 setDisplayData(
-                                    [...(mockedData as HistoricalCardProps[])].sort((a, b) => a.score - b.score)
+                                    [...(mockedData as HistoricalItemProps[])].sort((a, b) => a.score - b.score)
                                 );
                                 break;
                             case 'scoredes':
                                 setDisplayData(
-                                    [...(mockedData as HistoricalCardProps[])].sort((a, b) => b.score - a.score)
+                                    [...(mockedData as HistoricalItemProps[])].sort((a, b) => b.score - a.score)
                                 );
                                 break;
                             case 'favasc':
                                 setDisplayData(
-                                    [...(mockedData as HistoricalCardProps[])].filter((elem) => elem.isFavourite)
+                                    [...(mockedData as HistoricalItemProps[])].filter((elem) => elem.isFavourite)
                                 );
                                 break;
                             case 'favdes':
                                 setDisplayData(
-                                    [...(mockedData as HistoricalCardProps[])].filter((elem) => !elem.isFavourite)
+                                    [...(mockedData as HistoricalItemProps[])].filter((elem) => !elem.isFavourite)
                                 );
                                 break;
                             default:

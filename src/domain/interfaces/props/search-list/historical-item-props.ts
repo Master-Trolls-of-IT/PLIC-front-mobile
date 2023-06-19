@@ -1,6 +1,6 @@
 import { AllNutritionalIntakes } from '~/domain/interfaces/props/all-nutritional-intakes';
 
-export type HistoricalCardProps = {
+export type HistoricalItemProps = {
     name: string;
     description: string;
     score: number;

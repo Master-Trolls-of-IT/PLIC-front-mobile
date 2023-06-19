@@ -1,11 +1,11 @@
 import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { HistoricalCardProps } from '~/domain/interfaces/props/search-list/historical-card-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import { historicalCardRawData } from '~/domain/entities/constants/historical-card-raw-data';
 
 class DataStore {
-    history: HistoricalCardProps[];
+    history: HistoricalItemProps[];
 
     constructor(storageKey: string) {
         this.history = historicalCardRawData; // TODO: à remplacer par [] quand la récupération des données du scan sera faite
@@ -27,7 +27,7 @@ class DataStore {
         });
     }
 
-    addCard = (newCard: HistoricalCardProps) => {
+    addCard = (newCard: HistoricalItemProps) => {
         this.history = [newCard].concat(this.history);
     };
 }
