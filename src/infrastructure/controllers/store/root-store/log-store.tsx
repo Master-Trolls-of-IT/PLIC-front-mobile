@@ -2,7 +2,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import APIServices from '~/infrastructure/controllers/services/api';
-import { LogsLevelEnum } from '~/domain/interfaces/enum/Logs-enum';
+import { LogsLevelEnum } from '~/domain/interfaces/enum/logs-enum';
 import { CustomLog } from '~/domain/interfaces/services/custom-log';
 
 class LogStore {

@@ -88,7 +88,6 @@ const useSignUpPageData = (navigate: NavigateProps, goBack: () => void) => {
 
     const selectRightErrorMessage = () => {
         if (errorOnSignUp) return 'Un champ est invalide ou les mots de passe ne sont pas identiques';
-        else if (errorOnEmailAlreadyExists) return 'Cet e-mail est déjà utilisé';
         else return 'Erreur de connexion au serveur';
     };
 

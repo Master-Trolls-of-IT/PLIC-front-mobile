@@ -11,7 +11,7 @@ const useLoginPageService = () => {
     const RefreshTokenGen = async (password: string): Promise<string> => {
         try {
             const response: GenericResponse<{ token: string }> = await APIServices.GET(
-                process.env.APP_API_ENDPOINT + `/refresh_token/${PasswordHashing(password)}`
+                process.env.APP_API_ENDPOINT + `refresh_token/${PasswordHashing(password)}`
             );
             if (response.status === 200) {
                 return response.data.token;
@@ -32,7 +32,7 @@ const useLoginPageService = () => {
     const AccessTokenGen = async (password: string, refreshToken: string): Promise<string> => {
         try {
             const response: GenericResponse<{ token: string }> = await APIServices.GET(
-                process.env.APP_API_ENDPOINT + `/access_token/${PasswordHashing(password)}/${refreshToken}`
+                process.env.APP_API_ENDPOINT + `access_token/${PasswordHashing(password)}/${refreshToken}`
             );
             if (response.status === 200) {
                 return response.data.token;
