@@ -3,6 +3,7 @@ export type ProductInfo = {
     nutrients: ProductNutrients;
     image_url: string;
     nutriscore: NutriScore;
+    ecoscore: string;
 };
 
 type ProductNutrients = {
