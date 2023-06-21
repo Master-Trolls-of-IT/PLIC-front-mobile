@@ -4,7 +4,8 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined) => 
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
 
-    const ecoScore = scannedProduct?.ecoscore ? parseInt(scannedProduct.ecoscore) : -1;
+    const ecoScore =
+        scannedProduct?.ecoscore && scannedProduct?.ecoscore != '' ? parseInt(scannedProduct.ecoscore) : -1;
 
     const chooseRightEcoScoreImage = () => {
         switch (scannedProduct?.nutriscore.grade) {
