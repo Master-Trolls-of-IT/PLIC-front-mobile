@@ -1,135 +1,169 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
-const HistoricalItemStyle = (isExpanded: boolean, scoreColor: ColorEnum) =>
-    StyleSheet.create({
-        Item: {
-            width: '100%',
-            height: 0.1 * Dimensions.get('screen').height,
-            minHeight: 100,
-            backgroundColor: ColorEnum.ExtraOpaqueBrown,
-            borderRadius: 20,
-            alignSelf: 'center',
-            marginTop: 20
-        },
+const HistoricalItemStyle = StyleSheet.create({
+    item: {
+        width: '95%',
+        paddingTop: 5,
+        backgroundColor: ColorEnum.ExtraOpaqueBrown,
+        borderRadius: 20,
+        alignSelf: 'center',
+        marginTop: 12
+    },
 
-        container: {
-            height: '100%',
-            width: 0.9 * Dimensions.get('screen').width
-        },
+    container: {
+        height: '100%',
+        width: '100%'
+    },
 
-        header: {
-            display: 'flex',
-            flexDirection: 'row',
-            width: '100%',
-            zIndex: 1000
-        },
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '95%',
+        alignSelf: 'center'
+    },
 
-        image: {
-            width: 100,
-            height: 65,
-            margin: 13,
-            marginRight: 0,
-            borderColor: ColorEnum.ClassicBrown,
-            borderRadius: 20,
-            borderWidth: 1
-        },
+    imageContainer: {
+        borderColor: ColorEnum.ClassicBrown,
+        width: '35%',
+        height: 70,
+        alignSelf: 'center',
+        borderRadius: 10,
+        borderWidth: 2,
+        justifyContent: 'center',
+        textAlign: 'center'
+    },
 
-        titleField: {
-            display: 'flex',
-            flexDirection: 'column',
-            width: '36%'
-        },
+    image: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 8
+    },
 
-        title: {
-            fontSize: 21,
-            textAlign: 'center',
-            color: ColorEnum.ClassicBrown,
-            marginTop: 10
-        },
+    imageText: {
+        fontSize: 16,
+        color: ColorEnum.ClassicBrown,
+        textAlign: 'center'
+    },
 
-        description: {
-            fontSize: 16,
-            textAlign: 'center',
-            flexWrap: 'wrap',
-            color: ColorEnum.ClassicBrown,
-            marginTop: 5
-        },
+    titleField: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '40%'
+    },
 
-        scoreField: {
-            display: 'flex',
-            flexDirection: 'row'
-        },
+    title: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: ColorEnum.ClassicBrown,
+        marginTop: 3
+    },
 
-        bar: {
-            position: 'relative',
-            transform: [{ rotateZ: '-90deg' }],
-            top: 40,
-            borderWidth: 0,
-            borderLeftWidth: 3,
-            borderLeftColor: scoreColor,
-            marginLeft: -10
-        },
+    description: {
+        fontSize: 14,
+        textAlign: 'center',
+        flexWrap: 'wrap',
+        color: ColorEnum.ClassicBrown,
+        marginTop: 3
+    },
 
-        score: {
-            fontSize: 30,
-            fontWeight: 'bold',
-            color: ColorEnum.VeryOpaqueGrey,
-            alignSelf: 'center',
-            marginLeft: -10
-        },
+    scoreField: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '20%'
+    },
 
-        favourite: {
-            position: 'absolute',
-            right: 10,
-            top: 10
-        },
+    bar: {
+        transform: [{ rotateZ: '-90deg' }],
+        borderWidth: 0,
+        left: -10,
+        top: 0.035 * Dimensions.get('screen').height,
+        borderLeftWidth: 3
+    },
 
-        content: {
-            width: '90%',
-            marginHorizontal: 10,
-            alignItems: 'center',
-            overflow: 'hidden'
-        },
+    score: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        right: 20,
+        color: ColorEnum.VeryOpaqueGrey,
+        alignSelf: 'center'
+    },
 
-        contentTitle: {
-            fontWeight: 'bold',
-            fontSize: 18,
-            color: ColorEnum.ClassicBrown,
-            borderBottomWidth: 0.8,
-            borderBottomColor: ColorEnum.ExtraOpaqueBrown,
-            paddingBottom: 10,
-            width: '100%'
-        },
+    favourite: {
+        paddingTop: 10,
+        paddingLeft: 5,
+        width: '10%',
+        height: '50%'
+    },
 
-        contentInfo: {
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%'
-        },
+    myIntakesContainer: {
+        width: '95%',
+        alignSelf: 'center',
+        marginTop: 10
+    },
 
-        contentLine: {
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between'
-        },
+    myIntakesTitleContainer: {
+        borderBottomColor: ColorEnum.ClassicBrown,
+        borderBottomWidth: StyleSheet.hairlineWidth
+    },
 
-        lineContent: {
-            fontSize: 16,
-            margin: 3,
-            color: ColorEnum.ClassicBrown
-        },
+    myIntakesTitle: {
+        fontSize: 18,
+        color: ColorEnum.ClassicBrown,
+        paddingBottom: 6,
+        width: '100%',
+        fontWeight: 'bold'
+    },
 
-        addButtonContainer: {
-            backgroundColor: ColorEnum.ClassicGreen,
-            marginTop: 15,
-            marginLeft: 5,
-            padding: 10,
-            alignSelf: 'center'
-        },
-        addButtonText: {
-            fontSize: 20
-        }
-    });
+    myIntakesNutrientsContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%'
+    },
+
+    itemLine: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    itemLineContent: {
+        fontSize: 16,
+        marginLeft: 5,
+        marginTop: 5 * (Dimensions.get('screen').height / 400),
+        color: ColorEnum.ClassicBrown
+    },
+
+    itemSameLineContent: {
+        fontSize: 16,
+        marginLeft: 5,
+        color: ColorEnum.ClassicBrown
+    },
+
+    contentLine: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    lineContent: {
+        fontSize: 16,
+        margin: 3,
+        color: ColorEnum.ClassicBrown
+    },
+
+    addButtonContainer: {
+        backgroundColor: ColorEnum.ClassicGreen,
+        width: 329 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400),
+        marginTop: 10,
+        alignSelf: 'center'
+    },
+
+    addButtonText: {
+        fontSize: 18
+    }
+});
 
 export default HistoricalItemStyle;

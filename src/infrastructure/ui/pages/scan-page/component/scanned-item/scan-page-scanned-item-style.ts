@@ -100,9 +100,9 @@ const ScanPageScannedItemStyle = StyleSheet.create({
     },
 
     myIntakesContainer: {
-        width: '90%',
+        width: '95%',
         alignSelf: 'center',
-        marginTop: 15
+        marginTop: 12
     },
 
     myIntakesTitleContainer: {
@@ -124,15 +124,22 @@ const ScanPageScannedItemStyle = StyleSheet.create({
         width: '100%'
     },
 
-    contentLine: {
+    itemLine: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
 
-    lineContent: {
+    itemLineContent: {
         fontSize: 18,
-        margin: 5,
+        marginLeft: 5,
+        marginTop: 6 * (Dimensions.get('screen').height / 400),
+        color: ColorEnum.ClassicBrown
+    },
+
+    itemSameLineContent: {
+        fontSize: 18,
+        marginLeft: 5,
         color: ColorEnum.ClassicBrown
     },
 
@@ -140,7 +147,7 @@ const ScanPageScannedItemStyle = StyleSheet.create({
         backgroundColor: ColorEnum.ClassicGreen,
         width: 329 * (Dimensions.get('screen').width / 400),
         height: 43 * (Dimensions.get('screen').width / 400),
-        marginTop: 5,
+        marginTop: 8,
         padding: 10,
         alignSelf: 'center'
     },

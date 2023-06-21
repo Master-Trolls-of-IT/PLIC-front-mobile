@@ -14,7 +14,7 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
         itemType,
         data
     );
-    console.log(displayData);
+
     return (
         <View style={SearchListStyle.container}>
             <View style={SearchListStyle.searchContainer}>
@@ -43,7 +43,7 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                     })
                 ) : (
                     <Text style={{ ...SearchListStyle.noData, ...customFontBold.text }}>
-                        {"Désolé nous n'avons rien à afficher \u{1F605}"}
+                        {'Aucun produit enregistré'}
                     </Text>
                 )}
             </ScrollView>

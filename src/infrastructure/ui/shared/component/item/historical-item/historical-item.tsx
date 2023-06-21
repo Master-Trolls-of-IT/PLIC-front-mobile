@@ -9,6 +9,7 @@ import useCustomFontInterRegular from '~/application/utils/font/custom-font-inte
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
+import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
 
 const HistoricalItem = ({
     name,
@@ -20,28 +21,21 @@ const HistoricalItem = ({
     data,
     style
 }: HistoricalItemProps) => {
-    const {
-        isExpended,
-        HistoricalItemStyle,
-        onPress,
-        animatedItemStyle,
-        favouriteIcon,
-        scoreColor,
-        scorePercentage,
-        customInterBold
-    } = useHistoricalItemData(isFavourite, score);
+    const { isExpended, onPress, animatedItemStyle, favouriteIcon, scoreColor, scorePercentage } =
+        useHistoricalItemData(isFavourite, score);
+
     return (
-        <Animated.View style={[animatedItemStyle, HistoricalItemStyle.Item, style]}>
+        <Animated.View style={[animatedItemStyle, HistoricalItemStyle.item, style]}>
             <TouchableOpacity style={HistoricalItemStyle.container} activeOpacity={1} onPress={onPress}>
                 <View style={HistoricalItemStyle.header}>
-                    {image ? (
-                        <Image style={HistoricalItemStyle.image} source={{ uri: image }} />
-                    ) : (
-                        <Image
-                            style={HistoricalItemStyle.image}
-                            source={require('~/domain/entities/assets/default-images/apple.png')}
-                        />
-                    )}
+                    <View style={HistoricalItemStyle.imageContainer}>
+                        {image ? (
+                            <Image style={HistoricalItemStyle.image} source={{ uri: image }} />
+                        ) : (
+                            <Text style={HistoricalItemStyle.imageText}>Image indisponible</Text>
+                        )}
+                    </View>
+
                     <View style={HistoricalItemStyle.titleField}>
                         <Text style={{ ...HistoricalItemStyle.title, ...useCustomFontInterBold().text }}>{name}</Text>
                         <Text
@@ -53,7 +47,7 @@ const HistoricalItem = ({
                     <View style={HistoricalItemStyle.scoreField}>
                         <View>
                             <Bar
-                                style={HistoricalItemStyle.bar}
+                                style={{ ...HistoricalItemStyle.bar, borderLeftColor: scoreColor }}
                                 useNativeDriver
                                 progress={isNaN(scorePercentage) ? 0 : scorePercentage}
                                 width={60}
@@ -71,72 +65,50 @@ const HistoricalItem = ({
                         <CustomSvg asset={favouriteIcon} height={30} width={30} />
                     </TouchableOpacity>
                 </View>
+
                 {isExpended && (
                     <Animated.View
                         entering={FadeIn.duration(1100)}
                         exiting={FadeOutUp.duration(300)}
-                        style={HistoricalItemStyle.content}>
-                        <Text style={{ ...HistoricalItemStyle.contentTitle, ...customInterBold.text }}>
-                            Apports pour 100g
-                        </Text>
-                        <View style={HistoricalItemStyle.contentInfo}>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>Energie</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>
-                                    {data.energyKj}
-                                    {' kJ / '}
-                                    {data.energyKcal}
-                                    {' Kcal'}
+                        style={HistoricalItemStyle.myIntakesContainer}>
+                        <View style={HistoricalItemStyle.myIntakesTitleContainer}>
+                            <Text style={HistoricalItemStyle.myIntakesTitle}>Apports pour 100g</Text>
+                        </View>
+
+                        <View style={HistoricalItemStyle.myIntakesNutrientsContainer}>
+                            <View style={HistoricalItemStyle.itemLine}>
+                                <Text style={HistoricalItemStyle.itemLineContent}>Énergie</Text>
+                                <Text style={HistoricalItemStyle.itemLineContent}>
+                                    {data?.energyKj} kJ / {data?.energyKcal} Kcal
                                 </Text>
                             </View>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>Matières grasses</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>
-                                    {data.fat}
-                                    {' g'}
-                                </Text>
+                            <View style={HistoricalItemStyle.itemLine}>
+                                <Text style={HistoricalItemStyle.itemLineContent}>Matières grasses</Text>
+                                <Text style={HistoricalItemStyle.itemLineContent}>{data?.fat} g</Text>
                             </View>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>dont acides gras saturés</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>
-                                    {data.saturatedFat}
-                                    {' g'}
-                                </Text>
+                            <View style={HistoricalItemStyle.itemLine}>
+                                <Text style={HistoricalItemStyle.itemSameLineContent}>dont acides gras saturés</Text>
+                                <Text style={HistoricalItemStyle.itemSameLineContent}>{data?.saturatedFat} g</Text>
                             </View>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>Glucides</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>
-                                    {data.carbohydrates}
-                                    {' g'}
-                                </Text>
+                            <View style={HistoricalItemStyle.itemLine}>
+                                <Text style={HistoricalItemStyle.itemLineContent}>Glucides</Text>
+                                <Text style={HistoricalItemStyle.itemLineContent}>{data?.carbohydrates} g</Text>
                             </View>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>dont sucre</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>
-                                    {data.sugar}
-                                    {' g'}
-                                </Text>
+                            <View style={HistoricalItemStyle.itemLine}>
+                                <Text style={HistoricalItemStyle.itemSameLineContent}>dont sucres</Text>
+                                <Text style={HistoricalItemStyle.itemSameLineContent}>{data?.sugar} g</Text>
                             </View>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>Fibres alimentaires</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>
-                                    {data.fiber}
-                                    {' g'}
-                                </Text>
+                            <View style={HistoricalItemStyle.itemLine}>
+                                <Text style={HistoricalItemStyle.itemLineContent}>Fibres alimentaires</Text>
+                                <Text style={HistoricalItemStyle.itemLineContent}>{data?.fiber} g</Text>
                             </View>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>Protéines</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>
-                                    {data.proteins}
-                                    {' g'}
-                                </Text>
+                            <View style={HistoricalItemStyle.itemLine}>
+                                <Text style={HistoricalItemStyle.itemLineContent}>Protéines</Text>
+                                <Text style={HistoricalItemStyle.itemLineContent}>{data?.proteins} g</Text>
                             </View>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>Sel</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>
-                                    {data.salt}
-                                    {' g'}
-                                </Text>
+                            <View style={HistoricalItemStyle.itemLine}>
+                                <Text style={HistoricalItemStyle.itemLineContent}>Sel</Text>
+                                <Text style={HistoricalItemStyle.itemLineContent}>{data?.salt} g</Text>
                             </View>
                         </View>
                         <GenericButton

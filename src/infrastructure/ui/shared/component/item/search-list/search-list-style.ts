@@ -3,23 +3,26 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const SearchListStyle = StyleSheet.create({
     container: {
-        width: 0.9 * Dimensions.get('screen').width,
-        height: 0.68 * Dimensions.get('screen').height,
-        alignSelf: 'center'
+        width: '100%',
+        height: 0.68 * Dimensions.get('screen').height
     },
 
     searchContainer: {
+        width: '90%',
+        alignSelf: 'center',
         borderBottomColor: ColorEnum.ClassicBrown,
         borderBottomWidth: StyleSheet.hairlineWidth,
+        paddingTop: 15,
         paddingBottom: 15
     },
 
     listContainer: {
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',
-        marginTop: 20,
-        paddingTop: -20
+        width: '98%',
+        alignSelf: 'center',
+        height: '200%',
+        marginTop: 12
     },
 
     noData: {

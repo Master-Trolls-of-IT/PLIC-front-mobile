@@ -64,43 +64,49 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                 </View>
 
                 <View style={ScanPageScannedItemStyle.myIntakesNutrientsContainer}>
-                    <View style={ScanPageScannedItemStyle.contentLine}>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>Énergie</Text>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>
+                    <View style={ScanPageScannedItemStyle.itemLine}>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Énergie</Text>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>
                             {scannedProduct?.nutrients.energyKj} kJ / {scannedProduct?.nutrients.energyKcal} Kcal
                         </Text>
                     </View>
-                    <View style={ScanPageScannedItemStyle.contentLine}>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>Matières grasses</Text>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>{scannedProduct?.nutrients.fat} g</Text>
+                    <View style={ScanPageScannedItemStyle.itemLine}>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Matières grasses</Text>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>{scannedProduct?.nutrients.fat} g</Text>
                     </View>
-                    <View style={ScanPageScannedItemStyle.contentLine}>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>dont acides gras saturés</Text>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>
+                    <View style={ScanPageScannedItemStyle.itemLine}>
+                        <Text style={ScanPageScannedItemStyle.itemSameLineContent}>dont acides gras saturés</Text>
+                        <Text style={ScanPageScannedItemStyle.itemSameLineContent}>
                             {scannedProduct?.nutrients.saturatedFat} g
                         </Text>
                     </View>
-                    <View style={ScanPageScannedItemStyle.contentLine}>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>Glucides</Text>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>
+                    <View style={ScanPageScannedItemStyle.itemLine}>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Glucides</Text>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>
                             {scannedProduct?.nutrients.carbohydrates} g
                         </Text>
                     </View>
-                    <View style={ScanPageScannedItemStyle.contentLine}>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>dont sucres</Text>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>{scannedProduct?.nutrients.sugar} g</Text>
+                    <View style={ScanPageScannedItemStyle.itemLine}>
+                        <Text style={ScanPageScannedItemStyle.itemSameLineContent}>dont sucres</Text>
+                        <Text style={ScanPageScannedItemStyle.itemSameLineContent}>
+                            {scannedProduct?.nutrients.sugar} g
+                        </Text>
                     </View>
-                    <View style={ScanPageScannedItemStyle.contentLine}>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>Fibres alimentaires</Text>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>{scannedProduct?.nutrients.fiber} g</Text>
+                    <View style={ScanPageScannedItemStyle.itemLine}>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Fibres alimentaires</Text>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>
+                            {scannedProduct?.nutrients.fiber} g
+                        </Text>
                     </View>
-                    <View style={ScanPageScannedItemStyle.contentLine}>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>Protéines</Text>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>{scannedProduct?.nutrients.proteins} g</Text>
+                    <View style={ScanPageScannedItemStyle.itemLine}>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Protéines</Text>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>
+                            {scannedProduct?.nutrients.proteins} g
+                        </Text>
                     </View>
-                    <View style={ScanPageScannedItemStyle.contentLine}>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>Sel</Text>
-                        <Text style={ScanPageScannedItemStyle.lineContent}>{scannedProduct?.nutrients.salt} g</Text>
+                    <View style={ScanPageScannedItemStyle.itemLine}>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Sel</Text>
+                        <Text style={ScanPageScannedItemStyle.itemLineContent}>{scannedProduct?.nutrients.salt} g</Text>
                     </View>
                 </View>
             </View>
