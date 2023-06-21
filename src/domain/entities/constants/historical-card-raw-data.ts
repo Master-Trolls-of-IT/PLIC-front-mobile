@@ -6,14 +6,15 @@ export const historicalItemRawData: HistoricalItemProps[] = [
         description: 'Mélange de fruits secs et pétales chocolat',
         score: 26,
         data: {
-            energy: 2000,
+            energyKj: 2000,
+            energyKcal: 2000,
             sugar: 500,
-            lipid: 500,
-            carbohydrate: 500,
-            fattyAcide: 500,
+            fat: 500,
+            carbohydrates: 500,
+            saturatedFat: 500,
             fiber: 500,
             salt: 500,
-            protein: 500
+            proteins: 500
         },
         isFavourite: false,
         toggleFavourite: () => {}
@@ -23,14 +24,15 @@ export const historicalItemRawData: HistoricalItemProps[] = [
         description: 'Mélange de fruits secs et pétales chocolat',
         score: 56,
         data: {
-            energy: 2000,
+            energyKj: 2000,
+            energyKcal: 2000,
             sugar: 500,
-            lipid: 500,
-            carbohydrate: 500,
-            fattyAcide: 500,
+            fat: 500,
+            carbohydrates: 500,
+            saturatedFat: 500,
             fiber: 500,
             salt: 500,
-            protein: 500
+            proteins: 500
         },
         image: 'https://images.openfoodfacts.org/images/products/500/011/255/4359/front_fr.28.400.jpg',
         isFavourite: true,
@@ -41,14 +43,15 @@ export const historicalItemRawData: HistoricalItemProps[] = [
         description: 'Mélange de fruits secs et pétales chocolat',
         score: 76,
         data: {
-            energy: 2000,
+            energyKj: 2000,
+            energyKcal: 2000,
             sugar: 500,
-            lipid: 500,
-            carbohydrate: 500,
-            fattyAcide: 500,
+            fat: 500,
+            carbohydrates: 500,
+            saturatedFat: 500,
             fiber: 500,
             salt: 500,
-            protein: 500
+            proteins: 500
         },
         isFavourite: false,
         toggleFavourite: () => {}
@@ -58,14 +61,15 @@ export const historicalItemRawData: HistoricalItemProps[] = [
         description: 'Mélange de fruits secs et pétales chocolat',
         score: 26,
         data: {
-            energy: 2000,
+            energyKj: 2000,
+            energyKcal: 2000,
             sugar: 500,
-            lipid: 500,
-            carbohydrate: 500,
-            fattyAcide: 500,
+            fat: 500,
+            carbohydrates: 500,
+            saturatedFat: 500,
             fiber: 500,
             salt: 500,
-            protein: 500
+            proteins: 500
         },
         isFavourite: true,
         toggleFavourite: () => {}
@@ -75,14 +79,15 @@ export const historicalItemRawData: HistoricalItemProps[] = [
         description: 'Mélange de fruits secs et pétales chocolat',
         score: 56,
         data: {
-            energy: 2000,
+            energyKj: 2000,
+            energyKcal: 2000,
             sugar: 500,
-            lipid: 500,
-            carbohydrate: 500,
-            fattyAcide: 500,
+            fat: 500,
+            carbohydrates: 500,
+            saturatedFat: 500,
             fiber: 500,
             salt: 500,
-            protein: 500
+            proteins: 500
         },
         isFavourite: true,
         toggleFavourite: () => {}
