@@ -13,7 +13,7 @@ const ScanPageScannedItemStyle = StyleSheet.create({
         borderWidth: 4,
         borderColor: ColorEnum.ClassicBrown,
         borderBottomWidth: 0,
-        height: '70%'
+        height: '82%'
     },
 
     favourite: {
@@ -99,31 +99,6 @@ const ScanPageScannedItemStyle = StyleSheet.create({
         color: ColorEnum.ClassicBrown
     },
 
-    content: {
-        width: '45%'
-    },
-
-    ecoScore: {
-        position: 'absolute',
-        fontSize: 34 * (Dimensions.get('screen').height / 900),
-        color: ColorEnum.SlightlyOpaqueGrey,
-        alignSelf: 'center',
-        paddingTop: 0.09 * Dimensions.get('screen').width
-    },
-
-    title: {
-        position: 'absolute',
-        fontSize: 16 * (Dimensions.get('screen').height / 900),
-        color: ColorEnum.SlightlyOpaqueGrey,
-        alignSelf: 'center',
-        paddingTop: 0.19 * Dimensions.get('screen').width
-    },
-
-    circle: {
-        alignSelf: 'center',
-        padding: 10
-    },
-
     myIntakesContainer: {
         width: '90%',
         alignSelf: 'center',
@@ -159,6 +134,19 @@ const ScanPageScannedItemStyle = StyleSheet.create({
         fontSize: 18,
         margin: 5,
         color: ColorEnum.ClassicBrown
+    },
+
+    buttonContainer: {
+        backgroundColor: ColorEnum.ClassicGreen,
+        width: 329 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400),
+        marginTop: 5,
+        padding: 10,
+        alignSelf: 'center'
+    },
+
+    buttonText: {
+        fontSize: 18
     }
 });
 

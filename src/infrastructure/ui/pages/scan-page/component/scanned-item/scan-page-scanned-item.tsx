@@ -5,7 +5,8 @@ import useScanPageScannedItemData from '~/infrastructure/ui/pages/scan-page/comp
 import { ScanPageScannedItemProps } from '~/domain/interfaces/props/scan-page-scanned-item-props';
 import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score';
+import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score';
+import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 
 const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain }: ScanPageScannedItemProps) => {
     const { chooseRightEcoScoreImage, ecoScore, horizontalScrollLineAsset, unfilledFavouriteAsset } =
@@ -103,6 +104,15 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                     </View>
                 </View>
             </View>
+
+            <GenericButton
+                title="Ajouter aux produits consommés"
+                onPress={() => {}}
+                style={{
+                    container: ScanPageScannedItemStyle.buttonContainer,
+                    text: ScanPageScannedItemStyle.buttonText
+                }}
+            />
         </View>
     );
 };
