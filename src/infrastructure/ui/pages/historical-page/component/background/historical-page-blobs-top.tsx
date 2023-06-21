@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
-import HistoricalPageBlobsTopStyle from '~/infrastructure/ui/pages/historical-page/component/background/historical-page-blosb-top-style';
+import HistoricalPageBlobsTopStyle from '~/infrastructure/ui/pages/historical-page/component/background/historical-page-blobs-top-style';
 
 const HistoricalPageBlobsTop = () => {
     const asset = require('~/domain/entities/assets/historical-page/historical-page-blobs-top.svg');

@@ -30,8 +30,8 @@ const ScanPageStyle = StyleSheet.create({
     },
 
     scanBox: {
-        height: Dimensions.get('screen').height * 0.4,
-        width: Dimensions.get('screen').height * 0.4,
+        height: '100%',
+        width: '100%',
         overflow: 'hidden',
         borderRadius: 21
     },

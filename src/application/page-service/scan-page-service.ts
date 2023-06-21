@@ -12,15 +12,15 @@ const useScanPageService = () => {
         return data;
     }
 
-    const getProduct = ({ inputBarCode, dispatch }: ScanPageServiceProps) =>
+    const getProduct = ({ inputBarCode, productDispatch, errorDispatch }: ScanPageServiceProps) =>
         axios
             .get(process.env.APP_API_ENDPOINT + 'product/' + inputBarCode)
             .then((response) => {
                 const productInfo = mapToProductInfo(response.data.data);
-                dispatch(productInfo.name);
+                productDispatch(productInfo);
             })
             .catch(() => {
-                dispatch("Le code barre n'existe pas");
+                errorDispatch("Le code barre n'existe pas");
                 error('ScanPageService', 'Receive an error while get product on OpenFOODFacts API', '');
             });
 

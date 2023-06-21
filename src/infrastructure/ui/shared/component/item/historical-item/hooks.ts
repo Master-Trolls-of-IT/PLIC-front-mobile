@@ -25,8 +25,8 @@ const useHistoricalItemData = (isFavourite: boolean, score: number) => {
 
     const favouriteIcon = useMemo(() => {
         return isFavourite
-            ? require('~/domain/entities/assets/icon/favourite.svg')
-            : require('~/domain/entities/assets/icon/unfilled-favourite.svg');
+            ? require('~/domain/entities/assets/icon/favourite-icon/favourite.svg')
+            : require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     }, [isFavourite]);
 
     const customInterBold = useCustomFontInterBold();
