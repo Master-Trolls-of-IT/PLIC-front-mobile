@@ -40,13 +40,19 @@ const ScanPageScannedItemStyle = StyleSheet.create({
         height: '100%',
         borderRadius: 15,
         borderWidth: 3,
-        overflow: 'hidden'
+        justifyContent: 'center'
     },
 
     image: {
         width: '100%',
         height: '100%',
         borderRadius: 12
+    },
+
+    imageText: {
+        fontSize: 16,
+        color: ColorEnum.ClassicBrown,
+        alignSelf: 'center'
     },
 
     headerTextContainer: {

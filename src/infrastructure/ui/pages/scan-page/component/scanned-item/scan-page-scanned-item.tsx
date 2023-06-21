@@ -12,6 +12,7 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
         useScanPageScannedItemData(scannedProduct);
 
     // TODO: Ajouter la marque du produit dans le parsing de la réponse de l'API OpenFOODFacts
+    // TODO: Corriger le problèmes avec les glucides dans le parsing
     return (
         <View style={ScanPageScannedItemStyle.scanModal}>
             <TouchableOpacity onPress={toggleFavourite} style={ScanPageScannedItemStyle.favourite}>
@@ -27,10 +28,7 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                     {scannedProduct?.image_url ? (
                         <Image style={ScanPageScannedItemStyle.image} source={{ uri: scannedProduct?.image_url }} />
                     ) : (
-                        <Image
-                            style={ScanPageScannedItemStyle.image}
-                            source={require('~/domain/entities/assets/default-images/apple.png')}
-                        />
+                        <Text style={ScanPageScannedItemStyle.imageText}>Image indisponible</Text>
                     )}
                 </View>
                 <View style={ScanPageScannedItemStyle.headerTextContainer}>
