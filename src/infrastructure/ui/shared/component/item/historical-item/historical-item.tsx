@@ -55,14 +55,17 @@ const HistoricalItem = ({
                             <Bar
                                 style={HistoricalItemStyle.bar}
                                 useNativeDriver
-                                progress={scorePercentage}
+                                progress={isNaN(scorePercentage) ? 0 : scorePercentage}
                                 width={60}
                                 height={9}
                                 color={scoreColor}
                                 unfilledColor={ColorEnum.ExtraOpaqueGrey}
+                                animated={false}
                             />
                         </View>
-                        <Text style={{ ...HistoricalItemStyle.score, ...useCustomFontInterBold().text }}>{score}</Text>
+                        <Text style={{ ...HistoricalItemStyle.score, ...useCustomFontInterBold().text }}>
+                            {isNaN(score) ? 0 : score}
+                        </Text>
                     </View>
                     <TouchableOpacity onPress={toggleFavourite} style={HistoricalItemStyle.favourite}>
                         <CustomSvg asset={favouriteIcon} height={30} width={30} />
@@ -78,36 +81,62 @@ const HistoricalItem = ({
                         </Text>
                         <View style={HistoricalItemStyle.contentInfo}>
                             <View style={HistoricalItemStyle.contentLine}>
+                                <Text style={HistoricalItemStyle.lineContent}>Energie</Text>
+                                <Text style={HistoricalItemStyle.lineContent}>
+                                    {data.energyKj}
+                                    {' kJ / '}
+                                    {data.energyKcal}
+                                    {' Kcal'}
+                                </Text>
+                            </View>
+                            <View style={HistoricalItemStyle.contentLine}>
                                 <Text style={HistoricalItemStyle.lineContent}>Matières grasses</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>{data.lipid}</Text>
+                                <Text style={HistoricalItemStyle.lineContent}>
+                                    {data.fat}
+                                    {' g'}
+                                </Text>
                             </View>
                             <View style={HistoricalItemStyle.contentLine}>
                                 <Text style={HistoricalItemStyle.lineContent}>dont acides gras saturés</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>{data.fattyAcide}</Text>
+                                <Text style={HistoricalItemStyle.lineContent}>
+                                    {data.saturatedFat}
+                                    {' g'}
+                                </Text>
                             </View>
                             <View style={HistoricalItemStyle.contentLine}>
                                 <Text style={HistoricalItemStyle.lineContent}>Glucides</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>{data.carbohydrate}</Text>
+                                <Text style={HistoricalItemStyle.lineContent}>
+                                    {data.carbohydrates}
+                                    {' g'}
+                                </Text>
                             </View>
                             <View style={HistoricalItemStyle.contentLine}>
                                 <Text style={HistoricalItemStyle.lineContent}>dont sucre</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>{data.sugar}</Text>
+                                <Text style={HistoricalItemStyle.lineContent}>
+                                    {data.sugar}
+                                    {' g'}
+                                </Text>
                             </View>
                             <View style={HistoricalItemStyle.contentLine}>
                                 <Text style={HistoricalItemStyle.lineContent}>Fibres alimentaires</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>{data.fiber}</Text>
+                                <Text style={HistoricalItemStyle.lineContent}>
+                                    {data.fiber}
+                                    {' g'}
+                                </Text>
                             </View>
                             <View style={HistoricalItemStyle.contentLine}>
                                 <Text style={HistoricalItemStyle.lineContent}>Protéines</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>{data.protein}</Text>
+                                <Text style={HistoricalItemStyle.lineContent}>
+                                    {data.proteins}
+                                    {' g'}
+                                </Text>
                             </View>
                             <View style={HistoricalItemStyle.contentLine}>
                                 <Text style={HistoricalItemStyle.lineContent}>Sel</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>{data.salt}</Text>
-                            </View>
-                            <View style={HistoricalItemStyle.contentLine}>
-                                <Text style={HistoricalItemStyle.lineContent}>Energie</Text>
-                                <Text style={HistoricalItemStyle.lineContent}>{data.energy}</Text>
+                                <Text style={HistoricalItemStyle.lineContent}>
+                                    {data.salt}
+                                    {' g'}
+                                </Text>
                             </View>
                         </View>
                         <GenericButton

@@ -1,5 +1,6 @@
 export type AllNutritionalIntakes = {
-    energy: number;
+    energyKj: number;
+    energyKcal: number;
     sugar: number;
     lipid: number;
     carbohydrate: number;

@@ -6,7 +6,7 @@ export type ProductInfo = {
     ecoscore: string;
 };
 
-type ProductNutrients = {
+export type ProductNutrients = {
     energyKj: number;
     energyKcal: number;
     fat: number;

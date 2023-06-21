@@ -14,6 +14,7 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
         itemType,
         data
     );
+    console.log(displayData);
     return (
         <View style={SearchListStyle.container}>
             <View style={SearchListStyle.searchContainer}>
