@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, Text, View } from 'react-native';
+import { Animated, View } from 'react-native';
 import { observer } from 'mobx-react';
 import StartUpPageStyle from './startup-page-style';
 import StartUpPageBlobsTop from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-top';
@@ -9,7 +9,6 @@ import useStartupPageData from '~/infrastructure/ui/pages/startup-page/hooks';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import QuitApp from '~/infrastructure/ui/shared/helper/quit-app';
-import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
 
 const StartUpPage = () => {
@@ -32,11 +31,7 @@ const StartUpPage = () => {
                 <StartUpPageBlobsBottom />
             </Animated.View>
 
-            <CustomModal isVisible={isErrorOnAPI}>
-                <Text style={{ ...StartUpPageStyle.modalText, ...CustomFontInterBold().text }}>
-                    Impossible de se connecter à nos services
-                </Text>
-
+            <CustomModal isVisible={!isErrorOnAPI} title={'Erreur de connexion aux services en ligne'}>
                 <GenericButton title="Quitter" onPress={QuitApp} style={modalButtonStyle} />
             </CustomModal>
         </View>
