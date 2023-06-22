@@ -1,4 +1,4 @@
-import { AllNutritionalIntakes } from '~/domain/interfaces/props/all-nutritional-intakes';
+import { ProductNutrients } from '~/domain/interfaces/services/product-nutrients';
 
 export type HistoricalItemProps = {
     name: string;
@@ -7,6 +7,6 @@ export type HistoricalItemProps = {
     image?: string;
     isFavourite: boolean;
     toggleFavourite: () => void;
-    data: AllNutritionalIntakes;
+    data: ProductNutrients;
     style?: object;
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -12,7 +12,7 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import GenericInputWithSearchIcon from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon/generic-input-with-search-icon';
 import { useStore } from '~/infrastructure/controllers/store';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import ScanPageScannedItem from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item';
 
 const ScanPage = () => {
     const {
@@ -21,15 +21,17 @@ const ScanPage = () => {
     const {
         handleBarCodeScanned,
         hasPermission,
-        reloadCircleAsset,
-        scanned,
+        isScanned,
         inputBarCode,
         inputResponse,
         onPressHistoricalButton,
         onPressSearchIcon,
-        onPressScanAgain
+        onPressScanAgain,
+        scannedProduct,
+        toggleFavourite
     } = useScanPageData(navigate);
 
+    // TODO: Ajouter le cas des eaux minérales (pas les même nutriments) => modifier le parsing aussi
     return (
         <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>
             <View style={ScanPageStyle.background}>
@@ -46,15 +48,9 @@ const ScanPage = () => {
                     <View style={ScanPageStyle.firstBoxScan} />
                     <View style={ScanPageStyle.secondBoxScan} />
                     <BarCodeScanner
-                        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+                        onBarCodeScanned={isScanned ? undefined : handleBarCodeScanned}
                         style={ScanPageStyle.scanBox}
                     />
-
-                    {scanned && (
-                        <TouchableOpacity onPress={onPressScanAgain} style={ScanPageStyle.reloadIconContainer}>
-                            <CustomSvg asset={reloadCircleAsset} height={40} width={40} />
-                        </TouchableOpacity>
-                    )}
                 </View>
 
                 <GenericErrorMessage
@@ -82,6 +78,14 @@ const ScanPage = () => {
                     />
                 </View>
             </View>
+
+            {isScanned && (
+                <ScanPageScannedItem
+                    scannedProduct={scannedProduct}
+                    toggleFavourite={toggleFavourite}
+                    onPressScanAgain={onPressScanAgain}
+                />
+            )}
         </KeyboardAwareScrollView>
     );
 };
