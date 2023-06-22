@@ -1,12 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import useScanPageService from '~/application/page-service/scan-page-service';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
-import { useStore } from '~/infrastructure/controllers/store';
-import HistoricalItem from '~/infrastructure/ui/shared/component/item/historical-item/historical-item';
-import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 
 const useScanPageData = (navigate: NavigateProps) => {
     const [inputBarCode, setInputBarCode] = useState('');
@@ -16,9 +13,6 @@ const useScanPageData = (navigate: NavigateProps) => {
     const [scannedProduct, setScannedProduct] = useState<ProductInfo | undefined>(undefined);
 
     const { getProduct } = useScanPageService();
-    const {
-        DataStore: { addItem }
-    } = useStore();
 
     const askForCameraPermission = () => {
         (async () => {

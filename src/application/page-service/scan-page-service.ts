@@ -10,16 +10,13 @@ const useScanPageService = () => {
         DataStore: { addItem }
     } = useStore();
 
-    function mapToProductInfo(data: any): ProductInfo {
-        return data;
-    }
-
     const getProduct = ({ inputBarCode, productDispatch, errorDispatch }: ScanPageServiceProps) =>
         axios
             .get(process.env.APP_API_ENDPOINT + 'product/' + inputBarCode)
             .then((response) => {
-                const productInfo = mapToProductInfo(response.data.data);
+                const productInfo = response.data.data as ProductInfo;
                 productDispatch(productInfo);
+
                 addItem({
                     name: 'Marque',
                     data: productInfo?.nutrients,
