@@ -9,12 +9,6 @@ const StartUpPageStyle = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
-    modalText: {
-        fontSize: 16 * (Dimensions.get('screen').height / 725),
-        textAlign: 'left',
-        color: ColorEnum.ClassicGrey
-    },
-
     modalTextButton: {
         fontSize: 16 * (Dimensions.get('screen').height / 725),
         color: ColorEnum.ClassicBeige
@@ -22,10 +16,12 @@ const StartUpPageStyle = StyleSheet.create({
 
     modalButton: {
         backgroundColor: ColorEnum.ClassicBrown,
+        width: 110 * (Dimensions.get('screen').width / 400),
+        height: 40 * (Dimensions.get('screen').height / 900),
         marginTop: 20,
         padding: 3,
-        alignItems: 'center',
-        borderRadius: 12
+        alignSelf: 'center',
+        borderRadius: 20
     }
 });
 

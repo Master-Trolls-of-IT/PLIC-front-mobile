@@ -10,12 +10,20 @@ const CustomModalStyle = StyleSheet.create({
     },
 
     modalView: {
-        width: Dimensions.get('screen').width * 0.8,
-        padding: 20,
+        width: 0.8 * Dimensions.get('screen').width,
+        padding: 15,
         alignSelf: 'center',
         backgroundColor: ColorEnum.ClassicDarkBeige,
         borderRadius: 20,
-        gap: 10
+        borderWidth: 3,
+        borderColor: ColorEnum.ClassicBrown
+    },
+
+    title: {
+        alignSelf: 'center',
+        fontSize: 24,
+        textAlign: 'center',
+        color: ColorEnum.ClassicBrown
     }
 });
 
