@@ -31,7 +31,7 @@ const StartUpPage = () => {
                 <StartUpPageBlobsBottom />
             </Animated.View>
 
-            <CustomModal isVisible={!isErrorOnAPI} title={'Erreur de connexion aux services en ligne'}>
+            <CustomModal isVisible={isErrorOnAPI} title={'Erreur de connexion aux services en ligne'}>
                 <GenericButton title="Quitter" onPress={QuitApp} style={modalButtonStyle} />
             </CustomModal>
         </View>
