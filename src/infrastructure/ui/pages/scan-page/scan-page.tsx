@@ -76,6 +76,14 @@ const ScanPage = () => {
                         }}
                         onPress={onPressHistoricalButton}
                     />
+                    <GenericButton
+                        title={'Votre liste des produits consommés'}
+                        style={{
+                            container: ScanPageStyle.buttonContainer,
+                            text: ScanPageStyle.buttonText
+                        }}
+                        onPress={onPressHistoricalButton}
+                    />
                 </View>
             </View>
 

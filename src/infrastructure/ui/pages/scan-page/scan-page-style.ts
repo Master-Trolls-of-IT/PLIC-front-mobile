@@ -21,8 +21,10 @@ const ScanPageStyle = StyleSheet.create({
     },
 
     scanContainer: {
-        height: Dimensions.get('screen').height * 0.43,
+        height: Dimensions.get('screen').height * 0.37,
+        width: Dimensions.get('screen').height * 0.37,
         margin: 20,
+        alignSelf: 'center',
         borderWidth: 4,
         borderColor: ColorEnum.ClassicBrown,
         borderRadius: 25,
@@ -32,6 +34,7 @@ const ScanPageStyle = StyleSheet.create({
     scanBox: {
         height: '100%',
         width: '100%',
+        alignSelf: 'center',
         overflow: 'hidden',
         borderRadius: 21
     },
@@ -64,7 +67,7 @@ const ScanPageStyle = StyleSheet.create({
 
     text: {
         marginBottom: 15,
-        marginTop: 25,
+        marginTop: 15,
         alignSelf: 'center',
         color: ColorEnum.ClassicBrown,
         fontSize: 18
@@ -72,7 +75,8 @@ const ScanPageStyle = StyleSheet.create({
 
     inputContainer: {
         alignSelf: 'center',
-        height: '17%',
+        alignItems: 'center',
+        height: '23%',
         width: 360 * (Dimensions.get('screen').width / 400),
         display: 'flex',
         flexDirection: 'column',
@@ -86,7 +90,7 @@ const ScanPageStyle = StyleSheet.create({
     },
 
     buttonText: {
-        fontSize: 16 * (Dimensions.get('screen').height / 725),
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
         color: ColorEnum.ClassicGrey
     }
 });
