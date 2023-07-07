@@ -16,7 +16,10 @@ const GenericButton = ({ title, style, loader, onPress }: GenericButtonProps) =>
                     <ActivityIndicator animating={true} color={ColorEnum.ClassicBrown} size={'small'} />
                 </View>
             ) : (
-                <Text style={{ ...GenericButtonStyle.buttonContent, ...style?.text, ...CustomFontInterBold().text }}>
+                <Text
+                    allowFontScaling={false}
+                    numberOfLines={1}
+                    style={{ ...GenericButtonStyle.buttonContent, ...style?.text, ...CustomFontInterBold().text }}>
                     {title}
                 </Text>
             )}
