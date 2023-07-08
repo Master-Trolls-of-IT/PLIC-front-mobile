@@ -34,6 +34,9 @@ const useScanPageData = (navigate: NavigateProps) => {
         navigate(PagesEnum.HistoricalPage);
     };
 
+    const onPressConsumedProductsButton = () => {
+        navigate(PagesEnum.ConsumedProducts);
+    };
     const onPressSearchIcon = () => {
         void getProduct({ inputBarCode, productDispatch: setScannedProduct, errorDispatch: setErrorResponse });
         setIsScanned(true);
@@ -54,6 +57,7 @@ const useScanPageData = (navigate: NavigateProps) => {
         inputBarCode: { input: inputBarCode, dispatch: setInputBarCode },
         inputResponse: { input: errorResponse, dispatch: setErrorResponse },
         onPressHistoricalButton,
+        onPressConsumedProductsButton,
         onPressSearchIcon,
         onPressScanAgain,
         toggleFavourite

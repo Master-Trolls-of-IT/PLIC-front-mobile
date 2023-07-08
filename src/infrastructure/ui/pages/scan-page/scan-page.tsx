@@ -25,6 +25,7 @@ const ScanPage = () => {
         inputBarCode,
         inputResponse,
         onPressHistoricalButton,
+        onPressConsumedProductsButton,
         onPressSearchIcon,
         onPressScanAgain,
         scannedProduct,
@@ -82,7 +83,7 @@ const ScanPage = () => {
                             container: ScanPageStyle.buttonContainer,
                             text: ScanPageStyle.buttonText
                         }}
-                        onPress={onPressHistoricalButton}
+                        onPress={onPressConsumedProductsButton}
                     />
                 </View>
             </View>
