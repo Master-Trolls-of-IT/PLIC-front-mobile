@@ -8,9 +8,19 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 
-const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain }: ScanPageScannedItemProps) => {
-    const { chooseRightEcoScoreImage, ecoScore, horizontalScrollLineAsset, unfilledFavouriteAsset } =
-        useScanPageScannedItemData(scannedProduct);
+const ScanPageScannedItem = ({
+    scannedProduct,
+    toggleFavourite,
+    onPressScanAgain,
+    itemBarcode
+}: ScanPageScannedItemProps) => {
+    const {
+        chooseRightEcoScoreImage,
+        ecoScore,
+        horizontalScrollLineAsset,
+        unfilledFavouriteAsset,
+        addConsumedProduct
+    } = useScanPageScannedItemData(scannedProduct);
 
     // TODO: Ajouter la marque du produit dans le parsing de la réponse de l'API OpenFOODFacts
     // TODO: Corriger le problèmes avec les glucides dans le parsing
@@ -113,7 +123,7 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
 
             <GenericButton
                 title="Ajouter aux produits consommés"
-                onPress={() => {}}
+                onPress={() => addConsumedProduct(itemBarcode)}
                 style={{
                     container: ScanPageScannedItemStyle.buttonContainer,
                     text: ScanPageScannedItemStyle.buttonText

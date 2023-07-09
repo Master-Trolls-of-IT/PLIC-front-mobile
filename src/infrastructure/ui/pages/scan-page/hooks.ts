@@ -27,7 +27,7 @@ const useScanPageData = (navigate: NavigateProps) => {
 
     const handleBarCodeScanned = ({ data }: { data: string }) => {
         void getProduct({ inputBarCode: data, productDispatch: setScannedProduct, errorDispatch: setErrorResponse });
-        setIsScanned(true);
+        setIsScanned(errorResponse == '');
     };
 
     const onPressHistoricalButton = () => {
@@ -39,7 +39,7 @@ const useScanPageData = (navigate: NavigateProps) => {
     };
     const onPressSearchIcon = () => {
         void getProduct({ inputBarCode, productDispatch: setScannedProduct, errorDispatch: setErrorResponse });
-        setIsScanned(true);
+        setIsScanned(errorResponse == '');
     };
 
     const onPressScanAgain = () => {

@@ -6,11 +6,11 @@ import HistoricalPageBlobsTop from '~/infrastructure/ui/pages/historical-page/co
 import GenericBackArrowIcon from '~/infrastructure/ui/shared/component/generic-back-arrow-icon/generic-back-arrow-icon';
 import SearchList from '~/infrastructure/ui/shared/component/item/search-list/search-list';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
-import useConsumedProducts from '~/infrastructure/ui/pages/consumed-products-page/hooks';
+import useConsumedProductsData from '~/infrastructure/ui/pages/consumed-products-page/hooks';
 import ConsumedProductsPageStyle from '~/infrastructure/ui/pages/consumed-products-page/consumed-products-page-style';
 
 const ConsumedProductsPage = () => {
-    const { goBack, consumedProducts } = useConsumedProducts();
+    const { goBack, consumedProductItems } = useConsumedProductsData();
 
     return (
         <View style={ConsumedProductsPageStyle.container}>
@@ -25,7 +25,7 @@ const ConsumedProductsPage = () => {
                 containerStyle={ConsumedProductsPageStyle.headerContainer}
             />
 
-            <SearchList itemType={ItemEnum.ConsumedProducts} data={[]} />
+            <SearchList itemType={ItemEnum.ConsumedProducts} data={consumedProductItems} />
         </View>
     );
 };

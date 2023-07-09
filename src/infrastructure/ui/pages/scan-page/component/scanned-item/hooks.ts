@@ -1,9 +1,10 @@
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
+import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
 
 const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined) => {
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
-
+    const { addConsumedProduct } = useScanPageScannedItemService();
     const ecoScore =
         scannedProduct?.ecoscore && scannedProduct?.ecoscore != '' ? parseInt(scannedProduct.ecoscore) : -1;
 
@@ -22,7 +23,13 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined) => 
         }
     };
 
-    return { chooseRightEcoScoreImage, ecoScore, horizontalScrollLineAsset, unfilledFavouriteAsset };
+    return {
+        chooseRightEcoScoreImage,
+        ecoScore,
+        horizontalScrollLineAsset,
+        unfilledFavouriteAsset,
+        addConsumedProduct
+    };
 };
 
 export default useScanPageScannedItemData;

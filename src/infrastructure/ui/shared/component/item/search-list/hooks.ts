@@ -4,6 +4,7 @@ import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { SearchListData, SearchListInputType } from '~/domain/interfaces/props/search-list/search-list-data-props';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
 
 const useSearchListData = (inputType: SearchListInputType, data: SearchListData) => {
     const [searchedText, setSearchedText] = useState('');
@@ -14,10 +15,14 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                 return data as MealItemProps[];
             case ItemEnum.Historical:
                 return data as HistoricalItemProps[];
+            case ItemEnum.ConsumedProducts:
+                return data as ConsumedProductItemProps[];
         }
     })();
 
-    const [displayData, setDisplayData] = useState<HistoricalItemProps[] | MealItemProps[]>(mockedData);
+    const [displayData, setDisplayData] = useState<
+        HistoricalItemProps[] | MealItemProps[] | ConsumedProductItemProps[]
+    >(mockedData);
 
     const onSearch = (search: string) => {
         setSearchedText(search);
@@ -25,6 +30,10 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
             switch (inputType) {
                 case ItemEnum.Historical:
                     return (mockedData as HistoricalItemProps[]).filter(
+                        (Item) => Item.name.includes(search) || Item.description.includes(search)
+                    );
+                case ItemEnum.ConsumedProducts:
+                    return (mockedData as ConsumedProductItemProps[]).filter(
                         (Item) => Item.name.includes(search) || Item.description.includes(search)
                     );
                 default:

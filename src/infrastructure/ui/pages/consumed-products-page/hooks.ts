@@ -1,15 +1,20 @@
+import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
-import APIServices from '~/infrastructure/controllers/services/api';
+import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
 
-const useConsumedProducts = async () => {
+const useConsumedProductsData = () => {
     const {
         NavigationStore: { goBack }
     } = useStore();
-    let apiService = APIServices.getInstance();
-    let response = await apiService.get('/ping');
+    const [consumedProductItems, setConsumedProductItems] = useState([]);
+
+    const { getConsumedProducts } = useConsumedProductPageService(setConsumedProductItems);
+
     return {
-        goBack
+        goBack,
+        getConsumedProducts,
+        consumedProductItems
     };
 };
 
-export default useConsumedProducts;
+export default useConsumedProductsData;
