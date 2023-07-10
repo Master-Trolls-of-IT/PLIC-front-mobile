@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
@@ -9,7 +9,8 @@ import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/
 const useSearchListData = (inputType: SearchListInputType, data: SearchListData) => {
     const [searchedText, setSearchedText] = useState('');
 
-    const mockedData = (() => {
+    const mockedData = useMemo(() => {
+        console.log('test', data);
         switch (inputType) {
             case ItemEnum.Meal:
                 return data as MealItemProps[];
@@ -18,7 +19,7 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
             case ItemEnum.ConsumedProducts:
                 return data as ConsumedProductItemProps[];
         }
-    })();
+    }, [data]);
 
     const [displayData, setDisplayData] = useState<
         HistoricalItemProps[] | MealItemProps[] | ConsumedProductItemProps[]

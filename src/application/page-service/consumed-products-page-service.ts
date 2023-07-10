@@ -2,18 +2,19 @@ import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
+import { useCallback } from 'react';
 
-const useConsumedProductPageService = (dispatch) => {
+const useConsumedProductPageService = () => {
     const {
         LoginStore: {
             userData: { Email }
         },
         LogStore: { error }
     } = useStore();
-    const getConsumedProducts = async () => {
+    const getConsumedProducts = useCallback(async () => {
         try {
             const encodedEmail = encodeURIComponent(Email);
-            const response = await APIServices.GET(`product/consumed/${encodedEmail}`);
+            const response = await APIServices.GET(`product/consumed/user/${encodedEmail}`);
             const consumedProducts = response.data as ProductInfo[];
             const consumedProductItems = [] as ConsumedProductItemProps[];
             for (const product of consumedProducts) {
@@ -27,11 +28,12 @@ const useConsumedProductPageService = (dispatch) => {
                     toggleFavourite: () => {}
                 });
             }
-            dispatch(consumedProductItems);
+            return consumedProductItems;
         } catch (err: any) {
             error('useConsumedProductPageService', 'Could not retrieve consumed products', err.message);
+            return [];
         }
-    };
+    }, [Email, error]);
 
     return {
         getConsumedProducts

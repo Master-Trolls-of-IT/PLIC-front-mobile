@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { observer } from 'mobx-react';
 import useSearchListData from '~/infrastructure/ui/shared/component/item/search-list/hooks';
 import SearchListStyle from '~/infrastructure/ui/shared/component/item/search-list/search-list-style';
 import HistoricalItem from '~/infrastructure/ui/shared/component/item/historical-item/historical-item';
@@ -61,4 +62,4 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
     );
 };
 
-export default SearchList;
+export default observer(SearchList);

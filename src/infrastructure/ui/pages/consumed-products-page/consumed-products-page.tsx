@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { observer } from 'mobx-react';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
@@ -11,6 +11,9 @@ import ConsumedProductsPageStyle from '~/infrastructure/ui/pages/consumed-produc
 
 const ConsumedProductsPage = () => {
     const { goBack, consumedProductItems } = useConsumedProductsData();
+    useEffect(() => {
+        console.log(consumedProductItems);
+    }, [consumedProductItems]);
 
     return (
         <View style={ConsumedProductsPageStyle.container}>
