@@ -12,6 +12,7 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
 
 const HistoricalItem = ({
+    barcode,
     name,
     description,
     score,
@@ -21,8 +22,15 @@ const HistoricalItem = ({
     data,
     style
 }: HistoricalItemProps) => {
-    const { isExpended, onPress, animatedItemStyle, favouriteIcon, scoreColor, scorePercentage } =
-        useHistoricalItemData(isFavourite, score);
+    const {
+        isExpended,
+        onPress,
+        animatedItemStyle,
+        favouriteIcon,
+        scoreColor,
+        scorePercentage,
+        onPressConsumedProductsButton
+    } = useHistoricalItemData(isFavourite, score);
 
     return (
         <Animated.View style={[animatedItemStyle, HistoricalItemStyle.item, style]}>
@@ -113,7 +121,9 @@ const HistoricalItem = ({
                         </View>
                         <GenericButton
                             title="Ajouter aux produits consommés"
-                            onPress={() => {}}
+                            onPress={() => {
+                                onPressConsumedProductsButton(barcode);
+                            }}
                             style={{
                                 container: HistoricalItemStyle.addButtonContainer,
                                 text: HistoricalItemStyle.addButtonText

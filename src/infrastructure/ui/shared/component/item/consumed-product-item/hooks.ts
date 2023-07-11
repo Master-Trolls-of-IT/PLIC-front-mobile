@@ -1,8 +1,11 @@
 import { useMemo, useState } from 'react';
 import { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
+import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
 
 const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
+    const [itemId, setItemId] = useState('');
+    const { deleteConsumedProduct } = useConsumedProductPageService();
     const [isExpended, setIsExpended] = useState(false);
 
     const itemHeight = useSharedValue(100);
@@ -20,6 +23,10 @@ const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
         setIsExpended((prevState) => !prevState);
     };
 
+    // Delete the consumed product with associated id
+    const onPressDeleteConsumedProduct = (id: string) => {
+        void deleteConsumedProduct(id);
+    };
     const favouriteIcon = useMemo(() => {
         return isFavourite
             ? require('~/domain/entities/assets/icon/favourite-icon/favourite.svg')
@@ -27,12 +34,14 @@ const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
     }, [isFavourite]);
 
     return {
+        itemId: { input: itemId, dispatch: setItemId },
         isExpended,
         onPress,
         animatedItemStyle,
         favouriteIcon,
         scoreColor,
-        scorePercentage
+        scorePercentage,
+        onPressDeleteConsumedProduct
     };
 };
 

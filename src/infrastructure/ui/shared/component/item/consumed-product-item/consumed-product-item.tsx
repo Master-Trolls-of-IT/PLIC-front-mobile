@@ -9,8 +9,11 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
 import ConsumedProductItemStyle from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item-style';
 import useConsumedProductItemData from '~/infrastructure/ui/shared/component/item/consumed-product-item/hooks';
+import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
+import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 
 const ConsumedProductItem = ({
+    id,
     name,
     description,
     score,
@@ -20,8 +23,15 @@ const ConsumedProductItem = ({
     data,
     style
 }: ConsumedProductItemProps) => {
-    const { isExpended, onPress, animatedItemStyle, favouriteIcon, scoreColor, scorePercentage } =
-        useConsumedProductItemData(isFavourite, score);
+    const {
+        isExpended,
+        onPress,
+        animatedItemStyle,
+        favouriteIcon,
+        scoreColor,
+        scorePercentage,
+        onPressDeleteConsumedProduct
+    } = useConsumedProductItemData(isFavourite, score);
 
     return (
         <Animated.View style={[animatedItemStyle, ConsumedProductItemStyle.item, style]}>
@@ -114,6 +124,22 @@ const ConsumedProductItem = ({
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>{data?.salt} g</Text>
                             </View>
                         </View>
+                        <GenericButton
+                            title="Modifier la quantité"
+                            onPress={() => {}}
+                            style={{
+                                container: ConsumedProductItemStyle.addButtonContainer,
+                                text: ConsumedProductItemStyle.addButtonText
+                            }}
+                        />
+                        <GenericButton
+                            title="Supprimer ce produit"
+                            onPress={() => onPressDeleteConsumedProduct(id)}
+                            style={{
+                                container: ConsumedProductItemStyle.deleteButtonContainer,
+                                text: ConsumedProductItemStyle.addButtonText
+                            }}
+                        />
                     </Animated.View>
                 )}
             </TouchableOpacity>

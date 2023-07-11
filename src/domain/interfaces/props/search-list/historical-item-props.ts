@@ -1,6 +1,7 @@
 import { ProductNutrients } from '~/domain/interfaces/services/product-nutrients';
 
 export type HistoricalItemProps = {
+    barcode: string;
     name: string;
     description: string;
     score: number;

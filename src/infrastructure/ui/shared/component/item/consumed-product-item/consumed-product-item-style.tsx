@@ -163,6 +163,13 @@ const ConsumedProductItemStyle = StyleSheet.create({
 
     addButtonText: {
         fontSize: 18
+    },
+    deleteButtonContainer: {
+        backgroundColor: ColorEnum.ClassicRedIcon,
+        width: 329 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400),
+        marginTop: 10,
+        alignSelf: 'center'
     }
 });
 

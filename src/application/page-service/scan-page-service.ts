@@ -15,9 +15,11 @@ const useScanPageService = () => {
             .get(process.env.APP_API_ENDPOINT + 'product/' + inputBarCode)
             .then((response) => {
                 const productInfo = response.data.data as ProductInfo;
+                productInfo.barcode = inputBarCode;
                 productDispatch(productInfo);
 
                 addItem({
+                    barcode: inputBarCode,
                     name: 'Marque',
                     data: productInfo?.nutrients,
                     description: productInfo?.name,

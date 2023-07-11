@@ -4,5 +4,4 @@ export type ScanPageScannedItemProps = {
     scannedProduct: ProductInfo | undefined;
     toggleFavourite: () => void;
     onPressScanAgain: () => void;
-    itemBarcode: string;
 };

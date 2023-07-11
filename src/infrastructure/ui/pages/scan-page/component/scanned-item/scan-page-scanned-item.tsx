@@ -8,12 +8,7 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 
-const ScanPageScannedItem = ({
-    scannedProduct,
-    toggleFavourite,
-    onPressScanAgain,
-    itemBarcode
-}: ScanPageScannedItemProps) => {
+const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain }: ScanPageScannedItemProps) => {
     const {
         chooseRightEcoScoreImage,
         ecoScore,
@@ -123,7 +118,7 @@ const ScanPageScannedItem = ({
 
             <GenericButton
                 title="Ajouter aux produits consommés"
-                onPress={() => addConsumedProduct(itemBarcode)}
+                onPress={() => addConsumedProduct(scannedProduct?.barcode)}
                 style={{
                     container: ScanPageScannedItemStyle.buttonContainer,
                     text: ScanPageScannedItemStyle.buttonText

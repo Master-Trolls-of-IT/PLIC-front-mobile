@@ -1,8 +1,8 @@
+import { useCallback } from 'react';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
-import { useCallback } from 'react';
 
 const useConsumedProductPageService = () => {
     const {
@@ -19,6 +19,7 @@ const useConsumedProductPageService = () => {
             const consumedProductItems = [] as ConsumedProductItemProps[];
             for (const product of consumedProducts) {
                 consumedProductItems.push({
+                    id: product.id,
                     name: 'Marque',
                     data: product.nutrients,
                     description: product.name,
@@ -35,8 +36,19 @@ const useConsumedProductPageService = () => {
         }
     }, [Email, error]);
 
+    const deleteConsumedProduct = useCallback(
+        async (productId: string) => {
+            try {
+                await APIServices.DELETE(`product/consumed/${productId}/user/${Email}`);
+            } catch (err: any) {
+                error('useConsumedProductPageService', 'Could not delete consumed product', err.message);
+            }
+        },
+        [error]
+    );
     return {
-        getConsumedProducts
+        getConsumedProducts,
+        deleteConsumedProduct
     };
 };
 

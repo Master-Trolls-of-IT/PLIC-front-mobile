@@ -1,8 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
+import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
 
 const useHistoricalItemData = (isFavourite: boolean, score: number) => {
+    const { addConsumedProduct } = useScanPageScannedItemService();
     const [isExpended, setIsExpended] = useState(false);
 
     const itemHeight = useSharedValue(100);
@@ -20,6 +22,13 @@ const useHistoricalItemData = (isFavourite: boolean, score: number) => {
         setIsExpended((prevState) => !prevState);
     };
 
+    const onPressConsumedProductsButton = useCallback(
+        (barcode: string) => {
+            void addConsumedProduct(barcode);
+        },
+        [addConsumedProduct]
+    );
+
     const favouriteIcon = useMemo(() => {
         return isFavourite
             ? require('~/domain/entities/assets/icon/favourite-icon/favourite.svg')
@@ -32,7 +41,8 @@ const useHistoricalItemData = (isFavourite: boolean, score: number) => {
         animatedItemStyle,
         favouriteIcon,
         scoreColor,
-        scorePercentage
+        scorePercentage,
+        onPressConsumedProductsButton
     };
 };
 

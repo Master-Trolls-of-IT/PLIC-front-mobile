@@ -10,7 +10,6 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
     const [searchedText, setSearchedText] = useState('');
 
     const mockedData = useMemo(() => {
-        console.log('test', data);
         switch (inputType) {
             case ItemEnum.Meal:
                 return data as MealItemProps[];

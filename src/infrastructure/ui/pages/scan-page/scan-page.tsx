@@ -93,7 +93,6 @@ const ScanPage = () => {
                     scannedProduct={scannedProduct}
                     toggleFavourite={toggleFavourite}
                     onPressScanAgain={onPressScanAgain}
-                    itemBarcode={inputBarCode.input}
                 />
             )}
         </KeyboardAwareScrollView>

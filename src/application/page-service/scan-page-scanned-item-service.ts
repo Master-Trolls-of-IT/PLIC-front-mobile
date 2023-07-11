@@ -8,9 +8,9 @@ const useScanPageScannedItemService = () => {
         },
         LogStore: { error }
     } = useStore();
-    const addConsumedProduct = (barcode: string) => {
+    const addConsumedProduct = async (barcode: string | undefined) => {
         try {
-            APIServices.POST('product/consumed', { email: Email, barcode: barcode }).then((response) => {
+            await APIServices.POST('product/consumed', { email: Email, barcode: barcode }).then((response) => {
                 if (response.status != 200) {
                     error(
                         'useScanPageScannedItemService',
