@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
+import useScanPageService from '~/application/page-service/scan-page-service';
 
 const useScanPageScannedItemService = () => {
     const {
@@ -8,7 +10,10 @@ const useScanPageScannedItemService = () => {
         },
         LogStore: { error }
     } = useStore();
-    const addConsumedProduct = async (barcode: string | undefined) => {
+
+    const addConsumedProduct = async (barcode: string | undefined, dispatch: any) => {
+        dispatch(true);
+
         try {
             await APIServices.POST('product/consumed', { email: Email, barcode: barcode }).then((response) => {
                 if (response.status != 200) {

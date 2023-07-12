@@ -154,6 +154,19 @@ const ScanPageScannedItemStyle = StyleSheet.create({
 
     buttonText: {
         fontSize: 18
+    },
+
+    buttonContainerModale: {
+        backgroundColor: ColorEnum.ClassicGreen,
+        width: 115 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400),
+        marginTop: 8,
+        padding: 10,
+        alignSelf: 'center'
+    },
+
+    buttonTextModale: {
+        fontSize: 18
     }
 });
 
