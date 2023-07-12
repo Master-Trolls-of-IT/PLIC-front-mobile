@@ -21,7 +21,9 @@ const ConsumedProductItemStyle = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '95%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        paddingTop: 10,
+        paddingLeft: 5
     },
 
     imageContainer: {
