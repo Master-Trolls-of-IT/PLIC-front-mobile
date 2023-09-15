@@ -86,7 +86,7 @@ class LogStore {
                     }
                 ]
             };
-            await APIServices.POST(webhookUrl, payload);
+            await APIServices.POST(webhookUrl, payload, {}, true);
         } catch (error) {
             console.error('Failed to send Discord notification:', error);
         }

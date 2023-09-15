@@ -42,8 +42,13 @@ class APIServices implements IAPIServices {
         return this.getInstance().get(url, config);
     }
 
-    static async POST<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<GenericResponse<T>> {
-        return this.getInstance().post(url, data, config);
+    static async POST<T, D>(
+        url: string,
+        data?: D,
+        config?: AxiosRequestConfig,
+        discord?: boolean
+    ): Promise<GenericResponse<T>> {
+        return this.getInstance().post(url, data, config, discord);
     }
 
     static async PUT<D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<Response> {
@@ -67,11 +72,24 @@ class APIServices implements IAPIServices {
         return returnValue.data as GenericResponse<T>;
     }
 
-    async post<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<GenericResponse<T>> {
-        const newConfig = {
-            ...this.baseAxiosConfig,
-            ...config
-        } as AxiosRequestConfig;
+    async post<T, D>(
+        url: string,
+        data?: D,
+        config?: AxiosRequestConfig,
+        discord?: boolean
+    ): Promise<GenericResponse<T>> {
+        const newConfig = discord
+            ? {
+                  ...this.baseHeaders,
+                  ...config
+              }
+            : ({
+                  ...this.baseAxiosConfig,
+                  ...config
+              } as AxiosRequestConfig);
+        console.log(newConfig);
+        console.log(data);
+        console.log(url);
         const returnValue = await this.axiosInstance.post<T, AxiosResponse<T>, D>(url, data, newConfig);
 
         return returnValue.data as GenericResponse<T>;
