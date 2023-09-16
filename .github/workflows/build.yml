@@ -1,29 +1,32 @@
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+    pull_request:
+        types: [closed]
+        branches:
+            - main
+    push:
+        branches:
+            - Scan/Page-Produits-consommés
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup repo
-        uses: actions/checkout@v3
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup repo
+              uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          cache: yarn
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18.x
+                  cache: yarn
 
-      - name: Setup EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+            - name: Setup EAS
+              uses: expo/expo-github-action@v8
+              with:
+                  eas-version: latest
+                  token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Install dependencies
-        run: yarn install
+            - name: Install dependencies
+              run: yarn install
 
-      - name: Build app
-        run: eas build -p android --profile preview --non-interactive
+            - name: Build app
+              run: eas build -p android --profile preview --non-interactive

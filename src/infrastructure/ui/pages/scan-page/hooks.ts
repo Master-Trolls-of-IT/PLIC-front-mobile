@@ -27,16 +27,19 @@ const useScanPageData = (navigate: NavigateProps) => {
 
     const handleBarCodeScanned = ({ data }: { data: string }) => {
         void getProduct({ inputBarCode: data, productDispatch: setScannedProduct, errorDispatch: setErrorResponse });
-        setIsScanned(true);
+        setIsScanned(errorResponse == '');
     };
 
     const onPressHistoricalButton = () => {
         navigate(PagesEnum.HistoricalPage);
     };
 
+    const onPressConsumedProductsButton = () => {
+        navigate(PagesEnum.ConsumedProducts);
+    };
     const onPressSearchIcon = () => {
         void getProduct({ inputBarCode, productDispatch: setScannedProduct, errorDispatch: setErrorResponse });
-        setIsScanned(true);
+        setIsScanned(errorResponse == '');
     };
 
     const onPressScanAgain = () => {
@@ -54,6 +57,7 @@ const useScanPageData = (navigate: NavigateProps) => {
         inputBarCode: { input: inputBarCode, dispatch: setInputBarCode },
         inputResponse: { input: errorResponse, dispatch: setErrorResponse },
         onPressHistoricalButton,
+        onPressConsumedProductsButton,
         onPressSearchIcon,
         onPressScanAgain,
         toggleFavourite

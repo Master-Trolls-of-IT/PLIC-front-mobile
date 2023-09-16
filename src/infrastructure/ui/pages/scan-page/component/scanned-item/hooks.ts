@@ -1,9 +1,19 @@
+import { useState } from 'react';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
+import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
+import { useStore } from '~/infrastructure/controllers/store';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
-const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined) => {
+const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: any) => {
+    const {
+        NavigationStore: { navigate }
+    } = useStore();
+
+    const [modal, setModal] = useState(false);
+
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
-
+    const { addConsumedProduct } = useScanPageScannedItemService();
     const ecoScore =
         scannedProduct?.ecoscore && scannedProduct?.ecoscore != '' ? parseInt(scannedProduct.ecoscore) : -1;
 
@@ -22,7 +32,22 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined) => 
         }
     };
 
-    return { chooseRightEcoScoreImage, ecoScore, horizontalScrollLineAsset, unfilledFavouriteAsset };
+    const onPressModalButton = () => {
+        setModal(false);
+        navigate(PagesEnum.ConsumedProducts);
+        onPressScanAgain(false);
+    };
+
+    return {
+        modal,
+        setModal,
+        chooseRightEcoScoreImage,
+        ecoScore,
+        horizontalScrollLineAsset,
+        unfilledFavouriteAsset,
+        addConsumedProduct,
+        onPressModalButton
+    };
 };
 
 export default useScanPageScannedItemData;

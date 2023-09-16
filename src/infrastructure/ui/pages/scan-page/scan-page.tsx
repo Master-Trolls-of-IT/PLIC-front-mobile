@@ -25,6 +25,7 @@ const ScanPage = () => {
         inputBarCode,
         inputResponse,
         onPressHistoricalButton,
+        onPressConsumedProductsButton,
         onPressSearchIcon,
         onPressScanAgain,
         scannedProduct,
@@ -75,6 +76,14 @@ const ScanPage = () => {
                             text: ScanPageStyle.buttonText
                         }}
                         onPress={onPressHistoricalButton}
+                    />
+                    <GenericButton
+                        title={'Votre liste des produits consommés'}
+                        style={{
+                            container: ScanPageStyle.buttonContainer,
+                            text: ScanPageStyle.buttonText
+                        }}
+                        onPress={onPressConsumedProductsButton}
                     />
                 </View>
             </View>

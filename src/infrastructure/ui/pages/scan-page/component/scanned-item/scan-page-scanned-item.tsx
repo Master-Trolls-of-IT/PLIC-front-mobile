@@ -7,10 +7,21 @@ import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/compon
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
+import GenericInputWithEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/generic-input-with-end-text';
 
 const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain }: ScanPageScannedItemProps) => {
-    const { chooseRightEcoScoreImage, ecoScore, horizontalScrollLineAsset, unfilledFavouriteAsset } =
-        useScanPageScannedItemData(scannedProduct);
+    const {
+        modal,
+        setModal,
+        chooseRightEcoScoreImage,
+        ecoScore,
+        horizontalScrollLineAsset,
+        unfilledFavouriteAsset,
+        addConsumedProduct,
+        onPressModalButton
+    } = useScanPageScannedItemData(scannedProduct, onPressScanAgain);
 
     // TODO: Ajouter la marque du produit dans le parsing de la réponse de l'API OpenFOODFacts
     // TODO: Corriger le problèmes avec les glucides dans le parsing
@@ -47,13 +58,7 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                         style={{ alignSelf: 'center' }}
                     />
                 </View>
-                {ecoScore < 0 ? (
-                    <View style={ScanPageScannedItemStyle.ecoScoreContainer}>
-                        <Text style={ScanPageScannedItemStyle.ecoScoreText}>Eco-Score indisponible</Text>
-                    </View>
-                ) : (
-                    <GenericEcoScore ecoScore={ecoScore} />
-                )}
+                {ecoScore < 0 ? <GenericEcoScore ecoScore={26} /> : <GenericEcoScore ecoScore={ecoScore} />}
             </View>
 
             <View style={ScanPageScannedItemStyle.myIntakesContainer}>
@@ -113,12 +118,29 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
 
             <GenericButton
                 title="Ajouter aux produits consommés"
-                onPress={() => {}}
+                onPress={() => addConsumedProduct(scannedProduct?.barcode, setModal)}
                 style={{
                     container: ScanPageScannedItemStyle.buttonContainer,
                     text: ScanPageScannedItemStyle.buttonText
                 }}
             />
+
+            <CustomModal isVisible={modal} title={'Ajouter la quantité consommée'}>
+                <GenericInputWithEndText
+                    title={''}
+                    placeHolder={'100'}
+                    endText={'g'}
+                    type={InputEnum.Number}
+                    input={''}
+                    dispatch={() => {}}></GenericInputWithEndText>
+                <GenericButton
+                    title={'Valider'}
+                    onPress={onPressModalButton}
+                    style={{
+                        container: ScanPageScannedItemStyle.buttonContainerModale,
+                        text: ScanPageScannedItemStyle.buttonTextModale
+                    }}></GenericButton>
+            </CustomModal>
         </View>
     );
 };

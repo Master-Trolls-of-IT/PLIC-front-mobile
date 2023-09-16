@@ -15,6 +15,7 @@ import RecipePage from '~/infrastructure/ui/pages/recipes-page/recipe-page';
 import GamePage from '~/infrastructure/ui/pages/game-page/game-page';
 import HistoricalPage from '~/infrastructure/ui/pages/historical-page/historical-page';
 import { navigationRef } from '~/infrastructure/ui/shared/helper/navigation-ref';
+import ConsumedProductsPage from '~/infrastructure/ui/pages/consumed-products-page/consumed-products-page';
 
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
@@ -53,6 +54,11 @@ function App() {
                             <Stack.Screen
                                 name={PagesEnum.HistoricalPage}
                                 component={HistoricalPage}
+                                options={gestureEnabled}
+                            />
+                            <Stack.Screen
+                                name={PagesEnum.ConsumedProducts}
+                                component={ConsumedProductsPage}
                                 options={gestureEnabled}
                             />
                         </Stack.Group>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { observer } from 'mobx-react';
 import useSearchListData from '~/infrastructure/ui/shared/component/item/search-list/hooks';
 import SearchListStyle from '~/infrastructure/ui/shared/component/item/search-list/search-list-style';
 import HistoricalItem from '~/infrastructure/ui/shared/component/item/historical-item/historical-item';
@@ -8,6 +9,8 @@ import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { SearchListProps } from '~/domain/interfaces/props/search-list/search-list-props';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
+import ConsumedProductItem from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
     const { displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } = useSearchListData(
@@ -39,6 +42,14 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                         style={idx === 0 ? { marginTop: 0 } : {}}
                                     />
                                 );
+                            case ItemEnum.ConsumedProducts:
+                                return (
+                                    <ConsumedProductItem
+                                        key={idx}
+                                        {...(item as ConsumedProductItemProps)}
+                                        style={idx === 0 ? { marginTop: 0 } : {}}
+                                    />
+                                );
                         }
                     })
                 ) : (
@@ -51,4 +62,4 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
     );
 };
 
-export default SearchList;
+export default observer(SearchList);

@@ -8,5 +8,6 @@ export enum PagesEnum {
     HomePage = 'HomePage',
     RecipePage = 'RecipePage',
     GamePage = 'GamePage',
-    HistoricalPage = 'HistoricalPage'
+    HistoricalPage = 'HistoricalPage',
+    ConsumedProducts = 'ConsumedProductsPage'
 }

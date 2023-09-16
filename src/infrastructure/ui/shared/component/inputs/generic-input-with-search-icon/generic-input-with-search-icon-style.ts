@@ -3,6 +3,8 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GenericInputWithSearchIconStyle = StyleSheet.create({
     container: {
+        height: 43 * (Dimensions.get('screen').height / 900),
+        width: 360 * (Dimensions.get('screen').width / 400),
         justifyContent: 'center',
         marginTop: 4
     },
