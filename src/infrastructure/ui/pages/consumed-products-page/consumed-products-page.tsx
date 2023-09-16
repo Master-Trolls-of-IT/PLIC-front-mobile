@@ -222,69 +222,6 @@ const ConsumedProductsPage = () => {
                 sugar: 0.5
             },
             style: {}
-        },
-        {
-            id: '1',
-            name: 'Siggis',
-            description: 'Yaourt à la vanille',
-            score: 34,
-            image: 'https://images.openfoodfacts.org/images/products/302/329/003/0608/front_fr.88.400.jpg',
-            isFavourite: false,
-            toggleFavourite: () => {},
-            data: {
-                carbohydrates: 0,
-                energyKcal: 0,
-                energyKj: 0,
-                fat: 0,
-                fiber: 0,
-                proteins: 0,
-                salt: 0,
-                saturatedFat: 0,
-                sugar: 0
-            },
-            style: {}
-        },
-        {
-            id: '1',
-            name: 'Danette',
-            description: 'Crème dessert au chocolat',
-            score: 21,
-            image: 'https://images.openfoodfacts.org/images/products/303/349/127/9713/front_fr.22.400.jpg',
-            isFavourite: false,
-            toggleFavourite: () => {},
-            data: {
-                carbohydrates: 0,
-                energyKcal: 0,
-                energyKj: 0,
-                fat: 0,
-                fiber: 0,
-                proteins: 0,
-                salt: 0,
-                saturatedFat: 0,
-                sugar: 0
-            },
-            style: {}
-        },
-        {
-            id: '1',
-            name: 'Mikado',
-            description: 'Batonnets au chocolat',
-            score: 13,
-            image: 'https://images.openfoodfacts.org/images/products/301/776/068/6792/front_fr.184.400.jpg',
-            isFavourite: false,
-            toggleFavourite: () => {},
-            data: {
-                carbohydrates: 0,
-                energyKcal: 0,
-                energyKj: 0,
-                fat: 0,
-                fiber: 0,
-                proteins: 0,
-                salt: 0,
-                saturatedFat: 0,
-                sugar: 0
-            },
-            style: {}
         }
     ];
 

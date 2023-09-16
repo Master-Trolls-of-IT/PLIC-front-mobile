@@ -9,7 +9,6 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
 import ConsumedProductItemStyle from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item-style';
 import useConsumedProductItemData from '~/infrastructure/ui/shared/component/item/consumed-product-item/hooks';
-import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 
 const ConsumedProductItem = ({

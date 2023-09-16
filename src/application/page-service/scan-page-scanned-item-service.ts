@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
-import useScanPageService from '~/application/page-service/scan-page-service';
 
 const useScanPageScannedItemService = () => {
     const {
