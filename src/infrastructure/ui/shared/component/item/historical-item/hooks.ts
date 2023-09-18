@@ -24,6 +24,7 @@ const useHistoricalItemData = (isFavourite: boolean, score: number) => {
 
     const onPressConsumedProductsButton = useCallback(
         (barcode: string) => {
+            // TODO: Voir pourquoi il manque un dispatch
             void addConsumedProduct(barcode);
         },
         [addConsumedProduct]

@@ -13,7 +13,8 @@ const HistoricalItemStyle = StyleSheet.create({
 
     container: {
         height: '100%',
-        width: '100%'
+        width: '100%',
+        justifyContent: 'center'
     },
 
     header: {
@@ -21,7 +22,8 @@ const HistoricalItemStyle = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '95%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: -4
     },
 
     imageContainer: {
@@ -91,10 +93,10 @@ const HistoricalItemStyle = StyleSheet.create({
     },
 
     favourite: {
-        paddingTop: 10,
         paddingLeft: 5,
         width: '10%',
-        height: '50%'
+        height: '50%',
+        alignSelf: 'center'
     },
 
     myIntakesContainer: {
