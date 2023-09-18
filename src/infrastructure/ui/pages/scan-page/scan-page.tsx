@@ -51,6 +51,7 @@ const ScanPage = () => {
                     <BarCodeScanner
                         onBarCodeScanned={isScanned ? undefined : handleBarCodeScanned}
                         style={ScanPageStyle.scanBox}
+                        renderToHardwareTextureAndroid={false}
                     />
                 </View>
 
