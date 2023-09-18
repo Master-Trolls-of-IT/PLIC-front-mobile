@@ -12,7 +12,7 @@ import QuitApp from '~/infrastructure/ui/shared/helper/quit-app';
 import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
 
 const StartUpPage = () => {
-    const { slideAnimTop, slideAnimBottom, isErrorOnAPI, modalButtonStyle, startupPageLifecycle } =
+    const { slideAnimTop, slideAnimBottom, isErrorOnAPI, setIsErrorOnAPI, modalButtonStyle, startupPageLifecycle } =
         useStartupPageData();
 
     useEffectOnce(() => {
@@ -31,7 +31,11 @@ const StartUpPage = () => {
                 <StartUpPageBlobsBottom />
             </Animated.View>
 
-            <CustomModal isVisible={isErrorOnAPI} title={'Erreur de connexion aux services en ligne'}>
+            <CustomModal
+                isVisible={isErrorOnAPI}
+                dispatch={setIsErrorOnAPI}
+                title={'Erreur de connexion aux services en ligne'}
+                titleSize={25}>
                 <GenericButton title="Quitter" onPress={QuitApp} style={modalButtonStyle} />
             </CustomModal>
         </View>

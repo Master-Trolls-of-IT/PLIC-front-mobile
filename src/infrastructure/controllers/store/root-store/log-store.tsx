@@ -67,7 +67,7 @@ class LogStore {
         const customLog: CustomLog = { level, message, details, source, date };
         this.logs.push(customLog);
         if (level !== LogsLevelEnum.Info) {
-            this.sendDiscordNotification(this.discordWebhookURL, customLog);
+            void this.sendDiscordNotification(this.discordWebhookURL, customLog);
         }
     };
 

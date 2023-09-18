@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const CustomModalStyle = StyleSheet.create({
@@ -10,8 +10,9 @@ const CustomModalStyle = StyleSheet.create({
     },
 
     modalView: {
-        width: 0.8 * Dimensions.get('screen').width,
         padding: 15,
+        paddingLeft: 45,
+        paddingRight: 45,
         alignSelf: 'center',
         backgroundColor: ColorEnum.ClassicDarkBeige,
         borderRadius: 20,
@@ -24,6 +25,12 @@ const CustomModalStyle = StyleSheet.create({
         fontSize: 24,
         textAlign: 'center',
         color: ColorEnum.ClassicBrown
+    },
+
+    wrongAsset: {
+        position: 'absolute',
+        right: 5,
+        top: 5
     }
 });
 

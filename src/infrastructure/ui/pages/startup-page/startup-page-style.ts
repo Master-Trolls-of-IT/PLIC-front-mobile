@@ -5,6 +5,7 @@ const StartUpPageStyle = StyleSheet.create({
     container: {
         backgroundColor: ColorEnum.ClassicBeige,
         height: Dimensions.get('screen').height,
+        width: '100%',
         display: 'flex',
         justifyContent: 'space-between'
     },

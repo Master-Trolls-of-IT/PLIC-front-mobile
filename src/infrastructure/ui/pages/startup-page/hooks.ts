@@ -54,7 +54,7 @@ const useStartupPageData = () => {
                             setIsErrorOnAPI(true);
                         }
                     })
-                    .catch((err) => {
+                    .catch(() => {
                         setIsErrorOnAPI(true);
                     })
             );
@@ -73,6 +73,7 @@ const useStartupPageData = () => {
         slideAnimTop,
         slideAnimBottom,
         isErrorOnAPI,
+        setIsErrorOnAPI,
         modalButtonStyle,
         startupPageLifecycle
     };

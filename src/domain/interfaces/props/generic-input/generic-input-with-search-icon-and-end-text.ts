@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export type GenericInputWithSearchIconProps = {
+export type GenericInputWithSearchIconAndEndTextProps = {
     title?: string;
     placeHolder: string;
+    endText: string;
     style?: object;
     input: string;
     dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void);
