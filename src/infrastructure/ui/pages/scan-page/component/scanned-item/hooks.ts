@@ -3,8 +3,9 @@ import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
 import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-ecoScore-value';
 
-const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: any) => {
+const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: () => void) => {
     const {
         NavigationStore: { navigate }
     } = useStore();
@@ -14,10 +15,8 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
     const { addConsumedProduct } = useScanPageScannedItemService();
-    const ecoScore =
-        scannedProduct?.ecoscore && scannedProduct?.ecoscore != '' ? parseInt(scannedProduct.ecoscore) : -1;
 
-    const chooseRightEcoScoreImage = () => {
+    const chooseRightNutriScoreImage = () => {
         switch (scannedProduct?.nutriscore.grade) {
             case 'a':
                 return require('~/domain/entities/assets/icon/nutriscore-icon/nutriscore-a.svg');
@@ -35,14 +34,14 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
     const onPressModalButton = () => {
         setModal(false);
         navigate(PagesEnum.ConsumedProducts);
-        onPressScanAgain(false);
+        onPressScanAgain();
     };
 
     return {
         modal,
         setModal,
-        chooseRightEcoScoreImage,
-        ecoScore,
+        chooseRightNutriScoreImage,
+        ecoScore: chooseRightEcoScoreValue(scannedProduct?.ecoscore),
         horizontalScrollLineAsset,
         unfilledFavouriteAsset,
         addConsumedProduct,

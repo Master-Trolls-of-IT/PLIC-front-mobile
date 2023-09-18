@@ -55,7 +55,6 @@ const useStartupPageData = () => {
                         }
                     })
                     .catch((err) => {
-                        console.log(err);
                         setIsErrorOnAPI(true);
                     })
             );
