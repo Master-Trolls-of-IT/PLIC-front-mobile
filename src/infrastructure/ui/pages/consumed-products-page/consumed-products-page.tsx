@@ -10,7 +10,7 @@ import useConsumedProductsData from '~/infrastructure/ui/pages/consumed-products
 import ConsumedProductsPageStyle from '~/infrastructure/ui/pages/consumed-products-page/consumed-products-page-style';
 
 const ConsumedProductsPage = () => {
-    const { goBack } = useConsumedProductsData();
+    const { goBack, consumedProductItems } = useConsumedProductsData();
 
     return (
         <View style={ConsumedProductsPageStyle.container}>
@@ -25,7 +25,7 @@ const ConsumedProductsPage = () => {
                 containerStyle={ConsumedProductsPageStyle.headerContainer}
             />
 
-            <SearchList itemType={ItemEnum.ConsumedProducts} data={[]} />
+            <SearchList itemType={ItemEnum.ConsumedProducts} data={consumedProductItems} />
         </View>
     );
 };
