@@ -14,7 +14,7 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 const ConsumedProductItem = ({
     id,
     name,
-    description,
+    brand,
     score,
     image,
     isFavourite,
@@ -46,12 +46,12 @@ const ConsumedProductItem = ({
 
                     <View style={ConsumedProductItemStyle.titleField}>
                         <Text style={{ ...ConsumedProductItemStyle.title, ...useCustomFontInterBold().text }}>
-                            {name}
+                            {brand}
                         </Text>
                         <Text
                             style={{ ...ConsumedProductItemStyle.description, ...useCustomFontInterRegular().text }}
                             numberOfLines={3}>
-                            {description}
+                            {name}
                         </Text>
                     </View>
                     <View style={ConsumedProductItemStyle.scoreField}>

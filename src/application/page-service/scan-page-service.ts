@@ -4,6 +4,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 import { ScanPageServiceProps } from '~/domain/interfaces/props/scan-page-service-props';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
+import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-ecoScore-value';
 
 const useScanPageService = () => {
     const {
@@ -18,15 +19,14 @@ const useScanPageService = () => {
                 const productInfo = response.data.data as ProductInfo;
                 productInfo.barcode = inputBarCode;
                 productDispatch(productInfo);
-
                 addItem({
                     id: uuid.v4(),
                     barcode: inputBarCode,
-                    name: 'Marque',
+                    name: productInfo?.name,
+                    brand: productInfo?.brand,
                     data: productInfo?.nutrients,
-                    description: productInfo?.name,
                     image: productInfo?.image_url,
-                    score: parseInt(productInfo?.ecoscore ?? '0'),
+                    score: chooseRightEcoScoreValue(productInfo?.ecoscore),
                     isFavourite: false
                 } as HistoricalItemProps);
             })

@@ -4,7 +4,7 @@ export type HistoricalItemProps = {
     id: string;
     barcode: string;
     name: string;
-    description: string;
+    brand: string;
     score: number;
     image?: string;
     isFavourite: boolean;

@@ -15,7 +15,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 const HistoricalItem = ({
     barcode,
     name,
-    description,
+    brand,
     score,
     image,
     isFavourite,
@@ -50,11 +50,11 @@ const HistoricalItem = ({
                     </View>
 
                     <View style={HistoricalItemStyle.titleField}>
-                        <Text style={{ ...HistoricalItemStyle.title, ...useCustomFontInterBold().text }}>{name}</Text>
+                        <Text style={{ ...HistoricalItemStyle.title, ...useCustomFontInterBold().text }}>{brand}</Text>
                         <Text
                             style={{ ...HistoricalItemStyle.description, ...useCustomFontInterRegular().text }}
                             numberOfLines={3}>
-                            {description}
+                            {name}
                         </Text>
                     </View>
                     <View style={HistoricalItemStyle.scoreField}>
@@ -70,9 +70,7 @@ const HistoricalItem = ({
                                 animated={false}
                             />
                         </View>
-                        <Text style={{ ...HistoricalItemStyle.score, ...useCustomFontInterBold().text }}>
-                            {isNaN(score) ? 0 : score}
-                        </Text>
+                        <Text style={{ ...HistoricalItemStyle.score, ...useCustomFontInterBold().text }}>{score}</Text>
                     </View>
                     <TouchableOpacity
                         onPress={() => {
