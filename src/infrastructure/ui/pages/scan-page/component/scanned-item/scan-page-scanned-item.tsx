@@ -17,14 +17,14 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
         chooseRightNutriScoreImage,
         ecoScore,
         horizontalScrollLineAsset,
+        quantity,
+        setQuantity,
         unfilledFavouriteAsset,
         addConsumedProduct,
         onPressModalButton
     } = useScanPageScannedItemData(scannedProduct, onPressScanAgain);
 
-    // TODO: Ajouter la marque du produit dans le parsing de la réponse de l'API OpenFOODFacts
     // TODO: Corriger le problèmes avec les glucides dans le parsing
-    // TODO : Ajouter un state pour enregistrer la quantité entrée par l'utilisateur
     return (
         <View style={ScanPageScannedItemStyle.scanModal}>
             <TouchableOpacity onPress={toggleFavourite} style={ScanPageScannedItemStyle.favourite}>
@@ -133,8 +133,8 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                     placeHolder={'100'}
                     endText={'g'}
                     style={ScanPageScannedItemStyle.customModalChildren}
-                    input={''}
-                    dispatch={() => {}}
+                    input={quantity}
+                    dispatch={setQuantity}
                     onPressSearchIcon={onPressModalButton}></GenericInputWithSearchIconAndEndText>
             </CustomModal>
         </View>

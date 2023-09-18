@@ -11,6 +11,7 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
     } = useStore();
 
     const [modal, setModal] = useState(false);
+    const [quantity, setQuantity] = useState('');
 
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
@@ -43,6 +44,8 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
         chooseRightNutriScoreImage,
         ecoScore: chooseRightEcoScoreValue(scannedProduct?.ecoscore),
         horizontalScrollLineAsset,
+        quantity,
+        setQuantity,
         unfilledFavouriteAsset,
         addConsumedProduct,
         onPressModalButton

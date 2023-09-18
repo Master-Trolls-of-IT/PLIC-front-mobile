@@ -20,9 +20,10 @@ const useConsumedProductPageService = () => {
             for (const product of consumedProducts) {
                 consumedProductItems.push({
                     id: product.id,
-                    name: 'Marque',
+                    brand: product.brand,
                     data: product.nutrients,
-                    description: product.name,
+                    consumedQuantity: product.consumedQuantity ?? 0,
+                    name: product.name,
                     image: product.image_url,
                     score: parseInt(product.ecoscore ?? '0'),
                     isFavourite: false,

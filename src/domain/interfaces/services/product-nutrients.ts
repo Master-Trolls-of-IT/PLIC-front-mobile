@@ -7,6 +7,7 @@ export type ProductInfo = {
     image_url: string;
     nutriscore: NutriScore;
     ecoscore: string;
+    consumedQuantity?: number;
 };
 
 export type ProductNutrients = {

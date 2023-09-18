@@ -5,6 +5,7 @@ export type ConsumedProductItemProps = {
     name: string;
     brand: string;
     score: number;
+    consumedQuantity: number;
     image?: string;
     isFavourite: boolean;
     toggleFavourite: () => void;
