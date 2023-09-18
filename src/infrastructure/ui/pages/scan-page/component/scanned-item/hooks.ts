@@ -4,12 +4,12 @@ import useScanPageScannedItemService from '~/application/page-service/scan-page-
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
-const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: any) => {
+const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: () => void) => {
     const {
         NavigationStore: { navigate }
     } = useStore();
 
-    const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState(true);
 
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
@@ -35,7 +35,7 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
     const onPressModalButton = () => {
         setModal(false);
         navigate(PagesEnum.ConsumedProducts);
-        onPressScanAgain(false);
+        onPressScanAgain();
     };
 
     return {

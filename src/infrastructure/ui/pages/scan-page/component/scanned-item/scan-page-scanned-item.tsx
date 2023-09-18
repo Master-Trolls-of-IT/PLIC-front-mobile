@@ -8,8 +8,7 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
-import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import GenericInputWithEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/generic-input-with-end-text';
+import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
 
 const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain }: ScanPageScannedItemProps) => {
     const {
@@ -25,16 +24,15 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
 
     // TODO: Ajouter la marque du produit dans le parsing de la réponse de l'API OpenFOODFacts
     // TODO: Corriger le problèmes avec les glucides dans le parsing
+    // TODO : Ajouter un state pour enregistrer la quantité entrée par l'utilisateur
     return (
         <View style={ScanPageScannedItemStyle.scanModal}>
             <TouchableOpacity onPress={toggleFavourite} style={ScanPageScannedItemStyle.favourite}>
                 <CustomSvg asset={unfilledFavouriteAsset} height={35} width={35} />
             </TouchableOpacity>
-
             <TouchableOpacity onPress={onPressScanAgain} style={ScanPageScannedItemStyle.scrollLine}>
                 <CustomSvg asset={horizontalScrollLineAsset} height={25} width={60} />
             </TouchableOpacity>
-
             <View style={ScanPageScannedItemStyle.headerContainer}>
                 <View style={ScanPageScannedItemStyle.imageContainer}>
                     {scannedProduct?.image_url ? (
@@ -48,7 +46,6 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                     <Text style={ScanPageScannedItemStyle.nameText}>{scannedProduct?.name}</Text>
                 </View>
             </View>
-
             <View style={ScanPageScannedItemStyle.scoreContainer}>
                 <View style={ScanPageScannedItemStyle.nutriscoreContainer}>
                     <CustomSvg
@@ -60,7 +57,6 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                 </View>
                 {ecoScore < 0 ? <GenericEcoScore ecoScore={26} /> : <GenericEcoScore ecoScore={ecoScore} />}
             </View>
-
             <View style={ScanPageScannedItemStyle.myIntakesContainer}>
                 <View style={ScanPageScannedItemStyle.myIntakesTitleContainer}>
                     <Text style={{ ...ScanPageScannedItemStyle.myIntakesTitle, ...CustomFontInterBold().text }}>
@@ -115,7 +111,6 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                     </View>
                 </View>
             </View>
-
             <GenericButton
                 title="Ajouter aux produits consommés"
                 onPress={() => addConsumedProduct(scannedProduct?.barcode, setModal)}
@@ -125,21 +120,14 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                 }}
             />
 
-            <CustomModal isVisible={modal} title={'Ajouter la quantité consommée'}>
-                <GenericInputWithEndText
-                    title={''}
+            <CustomModal isVisible={modal} dispatch={setModal} title={'Ajouter la quantité\n consommée'} titleSize={22}>
+                <GenericInputWithSearchIconAndEndText
                     placeHolder={'100'}
                     endText={'g'}
-                    type={InputEnum.Number}
+                    style={ScanPageScannedItemStyle.customModalChildren}
                     input={''}
-                    dispatch={() => {}}></GenericInputWithEndText>
-                <GenericButton
-                    title={'Valider'}
-                    onPress={onPressModalButton}
-                    style={{
-                        container: ScanPageScannedItemStyle.buttonContainerModale,
-                        text: ScanPageScannedItemStyle.buttonTextModale
-                    }}></GenericButton>
+                    dispatch={() => {}}
+                    onPressSearchIcon={onPressModalButton}></GenericInputWithSearchIconAndEndText>
             </CustomModal>
         </View>
     );

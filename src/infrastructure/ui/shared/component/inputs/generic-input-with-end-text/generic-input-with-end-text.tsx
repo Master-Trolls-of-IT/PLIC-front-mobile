@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { GenericInputWithEndTextProps } from '~/domain/interfaces/props/generic-input/generic-input-with-end-text-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import inputWithEndTextStyle from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/generic-input-with-end-text-style';
+import GenericInputWithEndTextStyle from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/generic-input-with-end-text-style';
 import useInputData from '~/infrastructure/ui/shared/helper/input-hooks';
 
 const GenericInputWithEndText = ({
@@ -17,17 +17,19 @@ const GenericInputWithEndText = ({
 
     return (
         <View style={style}>
-            <Text style={{ ...inputWithEndTextStyle.title, ...CustomFontInterBold().text }}>{title}</Text>
-            <View style={inputWithEndTextStyle.container}>
+            <Text style={{ ...GenericInputWithEndTextStyle.title, ...CustomFontInterBold().text }}>{title}</Text>
+            <View style={GenericInputWithEndTextStyle.container}>
                 <TextInput
                     placeholder={placeHolder}
-                    style={{ ...inputWithEndTextStyle.border, ...CustomFontInterBold().text }}
+                    style={{ ...GenericInputWithEndTextStyle.border, ...CustomFontInterBold().text }}
                     onChangeText={onChangeText}
                     maxLength={3}
                     value={controlledInput}
                 />
 
-                <Text style={{ ...inputWithEndTextStyle.endText, ...CustomFontInterBold().text }}>{endText}</Text>
+                <Text style={{ ...GenericInputWithEndTextStyle.endText, ...CustomFontInterBold().text }}>
+                    {endText}
+                </Text>
             </View>
         </View>
     );

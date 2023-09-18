@@ -19,7 +19,9 @@ const GenericInputWithSearchIcon = ({
 
     return (
         <View style={style}>
-            <Text style={{ ...GenericInputWithSearchIconStyle.title, ...CustomFontInterBold().text }}>{title}</Text>
+            {title && (
+                <Text style={{ ...GenericInputWithSearchIconStyle.title, ...CustomFontInterBold().text }}>{title}</Text>
+            )}
             <View style={GenericInputWithSearchIconStyle.container}>
                 <TextInput
                     placeholder={placeHolder}
