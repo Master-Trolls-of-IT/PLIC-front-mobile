@@ -45,7 +45,7 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                 </View>
                 <View style={ScanPageScannedItemStyle.headerTextContainer}>
                     <Text style={{ ...CustomFontInterBold().text, ...ScanPageScannedItemStyle.brandText }}>
-                        {scannedProduct?.brand ?? 'Marque'}
+                        {scannedProduct?.brand ? scannedProduct?.brand : 'Marque'}
                     </Text>
                     <Text style={ScanPageScannedItemStyle.nameText}>{scannedProduct?.name}</Text>
                 </View>
