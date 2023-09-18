@@ -1,4 +1,5 @@
 import axios from 'axios';
+import uuid from 'react-native-uuid';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ScanPageServiceProps } from '~/domain/interfaces/props/scan-page-service-props';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
@@ -19,14 +20,14 @@ const useScanPageService = () => {
                 productInfo.barcode = inputBarCode;
                 productDispatch(productInfo);
                 addItem({
+                    id: uuid.v4(),
                     barcode: inputBarCode,
                     name: productInfo?.name,
                     brand: productInfo?.brand,
                     data: productInfo?.nutrients,
                     image: productInfo?.image_url,
                     score: chooseRightEcoScoreValue(productInfo?.ecoscore),
-                    isFavourite: false,
-                    toggleFavourite: () => {}
+                    isFavourite: false
                 } as HistoricalItemProps);
             })
             .catch(() => {
