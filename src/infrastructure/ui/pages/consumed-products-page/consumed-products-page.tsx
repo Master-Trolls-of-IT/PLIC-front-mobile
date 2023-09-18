@@ -8,7 +8,6 @@ import SearchList from '~/infrastructure/ui/shared/component/item/search-list/se
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import useConsumedProductsData from '~/infrastructure/ui/pages/consumed-products-page/hooks';
 import ConsumedProductsPageStyle from '~/infrastructure/ui/pages/consumed-products-page/consumed-products-page-style';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
 
 const ConsumedProductsPage = () => {
     const { goBack } = useConsumedProductsData();

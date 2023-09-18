@@ -5,7 +5,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-ecoScore-value';
 
-const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: any) => {
+const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: () => void) => {
     const {
         NavigationStore: { navigate }
     } = useStore();
@@ -34,7 +34,7 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
     const onPressModalButton = () => {
         setModal(false);
         navigate(PagesEnum.ConsumedProducts);
-        onPressScanAgain(false);
+        onPressScanAgain();
     };
 
     return {
