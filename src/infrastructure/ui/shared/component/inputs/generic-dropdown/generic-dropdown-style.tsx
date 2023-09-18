@@ -4,7 +4,8 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 const GenericDropDownStyle = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        marginTop: 3
+        marginTop: 3,
+        overflow: 'hidden'
     },
 
     title: {
@@ -43,7 +44,8 @@ const GenericDropDownStyle = StyleSheet.create({
         borderWidth: 2,
         borderColor: ColorEnum.ClassicBrown,
         borderRadius: 20,
-        backgroundColor: ColorEnum.ClassicDarkBeige
+        backgroundColor: ColorEnum.ClassicDarkBeige,
+        overflow: 'hidden'
     },
 
     overlay: {
@@ -58,12 +60,29 @@ const GenericDropDownStyle = StyleSheet.create({
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
         bottom: -1,
-        borderColor: ColorEnum.ClassicBrown
+        borderColor: ColorEnum.ClassicBrown,
+        overflow: 'hidden'
     },
 
     itemText: {
         fontSize: 12 * (Dimensions.get('screen').height / 725),
         color: ColorEnum.ClassicBrown
+    },
+
+    selectedItem: {
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderBottomWidth: 0.3,
+        borderBottomEndRadius: 10,
+        borderBottomStartRadius: 10,
+        bottom: -1,
+        backgroundColor: ColorEnum.ClassicBrown,
+        borderColor: ColorEnum.ClassicBrown
+    },
+
+    selectedItemText: {
+        fontSize: 12 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicBeige
     }
 });
 

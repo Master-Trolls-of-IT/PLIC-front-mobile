@@ -14,7 +14,7 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
     const {
         modal,
         setModal,
-        chooseRightEcoScoreImage,
+        chooseRightNutriScoreImage,
         ecoScore,
         horizontalScrollLineAsset,
         unfilledFavouriteAsset,
@@ -42,20 +42,28 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                     )}
                 </View>
                 <View style={ScanPageScannedItemStyle.headerTextContainer}>
-                    <Text style={{ ...CustomFontInterBold().text, ...ScanPageScannedItemStyle.brandText }}>Marque</Text>
+                    <Text style={{ ...CustomFontInterBold().text, ...ScanPageScannedItemStyle.brandText }}>
+                        {scannedProduct?.brand ? scannedProduct?.brand : 'Marque'}
+                    </Text>
                     <Text style={ScanPageScannedItemStyle.nameText}>{scannedProduct?.name}</Text>
                 </View>
             </View>
             <View style={ScanPageScannedItemStyle.scoreContainer}>
                 <View style={ScanPageScannedItemStyle.nutriscoreContainer}>
                     <CustomSvg
-                        asset={chooseRightEcoScoreImage()}
+                        asset={chooseRightNutriScoreImage()}
                         height={150}
                         width={150}
                         style={{ alignSelf: 'center' }}
                     />
                 </View>
-                {ecoScore < 0 ? <GenericEcoScore ecoScore={26} /> : <GenericEcoScore ecoScore={ecoScore} />}
+                {ecoScore === 0 ? (
+                    <View style={ScanPageScannedItemStyle.ecoScoreContainer}>
+                        <Text style={ScanPageScannedItemStyle.ecoScoreText}>Eco-Score indisponible</Text>
+                    </View>
+                ) : (
+                    <GenericEcoScore ecoScore={ecoScore} />
+                )}
             </View>
             <View style={ScanPageScannedItemStyle.myIntakesContainer}>
                 <View style={ScanPageScannedItemStyle.myIntakesTitleContainer}>
