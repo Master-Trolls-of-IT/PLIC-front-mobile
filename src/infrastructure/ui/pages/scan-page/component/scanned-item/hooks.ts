@@ -9,7 +9,7 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
         NavigationStore: { navigate }
     } = useStore();
 
-    const [modal, setModal] = useState(true);
+    const [modal, setModal] = useState(false);
 
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
