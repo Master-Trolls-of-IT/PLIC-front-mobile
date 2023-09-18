@@ -10,17 +10,18 @@ import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
+import { useStore } from '~/infrastructure/controllers/store';
 
 const HistoricalItem = ({
     barcode,
     name,
-    description,
+    brand,
     score,
     image,
     isFavourite,
-    toggleFavourite,
     data,
-    style
+    style,
+    id
 }: HistoricalItemProps) => {
     const {
         isExpended,
@@ -31,6 +32,10 @@ const HistoricalItem = ({
         scorePercentage,
         onPressConsumedProductsButton
     } = useHistoricalItemData(isFavourite, score);
+
+    const {
+        DataStore: { toggleFavorite }
+    } = useStore();
 
     return (
         <Animated.View style={[animatedItemStyle, HistoricalItemStyle.item, style]}>
@@ -45,11 +50,11 @@ const HistoricalItem = ({
                     </View>
 
                     <View style={HistoricalItemStyle.titleField}>
-                        <Text style={{ ...HistoricalItemStyle.title, ...useCustomFontInterBold().text }}>{name}</Text>
+                        <Text style={{ ...HistoricalItemStyle.title, ...useCustomFontInterBold().text }}>{brand}</Text>
                         <Text
                             style={{ ...HistoricalItemStyle.description, ...useCustomFontInterRegular().text }}
                             numberOfLines={3}>
-                            {description}
+                            {name}
                         </Text>
                     </View>
                     <View style={HistoricalItemStyle.scoreField}>
@@ -65,11 +70,13 @@ const HistoricalItem = ({
                                 animated={false}
                             />
                         </View>
-                        <Text style={{ ...HistoricalItemStyle.score, ...useCustomFontInterBold().text }}>
-                            {isNaN(score) ? 0 : score}
-                        </Text>
+                        <Text style={{ ...HistoricalItemStyle.score, ...useCustomFontInterBold().text }}>{score}</Text>
                     </View>
-                    <TouchableOpacity onPress={toggleFavourite} style={HistoricalItemStyle.favourite}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            toggleFavorite(id);
+                        }}
+                        style={HistoricalItemStyle.favourite}>
                         <CustomSvg asset={favouriteIcon} height={30} width={30} />
                     </TouchableOpacity>
                 </View>

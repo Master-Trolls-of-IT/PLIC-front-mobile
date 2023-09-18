@@ -46,11 +46,20 @@ const useGenericDropDownData = (
         setVisible(false);
     };
 
-    const renderItem = ({ item }: { item: { label: string; value: string } }): ReactElement => (
-        <TouchableOpacity style={GenericDropDownStyle.item} onPress={() => onItemPress(item)}>
-            <Text style={GenericDropDownStyle.itemText}>{item.label}</Text>
-        </TouchableOpacity>
-    );
+    const renderItem = ({ item }: { item: { label: string; value: string } }): ReactElement => {
+        if (item.label === selected.label && item.value === selected.value)
+            return (
+                <TouchableOpacity style={GenericDropDownStyle.selectedItem} onPress={() => onItemPress(item)}>
+                    <Text style={GenericDropDownStyle.selectedItemText}>{item.label}</Text>
+                </TouchableOpacity>
+            );
+        else
+            return (
+                <TouchableOpacity style={GenericDropDownStyle.item} onPress={() => onItemPress(item)}>
+                    <Text style={GenericDropDownStyle.itemText}>{item.label}</Text>
+                </TouchableOpacity>
+            );
+    };
 
     const renderDropdown = (): ReactElement => {
         return (

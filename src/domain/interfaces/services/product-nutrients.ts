@@ -1,5 +1,6 @@
 export type ProductInfo = {
     id: string;
+    brand: string;
     name: string;
     barcode: string;
     nutrients: ProductNutrients;

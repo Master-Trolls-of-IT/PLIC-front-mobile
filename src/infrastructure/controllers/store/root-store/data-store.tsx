@@ -14,7 +14,8 @@ class DataStore {
             {
                 history: observable,
 
-                addItem: action
+                addItem: action,
+                toggleFavorite: action
             },
             { autoBind: true }
         );
@@ -28,6 +29,13 @@ class DataStore {
 
     addItem = (newItem: HistoricalItemProps) => {
         this.history = [newItem].concat(this.history);
+    };
+
+    toggleFavorite = (id: string) => {
+        const index = this.history.findIndex((elem) => elem.id === id);
+        const copy = [...this.history];
+        copy[index].isFavourite = !copy[index].isFavourite;
+        this.history = [...copy];
     };
 }
 
