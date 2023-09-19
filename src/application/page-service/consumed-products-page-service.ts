@@ -13,19 +13,20 @@ const useConsumedProductPageService = () => {
     } = useStore();
     const getConsumedProducts = useCallback(async () => {
         try {
+            type ConsumedProduct = { product: ProductInfo; quantity: number };
             const encodedEmail = encodeURIComponent(Email);
             const response = await APIServices.GET(`product/consumed/user/${encodedEmail}`);
-            const consumedProducts = response.data as ProductInfo[];
+            const consumedProducts = response.data as ConsumedProduct[];
             const consumedProductItems = [] as ConsumedProductItemProps[];
-            for (const product of consumedProducts) {
+            for (const consumedProduct of consumedProducts) {
                 consumedProductItems.push({
-                    id: product.id,
-                    brand: product.brand,
-                    data: product.nutrients,
-                    consumedQuantity: product.consumedQuantity ?? 0,
-                    name: product.name,
-                    image: product.image_url,
-                    score: parseInt(product.ecoscore ?? '0'),
+                    id: consumedProduct.product.id,
+                    brand: consumedProduct.product.brand,
+                    data: consumedProduct.product.nutrients,
+                    consumedQuantity: consumedProduct.quantity ?? 0,
+                    name: consumedProduct.product.name,
+                    image: consumedProduct.product.image_url,
+                    score: parseInt(consumedProduct.product.ecoscore ?? '0'),
                     isFavourite: false,
                     toggleFavourite: () => {}
                 });

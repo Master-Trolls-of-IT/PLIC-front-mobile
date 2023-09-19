@@ -7,11 +7,12 @@ import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-r
 
 const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: () => void) => {
     const {
-        NavigationStore: { navigate }
+        NavigationStore: { navigate },
+        LogStore: { error }
     } = useStore();
 
     const [modal, setModal] = useState(false);
-    const [quantity, setQuantity] = useState('');
+    const [quantity, setQuantity] = useState('100');
 
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
@@ -32,10 +33,21 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
         }
     };
 
-    const onPressModalButton = () => {
+    const onPressModalButton = async () => {
         setModal(false);
-        navigate(PagesEnum.ConsumedProducts);
-        onPressScanAgain();
+        try {
+            await addConsumedProduct(scannedProduct?.barcode, quantity);
+            navigate(PagesEnum.ConsumedProducts);
+            onPressScanAgain();
+        } catch (err) {
+            if (err instanceof Error) {
+                error(
+                    'onPressModalButton > scanned-item ',
+                    'Unknown error while adding consumed Product to database',
+                    err.message
+                );
+            }
+        }
     };
 
     return {
