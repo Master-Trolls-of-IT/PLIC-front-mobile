@@ -15,6 +15,7 @@ const ConsumedProductItem = ({
     id,
     name,
     brand,
+    consumedQuantity,
     score,
     image,
     isFavourite,
@@ -82,7 +83,9 @@ const ConsumedProductItem = ({
                         exiting={FadeOutUp.duration(300)}
                         style={ConsumedProductItemStyle.myIntakesContainer}>
                         <View style={ConsumedProductItemStyle.myIntakesTitleContainer}>
-                            <Text style={ConsumedProductItemStyle.myIntakesTitle}>Apports pour 100g</Text>
+                            <Text style={ConsumedProductItemStyle.myIntakesTitle}>
+                                Apports pour {consumedQuantity}g
+                            </Text>
                         </View>
 
                         <View style={ConsumedProductItemStyle.myIntakesNutrientsContainer}>

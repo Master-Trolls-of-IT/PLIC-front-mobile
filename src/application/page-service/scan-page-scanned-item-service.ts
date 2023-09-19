@@ -9,19 +9,19 @@ const useScanPageScannedItemService = () => {
         LogStore: { error }
     } = useStore();
 
-    const addConsumedProduct = async (barcode: string | undefined, dispatch: any) => {
-        dispatch(true);
-
+    const addConsumedProduct = async (barcode: string | undefined, quantity: string) => {
         try {
-            await APIServices.POST('product/consumed', { email: Email, barcode: barcode }).then((response) => {
-                if (response.status != 200) {
-                    error(
-                        'useScanPageScannedItemService',
-                        'Could not add product to consumed products',
-                        response.message
-                    );
+            await APIServices.POST('product/consumed', { email: Email, barcode: barcode, quantity: quantity }).then(
+                (response) => {
+                    if (response.status != 200) {
+                        error(
+                            'useScanPageScannedItemService',
+                            'Could not add product to consumed products',
+                            response.message
+                        );
+                    }
                 }
-            });
+            );
         } catch (err: any) {
             error('useScanPageScannedItemService', 'Could not add product to consumed products', err.message);
         }

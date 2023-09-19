@@ -20,7 +20,6 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
         quantity,
         setQuantity,
         unfilledFavouriteAsset,
-        addConsumedProduct,
         onPressModalButton
     } = useScanPageScannedItemData(scannedProduct, onPressScanAgain);
 
@@ -121,7 +120,7 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
             </View>
             <GenericButton
                 title="Ajouter aux produits consommés"
-                onPress={() => addConsumedProduct(scannedProduct?.barcode, setModal)}
+                onPress={() => setModal(true)}
                 style={{
                     container: ScanPageScannedItemStyle.buttonContainer,
                     text: ScanPageScannedItemStyle.buttonText
