@@ -32,6 +32,7 @@ const GenericInputWithSearchIconAndEndText = ({
                     onChangeText={onChangeText}
                     maxLength={4}
                     value={controlledInput}
+                    placeholderTextColor={'#6D4C412B'}
                 />
 
                 <Text style={{ ...GenericInputWithSearchIconAndEndTextStyle.endText, ...CustomFontInterBold().text }}>
