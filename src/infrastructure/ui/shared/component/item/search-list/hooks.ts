@@ -27,7 +27,6 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
     useEffect(() => {
         setDisplayData(data);
     }, [data]);
-    console.log('displayData', displayData[0]);
     const onSearch = (search: string) => {
         setSearchedText(search);
         setDisplayData((prevState) => {
