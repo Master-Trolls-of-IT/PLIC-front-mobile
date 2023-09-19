@@ -1,3 +1,5 @@
+import { useCallback, useRef, useState } from 'react';
+import { Animated } from 'react-native';
 import { useStore } from '~/infrastructure/controllers/store';
 import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
 import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
@@ -52,13 +54,62 @@ const useHomePageData = () => {
 
     const anecdoteObject = anecdotesObject[getRandomNumberInArrayLength(anecdotesObject.length)];
 
+    const slideAnimBottom = useRef(new Animated.Value(1000)).current;
+
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
+    const [isSettingsLoading, setIsSettingsLoading] = useState(false);
+
+    const handleOpenSettings = useCallback(() => {
+        setIsSettingsLoading(true);
+        setIsSettingsOpen(true);
+
+        const slideFromBottom = () => {
+            Animated.sequence([
+                Animated.timing(slideAnimBottom, {
+                    toValue: 0,
+                    duration: 1200,
+                    delay: 1500,
+                    useNativeDriver: true
+                })
+            ]).start();
+        };
+
+        slideFromBottom();
+        setTimeout(() => {
+            setIsSettingsLoading(false);
+        }, 1600);
+    }, [slideAnimBottom]);
+
+    const handleCloseSettings = useCallback(() => {
+        const slideToBottom = () => {
+            Animated.sequence([
+                Animated.timing(slideAnimBottom, {
+                    toValue: 1000,
+                    duration: 1000,
+                    useNativeDriver: true
+                })
+            ]).start();
+        };
+
+        slideToBottom();
+        setTimeout(() => {
+            setIsSettingsOpen(false);
+        }, 1000);
+    }, [slideAnimBottom]);
+
     return {
         anecdoteObject,
         dailyNutrientsGoal,
         dailyNutrientsEarned,
         username,
         chooseRightDynamicImage,
-        ecoScore
+        ecoScore,
+        isSettingsOpen,
+        handleOpenSettings,
+        handleCloseSettings,
+        slideAnimBottom,
+        isSettingsLoading
     };
 };
 
