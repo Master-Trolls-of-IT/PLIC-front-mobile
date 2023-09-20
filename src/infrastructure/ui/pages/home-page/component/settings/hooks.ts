@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { HomePageContext } from '~/infrastructure/ui/pages/home-page/context';
 import { useStore } from '~/infrastructure/controllers/store';
