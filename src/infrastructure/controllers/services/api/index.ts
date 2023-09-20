@@ -59,8 +59,8 @@ class APIServices implements IAPIServices {
         return this.getInstance().delete(url, config);
     }
 
-    static async PATCH(url: string, config?: AxiosRequestConfig): Promise<Response> {
-        return this.getInstance().patch(url, config);
+    static async PATCH<T, D>(url: string, data: D, config?: AxiosRequestConfig): Promise<GenericResponse<D>> {
+        return this.getInstance().patch<T, D>(url, data, config);
     }
 
     async get<T>(url: string, config?: AxiosRequestConfig): Promise<GenericResponse<T>> {
@@ -110,13 +110,13 @@ class APIServices implements IAPIServices {
         return returnValue.data as GenericResponse<T>;
     }
 
-    async patch(url: string, config?: AxiosRequestConfig): Promise<Response> {
+    async patch<T, D>(url: string, data?: D, config?: AxiosRequestConfig): Promise<GenericResponse<D>> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
-        const returnValue = await this.axiosInstance.patch(url, newConfig);
-        return returnValue.data as Response;
+        const returnValue = await this.axiosInstance.patch<T, AxiosResponse<D>, D>(url, data, newConfig);
+        return returnValue.data as GenericResponse<D>;
     }
 }
 

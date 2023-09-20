@@ -8,6 +8,7 @@ import passwordHashing from '~/infrastructure/controllers/password-hashing';
 import { useStore } from '~/infrastructure/controllers/store';
 import useLoginPageService from '~/application/page-service/login-page-service';
 import { UserData } from '~/domain/interfaces/services/user-data';
+import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
 
 const useLoginPageData = () => {
     const [inputEmailString, setInputEmail] = useState('');
@@ -55,12 +56,15 @@ const useLoginPageData = () => {
                     } else {
                         warn('useLoginPageData', 'Received an empty access or refresh token', '');
                     }
-                    setUserData(response.data);
+                    const userDataCopy = response.data;
+
+                    userDataCopy.Birthdate = formatTimpstampToDate(userDataCopy.Birthdate);
+                    setUserData(userDataCopy);
                     navigate(PagesEnum.HomePage);
                 } else {
                     setErrorOnServer(true);
                 }
-            } catch (error) {
+            } catch (err) {
                 setErrorOnLogin(true);
             }
         } else {

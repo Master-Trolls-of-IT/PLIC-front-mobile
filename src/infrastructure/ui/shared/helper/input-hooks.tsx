@@ -12,13 +12,16 @@ import GenericInputStyle from '~/infrastructure/ui/shared/component/inputs/gener
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { isNumber } from '~/infrastructure/ui/shared/helper/is-number';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
+import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
 
 const useInputData = ({
     type,
-    dispatch
+    dispatch,
+    input
 }: {
     type: InputEnum;
     dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void);
+    input: string;
 }) => {
     const [showTooltip, setShowTooltip] = useState(false);
     const [secureTextEntry, setSecureTextEntry] = useState(type == InputEnum.Password);
@@ -87,6 +90,10 @@ const useInputData = ({
         setValidInput(isValid);
         if (isValid) setShowTooltip(false);
     };
+
+    useEffectOnce(() => {
+        onChangeText(input);
+    });
 
     return {
         controlledInput,

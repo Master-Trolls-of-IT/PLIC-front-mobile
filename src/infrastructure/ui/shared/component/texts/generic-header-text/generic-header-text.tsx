@@ -5,7 +5,7 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import CustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular';
 import GenericHeaderTextStyle from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text-style';
 import HomePageNotificationButton from '~/infrastructure/ui/pages/home-page/component/buttons/home-page-notifications';
-import HomePageSettingsButton from '~/infrastructure/ui/pages/home-page/component/buttons/home-page-settings';
+import HomePageSettingsButton from '~/infrastructure/ui/pages/home-page/component/buttons/home-page-settings-button';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 
 const GenericHeaderText = ({

@@ -31,7 +31,7 @@ const GenericInput = ({
         showTooltip,
         filterIcon,
         validInput
-    } = useInputData({ type, dispatch });
+    } = useInputData({ type, dispatch, input });
 
     const { DropdownButton, renderDropdown, toggleDropdown } = useGenericDropDownData(onSelectFilter, filterOptions);
 

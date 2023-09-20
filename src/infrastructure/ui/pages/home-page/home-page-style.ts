@@ -12,7 +12,7 @@ const HomePageStyle = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'column',
-        height: Dimensions.get('screen').height - 90 * (Dimensions.get('screen').height / 900),
+        height: '100%',
         gap: 7
     },
 
@@ -61,6 +61,31 @@ const HomePageStyle = StyleSheet.create({
     basketImage: {
         marginBottom: Dimensions.get('screen').height / 40,
         alignSelf: 'center'
+    },
+
+    settingsPage: {
+        display: 'flex',
+        position: 'absolute',
+        width: '102%',
+        alignSelf: 'center',
+        backgroundColor: ColorEnum.ClassicBeige,
+        bottom: 0,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        borderWidth: 4,
+        borderColor: ColorEnum.ClassicBrown,
+        borderBottomWidth: 0,
+        height: '94%'
+    },
+    settingsPageLoading: {
+        position: 'absolute',
+        width: Dimensions.get('screen').width,
+        height: Dimensions.get('screen').height,
+        backgroundColor: ColorEnum.ExtraOpaqueGrey,
+        top: 0,
+        right: 0,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
