@@ -3,6 +3,7 @@ import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
+import consumedProductItem from "~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item";
 
 const useConsumedProductPageService = () => {
     const {
@@ -41,10 +42,29 @@ const useConsumedProductPageService = () => {
     const deleteConsumedProduct = useCallback(
         async (productId: string) => {
             try {
-                await APIServices.DELETE(`product/consumed/${productId}/user/${Email}`);
+                const response = await APIServices.DELETE<ConsumedProduct[]>(`product/consumed/${productId}/user/${Email}`);
+                type ConsumedProduct = { product: ProductInfo; quantity: number };
+                const consumedProducts = response.data as ConsumedProduct[];
+                const consumedProductItems = [] as ConsumedProductItemProps[];
+                for (const consumedProduct of consumedProducts) {
+                    consumedProductItems.push({
+                        id: consumedProduct.product.id,
+                        brand: consumedProduct.product.brand,
+                        data: consumedProduct.product.nutrients,
+                        consumedQuantity: consumedProduct.quantity ?? 0,
+                        name: consumedProduct.product.name,
+                        image: consumedProduct.product.image_url,
+                        score: parseInt(consumedProduct.product.ecoscore ?? '0'),
+                        isFavourite: false,
+                        toggleFavourite: () => {}
+                    });
+                }
+                return consumedProductItems;
+
             } catch (err: any) {
                 error('useConsumedProductPageService', 'Could not delete consumed product', err.message);
             }
+
         },
         [error]
     );
