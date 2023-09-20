@@ -5,18 +5,18 @@ import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/
 
 const useConsumedProductsData = () => {
     const {
-        NavigationStore: { goBack }
+        NavigationStore: { goBack },
+        DataStore: { consumedProducts, setConsumedProducts }
     } = useStore();
-    const [consumedProductItems, setConsumedProductItems] = useState<ConsumedProductItemProps[]>([]);
 
     const { getConsumedProducts } = useConsumedProductPageService();
 
     useEffect(() => {
         let ignore = false;
-        setConsumedProductItems([]);
+        setConsumedProducts([])
         getConsumedProducts().then((result) => {
             if (!ignore) {
-                setConsumedProductItems(result);
+                setConsumedProducts(result);
             }
         });
         return () => {
@@ -27,7 +27,7 @@ const useConsumedProductsData = () => {
     return {
         goBack,
         getConsumedProducts,
-        consumedProductItems
+        consumedProducts
     };
 };
 

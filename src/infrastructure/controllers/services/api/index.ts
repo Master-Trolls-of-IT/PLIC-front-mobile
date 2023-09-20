@@ -55,7 +55,7 @@ class APIServices implements IAPIServices {
         return this.getInstance().put(url, data, config);
     }
 
-    static async DELETE(url: string, config?: AxiosRequestConfig): Promise<Response> {
+    static async DELETE<T>(url: string, config?: AxiosRequestConfig): Promise<GenericResponse<T>> {
         return this.getInstance().delete(url, config);
     }
 
@@ -101,13 +101,13 @@ class APIServices implements IAPIServices {
         return returnValue.data as Response;
     }
 
-    async delete(url: string, config?: AxiosRequestConfig): Promise<Response> {
+    async delete<T>(url: string, config?: AxiosRequestConfig): Promise<GenericResponse<T>> {
         const newConfig = {
             ...this.baseAxiosConfig,
             ...config
         } as AxiosRequestConfig;
         const returnValue = await this.axiosInstance.delete(url, newConfig);
-        return returnValue.data as Response;
+        return returnValue.data as GenericResponse<T>;
     }
 
     async patch(url: string, config?: AxiosRequestConfig): Promise<Response> {
