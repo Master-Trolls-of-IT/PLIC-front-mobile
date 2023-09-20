@@ -29,9 +29,11 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
         setIsExpended((prevState) => !prevState);
     };
 
-    const onPressDeleteConsumedProduct = (id: string) => {
-        void deleteConsumedProduct(id);
+    const onPressDeleteConsumedProduct = async (id: string) => {
+        const newConsumedProductItems = await deleteConsumedProduct(id);
+        setConsumedProducts(newConsumedProductItems ?? consumedProducts);
     };
+
     const favouriteIcon = useMemo(() => {
         return isFavourite
             ? require('~/domain/entities/assets/icon/favourite-icon/favourite.svg')
