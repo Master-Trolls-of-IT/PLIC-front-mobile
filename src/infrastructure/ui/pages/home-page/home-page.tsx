@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { ActivityIndicator, Animated, View } from 'react-native';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { HomePageContext } from './context';
 import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';

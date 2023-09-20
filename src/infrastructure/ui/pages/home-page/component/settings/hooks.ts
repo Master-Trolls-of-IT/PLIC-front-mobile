@@ -1,8 +1,7 @@
-import { useCallback, useContext, useState } from 'react';
-import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet } from 'react-native';
+import { useContext, useState } from 'react';
+import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { HomePageContext } from '~/infrastructure/ui/pages/home-page/context';
 import { useStore } from '~/infrastructure/controllers/store';
-import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import getBasalMetabolism from '~/infrastructure/ui/shared/helper/get-basal-metabolism';
 
@@ -73,6 +72,7 @@ const useHomePageSettingsData = () => {
 
     const handleCloseSettings = () => {
         handleCloseSettingsFunction({
+            Id: userData.Id,
             Email: newEmail,
             Pseudo: newUsername,
             Weight: parseInt(newWeight),
@@ -88,7 +88,8 @@ const useHomePageSettingsData = () => {
                 parseInt(newHeight),
                 newBirthDate,
                 parseInt(newSportActivity)
-            )
+            ),
+            AvatarId: null
         });
     };
 

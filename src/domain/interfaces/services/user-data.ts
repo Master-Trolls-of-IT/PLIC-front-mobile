@@ -1,4 +1,5 @@
 export type UserData = {
+    Id: number;
     Email: string;
     Username: string;
     Birthdate: string;
@@ -9,4 +10,5 @@ export type UserData = {
     Rights: number;
     Sportiveness: number;
     BasalMetabolism: number;
+    AvatarId: number | null;
 };

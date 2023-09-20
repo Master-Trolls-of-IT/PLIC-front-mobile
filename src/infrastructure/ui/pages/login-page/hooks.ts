@@ -57,13 +57,14 @@ const useLoginPageData = () => {
                         warn('useLoginPageData', 'Received an empty access or refresh token', '');
                     }
                     const userDataCopy = response.data;
+
                     userDataCopy.Birthdate = formatTimpstampToDate(userDataCopy.Birthdate);
                     setUserData(userDataCopy);
                     navigate(PagesEnum.HomePage);
                 } else {
                     setErrorOnServer(true);
                 }
-            } catch (error) {
+            } catch (err) {
                 setErrorOnLogin(true);
             }
         } else {

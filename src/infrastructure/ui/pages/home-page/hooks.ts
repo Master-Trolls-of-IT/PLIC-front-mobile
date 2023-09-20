@@ -6,12 +6,14 @@ import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients
 import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
 import getRandomNumberInArrayLength from '~/infrastructure/ui/shared/helper/get-random-number-in-array-length';
 import { UserData } from '~/domain/interfaces/services/user-data';
-import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
+import useHomePageServices from '~/application/page-service/home-page-service';
 
 const useHomePageData = () => {
     const {
         LoginStore: { userData, setUserData }
     } = useStore();
+
+    const { updateUserData } = useHomePageServices();
 
     // TODO : calculate eco-score from daily products eaten
     const ecoScore = 82;
@@ -107,7 +109,12 @@ const useHomePageData = () => {
     useEffect(() => {
         if (confirmChanges) {
             setConfirmChanges(false);
-            setUserData(newUserDatas);
+            const update = async () => {
+                const newUserData = await updateUserData(newUserDatas);
+
+                setUserData(newUserData !== undefined ? newUserData : userData);
+            };
+            void update();
         }
         const slideToBottom = () => {
             Animated.sequence([
@@ -123,7 +130,7 @@ const useHomePageData = () => {
         setTimeout(() => {
             setIsSettingsOpen(false);
         }, 600);
-    }, [confirmChanges, slideAnimBottom]);
+    }, [confirmChanges, newUserDatas, setUserData, slideAnimBottom, updateUserData, userData]);
 
     return {
         anecdoteObject,
