@@ -101,9 +101,24 @@ const useHomePageData = () => {
             ) {
                 setIsConfirmModalOpen(true);
                 setNewUserDatas(newUserData);
+            } else {
+                const slideToBottom = () => {
+                    Animated.sequence([
+                        Animated.timing(slideAnimBottom, {
+                            toValue: 1000,
+                            duration: 600,
+                            useNativeDriver: true
+                        })
+                    ]).start();
+                };
+
+                slideToBottom();
+                setTimeout(() => {
+                    setIsSettingsOpen(false);
+                }, 600);
             }
         },
-        [userData.BasalMetabolism, userData.Birthdate, userData.Email, userData.Pseudo]
+        [setIsConfirmModalOpen]
     );
 
     useEffect(() => {
@@ -130,7 +145,7 @@ const useHomePageData = () => {
         setTimeout(() => {
             setIsSettingsOpen(false);
         }, 600);
-    }, [confirmChanges, newUserDatas, setUserData, slideAnimBottom, updateUserData, userData]);
+    }, [confirmChanges, slideAnimBottom]);
 
     return {
         anecdoteObject,

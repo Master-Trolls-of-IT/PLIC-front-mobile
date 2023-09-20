@@ -64,7 +64,7 @@ const useLoginPageData = () => {
                 } else {
                     setErrorOnServer(true);
                 }
-            } catch (err) {
+            } catch (err: any) {
                 setErrorOnLogin(true);
             }
         } else {

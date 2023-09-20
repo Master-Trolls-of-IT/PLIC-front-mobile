@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { HomePageContext } from '~/infrastructure/ui/pages/home-page/context';
 import { useStore } from '~/infrastructure/controllers/store';
@@ -70,7 +70,7 @@ const useHomePageSettingsData = () => {
         beginDragOffset = contentOffset.y;
     };
 
-    const handleCloseSettings = () => {
+    const handleCloseSettings = useCallback(() => {
         handleCloseSettingsFunction({
             Id: userData.Id,
             Email: newEmail,
@@ -91,7 +91,7 @@ const useHomePageSettingsData = () => {
             ),
             AvatarId: null
         });
-    };
+    }, [handleCloseSettingsFunction]);
 
     const handleScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const {
