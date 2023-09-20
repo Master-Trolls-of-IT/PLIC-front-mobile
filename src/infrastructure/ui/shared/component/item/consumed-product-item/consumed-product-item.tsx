@@ -79,12 +79,12 @@ const ConsumedProductItem = ({
 
                 {isExpended && (
                     <Animated.View
-                        entering={FadeIn.duration(1100)}
-                        exiting={FadeOutUp.duration(300)}
+                        entering={FadeIn.duration(1200)}
+                        exiting={FadeOutUp.duration(200)}
                         style={ConsumedProductItemStyle.myIntakesContainer}>
                         <View style={ConsumedProductItemStyle.myIntakesTitleContainer}>
                             <Text style={ConsumedProductItemStyle.myIntakesTitle}>
-                                Apports pour {consumedQuantity}g
+                                Apports pour votre quantité consommée : {consumedQuantity} g
                             </Text>
                         </View>
 
@@ -92,42 +92,57 @@ const ConsumedProductItem = ({
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Énergie</Text>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>
-                                    {data?.energyKj} kJ / {data?.energyKcal} Kcal
+                                    {data?.energyKj * (consumedQuantity / 100)} kJ /{' '}
+                                    {data?.energyKcal * (consumedQuantity / 100)} Kcal
                                 </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Matières grasses</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>{data?.fat} g</Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>
+                                    {data?.fat * (consumedQuantity / 100)} g
+                                </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemSameLineContent}>
                                     dont acides gras saturés
                                 </Text>
-                                <Text style={ConsumedProductItemStyle.itemSameLineContent}>{data?.saturatedFat} g</Text>
+                                <Text style={ConsumedProductItemStyle.itemSameLineContent}>
+                                    {data?.saturatedFat * (consumedQuantity / 100)} g
+                                </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Glucides</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>{data?.carbohydrates} g</Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>
+                                    {data?.carbohydrates * (consumedQuantity / 100)} g
+                                </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemSameLineContent}>dont sucres</Text>
-                                <Text style={ConsumedProductItemStyle.itemSameLineContent}>{data?.sugar} g</Text>
+                                <Text style={ConsumedProductItemStyle.itemSameLineContent}>
+                                    {data?.sugar * (consumedQuantity / 100)} g
+                                </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Fibres alimentaires</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>{data?.fiber} g</Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>
+                                    {data?.fiber * (consumedQuantity / 100)} g
+                                </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Protéines</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>{data?.proteins} g</Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>
+                                    {data?.proteins * (consumedQuantity / 100)} g
+                                </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Sel</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>{data?.salt} g</Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>
+                                    {data?.salt * (consumedQuantity / 100)} g
+                                </Text>
                             </View>
                         </View>
                         <GenericButton
-                            title="Modifier la quantité"
+                            title="Modifier la quantité consommée"
                             onPress={() => {}}
                             style={{
                                 container: ConsumedProductItemStyle.addButtonContainer,
@@ -135,7 +150,7 @@ const ConsumedProductItem = ({
                             }}
                         />
                         <GenericButton
-                            title="Supprimer ce produit"
+                            title="Supprimer ce produit consommé"
                             onPress={() => onPressDeleteConsumedProduct(id)}
                             style={{
                                 container: ConsumedProductItemStyle.deleteButtonContainer,

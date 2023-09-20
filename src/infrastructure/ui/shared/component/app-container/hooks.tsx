@@ -51,10 +51,12 @@ const useAppContainerData = () => {
 
     const isMealPageSlideBar =
         activeScreen == PagesEnum.MealPage ||
-        (previousScreen == PagesEnum.MealPage && activeScreen == PagesEnum.HistoricalPage);
+        (previousScreen == PagesEnum.MealPage && activeScreen == PagesEnum.HistoricalPage) ||
+        (previousScreen == PagesEnum.MealPage && activeScreen == PagesEnum.ConsumedProducts);
     const isScanPageSlideBar =
         activeScreen == PagesEnum.ScanPage ||
-        (previousScreen == PagesEnum.ScanPage && activeScreen == PagesEnum.HistoricalPage);
+        (previousScreen == PagesEnum.ScanPage && activeScreen == PagesEnum.HistoricalPage) ||
+        (previousScreen == PagesEnum.ScanPage && activeScreen == PagesEnum.ConsumedProducts);
 
     if (isMealPageSlideBar) {
         animatedMealIconStyle.icon = { marginBottom: 20 };

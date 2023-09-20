@@ -14,7 +14,7 @@ const useHistoricalItemData = (isFavourite: boolean, score: number) => {
 
     const animatedItemStyle = useAnimatedStyle(() => {
         return {
-            height: withTiming(itemHeight.value * (isExpended ? 4 : 1), { duration: 500 })
+            height: withTiming(itemHeight.value * (isExpended ? 4.1 : 1), { duration: 500 })
         };
     });
 

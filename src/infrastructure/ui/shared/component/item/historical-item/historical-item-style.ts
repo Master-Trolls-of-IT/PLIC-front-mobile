@@ -52,7 +52,8 @@ const HistoricalItemStyle = StyleSheet.create({
     titleField: {
         display: 'flex',
         flexDirection: 'column',
-        width: '40%'
+        width: '37%',
+        left: 8
     },
 
     title: {

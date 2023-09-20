@@ -52,7 +52,8 @@ const ConsumedProductItemStyle = StyleSheet.create({
     titleField: {
         display: 'flex',
         flexDirection: 'column',
-        width: '40%'
+        width: '37%',
+        left: 8
     },
 
     title: {
@@ -111,7 +112,7 @@ const ConsumedProductItemStyle = StyleSheet.create({
     },
 
     myIntakesTitle: {
-        fontSize: 18,
+        fontSize: 15,
         color: ColorEnum.ClassicBrown,
         paddingBottom: 6,
         width: '100%',
@@ -164,8 +165,10 @@ const ConsumedProductItemStyle = StyleSheet.create({
     },
 
     addButtonText: {
-        fontSize: 18
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicGrey
     },
+
     deleteButtonContainer: {
         backgroundColor: ColorEnum.ClassicRedIcon,
         width: 329 * (Dimensions.get('screen').width / 400),

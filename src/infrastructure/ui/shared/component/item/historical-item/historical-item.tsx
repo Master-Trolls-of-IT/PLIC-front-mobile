@@ -12,17 +12,7 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
 import { useStore } from '~/infrastructure/controllers/store';
 
-const HistoricalItem = ({
-    barcode,
-    name,
-    brand,
-    score,
-    image,
-    isFavourite,
-    data,
-    style,
-    id
-}: HistoricalItemProps) => {
+const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data, style, id }: HistoricalItemProps) => {
     const {
         isExpended,
         onPress,
