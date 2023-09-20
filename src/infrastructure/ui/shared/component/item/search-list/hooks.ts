@@ -18,7 +18,7 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
             case ItemEnum.ConsumedProducts:
                 return data as ConsumedProductItemProps[];
         }
-    }, [data]);
+    }, [data, inputType]);
 
     const [displayData, setDisplayData] = useState<
         HistoricalItemProps[] | MealItemProps[] | ConsumedProductItemProps[]

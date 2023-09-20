@@ -22,7 +22,7 @@ const useConsumedProductsData = () => {
         return () => {
             ignore = true;
         };
-    }, []);
+    }, [getConsumedProducts]);
 
     return {
         goBack,
