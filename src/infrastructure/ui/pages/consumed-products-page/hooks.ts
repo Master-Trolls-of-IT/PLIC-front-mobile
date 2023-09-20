@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
 
 const useConsumedProductsData = () => {
     const {

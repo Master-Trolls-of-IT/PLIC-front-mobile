@@ -2,8 +2,9 @@ import { useMemo, useState } from 'react';
 import { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
+import { ConsumedProductItemDataProps } from '~/domain/interfaces/props/search-list/consumed-product-item-data-props';
 
-const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
+const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: ConsumedProductItemDataProps) => {
     const [itemId, setItemId] = useState('');
     const { deleteConsumedProduct } = useConsumedProductPageService();
     const [isExpended, setIsExpended] = useState(false);
@@ -19,11 +20,15 @@ const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
         };
     });
 
+    const round = (value: number): number => {
+        const newValue: number = value * (consumedQuantity / 100);
+        return Number(newValue.toFixed(2));
+    };
+
     const onPress = () => {
         setIsExpended((prevState) => !prevState);
     };
 
-    // Delete the consumed product with associated id
     const onPressDeleteConsumedProduct = (id: string) => {
         void deleteConsumedProduct(id);
     };
@@ -41,7 +46,8 @@ const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
         favouriteIcon,
         scoreColor,
         scorePercentage,
-        onPressDeleteConsumedProduct
+        onPressDeleteConsumedProduct,
+        round
     };
 };
 
