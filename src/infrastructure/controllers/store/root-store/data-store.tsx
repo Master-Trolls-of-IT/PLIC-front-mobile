@@ -2,7 +2,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
-import {ConsumedProductItemProps} from "~/domain/interfaces/props/search-list/consumed-products-props";
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
 
 class DataStore {
     history: HistoricalItemProps[];
@@ -26,7 +26,7 @@ class DataStore {
 
         void makePersistable(this, {
             name: storageKey,
-            properties: ["history"],
+            properties: ['history'],
             storage: AsyncStorage
         });
     }
@@ -36,7 +36,7 @@ class DataStore {
     };
     setConsumedProducts = (newItems: ConsumedProductItemProps[]) => {
         this.consumedProducts = newItems;
-    }
+    };
 
     toggleFavorite = (id: string) => {
         const index = this.history.findIndex((elem) => elem.id === id);
