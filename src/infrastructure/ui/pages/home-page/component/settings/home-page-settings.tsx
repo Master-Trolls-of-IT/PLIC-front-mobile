@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
-import { Animated, NativeScrollEvent, NativeSyntheticEvent, ScrollView, Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import HomePageSettingsStyle from '~/infrastructure/ui/pages/home-page/component/settings/home-page-settings-style';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
@@ -30,7 +30,8 @@ const HomePageSettings = () => {
         deleteButtonStyle,
         handleScrollBeginDrag,
         handleScrollEndDrag,
-        handleScroll
+        handleScroll,
+        arrowLinkAsset
     } = useHomePageSettingsData();
 
     return (
@@ -52,12 +53,14 @@ const HomePageSettings = () => {
                 <View style={HomePageSettingsStyle.firstLine}>
                     <View style={HomePageSettingsStyle.profilePicture}>
                         <CustomSvg asset={profileAsset} width={120} height={120} />
-                        <CustomSvg
-                            asset={editAsset}
-                            width={40}
-                            height={40}
-                            style={HomePageSettingsStyle.profilePictureEdit}
-                        />
+                        <TouchableOpacity>
+                            <CustomSvg
+                                asset={editAsset}
+                                width={40}
+                                height={40}
+                                style={HomePageSettingsStyle.profilePictureEdit}
+                            />
+                        </TouchableOpacity>
                     </View>
                     <View style={HomePageSettingsStyle.nameAndBirth}>
                         <GenericInput type={InputEnum.Name} {...inputUsername} title="Prénom" />
@@ -96,7 +99,7 @@ const HomePageSettings = () => {
                     title={"Fréquence d'activité sportive"}
                     endText={'fois par semaine en moyenne'}
                     type={InputEnum.Number}
-                    placeHolder={'2'}
+                    placeHolder={inputSportivness.input}
                     {...inputSportivness}
                 />
                 <GenericInput title={'E-mail'} type={InputEnum.Email} placeHolder={inputEmail.input} {...inputEmail} />
@@ -108,20 +111,21 @@ const HomePageSettings = () => {
                 />
             </View>
             <View style={homePageSettingsStyle.footer}>
-                <View>
-                    <Text style={{ ...CustomFontInterBold().text, ...homePageSettingsStyle.footerText }}>
-                        Afficher les calories
-                    </Text>
-                </View>
-                <View>
+                <View style={homePageSettingsStyle.footerLink}>
                     <Text style={{ ...CustomFontInterBold().text, ...homePageSettingsStyle.footerText }}>
                         Personnaliser les widgets
                     </Text>
+                    <TouchableOpacity>
+                        <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
+                    </TouchableOpacity>
                 </View>
-                <View>
+                <View style={homePageSettingsStyle.footerLink}>
                     <Text style={{ ...CustomFontInterBold().text, ...homePageSettingsStyle.footerText }}>
                         Signaler un problème
                     </Text>
+                    <TouchableOpacity>
+                        <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
+                    </TouchableOpacity>
                 </View>
                 <GenericButton title="Se déconnecter" onPress={() => {}} style={logoutButtonStyle} />
                 <GenericButton title="Supprimer le compte" onPress={() => {}} style={deleteButtonStyle} />

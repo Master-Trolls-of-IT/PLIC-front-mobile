@@ -1,14 +1,16 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
 import { useStore } from '~/infrastructure/controllers/store';
 import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
 import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
 import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
 import getRandomNumberInArrayLength from '~/infrastructure/ui/shared/helper/get-random-number-in-array-length';
+import { UserData } from '~/domain/interfaces/services/user-data';
+import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
 
 const useHomePageData = () => {
     const {
-        LoginStore: { userData }
+        LoginStore: { userData, setUserData }
     } = useStore();
 
     // TODO : calculate eco-score from daily products eaten
@@ -60,6 +62,10 @@ const useHomePageData = () => {
 
     const [isSettingsLoading, setIsSettingsLoading] = useState(false);
 
+    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
+    const [confirmChanges, setConfirmChanges] = useState(false);
+
     const handleOpenSettings = useCallback(() => {
         setIsSettingsLoading(true);
         setIsSettingsOpen(true);
@@ -81,12 +87,33 @@ const useHomePageData = () => {
         }, 1600);
     }, [slideAnimBottom]);
 
-    const handleCloseSettings = useCallback(() => {
+    const [newUserDatas, setNewUserDatas] = useState(userData);
+
+    const handleCloseSettings = useCallback(
+        (newUserData: UserData) => {
+            if (
+                newUserData.Pseudo !== userData.Pseudo ||
+                newUserData.BasalMetabolism !== userData.BasalMetabolism ||
+                newUserData.Email !== userData.Email ||
+                newUserData.Birthdate !== userData.Birthdate
+            ) {
+                setIsConfirmModalOpen(true);
+                setNewUserDatas(newUserData);
+            }
+        },
+        [userData.BasalMetabolism, userData.Birthdate, userData.Email, userData.Pseudo]
+    );
+
+    useEffect(() => {
+        if (confirmChanges) {
+            setConfirmChanges(false);
+            setUserData(newUserDatas);
+        }
         const slideToBottom = () => {
             Animated.sequence([
                 Animated.timing(slideAnimBottom, {
                     toValue: 1000,
-                    duration: 1000,
+                    duration: 600,
                     useNativeDriver: true
                 })
             ]).start();
@@ -95,8 +122,8 @@ const useHomePageData = () => {
         slideToBottom();
         setTimeout(() => {
             setIsSettingsOpen(false);
-        }, 1000);
-    }, [slideAnimBottom]);
+        }, 600);
+    }, [confirmChanges, slideAnimBottom]);
 
     return {
         anecdoteObject,
@@ -109,7 +136,10 @@ const useHomePageData = () => {
         handleOpenSettings,
         handleCloseSettings,
         slideAnimBottom,
-        isSettingsLoading
+        isSettingsLoading,
+        isConfirmModalOpen,
+        setIsConfirmModalOpen,
+        setConfirmChanges
     };
 };
 

@@ -77,6 +77,13 @@ const HomePageSettingsStyle = StyleSheet.create({
         justifyContent: 'space-around',
         fontSize: 20 * (Dimensions.get('screen').height / 725),
         color: ColorEnum.ClassicBrown
+    },
+
+    footerLink: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 });
 

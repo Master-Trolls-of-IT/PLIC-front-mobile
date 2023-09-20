@@ -4,6 +4,7 @@ import { HomePageContext } from '~/infrastructure/ui/pages/home-page/context';
 import { useStore } from '~/infrastructure/controllers/store';
 import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
+import getBasalMetabolism from '~/infrastructure/ui/shared/helper/get-basal-metabolism';
 
 const useHomePageSettingsData = () => {
     const {
@@ -17,7 +18,7 @@ const useHomePageSettingsData = () => {
     ];
 
     const [newUsername, setNewUsername] = useState(userData.Pseudo);
-    const [newBirthDate, setNewBirthDate] = useState(formatTimpstampToDate(userData.Birthdate));
+    const [newBirthDate, setNewBirthDate] = useState(userData.Birthdate);
     const [newGender, setNewGender] = useState<{ label: string; value: string }>(
         genderOptions.find((elem) => parseInt(elem.value) === userData.Gender) ?? { label: 'Autre', value: '2' }
     );
@@ -27,7 +28,7 @@ const useHomePageSettingsData = () => {
     const [newEmail, setNewEmail] = useState(userData.Email);
     const [newPassword, setNewPassword] = useState('');
 
-    const { handleCloseSettings } = useContext(HomePageContext);
+    const { handleCloseSettings: handleCloseSettingsFunction } = useContext(HomePageContext);
     const profileAsset = require('~/domain/entities/assets/home-page/home-page-settings-profile.svg');
     const editAsset = require('~/domain/entities/assets/home-page/home-page-settings-edit.svg');
 
@@ -70,6 +71,27 @@ const useHomePageSettingsData = () => {
         beginDragOffset = contentOffset.y;
     };
 
+    const handleCloseSettings = () => {
+        handleCloseSettingsFunction({
+            Email: newEmail,
+            Pseudo: newUsername,
+            Weight: parseInt(newWeight),
+            Height: parseInt(newHeight),
+            Gender: parseInt(newGender.value),
+            Sportiveness: parseInt(newSportActivity),
+            Birthdate: newBirthDate,
+            Username: userData.Username,
+            Rights: userData.Rights,
+            BasalMetabolism: getBasalMetabolism(
+                parseInt(newGender.value),
+                parseInt(newWeight),
+                parseInt(newHeight),
+                newBirthDate,
+                parseInt(newSportActivity)
+            )
+        });
+    };
+
     const handleScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const {
             nativeEvent: { contentOffset }
@@ -88,6 +110,8 @@ const useHomePageSettingsData = () => {
         numberOfDrag = 0;
     };
 
+    const arrowLinkAsset = require('~/domain/entities/assets/home-page/arrow-link.svg');
+
     return {
         userData,
         handleCloseSettings,
@@ -105,7 +129,8 @@ const useHomePageSettingsData = () => {
         deleteButtonStyle,
         handleScrollBeginDrag,
         handleScrollEndDrag,
-        handleScroll
+        handleScroll,
+        arrowLinkAsset
     };
 };
 

@@ -14,6 +14,8 @@ import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
 import HomePageSettings from '~/infrastructure/ui/pages/home-page/component/settings/home-page-settings';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 
 const HomePage = () => {
     const {
@@ -27,12 +29,18 @@ const HomePage = () => {
         handleOpenSettings,
         handleCloseSettings,
         slideAnimBottom,
-        isSettingsLoading
+        isSettingsLoading,
+        isConfirmModalOpen,
+        setIsConfirmModalOpen,
+        setConfirmChanges
     } = useHomePageData();
 
     return (
         <HomePageContext.Provider
-            value={{ handleOpenSettings: handleOpenSettings, handleCloseSettings: handleCloseSettings }}>
+            value={{
+                handleOpenSettings: handleOpenSettings,
+                handleCloseSettings: handleCloseSettings
+            }}>
             <View>
                 <View style={HomePageStyle.background}>
                     <HomePageBlobsTop />
@@ -92,6 +100,26 @@ const HomePage = () => {
                         <ActivityIndicator size={'large'} color={ColorEnum.ClassicGrey} />
                     </View>
                 )}
+                <CustomModal
+                    isVisible={isConfirmModalOpen}
+                    dispatch={setIsConfirmModalOpen}
+                    title="Confirmer les changements"
+                    titleSize={25}>
+                    <GenericButton
+                        title="Oui"
+                        onPress={() => {
+                            setConfirmChanges(true);
+                            setIsConfirmModalOpen(false);
+                        }}
+                    />
+                    <GenericButton
+                        title="Annuler"
+                        onPress={() => {
+                            setConfirmChanges(false);
+                            setIsConfirmModalOpen(false);
+                        }}
+                    />
+                </CustomModal>
             </View>
         </HomePageContext.Provider>
     );
