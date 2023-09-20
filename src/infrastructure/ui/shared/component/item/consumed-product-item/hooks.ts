@@ -4,12 +4,10 @@ import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-
 import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
 import { ConsumedProductItemDataProps } from '~/domain/interfaces/props/search-list/consumed-product-item-data-props';
 import { useStore } from '~/infrastructure/controllers/store';
-import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: ConsumedProductItemDataProps) => {
     const {
-        DataStore: { setConsumedProducts, consumedProducts },
-        NavigationStore: { navigate }
+        DataStore: { setConsumedProducts, consumedProducts }
     } = useStore();
 
     const [itemId, setItemId] = useState('');
@@ -44,7 +42,7 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
             };
             void deleteProduct();
         },
-        [consumedProducts, deleteConsumedProduct, navigate, setConsumedProducts]
+        [consumedProducts, deleteConsumedProduct, setConsumedProducts]
     );
 
     const favouriteIcon = useMemo(() => {
