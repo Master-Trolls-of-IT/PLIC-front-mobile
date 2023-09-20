@@ -1,10 +1,15 @@
-import { useMemo, useState } from 'react';
-import { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { useCallback, useMemo, useState } from 'react';
+import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
 import { ConsumedProductItemDataProps } from '~/domain/interfaces/props/search-list/consumed-product-item-data-props';
+import { useStore } from '~/infrastructure/controllers/store';
 
 const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: ConsumedProductItemDataProps) => {
+    const {
+        DataStore: { setConsumedProducts, consumedProducts }
+    } = useStore();
+
     const [itemId, setItemId] = useState('');
     const { deleteConsumedProduct } = useConsumedProductPageService();
     const [isExpended, setIsExpended] = useState(false);
@@ -29,10 +34,16 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
         setIsExpended((prevState) => !prevState);
     };
 
-    const onPressDeleteConsumedProduct = async (id: string) => {
-        const newConsumedProductItems = await deleteConsumedProduct(id);
-        setConsumedProducts(newConsumedProductItems ?? consumedProducts);
-    };
+    const onPressDeleteConsumedProduct = useCallback(
+        (id: string) => {
+            const deleteProduct = async () => {
+                const newConsumedProductItems = await deleteConsumedProduct(id);
+                setConsumedProducts(newConsumedProductItems ?? consumedProducts);
+            };
+            void deleteProduct();
+        },
+        [consumedProducts, deleteConsumedProduct, setConsumedProducts]
+    );
 
     const favouriteIcon = useMemo(() => {
         return isFavourite

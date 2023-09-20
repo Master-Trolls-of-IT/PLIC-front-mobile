@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
 import { Bar } from 'react-native-progress';
+import { observer } from 'mobx-react';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import useCustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular-hooks';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
@@ -154,4 +155,4 @@ const ConsumedProductItem = ({
     );
 };
 
-export default ConsumedProductItem;
+export default observer(ConsumedProductItem);

@@ -91,7 +91,19 @@ const useHomePageSettingsData = () => {
             ),
             AvatarId: null
         });
-    }, [handleCloseSettingsFunction]);
+    }, [
+        handleCloseSettingsFunction,
+        newBirthDate,
+        newEmail,
+        newGender.value,
+        newHeight,
+        newSportActivity,
+        newUsername,
+        newWeight,
+        userData.Id,
+        userData.Rights,
+        userData.Username
+    ]);
 
     const handleScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const {
