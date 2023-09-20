@@ -6,7 +6,7 @@ import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-b
 import useCustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular-hooks';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
 import ConsumedProductItemStyle from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item-style';
 import useConsumedProductItemData from '~/infrastructure/ui/shared/component/item/consumed-product-item/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
@@ -30,8 +30,9 @@ const ConsumedProductItem = ({
         favouriteIcon,
         scoreColor,
         scorePercentage,
-        onPressDeleteConsumedProduct
-    } = useConsumedProductItemData(isFavourite, score);
+        onPressDeleteConsumedProduct,
+        round
+    } = useConsumedProductItemData({ consumedQuantity, isFavourite, score });
 
     return (
         <Animated.View style={[animatedItemStyle, ConsumedProductItemStyle.item, style]}>
@@ -92,53 +93,42 @@ const ConsumedProductItem = ({
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Énergie</Text>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>
-                                    {data?.energyKj * (consumedQuantity / 100)} kJ /{' '}
-                                    {data?.energyKcal * (consumedQuantity / 100)} Kcal
+                                    {round(data?.energyKj)} kJ / {round(data?.energyKcal)} Kcal
                                 </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Matières grasses</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>
-                                    {data?.fat * (consumedQuantity / 100)} g
-                                </Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>{round(data?.fat)} g</Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemSameLineContent}>
                                     dont acides gras saturés
                                 </Text>
                                 <Text style={ConsumedProductItemStyle.itemSameLineContent}>
-                                    {data?.saturatedFat * (consumedQuantity / 100)} g
+                                    {round(data?.saturatedFat)} g
                                 </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Glucides</Text>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>
-                                    {data?.carbohydrates * (consumedQuantity / 100)} g
+                                    {round(data?.carbohydrates)} g
                                 </Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemSameLineContent}>dont sucres</Text>
-                                <Text style={ConsumedProductItemStyle.itemSameLineContent}>
-                                    {data?.sugar * (consumedQuantity / 100)} g
-                                </Text>
+                                <Text style={ConsumedProductItemStyle.itemSameLineContent}>{round(data?.sugar)} g</Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Fibres alimentaires</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>
-                                    {data?.fiber * (consumedQuantity / 100)} g
-                                </Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>{round(data?.fiber)} g</Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Protéines</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>
-                                    {data?.proteins * (consumedQuantity / 100)} g
-                                </Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>{round(data?.proteins)} g</Text>
                             </View>
                             <View style={ConsumedProductItemStyle.itemLine}>
                                 <Text style={ConsumedProductItemStyle.itemLineContent}>Sel</Text>
-                                <Text style={ConsumedProductItemStyle.itemLineContent}>
-                                    {data?.salt * (consumedQuantity / 100)} g
-                                </Text>
+                                <Text style={ConsumedProductItemStyle.itemLineContent}>{round(data?.salt)} g</Text>
                             </View>
                         </View>
                         <GenericButton

@@ -10,22 +10,26 @@ import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
-import { useStore } from '~/infrastructure/controllers/store';
+import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
+import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item-style';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 
 const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data, style, id }: HistoricalItemProps) => {
     const {
         isExpended,
         onPress,
+        quantity,
+        setQuantity,
+        modal,
+        setModal,
         animatedItemStyle,
         favouriteIcon,
+        onPressModalButton,
         scoreColor,
         scorePercentage,
-        onPressConsumedProductsButton
-    } = useHistoricalItemData(isFavourite, score);
-
-    const {
-        DataStore: { toggleFavorite }
-    } = useStore();
+        onPressConsumedProductsButton,
+        toggleFavorite
+    } = useHistoricalItemData({ barcode, isFavourite, score });
 
     return (
         <Animated.View style={[animatedItemStyle, HistoricalItemStyle.item, style]}>
@@ -118,14 +122,26 @@ const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data,
                         </View>
                         <GenericButton
                             title="Ajouter aux produits consommés"
-                            onPress={() => {
-                                onPressConsumedProductsButton(barcode);
-                            }}
+                            onPress={onPressConsumedProductsButton}
                             style={{
                                 container: HistoricalItemStyle.addButtonContainer,
                                 text: HistoricalItemStyle.addButtonText
                             }}
                         />
+
+                        <CustomModal
+                            isVisible={modal}
+                            dispatch={setModal}
+                            title={'Ajouter la quantité\n consommée'}
+                            titleSize={22}>
+                            <GenericInputWithSearchIconAndEndText
+                                placeHolder={'100'}
+                                endText={'g'}
+                                style={ScanPageScannedItemStyle.customModalChildren}
+                                input={quantity}
+                                dispatch={setQuantity}
+                                onPressSearchIcon={onPressModalButton}></GenericInputWithSearchIconAndEndText>
+                        </CustomModal>
                     </Animated.View>
                 )}
             </TouchableOpacity>

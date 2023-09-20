@@ -1,11 +1,23 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import { HistoricalItemDataProps } from '~/domain/interfaces/props/search-list/historical-item-data-props';
+import { useStore } from '~/infrastructure/controllers/store';
 
-const useHistoricalItemData = (isFavourite: boolean, score: number) => {
+const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDataProps) => {
+    const {
+        DataStore: { toggleFavorite },
+        NavigationStore: { navigate },
+        LogStore: { error }
+    } = useStore();
+
     const { addConsumedProduct } = useScanPageScannedItemService();
+
     const [isExpended, setIsExpended] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [quantity, setQuantity] = useState('100');
 
     const itemHeight = useSharedValue(100);
     const scorePercentage = score / 100;
@@ -22,13 +34,25 @@ const useHistoricalItemData = (isFavourite: boolean, score: number) => {
         setIsExpended((prevState) => !prevState);
     };
 
-    const onPressConsumedProductsButton = useCallback(
-        (barcode: string) => {
-            // TODO: Voir pourquoi il manque un dispatch
-            //void addConsumedProduct(barcode);
-        },
-        [addConsumedProduct]
-    );
+    const onPressConsumedProductsButton = () => {
+        setModal(true);
+    };
+
+    const onPressModalButton = async () => {
+        setModal(false);
+        try {
+            await addConsumedProduct(barcode, quantity);
+            navigate(PagesEnum.ConsumedProducts);
+        } catch (err) {
+            if (err instanceof Error) {
+                error(
+                    'onPressModalButton > historical-item ',
+                    'Unknown error while adding consumed Product to database',
+                    err.message
+                );
+            }
+        }
+    };
 
     const favouriteIcon = useMemo(() => {
         return isFavourite
@@ -39,11 +63,17 @@ const useHistoricalItemData = (isFavourite: boolean, score: number) => {
     return {
         isExpended,
         onPress,
+        quantity,
+        setQuantity,
+        modal,
+        setModal,
         animatedItemStyle,
         favouriteIcon,
         scoreColor,
         scorePercentage,
-        onPressConsumedProductsButton
+        onPressConsumedProductsButton,
+        onPressModalButton,
+        toggleFavorite
     };
 };
 

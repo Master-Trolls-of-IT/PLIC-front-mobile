@@ -18,6 +18,7 @@ const ScanPage = () => {
     const {
         NavigationStore: { navigate }
     } = useStore();
+
     const {
         handleBarCodeScanned,
         hasPermission,

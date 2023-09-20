@@ -2,12 +2,9 @@ import { useMemo, useState } from 'react';
 import { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
-import { useStore } from '~/infrastructure/controllers/store';
+import { ConsumedProductItemDataProps } from '~/domain/interfaces/props/search-list/consumed-product-item-data-props';
 
-const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
-    const {
-        DataStore: { setConsumedProducts, consumedProducts }
-    } = useStore();
+const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: ConsumedProductItemDataProps) => {
     const [itemId, setItemId] = useState('');
     const { deleteConsumedProduct } = useConsumedProductPageService();
     const [isExpended, setIsExpended] = useState(false);
@@ -23,15 +20,20 @@ const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
         };
     });
 
+    const round = (value: number): number => {
+        const newValue: number = value * (consumedQuantity / 100);
+        return Number(newValue.toFixed(2));
+    };
+
     const onPress = () => {
         setIsExpended((prevState) => !prevState);
     };
 
-    // Delete the consumed product with associated id
     const onPressDeleteConsumedProduct = async (id: string) => {
         const newConsumedProductItems = await deleteConsumedProduct(id);
         setConsumedProducts(newConsumedProductItems ?? consumedProducts);
     };
+
     const favouriteIcon = useMemo(() => {
         return isFavourite
             ? require('~/domain/entities/assets/icon/favourite-icon/favourite.svg')
@@ -46,7 +48,8 @@ const useConsumedProductItemData = (isFavourite: boolean, score: number) => {
         favouriteIcon,
         scoreColor,
         scorePercentage,
-        onPressDeleteConsumedProduct
+        onPressDeleteConsumedProduct,
+        round
     };
 };
 

@@ -4,7 +4,7 @@ import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { SearchListData, SearchListInputType } from '~/domain/interfaces/props/search-list/search-list-data-props';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
 
 const useSearchListData = (inputType: SearchListInputType, data: SearchListData) => {
     const [searchedText, setSearchedText] = useState('');
@@ -18,7 +18,7 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
             case ItemEnum.ConsumedProducts:
                 return data as ConsumedProductItemProps[];
         }
-    }, [data]);
+    }, [data, inputType]);
 
     const [displayData, setDisplayData] = useState<
         HistoricalItemProps[] | MealItemProps[] | ConsumedProductItemProps[]

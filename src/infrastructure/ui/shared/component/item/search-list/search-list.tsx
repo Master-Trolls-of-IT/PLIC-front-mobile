@@ -10,7 +10,7 @@ import { SearchListProps } from '~/domain/interfaces/props/search-list/search-li
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import ConsumedProductItem from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-products-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
     const { displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } = useSearchListData(
