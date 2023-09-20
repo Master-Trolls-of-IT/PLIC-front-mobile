@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { HomePageContext } from '~/infrastructure/ui/pages/home-page/context';
 import { useStore } from '~/infrastructure/controllers/store';
@@ -91,7 +91,19 @@ const useHomePageSettingsData = () => {
             ),
             AvatarId: null
         });
-    }, [handleCloseSettingsFunction]);
+    }, [
+        handleCloseSettingsFunction,
+        newBirthDate,
+        newEmail,
+        newGender.value,
+        newHeight,
+        newSportActivity,
+        newUsername,
+        newWeight,
+        userData.Id,
+        userData.Rights,
+        userData.Username
+    ]);
 
     const handleScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const {

@@ -15,6 +15,7 @@ import HomePageSettings from '~/infrastructure/ui/pages/home-page/component/sett
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
+import StartupPageStyle from '~/infrastructure/ui/pages/startup-page/startup-page-style';
 
 const HomePage = () => {
     const {
@@ -110,12 +111,20 @@ const HomePage = () => {
                             setConfirmChanges(true);
                             setIsConfirmModalOpen(false);
                         }}
+                        style={{
+                            container: StartupPageStyle.modalButton,
+                            text: StartupPageStyle.modalTextButton
+                        }}
                     />
                     <GenericButton
                         title="Annuler"
                         onPress={() => {
                             setConfirmChanges(false);
                             setIsConfirmModalOpen(false);
+                        }}
+                        style={{
+                            container: StartupPageStyle.modalButton,
+                            text: StartupPageStyle.modalTextButton
                         }}
                     />
                 </CustomModal>
