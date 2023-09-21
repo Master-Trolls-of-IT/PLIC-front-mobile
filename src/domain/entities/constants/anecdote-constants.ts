@@ -30,5 +30,33 @@ export const anecdotesObject = [
     {
         text: "Un grand chêne produit assez d'oxygène en un jour pour deux adultes.",
         icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-tree.svg')
+    },
+    {
+        text: "Le recyclage d'une tonne de papier peut sauver environ 17 arbres.",
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-forest.svg')
+    },
+    {
+        text: "En moyenne, chaque personne avale l'équivalent d'une carte de crédit en plastique chaque semaine.",
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-credit-card.svg')
+    },
+    {
+        text: 'Plus de 60 000 variétés de tomates sont cultivées dans le monde.',
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-tomato.svg')
+    },
+    {
+        text: 'Pour fabriquer 1 kg de miel, une abeille doit butiner environ 4 millions de fleurs.',
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-honey.svg')
+    },
+    {
+        text: 'La pêche est le premier fruit à avoir été consommé sur la lune lors de la mission Apollo 11.',
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-peach.svg')
+    },
+    {
+        text: "Le miel peut se conserver pendant des milliers d'années sans périmer à l'échelle humaine.",
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-honey.svg')
+    },
+    {
+        text: "Chaque année, nous ingérons environ 500 grammes d'insectes par le biais d'additifs dans les produits industriels.",
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-bug.svg')
     }
 ];
