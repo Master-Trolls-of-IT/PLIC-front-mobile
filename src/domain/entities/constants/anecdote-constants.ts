@@ -14,5 +14,21 @@ export const anecdotesObject = [
     {
         text: 'L’océan absorbe près de 30 % des émissions de CO2. Il est de ce point de vue plus performant que les forêts.',
         icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-sea.svg')
+    },
+    {
+        text: 'Les abeilles pollinisent 70% de nos cultures alimentaires, essentielles pour les fruits et légumes.',
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-bee.svg')
+    },
+    {
+        text: 'Les forêts tropicales disparaissent rapidement, avec la perte de 30 terrains de football chaque minute.',
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-soccer-field.svg')
+    },
+    {
+        text: 'Chaque minute, un million de bouteilles en plastique sont achetées dans le monde.',
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-plastic-bottle.svg')
+    },
+    {
+        text: "Un grand chêne produit assez d'oxygène en un jour pour deux adultes.",
+        icon: require('~/domain/entities/assets/icon/anecdote-icon/icon-anecdote-tree.svg')
     }
 ];
