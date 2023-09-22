@@ -3,8 +3,12 @@ import { UserData } from '~/domain/interfaces/services/user-data';
 import { GenericResponse } from '~/domain/interfaces/services/generic-response';
 import APIServices from '~/infrastructure/controllers/services/api';
 import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
+import { useStore } from '~/infrastructure/controllers/store';
 
-const useHomePageServices = () => {
+const usePersonalDataServices = () => {
+    const {
+        LoginStore: { userData }
+    } = useStore();
     const updateUserData = async (newUserData: UserData) => {
         try {
             const response: GenericResponse<UserData> = await APIServices.PATCH<UserData, UserData>(
@@ -16,6 +20,7 @@ const useHomePageServices = () => {
             return userDataCopy;
         } catch (err) {
             console.error('useHomePageService', "Impossible de modifier l'utilisateur", (err as AxiosError).message);
+            return userData;
         }
     };
     return {
@@ -23,4 +28,4 @@ const useHomePageServices = () => {
     };
 };
 
-export default useHomePageServices;
+export default usePersonalDataServices;

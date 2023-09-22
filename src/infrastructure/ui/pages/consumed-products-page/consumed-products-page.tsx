@@ -10,7 +10,7 @@ import useConsumedProductsData from '~/infrastructure/ui/pages/consumed-products
 import ConsumedProductsPageStyle from '~/infrastructure/ui/pages/consumed-products-page/consumed-products-page-style';
 
 const ConsumedProductsPage = () => {
-    const { goBack, consumedProducts} = useConsumedProductsData();
+    const { goBack, consumedProducts } = useConsumedProductsData();
 
     return (
         <View style={ConsumedProductsPageStyle.container}>

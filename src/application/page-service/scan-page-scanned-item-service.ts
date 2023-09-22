@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
 
@@ -22,7 +23,8 @@ const useScanPageScannedItemService = () => {
                     }
                 }
             );
-        } catch (err: any) {
+        } catch (e) {
+            const err = e as AxiosError;
             error('useScanPageScannedItemService', 'Could not add product to consumed products', err.message);
         }
     };

@@ -16,6 +16,8 @@ import GamePage from '~/infrastructure/ui/pages/game-page/game-page';
 import HistoricalPage from '~/infrastructure/ui/pages/historical-page/historical-page';
 import { navigationRef } from '~/infrastructure/ui/shared/helper/navigation-ref';
 import ConsumedProductsPage from '~/infrastructure/ui/pages/consumed-products-page/consumed-products-page';
+import SettingsPage from '~/infrastructure/ui/pages/settings-page/settings-page';
+import PersonalDataPage from '~/infrastructure/ui/pages/personal-data-page/personal-data-page';
 
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
@@ -40,8 +42,23 @@ function App() {
                             <Stack.Screen name={PagesEnum.SignUpPage} component={SignUpPage} options={gestureEnabled} />
                         </Stack.Group>
 
+                        {/* Settings group */}
+
+                        <Stack.Group>
+                            <Stack.Screen
+                                name={PagesEnum.SettingsPage}
+                                component={SettingsPage}
+                                options={gestureEnabled}
+                            />
+                            <Stack.Screen
+                                name={PagesEnum.PersonalDataPage}
+                                component={PersonalDataPage}
+                                options={gestureEnabled}
+                            />
+                        </Stack.Group>
+
                         {/* App content Group */}
-                        <Stack.Group screenOptions={{ animation: 'none' }}>
+                        <Stack.Group>
                             <Stack.Screen name={PagesEnum.MealPage} component={MealPage} options={gestureDisabled} />
                             <Stack.Screen name={PagesEnum.ScanPage} component={ScanPage} options={gestureDisabled} />
                             <Stack.Screen name={PagesEnum.HomePage} component={HomePage} options={gestureDisabled} />
