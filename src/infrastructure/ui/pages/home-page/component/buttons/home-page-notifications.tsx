@@ -1,10 +1,15 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import useHomePageButtonsData from '~/infrastructure/ui/pages/home-page/component/buttons/hooks';
 
 const HomePageNotificationButton = () => {
-    const asset = require('~/domain/entities/assets/home-page/home-page-notifications.svg');
-
-    return <CustomSvg asset={asset} height={40} width={40} />;
+    const { notificationButtonAsset, handleNotificationButtonPress } = useHomePageButtonsData();
+    return (
+        <TouchableOpacity onPress={handleNotificationButtonPress}>
+            <CustomSvg asset={notificationButtonAsset} height={40} width={40} />
+        </TouchableOpacity>
+    );
 };
 
 export default HomePageNotificationButton;
