@@ -1,19 +1,16 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+import { observer } from 'mobx-react';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
-import { useStore } from '~/infrastructure/controllers/store';
-import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import useHomePageButtonsData from '~/infrastructure/ui/pages/home-page/component/buttons/hooks';
 
 const HomePageSettingsButton = () => {
-    const asset = require('~/domain/entities/assets/home-page/home-page-settings.svg');
-    const {
-        NavigationStore: { navigate }
-    } = useStore();
+    const { settingsButtonAsset, handleSettingsButtonPress } = useHomePageButtonsData();
     return (
-        <TouchableOpacity onPress={() => navigate(PagesEnum.SettingsPage)}>
-            <CustomSvg asset={asset} height={40} width={40} />
+        <TouchableOpacity onPress={handleSettingsButtonPress}>
+            <CustomSvg asset={settingsButtonAsset} height={40} width={40} />
         </TouchableOpacity>
     );
 };
 
-export default HomePageSettingsButton;
+export default observer(HomePageSettingsButton);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import getBasalMetabolism from '~/infrastructure/ui/shared/helper/get-basal-metabolism';
@@ -83,16 +83,35 @@ const usePersonalDataPageData = () => {
         setIsConfirmModalOpen(false);
     };
 
-    const handleConfirmButton = () => {
-        if (
+    const isUserDataChanges = useMemo(
+        () =>
             userData.Email !== newEmail ||
             userData.Pseudo !== newUsername ||
             userData.Weight !== parseInt(newWeight) ||
             userData.Height !== parseInt(newHeight) ||
             userData.Sportiveness !== parseInt(newSportActivity) ||
             userData.Birthdate !== newBirthDate ||
-            userData.Gender !== parseInt(newGender.value)
-        ) {
+            userData.Gender !== parseInt(newGender.value),
+        [
+            newBirthDate,
+            newEmail,
+            newGender.value,
+            newHeight,
+            newSportActivity,
+            newUsername,
+            newWeight,
+            userData.Birthdate,
+            userData.Email,
+            userData.Gender,
+            userData.Height,
+            userData.Pseudo,
+            userData.Sportiveness,
+            userData.Weight
+        ]
+    );
+
+    const handleConfirmButton = () => {
+        if (isUserDataChanges) {
             setIsConfirmModalOpen(true);
         } else {
             setIsChangesModalOpen(true);

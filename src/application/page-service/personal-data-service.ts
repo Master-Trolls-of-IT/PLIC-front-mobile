@@ -7,7 +7,8 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const usePersonalDataServices = () => {
     const {
-        LoginStore: { userData }
+        LoginStore: { userData },
+        LogStore: { error }
     } = useStore();
     const updateUserData = async (newUserData: UserData) => {
         try {
@@ -19,7 +20,7 @@ const usePersonalDataServices = () => {
             userDataCopy.Birthdate = formatTimpstampToDate(userDataCopy.Birthdate);
             return userDataCopy;
         } catch (err) {
-            console.error('useHomePageService', "Impossible de modifier l'utilisateur", (err as AxiosError).message);
+            error('useHomePageService', "Impossible de modifier l'utilisateur", (err as AxiosError).message);
             return userData;
         }
     };
