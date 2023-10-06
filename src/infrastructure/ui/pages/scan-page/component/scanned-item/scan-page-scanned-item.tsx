@@ -20,7 +20,8 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
         quantity,
         setQuantity,
         unfilledFavouriteAsset,
-        onPressModalButton
+        onPressModalButton,
+        interBoldText
     } = useScanPageScannedItemData(scannedProduct, onPressScanAgain);
 
     // TODO: Corriger le problèmes avec les glucides dans le parsing
@@ -64,62 +65,69 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                     <GenericEcoScore ecoScore={ecoScore} />
                 )}
             </View>
-            <View style={ScanPageScannedItemStyle.myIntakesContainer}>
-                <View style={ScanPageScannedItemStyle.myIntakesTitleContainer}>
-                    <Text style={{ ...ScanPageScannedItemStyle.myIntakesTitle, ...CustomFontInterBold().text }}>
-                        Apports pour 100g
-                    </Text>
-                </View>
+            {!scannedProduct?.iswater && (
+                <View style={ScanPageScannedItemStyle.myIntakesContainer}>
+                    <View style={ScanPageScannedItemStyle.myIntakesTitleContainer}>
+                        <Text style={{ ...ScanPageScannedItemStyle.myIntakesTitle, ...interBoldText }}>
+                            Apports pour 100g
+                        </Text>
+                    </View>
 
-                <View style={ScanPageScannedItemStyle.myIntakesNutrientsContainer}>
-                    <View style={ScanPageScannedItemStyle.itemLine}>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Énergie</Text>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>
-                            {scannedProduct?.nutrients.energyKj} kJ / {scannedProduct?.nutrients.energyKcal} Kcal
-                        </Text>
-                    </View>
-                    <View style={ScanPageScannedItemStyle.itemLine}>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Matières grasses</Text>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>{scannedProduct?.nutrients.fat} g</Text>
-                    </View>
-                    <View style={ScanPageScannedItemStyle.itemLine}>
-                        <Text style={ScanPageScannedItemStyle.itemSameLineContent}>dont acides gras saturés</Text>
-                        <Text style={ScanPageScannedItemStyle.itemSameLineContent}>
-                            {scannedProduct?.nutrients.saturatedFat} g
-                        </Text>
-                    </View>
-                    <View style={ScanPageScannedItemStyle.itemLine}>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Glucides</Text>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>
-                            {scannedProduct?.nutrients.carbohydrates} g
-                        </Text>
-                    </View>
-                    <View style={ScanPageScannedItemStyle.itemLine}>
-                        <Text style={ScanPageScannedItemStyle.itemSameLineContent}>dont sucres</Text>
-                        <Text style={ScanPageScannedItemStyle.itemSameLineContent}>
-                            {scannedProduct?.nutrients.sugar} g
-                        </Text>
-                    </View>
-                    <View style={ScanPageScannedItemStyle.itemLine}>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Fibres alimentaires</Text>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>
-                            {scannedProduct?.nutrients.fiber} g
-                        </Text>
-                    </View>
-                    <View style={ScanPageScannedItemStyle.itemLine}>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Protéines</Text>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>
-                            {scannedProduct?.nutrients.proteins} g
-                        </Text>
-                    </View>
-                    <View style={ScanPageScannedItemStyle.itemLine}>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>Sel</Text>
-                        <Text style={ScanPageScannedItemStyle.itemLineContent}>{scannedProduct?.nutrients.salt} g</Text>
+                    <View style={ScanPageScannedItemStyle.myIntakesNutrientsContainer}>
+                        <View style={ScanPageScannedItemStyle.itemLine}>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>Énergie</Text>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>
+                                {scannedProduct?.nutrients.energyKj} kJ / {scannedProduct?.nutrients.energyKcal} Kcal
+                            </Text>
+                        </View>
+                        <View style={ScanPageScannedItemStyle.itemLine}>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>Matières grasses</Text>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>
+                                {scannedProduct?.nutrients.fat} g
+                            </Text>
+                        </View>
+                        <View style={ScanPageScannedItemStyle.itemLine}>
+                            <Text style={ScanPageScannedItemStyle.itemSameLineContent}>dont acides gras saturés</Text>
+                            <Text style={ScanPageScannedItemStyle.itemSameLineContent}>
+                                {scannedProduct?.nutrients.saturatedFat} g
+                            </Text>
+                        </View>
+                        <View style={ScanPageScannedItemStyle.itemLine}>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>Glucides</Text>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>
+                                {scannedProduct?.nutrients.carbohydrates} g
+                            </Text>
+                        </View>
+                        <View style={ScanPageScannedItemStyle.itemLine}>
+                            <Text style={ScanPageScannedItemStyle.itemSameLineContent}>dont sucres</Text>
+                            <Text style={ScanPageScannedItemStyle.itemSameLineContent}>
+                                {scannedProduct?.nutrients.sugar} g
+                            </Text>
+                        </View>
+                        <View style={ScanPageScannedItemStyle.itemLine}>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>Fibres alimentaires</Text>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>
+                                {scannedProduct?.nutrients.fiber} g
+                            </Text>
+                        </View>
+                        <View style={ScanPageScannedItemStyle.itemLine}>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>Protéines</Text>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>
+                                {scannedProduct?.nutrients.proteins} g
+                            </Text>
+                        </View>
+                        <View style={ScanPageScannedItemStyle.itemLine}>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>Sel</Text>
+                            <Text style={ScanPageScannedItemStyle.itemLineContent}>
+                                {scannedProduct?.nutrients.salt} g
+                            </Text>
+                        </View>
                     </View>
                 </View>
-            </View>
+            )}
+
             <GenericButton
-                title="Ajouter aux produits consommés"
+                title={scannedProduct?.iswater ? 'Ajouter la quantité consommée' : 'Ajouter aux produits consommés'}
                 onPress={() => setModal(true)}
                 style={{
                     container: ScanPageScannedItemStyle.buttonContainer,
