@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
 import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
 import { useStore } from '~/infrastructure/controllers/store';
