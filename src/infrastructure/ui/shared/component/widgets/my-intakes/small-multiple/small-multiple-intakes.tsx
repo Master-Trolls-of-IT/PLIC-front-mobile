@@ -2,21 +2,13 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Bar } from 'react-native-progress';
 import useSmallMultipleData from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/hooks';
-import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import SmallMultipleIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes-style.';
+import { SmallMultipleIntakesProps } from '~/domain/interfaces/props/widgets/small-multiple-intakes-props';
 
-const SmallMultipleIntakes = ({
-    firstNutrient,
-    secondNutrient,
-    thirdNutrient
-}: {
-    firstNutrient: NutrientData;
-    secondNutrient: NutrientData;
-    thirdNutrient: NutrientData;
-}) => {
+const SmallMultipleIntakes = ({ firstNutrient, secondNutrient, thirdNutrient }: SmallMultipleIntakesProps) => {
     const { firstPercentage, secondPercentage, thirdPercentage } = useSmallMultipleData(
         firstNutrient,
         secondNutrient,

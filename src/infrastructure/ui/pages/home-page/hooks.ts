@@ -1,12 +1,9 @@
 import { useStore } from '~/infrastructure/controllers/store';
-import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
-import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
-import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
-import getRandomNumberInArrayLength from '~/infrastructure/ui/shared/helper/get-random-number-in-array-length';
 
 const useHomePageData = () => {
     const {
-        LoginStore: { userData }
+        LoginStore: { userData },
+        DataStore: { widgetsParams }
     } = useStore();
 
     // TODO : calculate eco-score from daily products eaten
@@ -15,14 +12,6 @@ const useHomePageData = () => {
     const username = userData.Pseudo;
 
     // TODO : retrieve the right nutrients earned from daily products eaten for all nutrients type
-    const dailyNutrientsGoal = GetDailyNutrientsGoal(userData.BasalMetabolism);
-    const dailyNutrientsEarned = {
-        energy: Math.round(userData.BasalMetabolism * 0.82),
-        protein: Math.round(dailyNutrientsGoal.protein * 0.6),
-        carbohydrate: Math.round(dailyNutrientsGoal.carbohydrate * 0.4),
-        lipid: Math.round(dailyNutrientsGoal.lipid * 0.8)
-    } as DailyNutrientsType;
-
     const chooseRightDynamicImage = () => {
         switch (true) {
             case ecoScore < 5:
@@ -50,15 +39,10 @@ const useHomePageData = () => {
         }
     };
 
-    const anecdoteObject = anecdotesObject[getRandomNumberInArrayLength(anecdotesObject.length)];
-
     return {
-        anecdoteObject,
-        dailyNutrientsGoal,
-        dailyNutrientsEarned,
         username,
         chooseRightDynamicImage,
-        ecoScore
+        widgetsParams
     };
 };
 

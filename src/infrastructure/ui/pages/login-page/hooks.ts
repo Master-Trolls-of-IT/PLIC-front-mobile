@@ -9,6 +9,12 @@ import { useStore } from '~/infrastructure/controllers/store';
 import useLoginPageService from '~/application/page-service/login-page-service';
 import { UserData } from '~/domain/interfaces/services/user-data';
 import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
+import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
+import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
+import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
+import getRandomNumberInArrayLength from '~/infrastructure/ui/shared/helper/get-random-number-in-array-length';
 
 const useLoginPageData = () => {
     const [inputEmailString, setInputEmail] = useState('');
@@ -18,9 +24,10 @@ const useLoginPageData = () => {
     const [loader, setLoader] = useState(false);
 
     const {
-        LoginStore: { setRefreshToken, setAccessToken, setUserData },
+        LoginStore: { setRefreshToken, setAccessToken, setUserData, userData },
         LogStore: { warn },
-        NavigationStore: { navigate }
+        NavigationStore: { navigate },
+        DataStore: { widgetsParams, setWidgetParams }
     } = useStore();
     const { RefreshTokenGen } = useLoginPageService();
 
@@ -60,6 +67,52 @@ const useLoginPageData = () => {
 
                     userDataCopy.Birthdate = formatTimpstampToDate(userDataCopy.Birthdate);
                     setUserData(userDataCopy);
+                    let newWidgetParamsLine1 = [...widgetsParams.line1];
+                    let newWidgetParamsLine2 = [...widgetsParams.line2];
+                    if (widgetsParams.line1.length === 0) {
+                        const dailyNutrientsGoal = GetDailyNutrientsGoal(userData.BasalMetabolism);
+                        const dailyNutrientsEarned = {
+                            energy: Math.round(userData.BasalMetabolism * 0.82),
+                            protein: Math.round(dailyNutrientsGoal.protein * 0.6),
+                            carbohydrate: Math.round(dailyNutrientsGoal.carbohydrate * 0.4),
+                            lipid: Math.round(dailyNutrientsGoal.lipid * 0.8)
+                        } as DailyNutrientsType;
+                        newWidgetParamsLine1 = [
+                            {
+                                type: WidgetEnum.Large,
+                                props: {
+                                    energy: {
+                                        nutrientType: NutrientsEnum.Energy,
+                                        earned: dailyNutrientsEarned.energy,
+                                        goal: dailyNutrientsGoal.energy
+                                    },
+                                    firstNutrient: {
+                                        nutrientType: NutrientsEnum.Protein,
+                                        earned: dailyNutrientsEarned.protein,
+                                        goal: dailyNutrientsGoal.protein
+                                    },
+                                    secondNutrient: {
+                                        nutrientType: NutrientsEnum.Lipid,
+                                        earned: dailyNutrientsEarned.lipid,
+                                        goal: dailyNutrientsGoal.lipid
+                                    },
+                                    thirdNutrient: {
+                                        nutrientType: NutrientsEnum.Carbohydrate,
+                                        earned: dailyNutrientsEarned.carbohydrate,
+                                        goal: dailyNutrientsGoal.carbohydrate
+                                    }
+                                }
+                            }
+                        ];
+                    }
+                    if (widgetsParams.line2.length === 0) {
+                        const anecdoteObject = anecdotesObject[getRandomNumberInArrayLength(anecdotesObject.length)];
+                        newWidgetParamsLine2 = [
+                            { type: WidgetEnum.Anecdote, props: anecdoteObject },
+                            { type: WidgetEnum.EcoScore, props: { ecoScore: 82 } }
+                        ];
+                    }
+                    setWidgetParams({ line1: newWidgetParamsLine1, line2: newWidgetParamsLine2 });
                     navigate(PagesEnum.HomePage);
                 } else {
                     setErrorOnServer(true);

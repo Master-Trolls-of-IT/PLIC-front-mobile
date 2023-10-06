@@ -10,10 +10,13 @@ import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
+import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
+import WidgetAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
+import SmallBasicIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
+import SmallMultipleIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes';
 
 const HomePage = () => {
-    const { anecdoteObject, dailyNutrientsGoal, dailyNutrientsEarned, username, chooseRightDynamicImage, ecoScore } =
-        useHomePageData();
+    const { username, chooseRightDynamicImage, widgetsParams } = useHomePageData();
 
     return (
         <View>
@@ -34,33 +37,43 @@ const HomePage = () => {
 
                 <View style={HomePageStyle.widgetContainer}>
                     <View style={HomePageStyle.widgetContainerFirstRow}>
-                        <LargeIntakes
-                            energy={{
-                                nutrientType: NutrientsEnum.Energy,
-                                earned: dailyNutrientsEarned.energy,
-                                goal: dailyNutrientsGoal.energy
-                            }}
-                            firstNutrient={{
-                                nutrientType: NutrientsEnum.Protein,
-                                earned: dailyNutrientsEarned.protein,
-                                goal: dailyNutrientsGoal.protein
-                            }}
-                            secondNutrient={{
-                                nutrientType: NutrientsEnum.Lipid,
-                                earned: dailyNutrientsEarned.lipid,
-                                goal: dailyNutrientsGoal.lipid
-                            }}
-                            thirdNutrient={{
-                                nutrientType: NutrientsEnum.Carbohydrate,
-                                earned: dailyNutrientsEarned.carbohydrate,
-                                goal: dailyNutrientsGoal.carbohydrate
-                            }}
-                        />
+                        {widgetsParams.line1.length > 0 &&
+                            widgetsParams.line1.length < 3 &&
+                            widgetsParams.line1.map((widget, index) => {
+                                switch (widget.type) {
+                                    case WidgetEnum.Anecdote:
+                                        return <WidgetAnecdote key={index} {...widget.props} />;
+                                    case WidgetEnum.EcoScore:
+                                        return <EcoScore key={index} {...widget.props} />;
+                                    case WidgetEnum.Large:
+                                        return <LargeIntakes key={index} {...widget.props} />;
+                                    case WidgetEnum.SmallBasic:
+                                        return <SmallBasicIntakes key={index} {...widget.props} />;
+                                    case WidgetEnum.SmallMultiple:
+                                    default:
+                                        return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                }
+                            })}
                     </View>
 
                     <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
-                        <HomePageAnecdote {...anecdoteObject} />
-                        <EcoScore ecoScore={ecoScore} />
+                        {widgetsParams.line2.length > 0 &&
+                            widgetsParams.line2.length < 3 &&
+                            widgetsParams.line2.map((widget, index) => {
+                                switch (widget.type) {
+                                    case WidgetEnum.Anecdote:
+                                        return <WidgetAnecdote key={index} {...widget.props} />;
+                                    case WidgetEnum.EcoScore:
+                                        return <EcoScore key={index} {...widget.props} />;
+                                    case WidgetEnum.Large:
+                                        return <LargeIntakes key={index} {...widget.props} />;
+                                    case WidgetEnum.SmallBasic:
+                                        return <SmallBasicIntakes key={index} {...widget.props} />;
+                                    case WidgetEnum.SmallMultiple:
+                                    default:
+                                        return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                }
+                            })}
                     </View>
                 </View>
             </View>
