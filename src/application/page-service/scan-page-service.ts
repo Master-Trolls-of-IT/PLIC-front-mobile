@@ -30,9 +30,9 @@ const useScanPageService = () => {
                     isFavourite: false
                 } as HistoricalItemProps);
             })
-            .catch(() => {
+            .catch((e) => {
                 errorDispatch("Le code barre n'existe pas");
-                error('ScanPageService', 'Receive an error while get product on OpenFOODFacts API', '');
+                error('ScanPageService', 'Receive an error while get product on OpenFOODFacts API', e.message);
             });
 
     return { getProduct };

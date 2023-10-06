@@ -13,7 +13,9 @@ const ScanPageScannedItemStyle = StyleSheet.create({
         borderWidth: 4,
         borderColor: ColorEnum.ClassicBrown,
         borderBottomWidth: 0,
-        height: '82%'
+        display: 'flex',
+        flexDirection: 'column',
+        paddingBottom: 30
     },
 
     favourite: {
@@ -28,16 +30,16 @@ const ScanPageScannedItemStyle = StyleSheet.create({
 
     headerContainer: {
         width: '100%',
-        height: '20%',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        marginTop: 5
     },
 
     imageContainer: {
         borderColor: ColorEnum.ClassicBrown,
-        width: '45%',
-        height: '100%',
+        width: 140,
+        height: 90,
         borderRadius: 15,
         borderWidth: 3,
         justifyContent: 'center'
@@ -77,7 +79,6 @@ const ScanPageScannedItemStyle = StyleSheet.create({
 
     scoreContainer: {
         width: '100%',
-        height: '20%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around'
@@ -102,7 +103,7 @@ const ScanPageScannedItemStyle = StyleSheet.create({
     myIntakesContainer: {
         width: '95%',
         alignSelf: 'center',
-        marginTop: 12
+        marginBottom: 15
     },
 
     myIntakesTitleContainer: {
@@ -147,21 +148,11 @@ const ScanPageScannedItemStyle = StyleSheet.create({
         backgroundColor: ColorEnum.ClassicGreen,
         width: 329 * (Dimensions.get('screen').width / 400),
         height: 43 * (Dimensions.get('screen').width / 400),
-        marginTop: 8,
-        padding: 10,
         alignSelf: 'center'
     },
 
     buttonText: {
-        fontSize: 18
-    },
-
-    buttonContainerModal: {
-        backgroundColor: ColorEnum.ClassicGreen,
-        width: 115 * (Dimensions.get('screen').width / 400),
-        height: 43 * (Dimensions.get('screen').width / 400),
-        marginTop: 8,
-        padding: 10,
+        fontSize: 18,
         alignSelf: 'center'
     },
 
