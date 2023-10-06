@@ -20,10 +20,9 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
         quantity,
         setQuantity,
         unfilledFavouriteAsset,
-        onPressModalButton
+        onPressModalButton,
+        interBoldText
     } = useScanPageScannedItemData(scannedProduct, onPressScanAgain);
-
-    const interBoldText = CustomFontInterBold().text;
 
     // TODO: Corriger le problèmes avec les glucides dans le parsing
     return (

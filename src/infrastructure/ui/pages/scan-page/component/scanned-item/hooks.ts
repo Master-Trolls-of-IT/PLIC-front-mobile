@@ -4,6 +4,7 @@ import useScanPageScannedItemService from '~/application/page-service/scan-page-
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-ecoScore-value';
+import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onPressScanAgain: () => void) => {
     const {
@@ -50,6 +51,8 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
         }
     };
 
+    const interBoldText = CustomFontInterBold().text;
+
     return {
         modal,
         setModal,
@@ -60,7 +63,8 @@ const useScanPageScannedItemData = (scannedProduct: ProductInfo | undefined, onP
         setQuantity,
         unfilledFavouriteAsset,
         addConsumedProduct,
-        onPressModalButton
+        onPressModalButton,
+        interBoldText
     };
 };
 
