@@ -4,6 +4,7 @@ import { WidgetEcoscoreProps } from '~/domain/interfaces/props/widgets/widget-ec
 import { LargeIntakesProps } from '~/domain/interfaces/props/widgets/large-intakes-props';
 import { SmallBasicIntakesProps } from '~/domain/interfaces/props/widgets/small-basic-intakes-props';
 import { SmallMultipleIntakesProps } from '~/domain/interfaces/props/widgets/small-multiple-intakes-props';
+import { WidgetSlotProps } from '~/domain/interfaces/props/widgets/widget-slot-props';
 
 export type WidgetItem =
     | {
@@ -25,4 +26,8 @@ export type WidgetItem =
     | {
           type: WidgetEnum.Large;
           props: LargeIntakesProps;
+      }
+    | {
+          type: WidgetEnum.Slot;
+          props: WidgetSlotProps;
       };

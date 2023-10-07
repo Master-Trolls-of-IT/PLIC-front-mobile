@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, PanResponder, Text } from 'react-native';
+import { Animated, PanResponder, Text, View } from 'react-native';
 import { useRef, useState } from 'react';
 import SmallWidgetStyle from '~/infrastructure/ui/pages/widget-page/component/small-widget/small-widget-style';
 import Value = Animated.Value;
@@ -10,6 +10,9 @@ const SmallBlankWidget = ({
     setWidgetDropped: (value: { type: 'small' | 'large'; x: number; y: number }) => void;
 }) => {
     const position = useRef(new Animated.ValueXY()).current;
+    const widgetRef = useRef<View>(null);
+    let Xpos = 0;
+    let Ypos = 0;
 
     const [dragging, setDragging] = useState(false);
 
@@ -32,23 +35,26 @@ const SmallBlankWidget = ({
             ),
             onPanResponderRelease: () => {
                 setDragging(false);
-                console.log('dropped at: ', position);
-                console.log('x position: ', position.x as any);
-                const newPosition = position.x as unknown as number;
                 setWidgetDropped({
                     type: 'small',
-                    x: (position.x as any)._value,
-                    y: (position.y as any)._value
+                    x: (position.x as any)._value + Xpos,
+                    y: (position.y as any)._value + Ypos
                 });
                 position.flattenOffset();
                 position.setValue({ x: 0, y: 0 });
-                console.log('my new positionnnnn', newPosition);
             }
         })
     ).current;
 
     return (
         <Animated.View
+            ref={widgetRef}
+            onLayout={() => {
+                widgetRef.current.measure((x, y, width, height, pageX, pageY) => {
+                    Xpos = pageX;
+                    Ypos = pageY;
+                });
+            }}
             style={[
                 SmallWidgetStyle.container,
                 {

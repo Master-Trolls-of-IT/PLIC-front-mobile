@@ -50,8 +50,8 @@ const HomePage = () => {
                                     case WidgetEnum.SmallBasic:
                                         return <SmallBasicIntakes key={index} {...widget.props} />;
                                     case WidgetEnum.SmallMultiple:
-                                    default:
                                         return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                    default:
                                 }
                             })}
                     </View>
@@ -70,8 +70,8 @@ const HomePage = () => {
                                     case WidgetEnum.SmallBasic:
                                         return <SmallBasicIntakes key={index} {...widget.props} />;
                                     case WidgetEnum.SmallMultiple:
-                                    default:
                                         return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                    default:
                                 }
                             })}
                     </View>

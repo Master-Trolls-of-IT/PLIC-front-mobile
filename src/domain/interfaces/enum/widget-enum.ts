@@ -3,5 +3,6 @@ export enum WidgetEnum {
     'EcoScore',
     'SmallBasic',
     'SmallMultiple',
-    'Large'
+    'Large',
+    'Slot'
 }
