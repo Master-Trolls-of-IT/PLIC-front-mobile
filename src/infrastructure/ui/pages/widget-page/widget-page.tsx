@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Animated, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 import WidgetPageStyle from '~/infrastructure/ui/pages/widget-page/widget-page-style';
 import LoginPageTreeClassicLogo from '~/infrastructure/ui/pages/settings-page/component/background/tree-classic-logo';
