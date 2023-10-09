@@ -21,11 +21,13 @@ const HomePageAnecdote = () => {
                 </Text>
             </View>
 
-            <CustomSvg
-                asset={annecdoteObject?.icon}
-                style={WidgetAnecdoteStyle.icon}
-                height={40}
-                width={40}></CustomSvg>
+            {annecdoteObject && (
+                <CustomSvg
+                    asset={annecdoteObject.icon}
+                    style={WidgetAnecdoteStyle.icon}
+                    height={40}
+                    width={40}></CustomSvg>
+            )}
         </View>
     );
 };
