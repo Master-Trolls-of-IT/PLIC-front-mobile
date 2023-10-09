@@ -18,7 +18,6 @@ import { navigationRef } from '~/infrastructure/ui/shared/helper/navigation-ref'
 import ConsumedProductsPage from '~/infrastructure/ui/pages/consumed-products-page/consumed-products-page';
 import SettingsPage from '~/infrastructure/ui/pages/settings-page/settings-page';
 import PersonalDataPage from '~/infrastructure/ui/pages/personal-data-page/personal-data-page';
-import WidgetPage from '~/infrastructure/ui/pages/widget-page/widget-page';
 
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
@@ -56,7 +55,6 @@ function App() {
                                 component={PersonalDataPage}
                                 options={gestureEnabled}
                             />
-                            <Stack.Screen name={PagesEnum.WidgetPage} component={WidgetPage} options={gestureEnabled} />
                         </Stack.Group>
 
                         {/* App content Group */}

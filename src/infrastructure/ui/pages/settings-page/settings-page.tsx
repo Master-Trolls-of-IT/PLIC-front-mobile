@@ -16,8 +16,7 @@ const SettingsPage = () => {
     const {
         NavigationStore: { goBack }
     } = useStore();
-    const { logoutButtonStyle, deleteButtonStyle, arrowLinkAsset, navigateToPersonalDataPage, navigateToWidgetPage } =
-        useSettingsPageData();
+    const { logoutButtonStyle, deleteButtonStyle, arrowLinkAsset, navigateToPersonalDataPage } = useSettingsPageData();
     return (
         <View style={SettingsPageStyle.container}>
             <View style={SettingsPageStyle.background}>
@@ -46,7 +45,7 @@ const SettingsPage = () => {
                         <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
                             Personnaliser les widgets
                         </Text>
-                        <TouchableOpacity onPress={navigateToWidgetPage}>
+                        <TouchableOpacity>
                             <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
                         </TouchableOpacity>
                     </View>

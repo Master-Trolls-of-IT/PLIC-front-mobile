@@ -3,35 +3,30 @@ import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
-import { WidgetsParams } from '~/domain/interfaces/props/widgets/widgets-params';
 
 class DataStore {
     history: HistoricalItemProps[];
     consumedProducts: ConsumedProductItemProps[];
-    widgetsParams: WidgetsParams;
 
     constructor(storageKey: string) {
         this.history = [];
         this.consumedProducts = [];
-        this.widgetsParams = { line1: [], line2: [] };
         makeObservable(
             this,
             {
                 history: observable,
                 consumedProducts: observable,
-                widgetsParams: observable,
 
                 addItem: action,
                 toggleFavorite: action,
-                setConsumedProducts: action,
-                setWidgetParams: action
+                setConsumedProducts: action
             },
             { autoBind: true }
         );
 
         void makePersistable(this, {
             name: storageKey,
-            properties: ['history', 'widgetsParams'],
+            properties: ['history'],
             storage: AsyncStorage
         });
     }
@@ -48,10 +43,6 @@ class DataStore {
         const copy = [...this.history];
         copy[index].isFavourite = !copy[index].isFavourite;
         this.history = [...copy];
-    };
-
-    setWidgetParams = (newParams: WidgetsParams) => {
-        this.widgetsParams = newParams;
     };
 }
 

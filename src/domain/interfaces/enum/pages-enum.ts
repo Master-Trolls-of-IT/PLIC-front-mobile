@@ -11,6 +11,5 @@ export enum PagesEnum {
     HistoricalPage = 'HistoricalPage',
     ConsumedProducts = 'ConsumedProductsPage',
     SettingsPage = 'SettingsPage',
-    PersonalDataPage = 'PersonalDataPage',
-    WidgetPage = 'WidgetPage'
+    PersonalDataPage = 'PersonalDataPage'
 }

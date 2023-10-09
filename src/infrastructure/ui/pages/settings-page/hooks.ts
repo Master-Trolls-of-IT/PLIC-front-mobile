@@ -42,16 +42,11 @@ const useSettingsPageData = () => {
         navigate(PagesEnum.PersonalDataPage);
     }, [navigate]);
 
-    const navigateToWidgetPage = useCallback(() => {
-        navigate(PagesEnum.WidgetPage);
-    }, [navigate]);
-
     return {
         logoutButtonStyle,
         deleteButtonStyle,
         arrowLinkAsset,
-        navigateToPersonalDataPage,
-        navigateToWidgetPage
+        navigateToPersonalDataPage
     };
 };
 

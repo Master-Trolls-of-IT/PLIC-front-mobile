@@ -3,14 +3,24 @@ import { Text, View } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Bar } from 'react-native-progress';
 import useLargeIntakesData from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/hooks';
+import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
 import LargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes-style.';
-import { LargeIntakesProps } from '~/domain/interfaces/props/widgets/large-intakes-props';
 
-const LargeIntakes = ({ energy, firstNutrient, secondNutrient, thirdNutrient }: LargeIntakesProps) => {
+const LargeIntakes = ({
+    energy,
+    firstNutrient,
+    secondNutrient,
+    thirdNutrient
+}: {
+    energy: NutrientData;
+    firstNutrient: NutrientData;
+    secondNutrient: NutrientData;
+    thirdNutrient: NutrientData;
+}) => {
     const { energyColor, energyPercentage, firstPercentage, secondPercentage, thirdPercentage } = useLargeIntakesData(
         energy,
         firstNutrient,
