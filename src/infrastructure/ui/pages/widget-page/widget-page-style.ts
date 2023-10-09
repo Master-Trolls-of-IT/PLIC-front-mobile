@@ -76,24 +76,33 @@ const WidgetPageStyle = StyleSheet.create({
 
     addModalContent: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        borderTopWidth: 0.4,
+        borderTopColor: ColorEnum.ClassicBrown,
+        width: Dimensions.get('screen').width * 0.75,
+        marginHorizontal: -Dimensions.get('screen').width * 0.05,
+        marginTop: 10,
+        alignItems: 'center'
     },
 
     scrollSelectContainer: {
-        width: Dimensions.get('screen').width * 0.7,
+        width: Dimensions.get('screen').width * 0.75,
         padding: 10,
         borderWidth: 1.5,
         borderColor: ColorEnum.ClassicBrown,
-        borderRadius: 20
+        borderRadius: 20,
+        marginHorizontal: -15,
+        marginVertical: 15
     },
 
     scrollSelect: {
-        width: Dimensions.get('screen').width * 0.7,
+        width: Dimensions.get('screen').width * 0.65,
         height: Dimensions.get('screen').height * 0.15,
         borderRadius: 20,
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        alignSelf: 'center'
     },
 
     scrollSelectContent: {
@@ -109,7 +118,40 @@ const WidgetPageStyle = StyleSheet.create({
         width: '100%',
         display: 'flex',
         flexDirection: 'row-reverse',
-        paddingVertical: 10
+        paddingVertical: 5
+    },
+
+    choosenWidget: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    modalDropdownArea: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        flexWrap: 'wrap',
+        width: Dimensions.get('screen').width * 0.75,
+        gap: 15,
+        marginHorizontal: -20,
+        alignSelf: 'center'
+    },
+
+    modalDropdownAreaText: {
+        fontSize: 22,
+        color: ColorEnum.ClassicBrown,
+        fontWeight: 'bold',
+        paddingBottom: 8,
+        borderBottomWidth: 0.4,
+        borderBottomColor: ColorEnum.ClassicBrown,
+        width: Dimensions.get('screen').width * 0.75,
+        marginHorizontal: -Dimensions.get('screen').width * 0.05,
+        textAlign: 'center',
+        marginBottom: 10
     }
 });
 

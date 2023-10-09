@@ -4,6 +4,7 @@ import { LargeIntakesProps } from '~/domain/interfaces/props/widgets/large-intak
 import { SmallBasicIntakesProps } from '~/domain/interfaces/props/widgets/small-basic-intakes-props';
 import { SmallMultipleIntakesProps } from '~/domain/interfaces/props/widgets/small-multiple-intakes-props';
 import { WidgetSlotProps } from '~/domain/interfaces/props/widgets/widget-slot-props';
+import { WidgetCalorieProps } from '~/domain/interfaces/props/widgets/widget-calorie-props';
 
 export type WidgetItem =
     | {
@@ -29,4 +30,8 @@ export type WidgetItem =
     | {
           type: WidgetEnum.Slot;
           props: WidgetSlotProps;
+      }
+    | {
+          type: WidgetEnum.Calorie;
+          props: WidgetCalorieProps;
       };
