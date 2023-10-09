@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Dimensions, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { observer } from 'mobx-react';
 import WidgetPageStyle from '~/infrastructure/ui/pages/widget-page/widget-page-style';
 import LoginPageTreeClassicLogo from '~/infrastructure/ui/pages/settings-page/component/background/tree-classic-logo';
@@ -26,6 +26,8 @@ import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import { WidgetItem } from '~/domain/interfaces/props/widgets/widget-item';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import WidgetCalorie from '~/infrastructure/ui/shared/component/widgets/calorie/widget-calorie';
+import GenericDropDown from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/generic-dropdown';
 
 const WidgetPage = () => {
     const {
@@ -148,6 +150,27 @@ const WidgetPage = () => {
         handleDrop
     ]);
 
+    const [choosenWidget, setChoosenWidget] = useState<WidgetEnum>(WidgetEnum.Slot);
+
+    const toggleModal = useCallback((value: boolean) => {
+        setIsAddSmallWidgetModalOpen(value);
+        setChoosenWidget(WidgetEnum.Slot);
+    }, []);
+
+    const nutrientsOptions: { label: string; value: string }[] = [
+        { label: NutrientsEnum.Sugar, value: NutrientsEnum.Sugar },
+        { label: NutrientsEnum.Lipid, value: NutrientsEnum.Lipid },
+        { label: NutrientsEnum.Carbohydrate, value: NutrientsEnum.Carbohydrate },
+        { label: NutrientsEnum.FattyAcid, value: NutrientsEnum.FattyAcid },
+        { label: NutrientsEnum.Fiber, value: NutrientsEnum.Fiber },
+        { label: NutrientsEnum.Salt, value: NutrientsEnum.Salt },
+        { label: NutrientsEnum.Protein, value: NutrientsEnum.Protein }
+    ];
+
+    const [firstNutrient, setFirstNutrient] = useState<{ label: string; value: string }>();
+    const [secondNutrient, setSecondNutrient] = useState<{ label: string; value: string }>();
+    const [thirdNutrient, setThirdNutrient] = useState<{ label: string; value: string }>();
+
     return (
         <View style={WidgetPageStyle.container}>
             <View style={WidgetPageStyle.background}>
@@ -181,6 +204,8 @@ const WidgetPage = () => {
                                     return <SmallBasicIntakes key={index} {...widget.props} />;
                                 case WidgetEnum.SmallMultiple:
                                     return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                case WidgetEnum.Calorie:
+                                    return <WidgetCalorie key={index} {...widget.props} />;
                                 default:
                                     return <WidgetSlot key={index} {...widget.props} />;
                             }
@@ -199,6 +224,8 @@ const WidgetPage = () => {
                                     return <SmallBasicIntakes key={index} {...widget.props} />;
                                 case WidgetEnum.SmallMultiple:
                                     return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                case WidgetEnum.Calorie:
+                                    return <WidgetCalorie key={index} {...widget.props} />;
                                 default:
                                     return <WidgetSlot key={index} {...widget.props} />;
                             }
@@ -211,58 +238,136 @@ const WidgetPage = () => {
             </View>
             <CustomModal
                 isVisible={isAddSmallWidgetModalOpen}
-                dispatch={setIsAddSmallWidgetModalOpen}
+                dispatch={toggleModal}
                 title="Personnalisation"
                 titleSize={24}>
-                <View
-                    style={{
-                        ...WidgetPageStyle.addModalContent,
-                        ...{ height: Dimensions.get('screen').height * 0.25 }
-                    }}>
+                <View style={WidgetPageStyle.addModalContent}>
                     <View style={WidgetPageStyle.scrollSelectContainer}>
                         <ScrollView
                             style={WidgetPageStyle.scrollSelect}
                             contentContainerStyle={WidgetPageStyle.scrollSelectContent}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.Anecdote)}>
                                 <CustomSvg
                                     asset={require('~/domain/entities/assets/widget/widget-anecdotes.svg')}
                                     height={75}
                                     width={75}
                                 />
+                                {choosenWidget == WidgetEnum.Anecdote && (
+                                    <View style={WidgetPageStyle.choosenWidget}>
+                                        <CustomSvg
+                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
+                                            height={50}
+                                            width={50}
+                                        />
+                                    </View>
+                                )}
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.Calorie)}>
                                 <CustomSvg
                                     asset={require('~/domain/entities/assets/widget/widget-calories.svg')}
                                     height={75}
                                     width={75}
                                 />
+                                {choosenWidget == WidgetEnum.Calorie && (
+                                    <View style={WidgetPageStyle.choosenWidget}>
+                                        <CustomSvg
+                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
+                                            height={50}
+                                            width={50}
+                                        />
+                                    </View>
+                                )}
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.EcoScore)}>
                                 <CustomSvg
                                     asset={require('~/domain/entities/assets/widget/widget-eco-score.svg')}
                                     height={75}
                                     width={75}
                                 />
+                                {choosenWidget == WidgetEnum.EcoScore && (
+                                    <View style={WidgetPageStyle.choosenWidget}>
+                                        <CustomSvg
+                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
+                                            height={50}
+                                            width={50}
+                                        />
+                                    </View>
+                                )}
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.SmallMultiple)}>
                                 <CustomSvg
                                     asset={require('~/domain/entities/assets/widget/widget-mes-apports-multiple.svg')}
                                     height={75}
                                     width={75}
                                 />
+                                {choosenWidget == WidgetEnum.SmallMultiple && (
+                                    <View style={WidgetPageStyle.choosenWidget}>
+                                        <CustomSvg
+                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
+                                            height={50}
+                                            width={50}
+                                        />
+                                    </View>
+                                )}
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.SmallBasic)}>
                                 <CustomSvg
                                     asset={require('~/domain/entities/assets/widget/widget-mes-apports-simple.svg')}
                                     height={75}
                                     width={75}
                                 />
+                                {choosenWidget == WidgetEnum.SmallBasic && (
+                                    <View style={WidgetPageStyle.choosenWidget}>
+                                        <CustomSvg
+                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
+                                            height={50}
+                                            width={50}
+                                        />
+                                    </View>
+                                )}
                             </TouchableOpacity>
                         </ScrollView>
                     </View>
-                    <View style={WidgetPageStyle.modalFooter}>
-                        <GenericButton title="Confirmer" onPress={() => {}} style={confirmButtonStyle} />
-                    </View>
+                    {choosenWidget === WidgetEnum.SmallBasic && (
+                        <>
+                            <Text style={WidgetPageStyle.modalDropdownAreaText}>Widget Mes Apports</Text>
+                            <View style={WidgetPageStyle.modalDropdownArea}>
+                                <GenericDropDown
+                                    title="1er nutriment"
+                                    options={nutrientsOptions}
+                                    dispatch={setFirstNutrient}
+                                />
+                            </View>
+                        </>
+                    )}
+                    {choosenWidget === WidgetEnum.SmallMultiple && (
+                        <>
+                            <Text style={WidgetPageStyle.modalDropdownAreaText}>Widget Mes Apports</Text>
+
+                            <View style={WidgetPageStyle.modalDropdownArea}>
+                                <GenericDropDown
+                                    title="1er nutriment"
+                                    options={nutrientsOptions}
+                                    dispatch={setFirstNutrient}
+                                />
+                                <GenericDropDown
+                                    title="2e nutriment"
+                                    options={nutrientsOptions}
+                                    dispatch={setFirstNutrient}
+                                />
+                                <GenericDropDown
+                                    title="3e nutriment"
+                                    options={nutrientsOptions}
+                                    dispatch={setFirstNutrient}
+                                />
+                            </View>
+                        </>
+                    )}
+                    {choosenWidget !== WidgetEnum.Slot && (
+                        <View style={WidgetPageStyle.modalFooter}>
+                            <GenericButton title="Confirmer" onPress={() => {}} style={confirmButtonStyle} />
+                        </View>
+                    )}
                 </View>
             </CustomModal>
         </View>

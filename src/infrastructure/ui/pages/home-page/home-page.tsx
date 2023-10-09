@@ -14,6 +14,7 @@ import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
 import WidgetAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
 import SmallBasicIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
 import SmallMultipleIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes';
+import WidgetCalorie from '~/infrastructure/ui/shared/component/widgets/calorie/widget-calorie';
 
 const HomePage = () => {
     const { username, chooseRightDynamicImage, widgetsParams } = useHomePageData();
@@ -51,6 +52,8 @@ const HomePage = () => {
                                         return <SmallBasicIntakes key={index} {...widget.props} />;
                                     case WidgetEnum.SmallMultiple:
                                         return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                    case WidgetEnum.Calorie:
+                                        return <WidgetCalorie key={index} {...widget.props} />;
                                     default:
                                 }
                             })}
@@ -71,6 +74,8 @@ const HomePage = () => {
                                         return <SmallBasicIntakes key={index} {...widget.props} />;
                                     case WidgetEnum.SmallMultiple:
                                         return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                    case WidgetEnum.Calorie:
+                                        return <WidgetCalorie key={index} {...widget.props} />;
                                     default:
                                 }
                             })}
