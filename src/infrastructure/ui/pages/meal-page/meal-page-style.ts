@@ -12,6 +12,11 @@ const MealPageStyle = StyleSheet.create({
     text: {
         alignSelf: 'center',
         fontSize: 30
+    },
+    container: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
     }
 });
 

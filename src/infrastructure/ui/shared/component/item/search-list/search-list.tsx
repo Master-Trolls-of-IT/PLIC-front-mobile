@@ -11,6 +11,8 @@ import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import ConsumedProductItem from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
+import MealItem from '~/infrastructure/ui/shared/component/item/meal-item/meal-item';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
     const { displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } = useSearchListData(
@@ -50,6 +52,8 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                         style={idx === 0 ? { marginTop: 0 } : {}}
                                     />
                                 );
+                            case ItemEnum.Meal:
+                                return <MealItem key={idx} {...(item as MealItemProps)} />;
                         }
                     })
                 ) : (
