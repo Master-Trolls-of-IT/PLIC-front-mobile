@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-import { Animated, GestureResponderEvent, View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import WidgetSlotStyle from '~/infrastructure/ui/pages/widget-page/component/widget-slot/widget-slot-style';
-import Value = Animated.Value;
 import { WidgetSlotProps } from '~/domain/interfaces/props/widgets/widget-slot-props';
 
 const WidgetSlot = ({ id, widgetDropped, setHandleDrop }: WidgetSlotProps) => {
@@ -16,9 +15,10 @@ const WidgetSlot = ({ id, widgetDropped, setHandleDrop }: WidgetSlotProps) => {
                         if (
                             widgetDropped.x >= pageX &&
                             widgetDropped.x <= pageX + width &&
-                            widgetDropped.y >= pageY &&
-                            widgetDropped.y <= pageY + height
+                            widgetDropped.y + Dimensions.get('screen').width * 0.4 >= pageY - height &&
+                            widgetDropped.y + Dimensions.get('screen').width * 0.4 <= pageY + height
                         ) {
+                            console.log('drop small in', id);
                             setHandleDrop({ isLine: false, id: id });
                         }
                         break;
@@ -31,18 +31,11 @@ const WidgetSlot = ({ id, widgetDropped, setHandleDrop }: WidgetSlotProps) => {
     }, [widgetDropped]);
     const onMoveShouldSetResponderCapture = () => true;
 
-    const onResponderRelease = (event: GestureResponderEvent) => {
-        const { locationX, locationY } = event.nativeEvent;
-
-        console.log('drop wid: ', id, 'at', locationX, locationY);
-    };
-
     return (
         <View
             ref={slotRef}
             style={WidgetSlotStyle.slot}
-            onMoveShouldSetResponderCapture={onMoveShouldSetResponderCapture}
-            onResponderRelease={onResponderRelease}>
+            onMoveShouldSetResponderCapture={onMoveShouldSetResponderCapture}>
             <View style={WidgetSlotStyle.firstBlock} />
             <View style={WidgetSlotStyle.secondBlock} />
             <View style={WidgetSlotStyle.thirdBlock} />

@@ -55,12 +55,16 @@ const WidgetPageStyle = StyleSheet.create({
 
     widgetArrival: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: Dimensions.get('screen').width
     },
 
     widgetArrivalRow: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginTop: 30,
+        marginHorizontal: Dimensions.get('screen').width * 0.05,
+        gap: Dimensions.get('screen').width * 0.1
     },
 
     footer: {
@@ -68,6 +72,44 @@ const WidgetPageStyle = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row-reverse',
         padding: 20
+    },
+
+    addModalContent: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+
+    scrollSelectContainer: {
+        width: Dimensions.get('screen').width * 0.7,
+        padding: 10,
+        borderWidth: 1.5,
+        borderColor: ColorEnum.ClassicBrown,
+        borderRadius: 20
+    },
+
+    scrollSelect: {
+        width: Dimensions.get('screen').width * 0.7,
+        height: Dimensions.get('screen').height * 0.15,
+        borderRadius: 20,
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
+
+    scrollSelectContent: {
+        width: Dimensions.get('screen').width * 0.7,
+        borderRadius: 20,
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 10
+    },
+
+    modalFooter: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row-reverse',
+        paddingVertical: 10
     }
 });
 

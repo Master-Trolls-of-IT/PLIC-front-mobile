@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Dimensions, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { observer } from 'mobx-react';
 import WidgetPageStyle from '~/infrastructure/ui/pages/widget-page/widget-page-style';
 import LoginPageTreeClassicLogo from '~/infrastructure/ui/pages/settings-page/component/background/tree-classic-logo';
@@ -20,10 +20,17 @@ import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/wid
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
 import SmallBasicIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
 import SmallMultipleIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes';
+import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
+import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { WidgetItem } from '~/domain/interfaces/props/widgets/widget-item';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 
 const WidgetPage = () => {
     const {
-        NavigationStore: { goBack }
+        NavigationStore: { goBack },
+        LoginStore: { userData }
     } = useStore();
 
     const confirmButtonStyle = {
@@ -46,6 +53,8 @@ const WidgetPage = () => {
         undefined
     );
 
+    const [isAddSmallWidgetModalOpen, setIsAddSmallWidgetModalOpen] = useState(false);
+
     const [newWidgetParams, setNewWidgetParams] = useState<WidgetsParams>({
         line1: [
             { type: WidgetEnum.Slot, props: { id: 1, widgetDropped: widgetDropped, setHandleDrop: setHandleDrop } },
@@ -58,10 +67,86 @@ const WidgetPage = () => {
     });
 
     useEffect(() => {
-        switch (handleDrop.isLine) {
-            case true:
+        setNewWidgetParams((prevParams) => {
+            const updatedLine1 = prevParams.line1.map((item) => {
+                if (item.type === WidgetEnum.Slot) {
+                    return { ...item, props: { ...item.props, widgetDropped, setHandleDrop } };
+                }
+                return item;
+            });
+
+            const updatedLine2 = prevParams.line2.map((item) => {
+                if (item.type === WidgetEnum.Slot) {
+                    return { ...item, props: { ...item.props, widgetDropped, setHandleDrop } };
+                }
+                return item;
+            });
+
+            return {
+                line1: updatedLine1,
+                line2: updatedLine2
+            };
+        });
+    }, [widgetDropped]);
+
+    const dailyNutrientsGoal = GetDailyNutrientsGoal(userData.BasalMetabolism);
+    const dailyNutrientsEarned = {
+        energy: Math.round(userData.BasalMetabolism * 0.82),
+        protein: Math.round(dailyNutrientsGoal.protein * 0.6),
+        carbohydrate: Math.round(dailyNutrientsGoal.carbohydrate * 0.4),
+        lipid: Math.round(dailyNutrientsGoal.lipid * 0.8)
+    } as DailyNutrientsType;
+
+    useEffect(() => {
+        if (handleDrop) {
+            if (handleDrop.isLine) {
+                setNewWidgetParams((prevState) => {
+                    const largeWidget: WidgetItem = {
+                        type: WidgetEnum.Large,
+                        props: {
+                            energy: {
+                                nutrientType: NutrientsEnum.Energy,
+                                earned: dailyNutrientsEarned.energy,
+                                goal: dailyNutrientsGoal.energy
+                            },
+                            firstNutrient: {
+                                nutrientType: NutrientsEnum.Protein,
+                                earned: dailyNutrientsEarned.protein,
+                                goal: dailyNutrientsGoal.protein
+                            },
+                            secondNutrient: {
+                                nutrientType: NutrientsEnum.Lipid,
+                                earned: dailyNutrientsEarned.lipid,
+                                goal: dailyNutrientsGoal.lipid
+                            },
+                            thirdNutrient: {
+                                nutrientType: NutrientsEnum.Carbohydrate,
+                                earned: dailyNutrientsEarned.carbohydrate,
+                                goal: dailyNutrientsGoal.carbohydrate
+                            }
+                        }
+                    };
+                    return {
+                        line1: handleDrop.id === 1 ? [{ ...largeWidget }] : [...prevState.line1],
+                        line2: handleDrop.id === 2 ? [{ ...largeWidget }] : [...prevState.line2]
+                    };
+                });
+            } else {
+                console.log('open');
+                setIsAddSmallWidgetModalOpen(true);
+            }
         }
-    }, [handleDrop]);
+    }, [
+        dailyNutrientsEarned.carbohydrate,
+        dailyNutrientsEarned.energy,
+        dailyNutrientsEarned.lipid,
+        dailyNutrientsEarned.protein,
+        dailyNutrientsGoal.carbohydrate,
+        dailyNutrientsGoal.energy,
+        dailyNutrientsGoal.lipid,
+        dailyNutrientsGoal.protein,
+        handleDrop
+    ]);
 
     return (
         <View style={WidgetPageStyle.container}>
@@ -124,6 +209,62 @@ const WidgetPage = () => {
                     <GenericButton title="Confirmer" onPress={() => {}} style={confirmButtonStyle} />
                 </View>
             </View>
+            <CustomModal
+                isVisible={isAddSmallWidgetModalOpen}
+                dispatch={setIsAddSmallWidgetModalOpen}
+                title="Personnalisation"
+                titleSize={24}>
+                <View
+                    style={{
+                        ...WidgetPageStyle.addModalContent,
+                        ...{ height: Dimensions.get('screen').height * 0.25 }
+                    }}>
+                    <View style={WidgetPageStyle.scrollSelectContainer}>
+                        <ScrollView
+                            style={WidgetPageStyle.scrollSelect}
+                            contentContainerStyle={WidgetPageStyle.scrollSelectContent}>
+                            <TouchableOpacity>
+                                <CustomSvg
+                                    asset={require('~/domain/entities/assets/widget/widget-anecdotes.svg')}
+                                    height={75}
+                                    width={75}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <CustomSvg
+                                    asset={require('~/domain/entities/assets/widget/widget-calories.svg')}
+                                    height={75}
+                                    width={75}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <CustomSvg
+                                    asset={require('~/domain/entities/assets/widget/widget-eco-score.svg')}
+                                    height={75}
+                                    width={75}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <CustomSvg
+                                    asset={require('~/domain/entities/assets/widget/widget-mes-apports-multiple.svg')}
+                                    height={75}
+                                    width={75}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <CustomSvg
+                                    asset={require('~/domain/entities/assets/widget/widget-mes-apports-simple.svg')}
+                                    height={75}
+                                    width={75}
+                                />
+                            </TouchableOpacity>
+                        </ScrollView>
+                    </View>
+                    <View style={WidgetPageStyle.modalFooter}>
+                        <GenericButton title="Confirmer" onPress={() => {}} style={confirmButtonStyle} />
+                    </View>
+                </View>
+            </CustomModal>
         </View>
     );
 };

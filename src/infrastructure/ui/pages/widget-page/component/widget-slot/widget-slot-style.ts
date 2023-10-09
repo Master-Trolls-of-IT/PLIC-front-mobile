@@ -6,7 +6,6 @@ const WidgetSlotStyle = StyleSheet.create({
         height: Dimensions.get('screen').width * 0.4,
         width: Dimensions.get('screen').width * 0.4,
         borderRadius: 20,
-        margin: 20,
         alignSelf: 'center',
         justifyContent: 'center'
     },

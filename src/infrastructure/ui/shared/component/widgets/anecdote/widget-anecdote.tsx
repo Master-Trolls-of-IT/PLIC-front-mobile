@@ -17,11 +17,17 @@ const HomePageAnecdote = () => {
                         ...WidgetAnecdoteStyle.text,
                         ...CustomFontInterBold().text
                     }}>
-                    {annecdoteObject.text}
+                    {annecdoteObject && annecdoteObject.text}
                 </Text>
             </View>
 
-            <CustomSvg asset={annecdoteObject.icon} style={WidgetAnecdoteStyle.icon} height={40} width={40}></CustomSvg>
+            {annecdoteObject && (
+                <CustomSvg
+                    asset={annecdoteObject.icon}
+                    style={WidgetAnecdoteStyle.icon}
+                    height={40}
+                    width={40}></CustomSvg>
+            )}
         </View>
     );
 };

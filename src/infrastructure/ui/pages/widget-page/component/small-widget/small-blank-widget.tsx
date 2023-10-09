@@ -37,8 +37,8 @@ const SmallBlankWidget = ({
                 setDragging(false);
                 setWidgetDropped({
                     type: 'small',
-                    x: (position.x as any)._value + Xpos,
-                    y: (position.y as any)._value + Ypos
+                    x: (position.x as unknown as { _value: number })._value + Xpos,
+                    y: (position.y as unknown as { _value: number })._value + Ypos
                 });
                 position.flattenOffset();
                 position.setValue({ x: 0, y: 0 });
