@@ -21,10 +21,9 @@ const MealItemStyle = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 110,
-        width: '35%',
-        paddingLeft: 10
+        width: '30%'
     },
-    image: {},
+
     textField: {
         width: '60%',
         display: 'flex',
@@ -36,6 +35,8 @@ const MealItemStyle = StyleSheet.create({
         color: ColorEnum.ClassicBlack,
         marginTop: 3
     },
+
+    favourite: { width: '10%', height: '50%' },
 
     productCount: {
         fontSize: 14

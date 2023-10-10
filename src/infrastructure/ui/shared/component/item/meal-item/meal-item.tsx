@@ -4,7 +4,9 @@ import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-p
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import useMealItemData from '~/infrastructure/ui/shared/component/item/meal-item/hooks';
 const MealItem = ({ title, nb_of_products, score, ingredients, mealType, mealDiet }: MealItemProps) => {
+    const { favouriteIcon, setIsFavourite, isFavourite } = useMealItemData();
     return (
         <Animated.View style={MealItemStyle.item}>
             <TouchableOpacity>
@@ -17,6 +19,7 @@ const MealItem = ({ title, nb_of_products, score, ingredients, mealType, mealDie
                             width={68.75}
                         />
                     </View>
+
                     <View style={MealItemStyle.textField}>
                         <Text style={{ ...MealItemStyle.title, ...useCustomFontInterBold().text }}>{title}</Text>
                         <View style={MealItemStyle.secondText}>
@@ -27,9 +30,11 @@ const MealItem = ({ title, nb_of_products, score, ingredients, mealType, mealDie
                                 Score: {score}
                             </Text>
                         </View>
+
                         <Text style={{ ...MealItemStyle.ingredients, ...useCustomFontInterBold().text }}>
                             {ingredients.join(' • ')}
                         </Text>
+
                         <View style={MealItemStyle.mealTags}>
                             <Text>
                                 <Text style={{ ...MealItemStyle.mealDiet, ...useCustomFontInterBold().text }}>
@@ -41,6 +46,14 @@ const MealItem = ({ title, nb_of_products, score, ingredients, mealType, mealDie
                             </Text>
                         </View>
                     </View>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            setIsFavourite(!isFavourite);
+                        }}
+                        style={MealItemStyle.favourite}>
+                        <CustomSvg asset={favouriteIcon} height={30} width={30} />
+                    </TouchableOpacity>
                 </View>
             </TouchableOpacity>
         </Animated.View>
