@@ -1,4 +1,4 @@
-import { View, Animated, TouchableOpacity, Text, Image } from 'react-native';
+import { View, Animated, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';

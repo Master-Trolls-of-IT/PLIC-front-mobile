@@ -1,9 +1,8 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { observer } from 'mobx-react';
 import MealPageStyle from '~/infrastructure/ui/pages/meal-page/meal-page-style';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
-import HistoricalPageStyle from '~/infrastructure/ui/pages/historical-page/historical-page-style';
 import SearchList from '~/infrastructure/ui/shared/component/item/search-list/search-list';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
@@ -11,7 +10,6 @@ import HistoricalPageBlobsTop from '~/infrastructure/ui/pages/historical-page/co
 import { MealType } from '~/domain/entities/constants/meal-page-meal-type';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 import { MealDiet } from '~/domain/entities/constants/meal-item-diet-type';
-import MealItem from '~/infrastructure/ui/shared/component/item/meal-item/meal-item';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 
 const MealPage = () => {
