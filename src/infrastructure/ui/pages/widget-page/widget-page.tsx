@@ -167,9 +167,74 @@ const WidgetPage = () => {
         { label: NutrientsEnum.Protein, value: NutrientsEnum.Protein }
     ];
 
-    const [firstNutrient, setFirstNutrient] = useState<{ label: string; value: string }>();
-    const [secondNutrient, setSecondNutrient] = useState<{ label: string; value: string }>();
-    const [thirdNutrient, setThirdNutrient] = useState<{ label: string; value: string }>();
+    const [firstNutrient, setFirstNutrient] = useState<{ label: string; value: string }>({
+        label: NutrientsEnum.Sugar,
+        value: NutrientsEnum.Sugar
+    });
+    const [secondNutrient, setSecondNutrient] = useState<{ label: string; value: string }>({
+        label: NutrientsEnum.Sugar,
+        value: NutrientsEnum.Sugar
+    });
+    const [thirdNutrient, setThirdNutrient] = useState<{ label: string; value: string }>({
+        label: NutrientsEnum.Sugar,
+        value: NutrientsEnum.Sugar
+    });
+
+    const getNewWidgetParamsWithSmallModal = (prev: WidgetsParams, id: number, item: WidgetItem): WidgetsParams => {
+        switch (id) {
+            case 1:
+                return {
+                    line1: [{ ...item }, { ...prev.line1[1] }],
+                    line2: [...prev.line2]
+                };
+            case 2:
+                return {
+                    line1: [{ ...prev.line1[0] }, { ...item }],
+                    line2: [...prev.line2]
+                };
+            case 3:
+                return {
+                    line1: [...prev.line1],
+                    line2: [{ ...item }, { ...prev.line2[1] }]
+                };
+            case 4:
+                return {
+                    line1: [...prev.line1],
+                    line2: [{ ...prev.line2[0] }, { ...item }]
+                };
+        }
+    };
+
+    const handleModalConfirm = useCallback(() => {
+        switch (choosenWidget) {
+            case WidgetEnum.Anecdote:
+                setNewWidgetParams((prevState) => {
+                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
+                        type: WidgetEnum.Anecdote,
+                        props: {}
+                    });
+                });
+                break;
+            case WidgetEnum.EcoScore:
+                setNewWidgetParams((prevState) => {
+                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
+                        type: WidgetEnum.EcoScore,
+                        props: {}
+                    });
+                });
+                break;
+            case WidgetEnum.Calorie:
+                setNewWidgetParams((prevState) => {
+                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
+                        type: WidgetEnum.Calorie,
+                        props: {}
+                    });
+                });
+                break;
+            case WidgetEnum.SmallBasic:
+            case WidgetEnum.SmallMultiple:
+        }
+    }, [choosenWidget]);
 
     return (
         <View style={WidgetPageStyle.container}>
@@ -353,12 +418,12 @@ const WidgetPage = () => {
                                 <GenericDropDown
                                     title="2e nutriment"
                                     options={nutrientsOptions}
-                                    dispatch={setFirstNutrient}
+                                    dispatch={setSecondNutrient}
                                 />
                                 <GenericDropDown
                                     title="3e nutriment"
                                     options={nutrientsOptions}
-                                    dispatch={setFirstNutrient}
+                                    dispatch={setThirdNutrient}
                                 />
                             </View>
                         </>

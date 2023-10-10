@@ -1,1 +1,1 @@
-export type WidgetEcoscoreProps = { ecoScore: number; style?: object };
+export type WidgetEcoscoreProps = { style?: object };

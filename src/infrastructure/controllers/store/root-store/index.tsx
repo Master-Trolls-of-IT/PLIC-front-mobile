@@ -24,7 +24,7 @@ class RootStore {
         this.NavigationStore = new NavigationStore();
         this.LoginStore = new LoginStore('LoginStore');
         this.LogStore = new LogStore('LogStore');
-        this.DataStore = new DataStore('DataStore');
+        this.DataStore = new DataStore('DataStore', this);
     }
 
     resetAllObservables = () => {

@@ -1,15 +1,17 @@
 import { Text, View } from 'react-native';
 import React from 'react';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { observer } from 'mobx-react';
 import WidgetAnecdoteStyle from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote-style';
 import LargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes-style.';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import useWidgetCalorieData from '~/infrastructure/ui/shared/component/widgets/calorie/hooks';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 
-const WidgetCalorie = ({ energy }: { energy: NutrientData }) => {
-    const { energyColor, energyPercentage } = useWidgetCalorieData(energy);
+const WidgetCalorie = () => {
+    const { energyColor, energyPercentage, earned, goal } = useWidgetCalorieData();
     return (
         <View style={WidgetAnecdoteStyle.anecdoteContainer}>
             <View style={LargeIntakesStyle.circularView}>
@@ -25,15 +27,13 @@ const WidgetCalorie = ({ energy }: { energy: NutrientData }) => {
                     lineCap={'round'}
                 />
                 <Text style={{ ...LargeIntakesStyle.leftInnerTitle, ...CustomFontInterBold().text }}>
-                    {energy.nutrientType}
+                    {NutrientsEnum.Energy}
                 </Text>
-                <Text style={{ ...LargeIntakesStyle.leftEarned, ...CustomFontInterBold().text }}>{energy.earned}</Text>
-                <Text style={{ ...LargeIntakesStyle.leftGoal, ...CustomFontInterBold().text }}>
-                    {'/' + energy.goal}
-                </Text>
+                <Text style={{ ...LargeIntakesStyle.leftEarned, ...CustomFontInterBold().text }}>{earned}</Text>
+                <Text style={{ ...LargeIntakesStyle.leftGoal, ...CustomFontInterBold().text }}>{'/' + goal}</Text>
             </View>
         </View>
     );
 };
 
-export default WidgetCalorie;
+export default observer(WidgetCalorie);
