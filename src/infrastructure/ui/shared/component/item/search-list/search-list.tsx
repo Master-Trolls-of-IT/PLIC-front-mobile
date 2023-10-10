@@ -11,15 +11,22 @@ import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import ConsumedProductItem from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
+import MealItem from '~/infrastructure/ui/shared/component/item/meal-item/meal-item';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
-    const { displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } = useSearchListData(
-        itemType,
-        data
-    );
+    const {
+        displayData,
+        onSearch,
+        searchedText,
+        onSelectedFilter,
+        filterOptions,
+        customFontBold,
+        searchListContainerStyle
+    } = useSearchListData(itemType, data);
 
     return (
-        <View style={SearchListStyle.container}>
+        <View style={searchListContainerStyle}>
             <View style={SearchListStyle.searchContainer}>
                 <GenericInput
                     placeHolder="Rechercher un produit"
@@ -47,6 +54,14 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                     <ConsumedProductItem
                                         key={idx}
                                         {...(item as ConsumedProductItemProps)}
+                                        style={idx === 0 ? { marginTop: 0 } : {}}
+                                    />
+                                );
+                            case ItemEnum.Meal:
+                                return (
+                                    <MealItem
+                                        key={idx}
+                                        {...(item as MealItemProps)}
                                         style={idx === 0 ? { marginTop: 0 } : {}}
                                     />
                                 );

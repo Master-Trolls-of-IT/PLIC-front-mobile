@@ -1,10 +1,9 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const SearchListStyle = StyleSheet.create({
     container: {
-        width: '100%',
-        height: 0.68 * Dimensions.get('screen').height
+        width: '100%'
     },
 
     searchContainer: {

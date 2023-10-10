@@ -10,5 +10,7 @@ export const defaultUserData: UserData = {
     Pseudo: '',
     Rights: 0,
     Sportiveness: 0,
-    BasalMetabolism: 0
+    BasalMetabolism: 0,
+    AvatarId: null,
+    Id: 0
 };
