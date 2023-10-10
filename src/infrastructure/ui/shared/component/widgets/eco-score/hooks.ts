@@ -1,15 +1,20 @@
 import { useMemo, useState } from 'react';
 import GetColorByPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
+import { useStore } from '~/infrastructure/controllers/store';
 
-const useEcoScoreData = (percentage: number) => {
-    const [color, setColor] = useState(GetColorByPercentage(percentage));
+const useEcoScoreData = () => {
+    const {
+        DataStore: { ecoScore }
+    } = useStore();
+    const [color, setColor] = useState(GetColorByPercentage(ecoScore));
 
     useMemo(() => {
-        setColor(GetColorByPercentage(percentage));
-    }, [percentage]);
+        setColor(GetColorByPercentage(ecoScore));
+    }, [ecoScore]);
 
     return {
-        color
+        color,
+        ecoScore
     };
 };
 

@@ -9,15 +9,12 @@ import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/back
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
-<<<<<<< HEAD
 import WidgetWater from '~/infrastructure/ui/shared/component/widgets/water/widget-water';
-=======
 import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
 import WidgetAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
 import SmallBasicIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
 import SmallMultipleIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes';
 import WidgetCalorie from '~/infrastructure/ui/shared/component/widgets/calorie/widget-calorie';
->>>>>>> bfd03f3 (Fin de l'ui de la modal)
 
 const HomePage = () => {
     const { anecdoteObject, dailyNutrientsGoal, dailyNutrientsEarned, username, chooseRightDynamicImage, ecoScore } =
@@ -42,35 +39,6 @@ const HomePage = () => {
 
                 <View style={HomePageStyle.widgetContainer}>
                     <View style={HomePageStyle.widgetContainerFirstRow}>
-<<<<<<< HEAD
-                        <LargeIntakes
-                            energy={{
-                                nutrientType: NutrientsEnum.Energy,
-                                earned: dailyNutrientsEarned.energy,
-                                goal: dailyNutrientsGoal.energy
-                            }}
-                            firstNutrient={{
-                                nutrientType: NutrientsEnum.Protein,
-                                earned: dailyNutrientsEarned.protein,
-                                goal: dailyNutrientsGoal.protein
-                            }}
-                            secondNutrient={{
-                                nutrientType: NutrientsEnum.Lipid,
-                                earned: dailyNutrientsEarned.lipid,
-                                goal: dailyNutrientsGoal.lipid
-                            }}
-                            thirdNutrient={{
-                                nutrientType: NutrientsEnum.Carbohydrate,
-                                earned: dailyNutrientsEarned.carbohydrate,
-                                goal: dailyNutrientsGoal.carbohydrate
-                            }}
-                        />
-                    </View>
-
-                    <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
-                        <HomePageAnecdote {...anecdoteObject} />
-                        <WidgetWater />
-=======
                         {widgetsParams.line1.length > 0 &&
                             widgetsParams.line1.length < 3 &&
                             widgetsParams.line1.map((widget, index) => {
@@ -112,7 +80,6 @@ const HomePage = () => {
                                     default:
                                 }
                             })}
->>>>>>> bfd03f3 (Fin de l'ui de la modal)
                     </View>
                 </View>
             </View>
