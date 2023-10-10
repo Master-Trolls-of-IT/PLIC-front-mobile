@@ -14,9 +14,13 @@ const useMealPageData = () => {
 
     const [isMealActive, setMealActive] = useState(false);
 
-    const onMealPress = () => {
+    const onAddPress = () => {
         setMealActive((prevState) => !prevState);
     };
+
+    const onPressMealMenu = () => {
+        setMealActive(false);
+    }
 
     const mockData: MealItemProps[] = [
         {
@@ -72,7 +76,9 @@ const useMealPageData = () => {
         addMealButton,
         newHeight,
         newWidth,
-        isMealActive
+        isMealActive,
+        onAddPress,
+        onPressMealMenu
     };
 };
 
