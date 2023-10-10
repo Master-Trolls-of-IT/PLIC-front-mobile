@@ -3,12 +3,14 @@ import NavigationStore from '~/infrastructure/controllers/store/root-store/navig
 import LoginStore from '~/infrastructure/controllers/store/root-store/login-store';
 import LogStore from '~/infrastructure/controllers/store/root-store/log-store';
 import DataStore from '~/infrastructure/controllers/store/root-store/data-store';
+import MealStore from '~/infrastructure/controllers/store/root-store/meal-store';
 
 class RootStore {
     NavigationStore: NavigationStore;
     LoginStore: LoginStore;
     LogStore: LogStore;
     DataStore: DataStore;
+    MealStore: MealStore;
 
     static instance: RootStore;
 
@@ -25,6 +27,7 @@ class RootStore {
         this.LoginStore = new LoginStore('LoginStore');
         this.LogStore = new LogStore('LogStore');
         this.DataStore = new DataStore('DataStore');
+        this.MealStore = new MealStore('MealStore');
     }
 
     resetAllObservables = () => {

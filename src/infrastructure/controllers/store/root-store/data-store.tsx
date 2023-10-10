@@ -41,7 +41,7 @@ class DataStore {
     toggleFavorite = (id: string) => {
         const index = this.history.findIndex((elem) => elem.id === id);
         const copy = [...this.history];
-        copy[index].isFavourite = !copy[index].isFavourite;
+        copy[index].isFavorite = !copy[index].isFavorite;
         this.history = [...copy];
     };
 }

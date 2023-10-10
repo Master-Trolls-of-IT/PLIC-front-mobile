@@ -10,7 +10,8 @@ import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import useMealPageData from '~/infrastructure/ui/pages/meal-page/hooks';
 
 const MealPage = () => {
-    const { mockData, addMealButton, newWidth, newHeight } = useMealPageData();
+
+    const { history, mockData, addMealButton, newWidth, newHeight } = useMealPageData();
 
     return (
         <View style={MealPageStyle.container}>
