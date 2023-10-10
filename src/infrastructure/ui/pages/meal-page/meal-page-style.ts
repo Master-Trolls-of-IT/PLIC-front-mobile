@@ -24,15 +24,14 @@ const MealPageStyle = StyleSheet.create({
         flexDirection: 'column'
     },
     addButton: {
-        height: '10%',
-        width: '100%',
-        position: 'absolute',
-        bottom: 0,
-        backgroundColor: ColorEnum.ClassicBeige,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        alignSelf: 'center',
+        width: '95%',
+        borderTopColor: ColorEnum.VeryOpaqueBrown,
+        borderTopWidth: 1
     },
     plusImage: {
         margin: 5

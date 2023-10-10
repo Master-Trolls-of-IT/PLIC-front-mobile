@@ -18,7 +18,7 @@ const MealPage = () => {
     const mockdata: MealItemProps[] = [
         {
             title: 'REPAS COMPLET 1',
-            score: 82,
+            score: 92,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             nb_of_products: 8,
             mealType: [MealType.Japonais],
@@ -26,7 +26,7 @@ const MealPage = () => {
         },
         {
             title: 'REPAS COMPLET 2',
-            score: 82,
+            score: 70,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             nb_of_products: 8,
             mealType: [MealType.Japonais],
@@ -34,7 +34,7 @@ const MealPage = () => {
         },
         {
             title: 'REPAS COMPLET 3',
-            score: 82,
+            score: 49,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             nb_of_products: 8,
             mealType: [MealType.Japonais],
@@ -42,7 +42,7 @@ const MealPage = () => {
         },
         {
             title: 'REPAS COMPLET 4',
-            score: 82,
+            score: 21,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             nb_of_products: 8,
             mealType: [MealType.Japonais],
@@ -75,7 +75,9 @@ const MealPage = () => {
                 secondText={'Créer un repas ou visualisez un repas enregistré·'}
                 containerStyle={MealPageStyle.headerContainer}
             />
-            <SearchList itemType={ItemEnum.Meal} data={mockdata} />
+            <View style={MealItemStyle.mealList}>
+                <SearchList itemType={ItemEnum.Meal} data={mockdata} />
+            </View>
             <View style={MealPageStyle.addButton}>
                 <TouchableOpacity>
                     <CustomSvg

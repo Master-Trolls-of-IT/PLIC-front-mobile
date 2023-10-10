@@ -6,15 +6,14 @@ import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-b
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import useMealItemData from '~/infrastructure/ui/shared/component/item/meal-item/hooks';
 const MealItem = ({ title, nb_of_products, score, ingredients, mealType, mealDiet }: MealItemProps) => {
-    const { favouriteIcon, setIsFavourite, isFavourite } = useMealItemData();
+    const { favouriteIcon, setIsFavourite, isFavourite, scoreStyle } = useMealItemData({ score });
     return (
         <Animated.View style={MealItemStyle.item}>
             <TouchableOpacity>
                 <View style={MealItemStyle.container}>
                     <View style={MealItemStyle.imageContainer}>
                         <CustomSvg
-                            asset={require('~/infrastructure/ui/shared/component/item/meal-item/assets/icon-restaurant.svg')}
-                            style={MealItemStyle.image}
+                            asset={require('~/domain/entities/assets/meal-page/meal-item/icon-restaurant.svg')}
                             height={91.67}
                             width={68.75}
                         />
@@ -26,9 +25,7 @@ const MealItem = ({ title, nb_of_products, score, ingredients, mealType, mealDie
                             <Text style={{ ...MealItemStyle.productCount, ...useCustomFontInterBold().text }}>
                                 {nb_of_products} Produits •{' '}
                             </Text>
-                            <Text style={{ ...MealItemStyle.score, ...useCustomFontInterBold().text }}>
-                                Score: {score}
-                            </Text>
+                            <Text style={{ ...scoreStyle, ...useCustomFontInterBold().text }}>Score: {score}</Text>
                         </View>
 
                         <Text style={{ ...MealItemStyle.ingredients, ...useCustomFontInterBold().text }}>

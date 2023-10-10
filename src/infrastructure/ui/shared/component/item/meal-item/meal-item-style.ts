@@ -42,6 +42,8 @@ const MealItemStyle = StyleSheet.create({
         fontSize: 14
     },
 
+    mealList: {},
+
     secondText: {
         display: 'flex',
         flexDirection: 'row'
@@ -57,7 +59,7 @@ const MealItemStyle = StyleSheet.create({
     mealTags: { display: 'flex', flexDirection: 'row', flexWrap: 'wrap', maxWidth: '90%' },
     mealType: { fontSize: 12, color: ColorEnum.ClassicBrown },
     mealDiet: { fontSize: 12, color: ColorEnum.ClassicDarkGreen },
-    score: { fontSize: 14, color: ColorEnum.ClassicDarkGreen }
+    score: { fontSize: 14 }
 });
 
 export default MealItemStyle;

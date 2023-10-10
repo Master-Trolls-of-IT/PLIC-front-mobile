@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Dimensions } from 'react-native';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { SearchListData, SearchListInputType } from '~/domain/interfaces/props/search-list/search-list-data-props';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
+import SearchListStyle from '~/infrastructure/ui/shared/component/item/search-list/search-list-style';
 
 const useSearchListData = (inputType: SearchListInputType, data: SearchListData) => {
     const [searchedText, setSearchedText] = useState('');
@@ -162,6 +164,14 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
         }
     })();
 
+    const searchListContainerStyle = useMemo(() => {
+        switch (inputType) {
+            case ItemEnum.Meal:
+                return { ...SearchListStyle.container, height: 0.57 * Dimensions.get('screen').height };
+            default:
+                return { ...SearchListStyle.container, height: 0.68 * Dimensions.get('screen').height };
+        }
+    }, [inputType]);
     const customFontBold = CustomFontInterBold();
 
     return {
@@ -170,7 +180,8 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
         onSearch,
         onSelectedFilter,
         filterOptions,
-        customFontBold
+        customFontBold,
+        searchListContainerStyle
     };
 };
 

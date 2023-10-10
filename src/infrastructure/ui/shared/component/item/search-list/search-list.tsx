@@ -15,13 +15,18 @@ import MealItem from '~/infrastructure/ui/shared/component/item/meal-item/meal-i
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
-    const { displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } = useSearchListData(
-        itemType,
-        data
-    );
+    const {
+        displayData,
+        onSearch,
+        searchedText,
+        onSelectedFilter,
+        filterOptions,
+        customFontBold,
+        searchListContainerStyle
+    } = useSearchListData(itemType, data);
 
     return (
-        <View style={SearchListStyle.container}>
+        <View style={searchListContainerStyle}>
             <View style={SearchListStyle.searchContainer}>
                 <GenericInput
                     placeHolder="Rechercher un produit"
