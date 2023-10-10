@@ -7,22 +7,30 @@ import { WidgetsParams } from '~/domain/interfaces/props/widgets/widgets-params'
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import RootStore from '~/infrastructure/controllers/store/root-store/index';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
+import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
 
 class DataStore {
     rootStore: RootStore;
     history: HistoricalItemProps[];
     consumedProducts: ConsumedProductItemProps[];
     widgetsParams: WidgetsParams;
+
+    dailyNutrientsGoal: DailyNutrientsType;
+    dailyNutrientsEarned: DailyNutrientsType;
     ecoScore: number;
-    dayEnergy: NutrientData;
+    dayEnergy: number;
 
     constructor(storageKey: string, rootStore: RootStore) {
         this.rootStore = rootStore;
         this.history = [];
         this.consumedProducts = [];
         this.widgetsParams = { line1: [], line2: [] };
+
+        this.dailyNutrientsGoal = GetDailyNutrientsGoal(rootStore.LoginStore.userData);
+        this.dailyNutrientsEarned = { energy: 0, carbohydrate: 0, lipid: 0, protein: 0 };
         this.ecoScore = 42;
-        this.dayEnergy = { nutrientType: NutrientsEnum.Energy, earned: 10, goal: 1200 };
+        this.dayEnergy = 0;
 
         makeObservable(
             this,
@@ -68,6 +76,10 @@ class DataStore {
 
     setEcoScore = (newEcoScore: number) => {
         this.ecoScore = newEcoScore;
+    };
+
+    updateDailyNutrientsGoal = () => {
+        this.dailyNutrientsGoal = GetDailyNutrientsGoal(this.rootStore.LoginStore.userData.BasalMetabolism);
     };
 }
 

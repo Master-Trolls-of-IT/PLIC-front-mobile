@@ -9,6 +9,9 @@ import { useStore } from '~/infrastructure/controllers/store';
 import useLoginPageService from '~/application/page-service/login-page-service';
 import { UserData } from '~/domain/interfaces/services/user-data';
 import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
+import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
+import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
+import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
 
 const useLoginPageData = () => {
     const [inputEmailString, setInputEmail] = useState('');
@@ -60,6 +63,15 @@ const useLoginPageData = () => {
 
                     userDataCopy.Birthdate = formatTimpstampToDate(userDataCopy.Birthdate);
                     setUserData(userDataCopy);
+                    let newWidgetParamsLine1 = [...widgetsParams.line1];
+                    let newWidgetParamsLine2 = [...widgetsParams.line2];
+                    if (widgetsParams.line1.length === 0) {
+                        newWidgetParamsLine1 = [WidgetEnum.Large];
+                    }
+                    if (widgetsParams.line2.length === 0) {
+                        newWidgetParamsLine2 = [WidgetEnum.Anecdote, WidgetEnum.EcoScore];
+                    }
+                    setWidgetParams({ line1: newWidgetParamsLine1, line2: newWidgetParamsLine2 });
                     navigate(PagesEnum.HomePage);
                 } else {
                     setErrorOnServer(true);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Bar } from 'react-native-progress';
+import { observer } from 'mobx-react';
 import useSmallMultipleData from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/hooks';
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
@@ -86,4 +87,4 @@ const SmallMultipleIntakes = ({
     );
 };
 
-export default SmallMultipleIntakes;
+export default observer(SmallMultipleIntakes);

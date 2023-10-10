@@ -1,13 +1,13 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { View } from 'react-native';
-import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import HomePageBasket from '~/infrastructure/ui/pages/home-page/component/background/home-page-basket';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
 import WidgetWater from '~/infrastructure/ui/shared/component/widgets/water/widget-water';
 import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
@@ -39,47 +39,43 @@ const HomePage = () => {
 
                 <View style={HomePageStyle.widgetContainer}>
                     <View style={HomePageStyle.widgetContainerFirstRow}>
-                        {widgetsParams.line1.length > 0 &&
-                            widgetsParams.line1.length < 3 &&
-                            widgetsParams.line1.map((widget, index) => {
-                                switch (widget.type) {
-                                    case WidgetEnum.Anecdote:
-                                        return <WidgetAnecdote key={index} {...widget.props} />;
-                                    case WidgetEnum.EcoScore:
-                                        return <EcoScore key={index} {...widget.props} />;
-                                    case WidgetEnum.Large:
-                                        return <LargeIntakes key={index} {...widget.props} />;
-                                    case WidgetEnum.SmallBasic:
-                                        return <SmallBasicIntakes key={index} {...widget.props} />;
-                                    case WidgetEnum.SmallMultiple:
-                                        return <SmallMultipleIntakes key={index} {...widget.props} />;
-                                    case WidgetEnum.Calorie:
-                                        return <WidgetCalorie key={index} {...widget.props} />;
-                                    default:
-                                }
-                            })}
+                        {widgetsParams.line1.map((widget, index) => {
+                            switch (widget) {
+                                case WidgetEnum.Anecdote:
+                                    return <WidgetAnecdote key={index} />;
+                                case WidgetEnum.EcoScore:
+                                    return <EcoScore key={index} />;
+                                case WidgetEnum.Large:
+                                    return <LargeIntakes key={index} />;
+                                case WidgetEnum.SmallBasic:
+                                    return <SmallBasicIntakes key={index} />;
+                                case WidgetEnum.SmallMultiple:
+                                    return <SmallMultipleIntakes key={index} />;
+                                case WidgetEnum.Calorie:
+                                    return <WidgetCalorie key={index} />;
+                                default:
+                            }
+                        })}
                     </View>
 
                     <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
-                        {widgetsParams.line2.length > 0 &&
-                            widgetsParams.line2.length < 3 &&
-                            widgetsParams.line2.map((widget, index) => {
-                                switch (widget.type) {
-                                    case WidgetEnum.Anecdote:
-                                        return <WidgetAnecdote key={index} {...widget.props} />;
-                                    case WidgetEnum.EcoScore:
-                                        return <EcoScore key={index} {...widget.props} />;
-                                    case WidgetEnum.Large:
-                                        return <LargeIntakes key={index} {...widget.props} />;
-                                    case WidgetEnum.SmallBasic:
-                                        return <SmallBasicIntakes key={index} {...widget.props} />;
-                                    case WidgetEnum.SmallMultiple:
-                                        return <SmallMultipleIntakes key={index} {...widget.props} />;
-                                    case WidgetEnum.Calorie:
-                                        return <WidgetCalorie key={index} {...widget.props} />;
-                                    default:
-                                }
-                            })}
+                        {widgetsParams.line1.map((widget, index) => {
+                            switch (widget) {
+                                case WidgetEnum.Anecdote:
+                                    return <WidgetAnecdote key={index} />;
+                                case WidgetEnum.EcoScore:
+                                    return <EcoScore key={index} />;
+                                case WidgetEnum.Large:
+                                    return <LargeIntakes key={index} />;
+                                case WidgetEnum.SmallBasic:
+                                    return <SmallBasicIntakes key={index} />;
+                                case WidgetEnum.SmallMultiple:
+                                    return <SmallMultipleIntakes key={index} />;
+                                case WidgetEnum.Calorie:
+                                    return <WidgetCalorie key={index} />;
+                                default:
+                            }
+                        })}
                     </View>
                 </View>
             </View>
