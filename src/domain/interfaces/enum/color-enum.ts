@@ -34,7 +34,6 @@ export enum ColorEnum {
 
     // Orange
     ClassicOrangeWidget = '#FAB400',
-    ClassicDarkOrange = '#FF8C00',
 
     // Red
     ClassicRedIcon = '#E63E11',
@@ -44,8 +43,5 @@ export enum ColorEnum {
 
     // Yellow
     ClassicYellowWidget = '#E0E420C6',
-    ClassicDarkYellow = '#F6BE00',
-
-    //Black
-    ClassicBlack = '#2E2E2E'
+    ClassicDarkYellow = '#F6BE00'
 }

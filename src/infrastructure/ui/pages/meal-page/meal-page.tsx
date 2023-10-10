@@ -5,64 +5,13 @@ import MealPageStyle from '~/infrastructure/ui/pages/meal-page/meal-page-style';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import SearchList from '~/infrastructure/ui/shared/component/item/search-list/search-list';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
-import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 import HistoricalPageBlobsTop from '~/infrastructure/ui/pages/historical-page/component/background/historical-page-blobs-top';
-import { MealType } from '~/domain/entities/constants/meal-page-meal-type';
-import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
-import { MealDiet } from '~/domain/entities/constants/meal-item-diet-type';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import useMealPageData from '~/infrastructure/ui/pages/meal-page/hooks';
 
 const MealPage = () => {
-    const mockdata: MealItemProps[] = [
-        {
-            title: 'REPAS COMPLET 1',
-            score: 92,
-            ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
-            nb_of_products: 8,
-            mealType: [MealType.Japonais],
-            mealDiet: [MealDiet.Végétarien]
-        },
-        {
-            title: 'REPAS COMPLET 2',
-            score: 70,
-            ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
-            nb_of_products: 8,
-            mealType: [MealType.Japonais],
-            mealDiet: [MealDiet.Végétarien]
-        },
-        {
-            title: 'REPAS COMPLET 3',
-            score: 49,
-            ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
-            nb_of_products: 8,
-            mealType: [MealType.Japonais],
-            mealDiet: [MealDiet.Végétarien]
-        },
-        {
-            title: 'REPAS COMPLET 4',
-            score: 21,
-            ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
-            nb_of_products: 8,
-            mealType: [MealType.Japonais],
-            mealDiet: [MealDiet.Végétarien]
-        },
-        {
-            title: 'REPAS COMPLET 5',
-            score: 82,
-            ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
-            nb_of_products: 8,
-            mealType: [MealType.Japonais, MealType.Japonais, MealType.Japonais],
-            mealDiet: [MealDiet.Végétarien]
-        },
-        {
-            title: 'REPAS COMPLET 6',
-            score: 82,
-            ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
-            nb_of_products: 8,
-            mealType: [MealType.Japonais],
-            mealDiet: [MealDiet.Végétarien]
-        }
-    ];
+    const { mockData, addMealButton, newWidth, newHeight } = useMealPageData();
+
     return (
         <View style={MealPageStyle.container}>
             <View style={MealPageStyle.background}>
@@ -73,16 +22,14 @@ const MealPage = () => {
                 secondText={'Créer un repas ou visualisez un repas enregistré·'}
                 containerStyle={MealPageStyle.headerContainer}
             />
-            <View style={MealItemStyle.mealList}>
-                <SearchList itemType={ItemEnum.Meal} data={mockdata} />
-            </View>
+            <SearchList itemType={ItemEnum.Meal} data={mockData} />
             <View style={MealPageStyle.addButton}>
                 <TouchableOpacity>
                     <CustomSvg
-                        asset={require('~/domain/entities/assets/meal-page/add-meal-button.svg')}
+                        asset={addMealButton}
                         style={MealPageStyle.plusImage}
-                        height={70}
-                        width={70}
+                        height={newHeight}
+                        width={newWidth}
                     />
                 </TouchableOpacity>
             </View>

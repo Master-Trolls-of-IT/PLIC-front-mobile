@@ -58,7 +58,13 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                     />
                                 );
                             case ItemEnum.Meal:
-                                return <MealItem key={idx} {...(item as MealItemProps)} />;
+                                return (
+                                    <MealItem
+                                        key={idx}
+                                        {...(item as MealItemProps)}
+                                        style={idx === 0 ? { marginTop: 0 } : {}}
+                                    />
+                                );
                         }
                     })
                 ) : (

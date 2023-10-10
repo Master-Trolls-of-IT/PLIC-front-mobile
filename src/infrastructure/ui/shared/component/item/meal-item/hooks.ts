@@ -5,6 +5,13 @@ import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/m
 
 const useMealItemData = ({ score }: MealItemDataProps) => {
     const [isFavourite, setIsFavourite] = useState(false);
+    const restaurantIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-restaurant.svg');
+    const [imageNewHeight, imageNewWidth] = [92, 69];
+    const [favouriteNewHeight, favouriteNewWidth] = [30, 30];
+
+    const toggleFavourite = () => {
+        setIsFavourite(!isFavourite);
+    };
 
     const favouriteIcon = useMemo(() => {
         return isFavourite
@@ -14,21 +21,27 @@ const useMealItemData = ({ score }: MealItemDataProps) => {
 
     const scoreStyle = useMemo(() => {
         switch (true) {
-            case score >= 0 && score <= 25:
+            case score <= 25:
                 return { ...MealItemStyle.score, color: ColorEnum.ClassicRedWidget };
-            case score > 25 && score <= 50:
-                return { ...MealItemStyle.score, color: ColorEnum.ClassicDarkOrange };
-            case score > 50 && score <= 75:
-                return { ...MealItemStyle.score, color: ColorEnum.ClassicDarkYellow };
+            case score <= 50:
+                return { ...MealItemStyle.score, color: ColorEnum.ClassicOrangeWidget };
+            case score <= 75:
+                return { ...MealItemStyle.score, color: ColorEnum.ClassicYellowWidget };
             default:
                 return { ...MealItemStyle.score, color: ColorEnum.ClassicDarkGreen };
         }
     }, [score]);
+
     return {
         isFavourite,
         favouriteIcon,
-        setIsFavourite,
-        scoreStyle
+        toggleFavourite,
+        scoreStyle,
+        restaurantIcon,
+        imageNewHeight,
+        imageNewWidth,
+        favouriteNewHeight,
+        favouriteNewWidth
     };
 };
 

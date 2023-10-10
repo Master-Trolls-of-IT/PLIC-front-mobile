@@ -41,6 +41,10 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                     return (mockedData as ConsumedProductItemProps[]).filter(
                         (Item) => Item.name.includes(search) || Item.name.includes(search)
                     );
+                case ItemEnum.Meal:
+                    return (mockedData as MealItemProps[]).filter(
+                        (Item) => Item.title.includes(search) || Item.title.includes(search)
+                    );
                 default:
                     return prevState;
             }
@@ -132,6 +136,53 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                                 setDisplayData(mockedData);
                         }
                     })();
+                case ItemEnum.Meal:
+                    return (() => {
+                        switch (item.value) {
+                            case 'aphaasc':
+                                setDisplayData(
+                                    [...(mockedData as MealItemProps[])].sort((a, b) => a.title.localeCompare(b.title))
+                                );
+                                break;
+                            case 'aphades':
+                                setDisplayData(
+                                    [...(mockedData as MealItemProps[])]
+                                        .sort((a, b) => a.title.localeCompare(b.title))
+                                        .reverse()
+                                );
+                                break;
+                            case 'scoreasc':
+                                setDisplayData([...(mockedData as MealItemProps[])].sort((a, b) => a.score - b.score));
+                                break;
+                            case 'scoredes':
+                                setDisplayData([...(mockedData as MealItemProps[])].sort((a, b) => b.score - a.score));
+                                break;
+                            case 'favasc':
+                                setDisplayData([...(mockedData as MealItemProps[])].filter((elem) => elem.isFavourite));
+                                break;
+                            case 'favdes':
+                                setDisplayData(
+                                    [...(mockedData as MealItemProps[])].filter((elem) => !elem.isFavourite)
+                                );
+                                break;
+                            case 'prodasc':
+                                setDisplayData(
+                                    [...(mockedData as MealItemProps[])].sort(
+                                        (a, b) => a.numberOfProducts - b.numberOfProducts
+                                    )
+                                );
+                                break;
+                            case 'proddes':
+                                setDisplayData(
+                                    [...(mockedData as MealItemProps[])].sort(
+                                        (a, b) => b.numberOfProducts - a.numberOfProducts
+                                    )
+                                );
+                                break;
+                            default:
+                                setDisplayData(mockedData);
+                        }
+                    })();
                 default:
             }
         },
@@ -158,6 +209,17 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                     { label: 'Eco-Score \u{25BC}', value: 'scoredes' },
                     { label: 'Favoris', value: 'favasc' },
                     { label: 'Non Favoris', value: 'favdes' }
+                ]);
+            case ItemEnum.Meal:
+                return baseFilters.concat([
+                    { label: 'Nom par ordre alphabétique \u{25B2}', value: 'aphaasc' },
+                    { label: 'Nom par ordre alphabétique \u{25BC}', value: 'aphades' },
+                    { label: 'Eco-Score \u{25B2}', value: 'scoreasc' },
+                    { label: 'Eco-Score \u{25BC}', value: 'scoredes' },
+                    { label: 'Favoris', value: 'favasc' },
+                    { label: 'Non Favoris', value: 'favdes' },
+                    { label: 'Nombre de Produits \u{25B2}', value: 'prodasc' },
+                    { label: 'Nombre de Produits \u{25BC}', value: 'proddec' }
                 ]);
             default:
                 return baseFilters;

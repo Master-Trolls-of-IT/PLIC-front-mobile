@@ -32,17 +32,18 @@ const MealItemStyle = StyleSheet.create({
 
     title: {
         fontSize: 18,
-        color: ColorEnum.ClassicBlack,
+        color: ColorEnum.ClassicGrey,
         marginTop: 3
     },
 
-    favourite: { width: '10%', height: '50%' },
+    favourite: {
+        width: '10%',
+        height: '50%'
+    },
 
     productCount: {
         fontSize: 14
     },
-
-    mealList: {},
 
     secondText: {
         display: 'flex',
@@ -56,10 +57,17 @@ const MealItemStyle = StyleSheet.create({
         maxWidth: '80%'
     },
 
-    mealTags: { display: 'flex', flexDirection: 'row', flexWrap: 'wrap', maxWidth: '90%' },
-    mealType: { fontSize: 12, color: ColorEnum.ClassicBrown },
-    mealDiet: { fontSize: 12, color: ColorEnum.ClassicDarkGreen },
-    score: { fontSize: 14 }
+    mealTags: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        maxWidth: '90%',
+        fontSize: 12
+    },
+
+    score: {
+        fontSize: 14
+    }
 });
 
 export default MealItemStyle;

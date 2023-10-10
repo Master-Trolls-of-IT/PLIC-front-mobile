@@ -18,11 +18,13 @@ const MealPageStyle = StyleSheet.create({
         marginTop: '28%',
         marginLeft: '10%'
     },
+
     container: {
         height: '100%',
         display: 'flex',
         flexDirection: 'column'
     },
+
     addButton: {
         display: 'flex',
         flexDirection: 'row',
@@ -33,6 +35,7 @@ const MealPageStyle = StyleSheet.create({
         borderTopColor: ColorEnum.VeryOpaqueBrown,
         borderTopWidth: 1
     },
+
     plusImage: {
         margin: 5
     }
