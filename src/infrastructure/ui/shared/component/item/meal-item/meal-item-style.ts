@@ -5,7 +5,7 @@ const MealItemStyle = StyleSheet.create({
     item: {
         width: '95%',
         backgroundColor: ColorEnum.ExtraOpaqueBrown,
-        marginTop: 5,
+        marginBottom: 10,
         padding: 5,
         borderRadius: 20,
         alignSelf: 'center'
@@ -13,37 +13,50 @@ const MealItemStyle = StyleSheet.create({
 
     container: {
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-
-    image: {
-        width: 110,
-        height: 110
+        flexDirection: 'row'
     },
 
     imageContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         height: 110,
         width: '35%',
-        borderColor: ColorEnum.ClassicBrown,
-        borderRadius: 20,
-        borderWidth: 2,
-        alignContent: 'center',
-        alignItems: 'center'
+        paddingLeft: 10
     },
+    image: {},
     textField: {
-        width: ' 60%',
+        width: '60%',
         display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-
-        borderColor: ColorEnum.ClassicBrown,
-        borderRadius: 20,
-        borderWidth: 2
+        flexDirection: 'column'
     },
 
-    titleField: {},
-    textContainer: {}
+    title: {
+        fontSize: 18,
+        color: ColorEnum.ClassicBlack,
+        marginTop: 3
+    },
+
+    productCount: {
+        fontSize: 14
+    },
+
+    secondText: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+
+    ingredients: {
+        fontSize: 12,
+        color: ColorEnum.SlightlyOpaqueGrey,
+        flexWrap: 'wrap',
+        maxWidth: '80%'
+    },
+
+    mealTags: { display: 'flex', flexDirection: 'row', flexWrap: 'wrap', maxWidth: '90%' },
+    mealType: { fontSize: 12, color: ColorEnum.ClassicBrown },
+    mealDiet: { fontSize: 12, color: ColorEnum.ClassicDarkGreen },
+    score: { fontSize: 14, color: ColorEnum.ClassicDarkGreen }
 });
 
 export default MealItemStyle;
