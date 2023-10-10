@@ -20,15 +20,14 @@ import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/wid
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
 import SmallBasicIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
 import SmallMultipleIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes';
-import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
-import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
-import { WidgetItem } from '~/domain/interfaces/props/widgets/widget-item';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import WidgetCalorie from '~/infrastructure/ui/shared/component/widgets/calorie/widget-calorie';
 import GenericDropDown from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/generic-dropdown';
+import { WidgetItem } from '~/domain/interfaces/props/widgets/WidgetItem';
 
+// eslint-disable-next-line max-lines-per-function
 const WidgetPage = () => {
     const {
         NavigationStore: { goBack },
@@ -58,79 +57,17 @@ const WidgetPage = () => {
     const [isAddSmallWidgetModalOpen, setIsAddSmallWidgetModalOpen] = useState(false);
 
     const [newWidgetParams, setNewWidgetParams] = useState<WidgetsParams>({
-        line1: [
-            { type: WidgetEnum.Slot, props: { id: 1, widgetDropped: widgetDropped, setHandleDrop: setHandleDrop } },
-            { type: WidgetEnum.Slot, props: { id: 2, widgetDropped: widgetDropped, setHandleDrop: setHandleDrop } }
-        ],
-        line2: [
-            { type: WidgetEnum.Slot, props: { id: 3, widgetDropped: widgetDropped, setHandleDrop: setHandleDrop } },
-            { type: WidgetEnum.Slot, props: { id: 4, widgetDropped: widgetDropped, setHandleDrop: setHandleDrop } }
-        ]
+        line1: [{ type: WidgetEnum.Slot }, { type: WidgetEnum.Slot }],
+        line2: [{ type: WidgetEnum.Slot }, { type: WidgetEnum.Slot }]
     });
-
-    useEffect(() => {
-        setNewWidgetParams((prevParams) => {
-            const updatedLine1 = prevParams.line1.map((item) => {
-                if (item.type === WidgetEnum.Slot) {
-                    return { ...item, props: { ...item.props, widgetDropped, setHandleDrop } };
-                }
-                return item;
-            });
-
-            const updatedLine2 = prevParams.line2.map((item) => {
-                if (item.type === WidgetEnum.Slot) {
-                    return { ...item, props: { ...item.props, widgetDropped, setHandleDrop } };
-                }
-                return item;
-            });
-
-            return {
-                line1: updatedLine1,
-                line2: updatedLine2
-            };
-        });
-    }, [widgetDropped]);
-
-    const dailyNutrientsGoal = GetDailyNutrientsGoal(userData.BasalMetabolism);
-    const dailyNutrientsEarned = {
-        energy: Math.round(userData.BasalMetabolism * 0.82),
-        protein: Math.round(dailyNutrientsGoal.protein * 0.6),
-        carbohydrate: Math.round(dailyNutrientsGoal.carbohydrate * 0.4),
-        lipid: Math.round(dailyNutrientsGoal.lipid * 0.8)
-    } as DailyNutrientsType;
 
     useEffect(() => {
         if (handleDrop) {
             if (handleDrop.isLine) {
                 setNewWidgetParams((prevState) => {
-                    const largeWidget: WidgetItem = {
-                        type: WidgetEnum.Large,
-                        props: {
-                            energy: {
-                                nutrientType: NutrientsEnum.Energy,
-                                earned: dailyNutrientsEarned.energy,
-                                goal: dailyNutrientsGoal.energy
-                            },
-                            firstNutrient: {
-                                nutrientType: NutrientsEnum.Protein,
-                                earned: dailyNutrientsEarned.protein,
-                                goal: dailyNutrientsGoal.protein
-                            },
-                            secondNutrient: {
-                                nutrientType: NutrientsEnum.Lipid,
-                                earned: dailyNutrientsEarned.lipid,
-                                goal: dailyNutrientsGoal.lipid
-                            },
-                            thirdNutrient: {
-                                nutrientType: NutrientsEnum.Carbohydrate,
-                                earned: dailyNutrientsEarned.carbohydrate,
-                                goal: dailyNutrientsGoal.carbohydrate
-                            }
-                        }
-                    };
                     return {
-                        line1: handleDrop.id === 1 ? [{ ...largeWidget }] : [...prevState.line1],
-                        line2: handleDrop.id === 2 ? [{ ...largeWidget }] : [...prevState.line2]
+                        line1: handleDrop.id === 1 ? [{ type: WidgetEnum.Large }] : [...prevState.line1],
+                        line2: handleDrop.id === 2 ? [{ type: WidgetEnum.Large }] : [...prevState.line2]
                     };
                 });
             } else {
@@ -138,17 +75,7 @@ const WidgetPage = () => {
                 setIsAddSmallWidgetModalOpen(true);
             }
         }
-    }, [
-        dailyNutrientsEarned.carbohydrate,
-        dailyNutrientsEarned.energy,
-        dailyNutrientsEarned.lipid,
-        dailyNutrientsEarned.protein,
-        dailyNutrientsGoal.carbohydrate,
-        dailyNutrientsGoal.energy,
-        dailyNutrientsGoal.lipid,
-        dailyNutrientsGoal.protein,
-        handleDrop
-    ]);
+    }, [handleDrop]);
 
     const [choosenWidget, setChoosenWidget] = useState<WidgetEnum>(WidgetEnum.Slot);
 
@@ -184,23 +111,23 @@ const WidgetPage = () => {
         switch (id) {
             case 1:
                 return {
-                    line1: [{ ...item }, { ...prev.line1[1] }],
+                    line1: [item, prev.line1[1]],
                     line2: [...prev.line2]
                 };
             case 2:
                 return {
-                    line1: [{ ...prev.line1[0] }, { ...item }],
+                    line1: [prev.line1[0], item],
                     line2: [...prev.line2]
                 };
             case 3:
                 return {
                     line1: [...prev.line1],
-                    line2: [{ ...item }, { ...prev.line2[1] }]
+                    line2: [item, prev.line2[1]]
                 };
             case 4:
                 return {
                     line1: [...prev.line1],
-                    line2: [{ ...prev.line2[0] }, { ...item }]
+                    line2: [prev.line2[0], item]
                 };
         }
     };
@@ -209,30 +136,38 @@ const WidgetPage = () => {
         switch (choosenWidget) {
             case WidgetEnum.Anecdote:
                 setNewWidgetParams((prevState) => {
-                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
-                        type: WidgetEnum.Anecdote,
-                        props: {}
-                    });
+                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, { type: WidgetEnum.Anecdote });
                 });
                 break;
             case WidgetEnum.EcoScore:
                 setNewWidgetParams((prevState) => {
-                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
-                        type: WidgetEnum.EcoScore,
-                        props: {}
-                    });
+                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, { type: WidgetEnum.EcoScore });
                 });
                 break;
             case WidgetEnum.Calorie:
                 setNewWidgetParams((prevState) => {
-                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
-                        type: WidgetEnum.Calorie,
-                        props: {}
-                    });
+                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, { type: WidgetEnum.Calorie });
                 });
                 break;
             case WidgetEnum.SmallBasic:
+                setNewWidgetParams((prevState) => {
+                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
+                        type: WidgetEnum.SmallBasic,
+                        nutrient: firstNutrient.value as NutrientsEnum
+                    });
+                });
+                break;
             case WidgetEnum.SmallMultiple:
+                setNewWidgetParams((prevState) => {
+                    return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
+                        type: WidgetEnum.SmallMultiple,
+                        nutrients: [
+                            firstNutrient.value as NutrientsEnum,
+                            secondNutrient.value as NutrientsEnum,
+                            thirdNutrient.value as NutrientsEnum
+                        ]
+                    });
+                });
         }
     }, [choosenWidget]);
 
@@ -260,19 +195,35 @@ const WidgetPage = () => {
                         {newWidgetParams.line1.map((widget, index) => {
                             switch (widget.type) {
                                 case WidgetEnum.Anecdote:
-                                    return <WidgetAnecdote key={index} {...widget.props} />;
+                                    return <WidgetAnecdote key={index} />;
                                 case WidgetEnum.EcoScore:
-                                    return <EcoScore key={index} {...widget.props} />;
+                                    return <EcoScore key={index} />;
                                 case WidgetEnum.Large:
-                                    return <LargeIntakes key={index} {...widget.props} />;
+                                    return (
+                                        <LargeIntakes
+                                            key={index}
+                                            nutrients={[
+                                                NutrientsEnum.Protein,
+                                                NutrientsEnum.Lipid,
+                                                NutrientsEnum.Carbohydrate
+                                            ]}
+                                        />
+                                    );
                                 case WidgetEnum.SmallBasic:
-                                    return <SmallBasicIntakes key={index} {...widget.props} />;
+                                    return <SmallBasicIntakes key={index} />;
                                 case WidgetEnum.SmallMultiple:
-                                    return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                    return <SmallMultipleIntakes key={index} />;
                                 case WidgetEnum.Calorie:
-                                    return <WidgetCalorie key={index} {...widget.props} />;
+                                    return <WidgetCalorie key={index} />;
                                 default:
-                                    return <WidgetSlot key={index} {...widget.props} />;
+                                    return (
+                                        <WidgetSlot
+                                            key={index}
+                                            id={index + 1}
+                                            setHandleDrop={setHandleDrop}
+                                            widgetDropped={widgetDropped}
+                                        />
+                                    );
                             }
                         })}
                     </View>
@@ -280,19 +231,26 @@ const WidgetPage = () => {
                         {newWidgetParams.line2.map((widget, index) => {
                             switch (widget.type) {
                                 case WidgetEnum.Anecdote:
-                                    return <WidgetAnecdote key={index} {...widget.props} />;
+                                    return <WidgetAnecdote key={index} />;
                                 case WidgetEnum.EcoScore:
-                                    return <EcoScore key={index} {...widget.props} />;
+                                    return <EcoScore key={index} />;
                                 case WidgetEnum.Large:
-                                    return <LargeIntakes key={index} {...widget.props} />;
+                                    return <LargeIntakes key={index} />;
                                 case WidgetEnum.SmallBasic:
-                                    return <SmallBasicIntakes key={index} {...widget.props} />;
+                                    return <SmallBasicIntakes key={index} />;
                                 case WidgetEnum.SmallMultiple:
-                                    return <SmallMultipleIntakes key={index} {...widget.props} />;
+                                    return <SmallMultipleIntakes key={index} />;
                                 case WidgetEnum.Calorie:
-                                    return <WidgetCalorie key={index} {...widget.props} />;
+                                    return <WidgetCalorie key={index} />;
                                 default:
-                                    return <WidgetSlot key={index} {...widget.props} />;
+                                    return (
+                                        <WidgetSlot
+                                            key={index}
+                                            id={index + 1}
+                                            setHandleDrop={setHandleDrop}
+                                            widgetDropped={widgetDropped}
+                                        />
+                                    );
                             }
                         })}
                     </View>

@@ -1,15 +1,17 @@
 import { useMemo, useState } from 'react';
-import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import GetColorByPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import { useStore } from '~/infrastructure/controllers/store';
 
 const useWidgetCalorieData = () => {
     const {
-        DataStore: { dayEnergy }
+        DataStore: {
+            dayEnergy,
+            dailyNutrientsGoal: { energy: energyGoal }
+        }
     } = useStore();
 
-    const [energyColor, setEnergyColor] = useState(GetColorByPercentage((dayEnergy.earned * 100) / dayEnergy.goal));
-    const energyPercentage = (dayEnergy.earned * 100) / (dayEnergy.goal === 0 ? 1 : dayEnergy.goal);
+    const [energyColor, setEnergyColor] = useState(GetColorByPercentage((dayEnergy * 100) / energyGoal));
+    const energyPercentage = (dayEnergy * 100) / (energyGoal === 0 ? 1 : energyGoal);
 
     useMemo(() => {
         setEnergyColor(GetColorByPercentage(energyPercentage));
@@ -18,8 +20,8 @@ const useWidgetCalorieData = () => {
     return {
         energyColor,
         energyPercentage,
-        earned: dayEnergy.earned,
-        goal: dayEnergy.goal
+        earned: dayEnergy,
+        goal: energyGoal
     };
 };
 export default useWidgetCalorieData;

@@ -10,13 +10,18 @@ import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from
 import LargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes-style.';
 import { LargeIntakesProps } from '~/domain/interfaces/props/widgets/large-intakes-props';
 
-const LargeIntakes = ({ energy, firstNutrient, secondNutrient, thirdNutrient }: LargeIntakesProps) => {
-    const { energyColor, energyPercentage, firstPercentage, secondPercentage, thirdPercentage } = useLargeIntakesData(
+const LargeIntakes = ({ nutrients: [firstNutrient, secondNutrient, thirdNutrient] }: LargeIntakesProps) => {
+    const {
+        energyColor,
+        energyPercentage,
+        firstPercentage,
+        secondPercentage,
+        thirdPercentage,
         energy,
-        firstNutrient,
-        secondNutrient,
-        thirdNutrient
-    );
+        firstNutrientObject,
+        secondNutrientObject,
+        thirdNutrientObject
+    } = useLargeIntakesData(firstNutrient, secondNutrient, thirdNutrient);
 
     return (
         <View style={LargeIntakesStyle.container}>
@@ -51,11 +56,11 @@ const LargeIntakes = ({ energy, firstNutrient, secondNutrient, thirdNutrient }: 
                     <View style={LargeIntakesStyle.barContainer}>
                         <View style={LargeIntakesStyle.innerTitleContainer}>
                             <Text style={{ ...LargeIntakesStyle.firstInnerTitle, ...customFontInterBold().text }}>
-                                {firstNutrient.nutrientType}
+                                {firstNutrientObject.nutrientType}
                             </Text>
                             <Text style={{ ...LargeIntakesStyle.firstInnerTitle, ...customFontInterBold().text }}>
-                                {firstNutrient.earned} / {firstNutrient.goal}
-                                {getUnitFromNutrient(firstNutrient.nutrientType)}
+                                {firstNutrientObject.earned} / {firstNutrientObject.goal}
+                                {getUnitFromNutrient(firstNutrientObject.nutrientType)}
                             </Text>
                         </View>
                         <Bar
@@ -68,11 +73,11 @@ const LargeIntakes = ({ energy, firstNutrient, secondNutrient, thirdNutrient }: 
                     <View style={LargeIntakesStyle.barContainer}>
                         <View style={LargeIntakesStyle.innerTitleContainer}>
                             <Text style={{ ...LargeIntakesStyle.secondInnerTitle, ...customFontInterBold().text }}>
-                                {secondNutrient.nutrientType}
+                                {secondNutrientObject.nutrientType}
                             </Text>
                             <Text style={{ ...LargeIntakesStyle.secondInnerTitle, ...customFontInterBold().text }}>
-                                {secondNutrient.earned} / {secondNutrient.goal}
-                                {getUnitFromNutrient(secondNutrient.nutrientType)}
+                                {secondNutrientObject.earned} / {secondNutrientObject.goal}
+                                {getUnitFromNutrient(secondNutrientObject.nutrientType)}
                             </Text>
                         </View>
                         <Bar
@@ -85,11 +90,11 @@ const LargeIntakes = ({ energy, firstNutrient, secondNutrient, thirdNutrient }: 
                     <View style={LargeIntakesStyle.barContainer}>
                         <View style={LargeIntakesStyle.innerTitleContainer}>
                             <Text style={{ ...LargeIntakesStyle.thirdInnerTitle, ...customFontInterBold().text }}>
-                                {thirdNutrient.nutrientType}
+                                {thirdNutrientObject.nutrientType}
                             </Text>
                             <Text style={{ ...LargeIntakesStyle.thirdInnerTitle, ...customFontInterBold().text }}>
-                                {thirdNutrient.earned} / {thirdNutrient.goal}
-                                {getUnitFromNutrient(thirdNutrient.nutrientType)}
+                                {thirdNutrientObject.earned} / {thirdNutrientObject.goal}
+                                {getUnitFromNutrient(thirdNutrientObject.nutrientType)}
                             </Text>
                         </View>
                         <Bar

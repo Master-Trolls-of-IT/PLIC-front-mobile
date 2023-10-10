@@ -7,8 +7,13 @@ import useSmallBasicIntakesData from '~/infrastructure/ui/shared/component/widge
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { SmallBasicIntakesProps } from '~/domain/interfaces/props/widgets/small-basic-intakes-props';
 
-const SmallBasicIntakes = ({ nutrientType, earned, goal }: SmallBasicIntakesProps) => {
-    const { unit, color, pageStyle } = useSmallBasicIntakesData(nutrientType);
+const SmallBasicIntakes = ({ nutrient }: SmallBasicIntakesProps) => {
+    const {
+        unit,
+        color,
+        pageStyle,
+        nutrientObject: { earned, goal, nutrientType }
+    } = useSmallBasicIntakesData(nutrient);
 
     return (
         <View style={pageStyle.content}>

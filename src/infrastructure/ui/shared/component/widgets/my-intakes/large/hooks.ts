@@ -1,40 +1,69 @@
 import { useMemo, useState } from 'react';
-import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import GetColorByPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { useStore } from '~/infrastructure/controllers/store';
+import getNutrientObject from '~/infrastructure/ui/shared/helper/get-nutrient-object';
 
 const useLargeIntakesData = (
-    energy: NutrientData,
-    firstNutrient: NutrientData,
-    secondNutrient: NutrientData,
-    thirdNutrient: NutrientData
+    firstNutrient: NutrientsEnum,
+    secondNutrient: NutrientsEnum,
+    thirdNutrient: NutrientsEnum
 ) => {
-    const [firstPercentage, setFirstPercentage] = useState(firstNutrient.earned / firstNutrient.goal);
-    const [secondPercentage, setSecondPercentage] = useState(secondNutrient.earned / secondNutrient.goal);
-    const [thirdPercentage, setThirdPercentage] = useState(thirdNutrient.earned / thirdNutrient.goal);
+    const {
+        DataStore: { dailyNutrientsGoal, dailyNutrientsEarned }
+    } = useStore();
+
+    const firstNutrientObject = getNutrientObject(firstNutrient, dailyNutrientsEarned, dailyNutrientsGoal);
+    const secondNutrientObject = getNutrientObject(secondNutrient, dailyNutrientsEarned, dailyNutrientsGoal);
+    const thirdNutrientObject = getNutrientObject(thirdNutrient, dailyNutrientsEarned, dailyNutrientsGoal);
+    const energy = getNutrientObject(NutrientsEnum.Energy, dailyNutrientsEarned, dailyNutrientsGoal);
+
+    const [firstPercentage, setFirstPercentage] = useState(firstNutrientObject.earned / firstNutrientObject.goal);
+    const [secondPercentage, setSecondPercentage] = useState(secondNutrientObject.earned / secondNutrientObject.goal);
+    const [thirdPercentage, setThirdPercentage] = useState(thirdNutrientObject.earned / thirdNutrientObject.goal);
     const [energyColor, setEnergyColor] = useState(GetColorByPercentage((energy.earned * 100) / energy.goal));
 
     const energyPercentage = (energy.earned * 100) / (energy.goal === 0 ? 1 : energy.goal);
 
     useMemo(
-        () => setFirstPercentage(firstNutrient.earned / (firstNutrient.goal === 0 ? 1 : firstNutrient.goal)),
-        [firstNutrient.earned, firstNutrient.goal]
+        () =>
+            setFirstPercentage(
+                firstNutrientObject.earned / (firstNutrientObject.goal === 0 ? 1 : firstNutrientObject.goal)
+            ),
+        [firstNutrientObject.earned, firstNutrientObject.goal]
     );
 
     useMemo(
-        () => setSecondPercentage(secondNutrient.earned / (secondNutrient.goal === 0 ? 1 : secondNutrient.goal)),
-        [secondNutrient.earned, secondNutrient.goal]
+        () =>
+            setSecondPercentage(
+                secondNutrientObject.earned / (secondNutrientObject.goal === 0 ? 1 : secondNutrientObject.goal)
+            ),
+        [secondNutrientObject.earned, secondNutrientObject.goal]
     );
 
     useMemo(
-        () => setThirdPercentage(thirdNutrient.earned / (thirdNutrient.goal === 0 ? 1 : thirdNutrient.goal)),
-        [thirdNutrient.earned, thirdNutrient.goal]
+        () =>
+            setThirdPercentage(
+                thirdNutrientObject.earned / (thirdNutrientObject.goal === 0 ? 1 : thirdNutrientObject.goal)
+            ),
+        [thirdNutrientObject.earned, thirdNutrientObject.goal]
     );
 
     useMemo(() => {
         setEnergyColor(GetColorByPercentage(energyPercentage));
     }, [energyPercentage]);
 
-    return { energyColor, energyPercentage, firstPercentage, secondPercentage, thirdPercentage };
+    return {
+        energyColor,
+        energyPercentage,
+        firstPercentage,
+        secondPercentage,
+        thirdPercentage,
+        energy,
+        firstNutrientObject,
+        secondNutrientObject,
+        thirdNutrientObject
+    };
 };
 
 export default useLargeIntakesData;

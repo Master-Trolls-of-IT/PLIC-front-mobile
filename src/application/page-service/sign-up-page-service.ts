@@ -13,7 +13,7 @@ const useSignUpPageService = () => {
     } = useStore();
 
     const SignUp = async (
-        data: SignUpData,
+        data: Partial<SignUpData>,
         setErrorOnDataBase: (value: boolean) => void,
         setErrorOnEmailAlreadyExists: (value: boolean) => void
     ) => {

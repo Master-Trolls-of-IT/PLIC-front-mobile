@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Bar } from 'react-native-progress';
+import { observer } from 'mobx-react';
 import useSmallMultipleData from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/hooks';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
@@ -78,4 +79,4 @@ const SmallMultipleIntakes = ({ firstNutrient, secondNutrient, thirdNutrient }: 
     );
 };
 
-export default SmallMultipleIntakes;
+export default observer(SmallMultipleIntakes);
