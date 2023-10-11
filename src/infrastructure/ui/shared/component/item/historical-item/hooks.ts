@@ -6,7 +6,7 @@ import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { HistoricalItemDataProps } from '~/domain/interfaces/props/search-list/historical-item-data-props';
 import { useStore } from '~/infrastructure/controllers/store';
 
-const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDataProps) => {
+const useHistoricalItemData = ({ barcode, isFavorite, score }: HistoricalItemDataProps) => {
     const {
         DataStore: { toggleFavorite },
         NavigationStore: { navigate },
@@ -55,10 +55,10 @@ const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDa
     };
 
     const favouriteIcon = useMemo(() => {
-        return isFavourite
+        return isFavorite
             ? require('~/domain/entities/assets/icon/favourite-icon/favourite.svg')
             : require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
-    }, [isFavourite]);
+    }, [isFavorite]);
 
     return {
         isExpended,
