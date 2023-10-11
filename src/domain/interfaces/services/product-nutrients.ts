@@ -9,6 +9,7 @@ export type ProductInfo = {
     ecoscore: string;
     consumedQuantity?: number;
     iswater: boolean;
+    serving: number;
 };
 
 export type ProductNutrients = {

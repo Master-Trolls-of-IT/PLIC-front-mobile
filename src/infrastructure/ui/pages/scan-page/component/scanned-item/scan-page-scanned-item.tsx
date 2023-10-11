@@ -5,7 +5,6 @@ import useScanPageScannedItemData from '~/infrastructure/ui/pages/scan-page/comp
 import { ScanPageScannedItemProps } from '~/domain/interfaces/props/scan-page-scanned-item-props';
 import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
@@ -15,13 +14,15 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
         modal,
         setModal,
         chooseRightNutriScoreImage,
-        ecoScore,
         horizontalScrollLineAsset,
         quantity,
         setQuantity,
         unfilledFavouriteAsset,
         onPressModalButton,
-        interBoldText
+        onPressAddServing,
+        servingQuantity,
+        interBoldText,
+        showRightEcoScore
     } = useScanPageScannedItemData(scannedProduct, onPressScanAgain);
 
     // TODO: Corriger le problèmes avec les glucides dans le parsing
@@ -57,14 +58,9 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
                         style={{ alignSelf: 'center' }}
                     />
                 </View>
-                {ecoScore === 0 ? (
-                    <View style={ScanPageScannedItemStyle.ecoScoreContainer}>
-                        <Text style={ScanPageScannedItemStyle.ecoScoreText}>Eco-Score indisponible</Text>
-                    </View>
-                ) : (
-                    <GenericEcoScore ecoScore={ecoScore} />
-                )}
+                {showRightEcoScore}
             </View>
+
             {!scannedProduct?.iswater && (
                 <View style={ScanPageScannedItemStyle.myIntakesContainer}>
                     <View style={ScanPageScannedItemStyle.myIntakesTitleContainer}>
@@ -137,12 +133,25 @@ const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain
 
             <CustomModal isVisible={modal} dispatch={setModal} title={'Ajouter la quantité\n consommée'} titleSize={22}>
                 <GenericInputWithSearchIconAndEndText
-                    placeHolder={'100'}
-                    endText={'g'}
+                    placeHolder={scannedProduct?.iswater ? '25' : '100'}
+                    endText={scannedProduct?.iswater ? 'cl' : 'g'}
                     style={ScanPageScannedItemStyle.customModalChildren}
                     input={quantity}
                     dispatch={setQuantity}
                     onPressSearchIcon={onPressModalButton}></GenericInputWithSearchIconAndEndText>
+
+                {servingQuantity ? (
+                    <GenericButton
+                        title={'Ajouter une portion'}
+                        onPress={onPressAddServing}
+                        style={{
+                            container: ScanPageScannedItemStyle.quantityModalButtonContainer,
+                            text: ScanPageScannedItemStyle.quantityModalButtonText
+                        }}
+                    />
+                ) : (
+                    <></>
+                )}
             </CustomModal>
         </View>
     );

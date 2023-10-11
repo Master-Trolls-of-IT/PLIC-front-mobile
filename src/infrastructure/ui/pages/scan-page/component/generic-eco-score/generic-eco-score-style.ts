@@ -8,7 +8,7 @@ const GenericEcoScoreStyle = StyleSheet.create({
 
     ecoScore: {
         position: 'absolute',
-        fontSize: 34 * (Dimensions.get('screen').height / 900),
+        fontSize: 32 * (Dimensions.get('screen').height / 900),
         color: ColorEnum.SlightlyOpaqueGrey,
         alignSelf: 'center',
         paddingTop: 0.09 * Dimensions.get('screen').width
