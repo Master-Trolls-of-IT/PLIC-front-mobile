@@ -14,7 +14,7 @@ import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/com
 import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item-style';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 
-const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data, style, id }: HistoricalItemProps) => {
+const HistoricalItem = ({ barcode, name, brand, score, image, isFavorite, data, style, id }: HistoricalItemProps) => {
     const {
         isExpended,
         onPress,
@@ -29,7 +29,7 @@ const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data,
         scorePercentage,
         onPressConsumedProductsButton,
         toggleFavorite
-    } = useHistoricalItemData({ barcode, isFavourite, score });
+    } = useHistoricalItemData({ barcode, isFavorite: isFavorite, score });
 
     return (
         <Animated.View style={[animatedItemStyle, HistoricalItemStyle.item, style]}>

@@ -28,7 +28,7 @@ const useScanPageService = () => {
                         data: productInfo?.nutrients,
                         image: productInfo?.image_url,
                         score: chooseRightEcoScoreValue(productInfo?.ecoscore),
-                        isFavourite: false,
+                        isFavorite: false,
                         serving: productInfo?.serving
                     } as HistoricalItemProps);
             })

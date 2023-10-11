@@ -7,7 +7,7 @@ export type HistoricalItemProps = {
     brand: string;
     score: number;
     image?: string;
-    isFavourite: boolean;
+    isFavorite: boolean;
     data: ProductNutrients;
     style?: object;
     serving: number;

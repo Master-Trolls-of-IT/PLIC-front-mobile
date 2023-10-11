@@ -1,5 +1,5 @@
 export type HistoricalItemDataProps = {
     barcode: string;
-    isFavourite: boolean;
+    isFavorite: boolean;
     score: number;
 };
