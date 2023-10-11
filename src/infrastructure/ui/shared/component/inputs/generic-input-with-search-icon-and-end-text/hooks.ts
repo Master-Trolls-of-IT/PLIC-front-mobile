@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { isNumber } from '~/infrastructure/ui/shared/helper/is-number';
 
 const useGenericInputWithSearchIconAndEndTextData = (
@@ -6,7 +6,11 @@ const useGenericInputWithSearchIconAndEndTextData = (
     dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void),
     onPressSearchIcon: (value: void) => void
 ) => {
-    const [controlledInput, setControlledInput] = useState('');
+    const [controlledInput, setControlledInput] = useState(input);
+
+    useEffect(() => {
+        setControlledInput(input);
+    }, [input, setControlledInput]);
 
     const assetSearchInput = require('~/domain/entities/assets/icon/input-icon/icon-search-input.svg');
 

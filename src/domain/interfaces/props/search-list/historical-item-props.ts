@@ -10,4 +10,5 @@ export type HistoricalItemProps = {
     isFavourite: boolean;
     data: ProductNutrients;
     style?: object;
+    serving: number;
 };

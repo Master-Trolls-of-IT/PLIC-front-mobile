@@ -19,16 +19,18 @@ const useScanPageService = () => {
                 const productInfo = response.data.data as ProductInfo;
                 productInfo.barcode = inputBarCode;
                 productDispatch(productInfo);
-                addItem({
-                    id: uuid.v4(),
-                    barcode: inputBarCode,
-                    name: productInfo?.name,
-                    brand: productInfo?.brand,
-                    data: productInfo?.nutrients,
-                    image: productInfo?.image_url,
-                    score: chooseRightEcoScoreValue(productInfo?.ecoscore),
-                    isFavourite: false
-                } as HistoricalItemProps);
+                if (!productInfo?.iswater)
+                    addItem({
+                        id: uuid.v4(),
+                        barcode: inputBarCode,
+                        name: productInfo?.name,
+                        brand: productInfo?.brand,
+                        data: productInfo?.nutrients,
+                        image: productInfo?.image_url,
+                        score: chooseRightEcoScoreValue(productInfo?.ecoscore),
+                        isFavourite: false,
+                        serving: productInfo?.serving
+                    } as HistoricalItemProps);
             })
             .catch((e) => {
                 errorDispatch("Le code barre n'existe pas");
