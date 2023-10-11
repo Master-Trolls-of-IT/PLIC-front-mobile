@@ -17,6 +17,13 @@ const MealPageActiveItemStyle = StyleSheet.create({
         flexDirection: 'column',
         paddingBottom: 30
     },
+    MainContainer: {
+        width: '95%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        alignSelf: 'center'
+    },
 
     favourite: {
         position: 'absolute',
@@ -100,18 +107,39 @@ const MealPageActiveItemStyle = StyleSheet.create({
         color: ColorEnum.ClassicBrown
     },
 
+    MealDescriptionContainer: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row'
+    },
+
     myIntakesContainer: {
         width: '95%',
         alignSelf: 'center',
         marginBottom: 15
     },
 
+    MealName: {},
+    MealTags: {},
+
     myIntakesTitleContainer: {
         borderBottomColor: ColorEnum.ClassicBrown,
         borderBottomWidth: StyleSheet.hairlineWidth
     },
 
-    myIntakesTitle: {
+    columnTitle: {
+        fontSize: 18,
+        color: ColorEnum.ClassicBrown,
+        paddingBottom: 5,
+        width: '100%'
+    },
+    columnLeft: {
+        fontSize: 18,
+        color: ColorEnum.ClassicBrown,
+        paddingBottom: 8,
+        width: '100%'
+    },
+    columnRight: {
         fontSize: 18,
         color: ColorEnum.ClassicBrown,
         paddingBottom: 8,
@@ -148,18 +176,25 @@ const MealPageActiveItemStyle = StyleSheet.create({
         backgroundColor: ColorEnum.ClassicBrown,
         width: 329 * (Dimensions.get('screen').width / 400),
         height: 43 * (Dimensions.get('screen').width / 400),
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: 8
     },
 
     greenButtonContainer: {
         backgroundColor: ColorEnum.ClassicGreen,
         width: 329 * (Dimensions.get('screen').width / 400),
         height: 43 * (Dimensions.get('screen').width / 400),
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: 6
     },
 
-    buttonText: {
-        fontSize: 18,
+    brownButtonText: {
+        color: ColorEnum.ClassicBeige,
+        fontSize: 15,
+        alignSelf: 'center'
+    },
+    greenButtonText: {
+        fontSize: 15,
         alignSelf: 'center'
     },
 
@@ -169,6 +204,22 @@ const MealPageActiveItemStyle = StyleSheet.create({
 
     customModalChildren: {
         paddingTop: 10
+    },
+    AddProductsContainer: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    ProductListContainer: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    Content: {
+        borderTopColor: ColorEnum.VeryOpaqueBrown,
+        borderTopWidth: 1,
+        display: 'flex',
+        flexDirection: 'column'
     }
 });
 
