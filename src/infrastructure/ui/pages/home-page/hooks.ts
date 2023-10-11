@@ -1,12 +1,13 @@
 import { useStore } from '~/infrastructure/controllers/store';
-import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
 import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
-import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
+import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
 import getRandomNumberInArrayLength from '~/infrastructure/ui/shared/helper/get-random-number-in-array-length';
+import { anecdotesObject } from '~/domain/entities/constants/anecdote-constants';
 
 const useHomePageData = () => {
     const {
-        LoginStore: { userData }
+        LoginStore: { userData },
+        DataStore: { widgetsParams, setWidgetParams }
     } = useStore();
 
     // TODO : calculate eco-score from daily products eaten

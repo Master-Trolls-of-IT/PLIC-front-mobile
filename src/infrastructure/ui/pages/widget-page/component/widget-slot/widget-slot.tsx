@@ -15,8 +15,8 @@ const WidgetSlot = ({ id, widgetDropped, setHandleDrop }: WidgetSlotProps) => {
                         if (
                             widgetDropped.x >= pageX &&
                             widgetDropped.x <= pageX + width &&
-                            widgetDropped.y + Dimensions.get('screen').width * 0.4 >= pageY - height &&
-                            widgetDropped.y + Dimensions.get('screen').width * 0.4 <= pageY + height
+                            widgetDropped.y >= pageY &&
+                            widgetDropped.y <= pageY + height
                         ) {
                             console.log('drop small in', id);
                             setHandleDrop({ isLine: false, id: id });
@@ -24,11 +24,12 @@ const WidgetSlot = ({ id, widgetDropped, setHandleDrop }: WidgetSlotProps) => {
                         break;
                     case 'large':
                         if (widgetDropped.y >= pageY && widgetDropped.y <= pageY + height) {
+                            console.log('drop large in', id, 'rounded to', Math.round(id / 2));
                             setHandleDrop({ isLine: true, id: Math.round(id / 2) });
                         }
                 }
         });
-    }, [widgetDropped]);
+    }, [id, setHandleDrop, widgetDropped]);
     const onMoveShouldSetResponderCapture = () => true;
 
     return (

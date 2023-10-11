@@ -50,6 +50,12 @@ const getNutrientObject = (
                 earned: dailyNutrientsEarned.protein,
                 goal: dailyNutrientsGoal.protein
             };
+        case NutrientsEnum.Energy:
+            return {
+                nutrientType: NutrientsEnum.Energy,
+                earned: dailyNutrientsEarned.energy,
+                goal: dailyNutrientsGoal.energy
+            };
     }
 };
 

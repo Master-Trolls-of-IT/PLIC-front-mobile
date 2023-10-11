@@ -7,7 +7,6 @@ const WidgetAnecdoteStyle = StyleSheet.create({
         width: Dimensions.get('screen').width * 0.4,
         padding: 10,
         borderRadius: 20,
-        marginRight: Dimensions.get('screen').width * 0.05,
         backgroundColor: ColorEnum.ExtraOpaqueBrown,
         display: 'flex',
         flexDirection: 'column'

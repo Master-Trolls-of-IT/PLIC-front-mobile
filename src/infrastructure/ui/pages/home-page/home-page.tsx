@@ -15,6 +15,7 @@ import WidgetAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdot
 import SmallBasicIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-basic/small-basic-intakes';
 import SmallMultipleIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes';
 import WidgetCalorie from '~/infrastructure/ui/shared/component/widgets/calorie/widget-calorie';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 
 const HomePage = () => {
     const { anecdoteObject, dailyNutrientsGoal, dailyNutrientsEarned, username, chooseRightDynamicImage, ecoScore } =
@@ -40,17 +41,27 @@ const HomePage = () => {
                 <View style={HomePageStyle.widgetContainer}>
                     <View style={HomePageStyle.widgetContainerFirstRow}>
                         {widgetsParams.line1.map((widget, index) => {
-                            switch (widget) {
+                            console.log('line1 : ', widget);
+                            switch (widget.type) {
                                 case WidgetEnum.Anecdote:
                                     return <WidgetAnecdote key={index} />;
                                 case WidgetEnum.EcoScore:
                                     return <EcoScore key={index} />;
                                 case WidgetEnum.Large:
-                                    return <LargeIntakes key={index} />;
+                                    return (
+                                        <LargeIntakes
+                                            key={index}
+                                            nutrients={[
+                                                NutrientsEnum.Protein,
+                                                NutrientsEnum.Lipid,
+                                                NutrientsEnum.Carbohydrate
+                                            ]}
+                                        />
+                                    );
                                 case WidgetEnum.SmallBasic:
-                                    return <SmallBasicIntakes key={index} />;
+                                    return <SmallBasicIntakes key={index} nutrient={widget.nutrient} />;
                                 case WidgetEnum.SmallMultiple:
-                                    return <SmallMultipleIntakes key={index} />;
+                                    return <SmallMultipleIntakes key={index} nutrients={widget.nutrients} />;
                                 case WidgetEnum.Calorie:
                                     return <WidgetCalorie key={index} />;
                                 default:
@@ -59,18 +70,28 @@ const HomePage = () => {
                     </View>
 
                     <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
-                        {widgetsParams.line1.map((widget, index) => {
-                            switch (widget) {
+                        {widgetsParams.line2.map((widget, index) => {
+                            console.log('line2 : ', widget);
+                            switch (widget.type) {
                                 case WidgetEnum.Anecdote:
                                     return <WidgetAnecdote key={index} />;
                                 case WidgetEnum.EcoScore:
                                     return <EcoScore key={index} />;
                                 case WidgetEnum.Large:
-                                    return <LargeIntakes key={index} />;
+                                    return (
+                                        <LargeIntakes
+                                            key={index}
+                                            nutrients={[
+                                                NutrientsEnum.Protein,
+                                                NutrientsEnum.Lipid,
+                                                NutrientsEnum.Carbohydrate
+                                            ]}
+                                        />
+                                    );
                                 case WidgetEnum.SmallBasic:
-                                    return <SmallBasicIntakes key={index} />;
+                                    return <SmallBasicIntakes key={index} nutrient={widget.nutrient} />;
                                 case WidgetEnum.SmallMultiple:
-                                    return <SmallMultipleIntakes key={index} />;
+                                    return <SmallMultipleIntakes key={index} nutrients={widget.nutrients} />;
                                 case WidgetEnum.Calorie:
                                     return <WidgetCalorie key={index} />;
                                 default:
