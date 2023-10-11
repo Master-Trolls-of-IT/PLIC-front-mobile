@@ -7,9 +7,9 @@ import HomePageBasket from '~/infrastructure/ui/pages/home-page/component/backgr
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
-import EcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
+import WidgetWater from '~/infrastructure/ui/shared/component/widgets/water/widget-water';
 
 const HomePage = () => {
     const { anecdoteObject, dailyNutrientsGoal, dailyNutrientsEarned, username, chooseRightDynamicImage, ecoScore } =
@@ -60,7 +60,7 @@ const HomePage = () => {
 
                     <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
                         <HomePageAnecdote {...anecdoteObject} />
-                        <EcoScore ecoScore={ecoScore} />
+                        <WidgetWater />
                     </View>
                 </View>
             </View>

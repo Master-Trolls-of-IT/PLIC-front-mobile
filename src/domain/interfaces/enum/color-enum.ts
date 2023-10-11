@@ -12,6 +12,7 @@ export enum ColorEnum {
     // Blue
     SlightlyOpaqueBlue = '#05128399',
     VeryOpaqueBlue = '#0512833F',
+    WidgetWaterBLue = '#3D74BF',
 
     // Brown
     ClassicBrown = '#6D4C41',
