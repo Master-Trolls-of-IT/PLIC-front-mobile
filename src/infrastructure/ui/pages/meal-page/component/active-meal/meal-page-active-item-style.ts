@@ -24,7 +24,28 @@ const MealPageActiveItemStyle = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center'
     },
+    Title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: ColorEnum.ClassicBrown,
+        width: 'auto',
+        marginLeft: 10
+    },
+    OkButton: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: ColorEnum.ClassicBrown,
+        width: 'auto',
+        marginRight: 10
+    },
 
+    TitleContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%'
+    },
     favourite: {
         position: 'absolute',
         right: 20,
@@ -35,96 +56,20 @@ const MealPageActiveItemStyle = StyleSheet.create({
         alignSelf: 'center'
     },
 
-    headerContainer: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        marginTop: 5
-    },
-
-    imageContainer: {
-        borderColor: ColorEnum.ClassicBrown,
-        width: 140,
-        height: 90,
-        borderRadius: 15,
-        borderWidth: 3,
-        justifyContent: 'center'
-    },
-
-    image: {
-        width: '100%',
-        height: '100%',
-        borderRadius: 12
-    },
-
-    imageText: {
-        fontSize: 16,
-        color: ColorEnum.ClassicBrown,
-        alignSelf: 'center'
-    },
-
-    headerTextContainer: {
-        width: '45%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center'
-    },
-
-    brandText: {
-        fontSize: 20 * (Dimensions.get('screen').height / 900),
-        textAlign: 'center',
-        color: ColorEnum.ClassicBrown
-    },
-
-    nameText: {
-        marginTop: 5,
-        fontSize: 18 * (Dimensions.get('screen').height / 900),
-        textAlign: 'center',
-        color: ColorEnum.ClassicBrown
-    },
-
-    scoreContainer: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
-
-    nutriscoreContainer: {
-        alignSelf: 'center',
-        width: '45%'
-    },
-
-    ecoScoreContainer: {
-        alignSelf: 'center',
-        width: '45%'
-    },
-
-    ecoScoreText: {
-        fontSize: 20,
-        textAlign: 'center',
-        color: ColorEnum.ClassicBrown
-    },
-
     MealDescriptionContainer: {
         width: '100%',
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderTopColor: ColorEnum.VeryOpaqueBrown,
+        borderTopWidth: 1
     },
 
-    myIntakesContainer: {
-        width: '95%',
-        alignSelf: 'center',
-        marginBottom: 15
+    MealName: {
+        width: '45%'
     },
-
-    MealName: {},
-    MealTags: {},
-
-    myIntakesTitleContainer: {
-        borderBottomColor: ColorEnum.ClassicBrown,
-        borderBottomWidth: StyleSheet.hairlineWidth
+    MealTags: {
+        width: '45%'
     },
 
     columnTitle: {
@@ -144,32 +89,6 @@ const MealPageActiveItemStyle = StyleSheet.create({
         color: ColorEnum.ClassicBrown,
         paddingBottom: 8,
         width: '100%'
-    },
-
-    myIntakesNutrientsContainer: {
-        paddingTop: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%'
-    },
-
-    itemLine: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-
-    itemLineContent: {
-        fontSize: 18,
-        marginLeft: 5,
-        marginTop: 6 * (Dimensions.get('screen').height / 400),
-        color: ColorEnum.ClassicBrown
-    },
-
-    itemSameLineContent: {
-        fontSize: 18,
-        marginLeft: 5,
-        color: ColorEnum.ClassicBrown
     },
 
     brownButtonContainer: {

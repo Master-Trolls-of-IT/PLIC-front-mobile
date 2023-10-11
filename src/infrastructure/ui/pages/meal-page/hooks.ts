@@ -35,7 +35,7 @@ const useMealPageData = () => {
         {
             isFavorite: true,
             id: '1',
-            title: 'REPAS COMPLET 1',
+            title: 'REPAS COMPLET 2',
             score: 82,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             numberOfProducts: 8,
@@ -44,7 +44,7 @@ const useMealPageData = () => {
         {
             isFavorite: true,
             id: '1',
-            title: 'REPAS COMPLET 1',
+            title: 'REPAS COMPLET 3',
             score: 82,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             numberOfProducts: 8,
@@ -53,7 +53,7 @@ const useMealPageData = () => {
         {
             isFavorite: true,
             id: '1',
-            title: 'REPAS COMPLET 1',
+            title: 'REPAS COMPLET 4',
             score: 82,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             numberOfProducts: 8,
@@ -62,7 +62,7 @@ const useMealPageData = () => {
         {
             isFavorite: true,
             id: '1',
-            title: 'REPAS COMPLET 1',
+            title: 'REPAS COMPLET 5',
             score: 82,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             numberOfProducts: 8,
