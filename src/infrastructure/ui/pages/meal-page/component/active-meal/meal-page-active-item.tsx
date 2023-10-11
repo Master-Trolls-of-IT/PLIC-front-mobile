@@ -19,16 +19,16 @@ const MealPageActiveItem = ({ onPressMealMenu }: MealPageActiveItemProps) => {
             <TouchableOpacity onPress={onPressMealMenu} style={MealPageActiveItemStyle.scrollLine}>
                 <CustomSvg asset={horizontalScrollLineAsset} height={25} width={60} />
             </TouchableOpacity>
-            <View style={MealPageActiveItemStyle.MainContainer}>
-                <View style={MealPageActiveItemStyle.TitleContainer}>
-                    <Text style={MealPageActiveItemStyle.Title}>Créer votre repas</Text>
+            <View style={MealPageActiveItemStyle.mainContainer}>
+                <View style={MealPageActiveItemStyle.titleContainer}>
+                    <Text style={MealPageActiveItemStyle.title}>Créer votre repas</Text>
                     <TouchableOpacity onPress={onPressMealMenu}>
-                        <Text style={MealPageActiveItemStyle.OkButton}>OK</Text>
+                        <Text style={MealPageActiveItemStyle.okButton}>OK</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={MealPageActiveItemStyle.MealDescriptionContainer}>
-                    <View style={MealPageActiveItemStyle.MealName}>
+                <View style={MealPageActiveItemStyle.mealDescriptionContainer}>
+                    <View style={MealPageActiveItemStyle.mealName}>
                         <GenericInput
                             title={'Nom du repas'}
                             type={InputEnum.Name}
@@ -36,7 +36,7 @@ const MealPageActiveItem = ({ onPressMealMenu }: MealPageActiveItemProps) => {
                             {...inputMealName}
                         />
                     </View>
-                    <View style={MealPageActiveItemStyle.MealTags}>
+                    <View style={MealPageActiveItemStyle.mealTags}>
                         <GenericDropdown
                             title={'Tags du repas'}
                             options={[
@@ -48,17 +48,17 @@ const MealPageActiveItem = ({ onPressMealMenu }: MealPageActiveItemProps) => {
                         />
                     </View>
                 </View>
-                <View style={MealPageActiveItemStyle.ProductListContainer}>
+                <View style={MealPageActiveItemStyle.productListContainer}>
                     <Text style={{ ...MealPageActiveItemStyle.columnTitle, ...interBoldText }}>
                         Produits dans le repas
                     </Text>
-                    <View style={MealPageActiveItemStyle.Content}>
+                    <View style={MealPageActiveItemStyle.content}>
                         <ConsumedProductItem key={1} {...(mockData[0] as ConsumedProductItemProps)} />
                     </View>
                 </View>
-                <View style={MealPageActiveItemStyle.AddProductsContainer}>
+                <View style={MealPageActiveItemStyle.addProductsContainer}>
                     <Text style={{ ...MealPageActiveItemStyle.columnTitle, ...interBoldText }}>Ajoutez un produit</Text>
-                    <View style={MealPageActiveItemStyle.Content}>
+                    <View style={MealPageActiveItemStyle.content}>
                         <GenericButton
                             title={'Scannez votre produits'}
                             onPress={() => 'setModal(true)'}

@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
-import { useMemo, useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
-import {mealItemTags} from "~/domain/entities/constants/meal-page-meal-tags";
+import { mealItemTags } from '~/domain/entities/constants/meal-page-meal-tags';
 
 const useMealPageData = () => {
     const addMealButton = require('~/domain/entities/assets/meal-page/add-meal-button.svg');
@@ -9,7 +9,7 @@ const useMealPageData = () => {
     const [newHeight, newWidth] = [70, 70];
 
     const {
-        DataStore: { history }
+        MealStore: { mealList }
     } = useStore();
 
     const [isMealActive, setMealActive] = useState(false);
@@ -20,7 +20,7 @@ const useMealPageData = () => {
 
     const onPressMealMenu = () => {
         setMealActive(false);
-    }
+    };
 
     const mockData: MealItemProps[] = [
         {
@@ -30,7 +30,7 @@ const useMealPageData = () => {
             score: 82,
             ingredients: ['Tomates', 'Oeufs', 'Poivrons', 'Eau'],
             numberOfProducts: 8,
-            mealTags: [mealItemTags.Japanese, mealItemTags.Vegetarian],
+            mealTags: [mealItemTags.Japanese, mealItemTags.Vegetarian]
         },
         {
             isFavorite: true,
@@ -72,7 +72,7 @@ const useMealPageData = () => {
 
     return {
         mockData,
-        history,
+        mealList,
         addMealButton,
         newHeight,
         newWidth,
@@ -83,4 +83,3 @@ const useMealPageData = () => {
 };
 
 export default useMealPageData;
-

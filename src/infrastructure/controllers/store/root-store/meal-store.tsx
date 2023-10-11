@@ -4,28 +4,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 
 class MealStore {
-    history: MealItemProps[];
+    mealList: MealItemProps[];
 
     constructor(storageKey: string) {
-        this.history = [];
-        makeObservable(this, { history: observable, addMeal: action, toggleFavorite: action }, { autoBind: true });
+        this.mealList = [];
+        makeObservable(this, { mealList: observable, addMeal: action, toggleFavorite: action }, { autoBind: true });
 
         void makePersistable(this, {
             name: storageKey,
-            properties: ['history'],
+            properties: ['mealList'],
             storage: AsyncStorage
         });
     }
 
     addMeal = (newItem: MealItemProps) => {
-        this.history = [newItem].concat(this.history);
+        this.mealList = [newItem].concat(this.mealList);
     };
 
     toggleFavorite = (id: string) => {
-        const index = this.history.findIndex((elem) => elem.id === id);
-        const copy = [...this.history];
+        const index = this.mealList.findIndex((elem) => elem.id === id);
+        const copy = [...this.mealList];
         copy[index].isFavorite = !copy[index].isFavorite;
-        this.history = [...copy];
+        this.mealList = [...copy];
     };
 }
 

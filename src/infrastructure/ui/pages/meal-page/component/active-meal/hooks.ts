@@ -2,11 +2,14 @@ import { useState } from 'react';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
 
-const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
 const useMealPageActiveItemData = () => {
+    const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
+
     const [inputMealName, setInputMealName] = useState('');
     const [newTag, setNewTag] = useState<{ label: string; value: string }>({ label: 'Autre', value: '2' });
+
     const interBoldText = CustomFontInterBold().text;
+
     const mockData: ConsumedProductItemProps[] = [
         {
             id: '1',

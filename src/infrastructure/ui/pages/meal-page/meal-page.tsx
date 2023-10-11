@@ -12,7 +12,7 @@ import useMealPageData from '~/infrastructure/ui/pages/meal-page/hooks';
 import MealPageActiveItem from '~/infrastructure/ui/pages/meal-page/component/active-meal/meal-page-active-item';
 
 const MealPage = () => {
-    const { history, mockData, addMealButton, newWidth, newHeight, isMealActive, onAddPress, onPressMealMenu } =
+    const { mealList, mockData, addMealButton, newWidth, newHeight, isMealActive, onAddPress, onPressMealMenu } =
         useMealPageData();
 
     return (

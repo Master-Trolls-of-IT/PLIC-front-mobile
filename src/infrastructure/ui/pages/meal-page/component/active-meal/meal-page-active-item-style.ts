@@ -17,21 +17,21 @@ const MealPageActiveItemStyle = StyleSheet.create({
         flexDirection: 'column',
         paddingBottom: 30
     },
-    MainContainer: {
+    mainContainer: {
         width: '95%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         alignSelf: 'center'
     },
-    Title: {
+    title: {
         fontSize: 30,
         fontWeight: 'bold',
         color: ColorEnum.ClassicBrown,
         width: 'auto',
         marginLeft: 10
     },
-    OkButton: {
+    okButton: {
         fontSize: 30,
         fontWeight: 'bold',
         color: ColorEnum.ClassicBrown,
@@ -39,7 +39,7 @@ const MealPageActiveItemStyle = StyleSheet.create({
         marginRight: 10
     },
 
-    TitleContainer: {
+    titleContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -56,7 +56,7 @@ const MealPageActiveItemStyle = StyleSheet.create({
         alignSelf: 'center'
     },
 
-    MealDescriptionContainer: {
+    mealDescriptionContainer: {
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
@@ -65,10 +65,10 @@ const MealPageActiveItemStyle = StyleSheet.create({
         borderTopWidth: 1
     },
 
-    MealName: {
+    mealName: {
         width: '45%'
     },
-    MealTags: {
+    mealTags: {
         width: '45%'
     },
 
@@ -124,17 +124,17 @@ const MealPageActiveItemStyle = StyleSheet.create({
     customModalChildren: {
         paddingTop: 10
     },
-    AddProductsContainer: {
+    addProductsContainer: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column'
     },
-    ProductListContainer: {
+    productListContainer: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column'
     },
-    Content: {
+    content: {
         borderTopColor: ColorEnum.VeryOpaqueBrown,
         borderTopWidth: 1,
         display: 'flex',
