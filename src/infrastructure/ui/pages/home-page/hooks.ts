@@ -1,9 +1,12 @@
 import { useStore } from '~/infrastructure/controllers/store';
+import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
+import { WidgetItem } from '~/domain/interfaces/props/widgets/widget-item';
+import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
 
 const useHomePageData = () => {
     const {
         LoginStore: { userData },
-        DataStore: { widgetsParams }
+        DataStore: { widgetsParams, setWidgetParams }
     } = useStore();
 
     // TODO : calculate eco-score from daily products eaten

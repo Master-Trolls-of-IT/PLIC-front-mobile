@@ -25,13 +25,13 @@ import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import WidgetCalorie from '~/infrastructure/ui/shared/component/widgets/calorie/widget-calorie';
 import GenericDropDown from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/generic-dropdown';
-import { WidgetItem } from '~/domain/interfaces/props/widgets/WidgetItem';
+import { WidgetItem } from '~/domain/interfaces/props/widgets/widget-item';
 
 // eslint-disable-next-line max-lines-per-function
 const WidgetPage = () => {
     const {
         NavigationStore: { goBack },
-        LoginStore: { userData }
+        DataStore: { setWidgetParams }
     } = useStore();
 
     const confirmButtonStyle = {
@@ -98,10 +98,12 @@ const WidgetPage = () => {
         label: NutrientsEnum.Sugar,
         value: NutrientsEnum.Sugar
     });
+
     const [secondNutrient, setSecondNutrient] = useState<{ label: string; value: string }>({
         label: NutrientsEnum.Sugar,
         value: NutrientsEnum.Sugar
     });
+
     const [thirdNutrient, setThirdNutrient] = useState<{ label: string; value: string }>({
         label: NutrientsEnum.Sugar,
         value: NutrientsEnum.Sugar
@@ -111,23 +113,23 @@ const WidgetPage = () => {
         switch (id) {
             case 1:
                 return {
-                    line1: [item, prev.line1[1]],
+                    line1: [{ ...item }, prev.line1[1]],
                     line2: [...prev.line2]
                 };
             case 2:
                 return {
-                    line1: [prev.line1[0], item],
+                    line1: [prev.line1[0], { ...item }],
                     line2: [...prev.line2]
                 };
             case 3:
                 return {
                     line1: [...prev.line1],
-                    line2: [item, prev.line2[1]]
+                    line2: [{ ...item }, prev.line2[1]]
                 };
             case 4:
                 return {
                     line1: [...prev.line1],
-                    line2: [prev.line2[0], item]
+                    line2: [prev.line2[0], { ...item }]
                 };
         }
     };
@@ -169,7 +171,27 @@ const WidgetPage = () => {
                     });
                 });
         }
-    }, [choosenWidget]);
+        setIsAddSmallWidgetModalOpen(false);
+    }, [choosenWidget, firstNutrient.value, secondNutrient.value, thirdNutrient.value]);
+
+    const [isErrorModal, setIsErrorModal] = useState(false);
+
+    const handlePageConfig = useCallback(() => {
+        let isEntryValid = true;
+        newWidgetParams.line1.forEach((widget) => {
+            if (widget.type === WidgetEnum.Slot) isEntryValid = false;
+        });
+        newWidgetParams.line2.forEach((widget) => {
+            if (widget.type === WidgetEnum.Slot) isEntryValid = false;
+        });
+
+        if (isEntryValid) {
+            setWidgetParams(newWidgetParams);
+            goBack();
+        } else {
+            setIsErrorModal(true);
+        }
+    }, [goBack, newWidgetParams, setWidgetParams]);
 
     return (
         <View style={WidgetPageStyle.container}>
@@ -210,9 +232,9 @@ const WidgetPage = () => {
                                         />
                                     );
                                 case WidgetEnum.SmallBasic:
-                                    return <SmallBasicIntakes key={index} />;
+                                    return <SmallBasicIntakes key={index} nutrient={widget.nutrient} />;
                                 case WidgetEnum.SmallMultiple:
-                                    return <SmallMultipleIntakes key={index} />;
+                                    return <SmallMultipleIntakes key={index} nutrients={widget.nutrients} />;
                                 case WidgetEnum.Calorie:
                                     return <WidgetCalorie key={index} />;
                                 default:
@@ -235,18 +257,27 @@ const WidgetPage = () => {
                                 case WidgetEnum.EcoScore:
                                     return <EcoScore key={index} />;
                                 case WidgetEnum.Large:
-                                    return <LargeIntakes key={index} />;
+                                    return (
+                                        <LargeIntakes
+                                            key={index + 2}
+                                            nutrients={[
+                                                NutrientsEnum.Protein,
+                                                NutrientsEnum.Lipid,
+                                                NutrientsEnum.Carbohydrate
+                                            ]}
+                                        />
+                                    );
                                 case WidgetEnum.SmallBasic:
-                                    return <SmallBasicIntakes key={index} />;
+                                    return <SmallBasicIntakes key={index} nutrient={widget.nutrient} />;
                                 case WidgetEnum.SmallMultiple:
-                                    return <SmallMultipleIntakes key={index} />;
+                                    return <SmallMultipleIntakes key={index} nutrients={widget.nutrients} />;
                                 case WidgetEnum.Calorie:
                                     return <WidgetCalorie key={index} />;
                                 default:
                                     return (
                                         <WidgetSlot
                                             key={index}
-                                            id={index + 1}
+                                            id={index + 3}
                                             setHandleDrop={setHandleDrop}
                                             widgetDropped={widgetDropped}
                                         />
@@ -256,7 +287,7 @@ const WidgetPage = () => {
                     </View>
                 </View>
                 <View style={WidgetPageStyle.footer}>
-                    <GenericButton title="Confirmer" onPress={() => {}} style={confirmButtonStyle} />
+                    <GenericButton title="Confirmer" onPress={handlePageConfig} style={confirmButtonStyle} />
                 </View>
             </View>
             <CustomModal
@@ -388,11 +419,12 @@ const WidgetPage = () => {
                     )}
                     {choosenWidget !== WidgetEnum.Slot && (
                         <View style={WidgetPageStyle.modalFooter}>
-                            <GenericButton title="Confirmer" onPress={() => {}} style={confirmButtonStyle} />
+                            <GenericButton title="Confirmer" onPress={handleModalConfirm} style={confirmButtonStyle} />
                         </View>
                     )}
                 </View>
             </CustomModal>
+            <CustomModal isVisible={isErrorModal} dispatch={setIsErrorModal} title="Entrée non valide" titleSize={22} />
         </View>
     );
 };

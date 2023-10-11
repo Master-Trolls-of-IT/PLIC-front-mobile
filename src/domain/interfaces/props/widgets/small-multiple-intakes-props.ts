@@ -1,7 +1,4 @@
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 
-export type SmallMultipleIntakesProps = {
-    firstNutrient: NutrientData;
-    secondNutrient: NutrientData;
-    thirdNutrient: NutrientData;
-};
+export type SmallMultipleIntakesProps = { nutrients: NutrientsEnum[] };
