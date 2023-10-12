@@ -5,7 +5,6 @@ import { observer } from 'mobx-react';
 import WidgetAnecdoteStyle from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote-style';
 import LargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes-style.';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
-import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import useWidgetCalorieData from '~/infrastructure/ui/shared/component/widgets/calorie/hooks';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';

@@ -1,12 +1,11 @@
 import { useStore } from '~/infrastructure/controllers/store';
-import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
-import { WidgetItem } from '~/domain/interfaces/props/widgets/widget-item';
-import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
+import useRenderWidgetField from '~/infrastructure/ui/shared/helper/use-render-widget-field';
+import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 
 const useHomePageData = () => {
     const {
         LoginStore: { userData },
-        DataStore: { widgetsParams, setWidgetParams }
+        DataStore: { widgetsParams }
     } = useStore();
 
     // TODO : calculate eco-score from daily products eaten
@@ -42,10 +41,13 @@ const useHomePageData = () => {
         }
     };
 
+    const widgetField = useRenderWidgetField(widgetsParams, HomePageStyle.widgetContainerFirstRow);
+
     return {
         username,
         chooseRightDynamicImage,
-        widgetsParams
+        widgetsParams,
+        widgetField
     };
 };
 

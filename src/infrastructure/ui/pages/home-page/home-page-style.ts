@@ -34,24 +34,17 @@ const HomePageStyle = StyleSheet.create({
     },
 
     widgetContainer: {
-        width: '85%',
-        alignSelf: 'center',
         display: 'flex',
         flexDirection: 'column',
-        paddingBottom: 0.1 * Dimensions.get('screen').height
+        width: Dimensions.get('screen').width
     },
 
     widgetContainerFirstRow: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-
-    widgetContainerTwoWidgetRow: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 20
+        marginTop: 20,
+        marginHorizontal: Dimensions.get('screen').width * 0.07,
+        gap: Dimensions.get('screen').width * 0.06
     },
 
     headerSecondText: {
@@ -59,7 +52,6 @@ const HomePageStyle = StyleSheet.create({
     },
 
     basketImage: {
-        marginBottom: Dimensions.get('screen').height / 40,
         alignSelf: 'center'
     },
 
@@ -77,6 +69,7 @@ const HomePageStyle = StyleSheet.create({
         borderBottomWidth: 0,
         height: '94%'
     },
+
     settingsPageLoading: {
         position: 'absolute',
         width: Dimensions.get('screen').width,
