@@ -87,7 +87,7 @@ const WidgetPageStyle = StyleSheet.create({
 
     scrollSelectContainer: {
         width: Dimensions.get('screen').width * 0.75,
-        padding: 10,
+        padding: 8,
         borderWidth: 1.5,
         borderColor: ColorEnum.ClassicBrown,
         borderRadius: 20,
@@ -98,7 +98,6 @@ const WidgetPageStyle = StyleSheet.create({
     scrollSelect: {
         width: Dimensions.get('screen').width * 0.65,
         height: Dimensions.get('screen').height * 0.15,
-        borderRadius: 20,
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -106,7 +105,7 @@ const WidgetPageStyle = StyleSheet.create({
     },
 
     scrollSelectContent: {
-        width: Dimensions.get('screen').width * 0.7,
+        width: Dimensions.get('screen').width * 0.6,
         borderRadius: 20,
         display: 'flex',
         flexDirection: 'row',
@@ -121,7 +120,7 @@ const WidgetPageStyle = StyleSheet.create({
         paddingVertical: 5
     },
 
-    choosenWidget: {
+    chosenWidget: {
         position: 'absolute',
         width: '100%',
         height: '100%',

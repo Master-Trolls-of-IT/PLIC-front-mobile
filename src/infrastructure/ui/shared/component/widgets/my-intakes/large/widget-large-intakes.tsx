@@ -9,9 +9,9 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
 import WidgetLargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/widget-large-intakes-style.';
-import { LargeIntakesProps } from '~/domain/interfaces/props/widgets/large-intakes-props';
+import { WidgetLargeIntakesProps } from '~/domain/interfaces/props/widgets/large-intakes-props';
 
-const WidgetLargeIntakes = ({ nutrients: [firstNutrient, secondNutrient, thirdNutrient] }: LargeIntakesProps) => {
+const WidgetLargeIntakes = ({ nutrients: [firstNutrient, secondNutrient, thirdNutrient] }: WidgetLargeIntakesProps) => {
     const {
         energyColor,
         energyPercentage,

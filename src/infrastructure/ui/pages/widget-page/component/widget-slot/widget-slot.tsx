@@ -7,6 +7,7 @@ import useWidgetSlotData from '~/infrastructure/ui/pages/widget-page/component/w
 
 const WidgetSlot = ({ id, widgetDropped, setHandleDrop }: WidgetSlotProps) => {
     const { slotRef, onMoveShouldSetResponderCapture } = useWidgetSlotData(id, widgetDropped, setHandleDrop);
+
     return (
         <View
             ref={slotRef}

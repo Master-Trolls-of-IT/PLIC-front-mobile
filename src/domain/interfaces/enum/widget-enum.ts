@@ -1,9 +1,9 @@
 export enum WidgetEnum {
     'Anecdote',
     'EcoScore',
-    'SmallBasic',
+    'SmallSingle',
     'SmallMultiple',
-    'Calorie',
+    'Energy',
     'Large',
     'Slot'
 }

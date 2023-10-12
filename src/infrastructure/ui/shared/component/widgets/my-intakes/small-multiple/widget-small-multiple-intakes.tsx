@@ -7,11 +7,11 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import WidgetSmallMultipleIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/widget-small-multiple-intakes-style.';
-import { SmallMultipleIntakesProps } from '~/domain/interfaces/props/widgets/small-multiple-intakes-props';
+import { WidgetSmallMultipleIntakesProps } from '~/domain/interfaces/props/widgets/small-multiple-intakes-props';
 
 const WidgetSmallMultipleIntakes = ({
     nutrients: [firstNutrient, secondNutrient, thirdNutrient]
-}: SmallMultipleIntakesProps) => {
+}: WidgetSmallMultipleIntakesProps) => {
     const {
         firstPercentage,
         secondPercentage,

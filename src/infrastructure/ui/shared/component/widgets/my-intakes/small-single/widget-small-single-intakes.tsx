@@ -6,9 +6,9 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import useWidgetSmallSingleIntakesData from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-single/hooks';
 import WidgetSmallSingleIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-single/widget-small-single-intakes-style';
-import { SmallBasicIntakesProps } from '~/domain/interfaces/props/widgets/small-basic-intakes-props';
+import { WidgetSmallBasicIntakesProps } from '~/domain/interfaces/props/widgets/small-basic-intakes-props';
 
-const WidgetSmallSingleIntakes = ({ nutrient }: SmallBasicIntakesProps) => {
+const WidgetSmallSingleIntakes = ({ nutrient }: WidgetSmallBasicIntakesProps) => {
     const {
         unit,
         color,

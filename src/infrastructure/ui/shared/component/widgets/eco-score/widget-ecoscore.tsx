@@ -7,9 +7,9 @@ import useWidgetEcoScoreData from '~/infrastructure/ui/shared/component/widgets/
 import WidgetIconGaia from '~/infrastructure/ui/shared/component/widgets/anecdote/component/widget-icon-gaia';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import WidgetEcoScoreStyle from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore-style';
-import { WidgetEcoscoreProps } from '~/domain/interfaces/props/widgets/widget-ecoscore-props';
+import { WidgetEcoScoreProps } from '~/domain/interfaces/props/widgets/widget-ecoscore-props';
 
-const WidgetEcoScore = ({ style }: WidgetEcoscoreProps) => {
+const WidgetEcoScore = ({ style }: WidgetEcoScoreProps) => {
     const { color, ecoScore } = useWidgetEcoScoreData();
 
     return (

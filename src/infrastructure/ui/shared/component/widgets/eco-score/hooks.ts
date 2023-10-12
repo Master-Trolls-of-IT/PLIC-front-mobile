@@ -6,6 +6,7 @@ const useWidgetEcoScoreData = () => {
     const {
         DataStore: { ecoScore }
     } = useStore();
+
     const [color, setColor] = useState(GetColorByPercentage(ecoScore));
 
     useMemo(() => {

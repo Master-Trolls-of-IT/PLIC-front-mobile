@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { observer } from 'mobx-react';
 import WidgetPageStyle from '~/infrastructure/ui/pages/widget-page/widget-page-style';
 import LoginPageTreeClassicLogo from '~/infrastructure/ui/pages/settings-page/component/background/tree-classic-logo';
@@ -31,12 +31,11 @@ const WidgetPage = () => {
         nutrientsOptions,
         setThirdNutrient,
         goBack,
-        setChoosenWidget,
-        choosenWidget,
+        setChosenWidget,
+        chosenWidget,
         widgetField,
         chosenWidgetAsset,
         calorieWidgetAsset,
-        anectodeWidgetAsset,
         ecoscoreWidgetAsset,
         smallMultipleWidgetAsset,
         smallBasicWidgetAsset
@@ -65,6 +64,7 @@ const WidgetPage = () => {
                     <GenericButton title="Confirmer" onPress={handlePageConfig} style={confirmButtonStyle} />
                 </View>
             </View>
+
             <CustomModal
                 isVisible={isAddSmallWidgetModalOpen}
                 dispatch={toggleModal}
@@ -75,49 +75,52 @@ const WidgetPage = () => {
                         <ScrollView
                             style={WidgetPageStyle.scrollSelect}
                             contentContainerStyle={WidgetPageStyle.scrollSelectContent}>
-                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.Anecdote)}>
-                                <CustomSvg asset={anectodeWidgetAsset} height={75} width={75} />
-                                {choosenWidget == WidgetEnum.Anecdote && (
-                                    <View style={WidgetPageStyle.choosenWidget}>
-                                        <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
+                            <TouchableOpacity onPress={() => setChosenWidget(WidgetEnum.Anecdote)}>
+                                <Image
+                                    source={require('~/domain/entities/assets/widget/widget-anecdotes.png')}
+                                    style={{ width: 75, height: 75 }}
+                                />
+                                {chosenWidget == WidgetEnum.Anecdote && (
+                                    <View style={WidgetPageStyle.chosenWidget}>
+                                        <CustomSvg asset={chosenWidgetAsset} height={60} width={60} />
                                     </View>
                                 )}
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.Calorie)}>
+                            <TouchableOpacity onPress={() => setChosenWidget(WidgetEnum.Energy)}>
                                 <CustomSvg asset={calorieWidgetAsset} height={75} width={75} />
-                                {choosenWidget == WidgetEnum.Calorie && (
-                                    <View style={WidgetPageStyle.choosenWidget}>
+                                {chosenWidget == WidgetEnum.Energy && (
+                                    <View style={WidgetPageStyle.chosenWidget}>
                                         <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.EcoScore)}>
+                            <TouchableOpacity onPress={() => setChosenWidget(WidgetEnum.EcoScore)}>
                                 <CustomSvg asset={ecoscoreWidgetAsset} height={75} width={75} />
-                                {choosenWidget == WidgetEnum.EcoScore && (
-                                    <View style={WidgetPageStyle.choosenWidget}>
+                                {chosenWidget == WidgetEnum.EcoScore && (
+                                    <View style={WidgetPageStyle.chosenWidget}>
                                         <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.SmallMultiple)}>
+                            <TouchableOpacity onPress={() => setChosenWidget(WidgetEnum.SmallMultiple)}>
                                 <CustomSvg asset={smallMultipleWidgetAsset} height={75} width={75} />
-                                {choosenWidget == WidgetEnum.SmallMultiple && (
-                                    <View style={WidgetPageStyle.choosenWidget}>
+                                {chosenWidget == WidgetEnum.SmallMultiple && (
+                                    <View style={WidgetPageStyle.chosenWidget}>
                                         <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.SmallBasic)}>
+                            <TouchableOpacity onPress={() => setChosenWidget(WidgetEnum.SmallSingle)}>
                                 <CustomSvg asset={smallBasicWidgetAsset} height={75} width={75} />
-                                {choosenWidget == WidgetEnum.SmallBasic && (
-                                    <View style={WidgetPageStyle.choosenWidget}>
+                                {chosenWidget == WidgetEnum.SmallSingle && (
+                                    <View style={WidgetPageStyle.chosenWidget}>
                                         <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
                         </ScrollView>
                     </View>
-                    {choosenWidget === WidgetEnum.SmallBasic && (
+                    {chosenWidget === WidgetEnum.SmallSingle && (
                         <>
                             <Text style={WidgetPageStyle.modalDropdownAreaText}>Widget Mes Apports</Text>
                             <View style={WidgetPageStyle.modalDropdownArea}>
@@ -129,7 +132,7 @@ const WidgetPage = () => {
                             </View>
                         </>
                     )}
-                    {choosenWidget === WidgetEnum.SmallMultiple && (
+                    {chosenWidget === WidgetEnum.SmallMultiple && (
                         <>
                             <Text style={WidgetPageStyle.modalDropdownAreaText}>Widget Mes Apports</Text>
 
@@ -152,7 +155,7 @@ const WidgetPage = () => {
                             </View>
                         </>
                     )}
-                    {choosenWidget !== WidgetEnum.Slot && (
+                    {chosenWidget !== WidgetEnum.Slot && (
                         <View style={WidgetPageStyle.modalFooter}>
                             <GenericButton title="Confirmer" onPress={handleModalConfirm} style={confirmButtonStyle} />
                         </View>

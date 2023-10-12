@@ -9,10 +9,10 @@ export type WidgetItem =
           type: WidgetEnum.EcoScore;
       }
     | {
-          type: WidgetEnum.Calorie;
+          type: WidgetEnum.Energy;
       }
     | {
-          type: WidgetEnum.SmallBasic;
+          type: WidgetEnum.SmallSingle;
           nutrient: NutrientsEnum;
       }
     | {
