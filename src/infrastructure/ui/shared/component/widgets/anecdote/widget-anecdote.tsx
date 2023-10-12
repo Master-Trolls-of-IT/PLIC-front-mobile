@@ -5,8 +5,9 @@ import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import WidgetAnecdoteStyle from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote-style';
 import useWidgetAnecdoteData from '~/infrastructure/ui/shared/component/widgets/anecdote/hooks';
 
-const HomePageAnecdote = () => {
+const WidgetAnecdotes = () => {
     const { annecdoteObject } = useWidgetAnecdoteData();
+
     return (
         <View style={WidgetAnecdoteStyle.anecdoteContainer}>
             <Text style={{ ...WidgetAnecdoteStyle.title, ...CustomFontInterBold().text }}>Anecdote</Text>
@@ -32,4 +33,4 @@ const HomePageAnecdote = () => {
     );
 };
 
-export default HomePageAnecdote;
+export default WidgetAnecdotes;

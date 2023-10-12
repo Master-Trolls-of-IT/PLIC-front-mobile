@@ -1,6 +1,6 @@
 export enum NutrientsUnitEnum {
     Gramme = 'g',
-    KiloCalories = 'kcal',
+    KiloCalories = 'Kcal',
     Calories = 'cal',
     KiloJoules = 'KJ'
 }

@@ -54,7 +54,8 @@ class DataStore {
                 dailyNutrientsEarned: observable,
 
                 addItem: action,
-                toggleFavorite: action,
+                toggleFavoriteHistory: action,
+                toggleFavoriteConsumedProducts: action,
                 setConsumedProducts: action,
                 setWidgetParams: action,
                 setEcoScore: action,
@@ -77,10 +78,10 @@ class DataStore {
         this.consumedProducts = newItems;
     };
 
-    toggleFavorite = (id: string) => {
+    toggleFavoriteHistory = (id: string) => {
         const index = this.history.findIndex((elem) => elem.id === id);
         const copy = [...this.history];
-        copy[index].isFavorite = !copy[index].isFavorite;
+        copy[index].isFavourite = !copy[index].isFavourite;
         this.history = [...copy];
     };
 
@@ -94,6 +95,13 @@ class DataStore {
 
     updateDailyNutrientsGoal = () => {
         this.dailyNutrientsGoal = GetDailyNutrientsGoal(this.rootStore.LoginStore.userData);
+    };
+
+    toggleFavoriteConsumedProducts = (id: string) => {
+        const index = this.consumedProducts.findIndex((elem) => elem.id === id);
+        const copy = [...this.consumedProducts];
+        copy[index].isFavourite = !copy[index].isFavourite;
+        this.consumedProducts = [...copy];
     };
 }
 

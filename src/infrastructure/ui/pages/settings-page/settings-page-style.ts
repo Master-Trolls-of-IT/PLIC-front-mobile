@@ -49,10 +49,16 @@ const SettingsPageStyle = StyleSheet.create({
         alignItems: 'center'
     },
 
-    linkText: {
+    touchableLink: {
+        width: '100%',
         display: 'flex',
-        justifyContent: 'space-around',
-        fontSize: 20 * (Dimensions.get('screen').height / 725),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+
+    linkText: {
+        fontSize: 18 * (Dimensions.get('screen').height / 725),
         color: ColorEnum.ClassicBrown
     }
 });

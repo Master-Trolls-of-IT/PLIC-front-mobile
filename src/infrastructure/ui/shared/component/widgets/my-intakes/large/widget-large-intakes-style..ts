@@ -1,31 +1,68 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
-const SmallMultipleIntakesStyle = StyleSheet.create({
+const WidgetLargeIntakesStyle = StyleSheet.create({
     container: {
         backgroundColor: ColorEnum.ExtraOpaqueBrown,
         borderRadius: 20,
-        width: 0.4 * Dimensions.get('screen').width,
+        width: 0.85 * Dimensions.get('screen').width,
         height: 0.4 * Dimensions.get('screen').width,
         alignItems: 'center',
         padding: 3
     },
 
     content: {
-        width: '100%',
-        height: '70%',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
+        flexDirection: 'row',
+        width: '100%'
     },
 
     title: {
-        fontSize: 22 * (Dimensions.get('screen').height / 900),
-        color: ColorEnum.SlightlyOpaqueGrey
+        fontSize: 21 * (Dimensions.get('screen').height / 900),
+        color: ColorEnum.SlightlyOpaqueGrey,
+        marginTop: 6,
+        marginBottom: 15,
+        marginLeft: 10
+    },
+
+    rightSide: {
+        width: 0.48 * Dimensions.get('screen').width,
+        marginTop: 10
+    },
+
+    leftSide: {
+        width: 0.35 * Dimensions.get('screen').width
+    },
+
+    circularView: {
+        alignSelf: 'center'
+    },
+
+    circle: {
+        position: 'absolute',
+        alignSelf: 'center'
+    },
+
+    leftInnerTitle: {
+        marginTop: 18,
+        fontSize: 15 * (Dimensions.get('screen').height / 900),
+        color: ColorEnum.ClassicGrey + 'C0',
+        alignSelf: 'center'
+    },
+
+    leftEarned: {
+        fontSize: 32 * (Dimensions.get('screen').height / 900),
+        alignSelf: 'center',
+        color: ColorEnum.ClassicGrey + 'C0'
+    },
+
+    leftGoal: {
+        fontSize: 15 * (Dimensions.get('screen').height / 900),
+        alignSelf: 'center',
+        color: ColorEnum.ClassicGrey + 'C0'
     },
 
     innerTitleContainer: {
-        fontSize: 21 * (Dimensions.get('screen').height / 900),
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
@@ -63,10 +100,10 @@ const SmallMultipleIntakesStyle = StyleSheet.create({
     },
 
     barContainer: {
-        width: '85%',
+        width: '75%',
         alignSelf: 'center',
-        marginTop: 7
+        marginTop: 15
     }
 });
 
-export default SmallMultipleIntakesStyle;
+export default WidgetLargeIntakesStyle;

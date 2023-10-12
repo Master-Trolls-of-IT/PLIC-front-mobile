@@ -35,34 +35,34 @@ const SettingsPage = () => {
                 />
                 <View style={SettingsPageStyle.links}>
                     <View style={SettingsPageStyle.link}>
-                        <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
-                            Informations personnelles
-                        </Text>
-                        <TouchableOpacity onPress={navigateToPersonalDataPage}>
+                        <TouchableOpacity onPress={navigateToPersonalDataPage} style={SettingsPageStyle.touchableLink}>
+                            <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
+                                Informations personnelles
+                            </Text>
                             <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
                         </TouchableOpacity>
                     </View>
                     <View style={SettingsPageStyle.link}>
-                        <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
-                            Personnaliser les widgets
-                        </Text>
-                        <TouchableOpacity onPress={navigateToWidgetPage}>
+                        <TouchableOpacity onPress={navigateToWidgetPage} style={SettingsPageStyle.touchableLink}>
+                            <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
+                                Personnaliser les widgets
+                            </Text>
                             <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
                         </TouchableOpacity>
                     </View>
                     <View style={SettingsPageStyle.link}>
-                        <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
-                            Proposez un nouveau produit
-                        </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity style={SettingsPageStyle.touchableLink}>
+                            <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
+                                Proposez un nouveau produit
+                            </Text>
                             <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
                         </TouchableOpacity>
                     </View>
                     <View style={SettingsPageStyle.link}>
-                        <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
-                            Signaler un problème
-                        </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity style={SettingsPageStyle.touchableLink}>
+                            <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
+                                Signaler un problème
+                            </Text>
                             <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
                         </TouchableOpacity>
                     </View>

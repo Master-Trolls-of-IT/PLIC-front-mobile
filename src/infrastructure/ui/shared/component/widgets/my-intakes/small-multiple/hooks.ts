@@ -3,7 +3,7 @@ import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import { useStore } from '~/infrastructure/controllers/store';
 import getNutrientObject from '~/infrastructure/ui/shared/helper/get-nutrient-object';
 
-const useSmallMultipleData = (
+const useWidgetSmallMultipleData = (
     firstNutrient: NutrientsEnum,
     secondNutrient: NutrientsEnum,
     thirdNutrient: NutrientsEnum
@@ -54,4 +54,4 @@ const useSmallMultipleData = (
     };
 };
 
-export default useSmallMultipleData;
+export default useWidgetSmallMultipleData;
