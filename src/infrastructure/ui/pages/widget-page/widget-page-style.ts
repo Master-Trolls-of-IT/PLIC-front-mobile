@@ -67,90 +67,23 @@ const WidgetPageStyle = StyleSheet.create({
         gap: Dimensions.get('screen').width * 0.1
     },
 
+    confirmButtonStyleContainer: {
+        backgroundColor: ColorEnum.ClassicGreen,
+        borderRadius: 20,
+        width: 129,
+        height: 45
+    },
+
+    confirmButtonText: {
+        color: ColorEnum.ClassicGrey,
+        fontSize: 18
+    },
+
     footer: {
         width: '100%',
         display: 'flex',
         flexDirection: 'row-reverse',
         padding: 20
-    },
-
-    addModalContent: {
-        display: 'flex',
-        flexDirection: 'column',
-        borderTopWidth: 0.4,
-        borderTopColor: ColorEnum.ClassicBrown,
-        width: Dimensions.get('screen').width * 0.75,
-        marginHorizontal: -Dimensions.get('screen').width * 0.05,
-        marginTop: 10,
-        alignItems: 'center'
-    },
-
-    scrollSelectContainer: {
-        width: Dimensions.get('screen').width * 0.75,
-        padding: 8,
-        borderWidth: 1.5,
-        borderColor: ColorEnum.ClassicBrown,
-        borderRadius: 20,
-        marginHorizontal: -15,
-        marginVertical: 15
-    },
-
-    scrollSelect: {
-        width: Dimensions.get('screen').width * 0.65,
-        height: Dimensions.get('screen').height * 0.15,
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignSelf: 'center'
-    },
-
-    scrollSelectContent: {
-        width: Dimensions.get('screen').width * 0.6,
-        borderRadius: 20,
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 10
-    },
-
-    modalFooter: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row-reverse',
-        paddingVertical: 5
-    },
-
-    chosenWidget: {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
-    modalDropdownArea: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        flexWrap: 'wrap',
-        width: Dimensions.get('screen').width * 0.75,
-        gap: 15,
-        marginHorizontal: -20,
-        alignSelf: 'center'
-    },
-
-    modalDropdownAreaText: {
-        fontSize: 22,
-        color: ColorEnum.ClassicBrown,
-        fontWeight: 'bold',
-        paddingBottom: 8,
-        borderBottomWidth: 0.4,
-        borderBottomColor: ColorEnum.ClassicBrown,
-        width: Dimensions.get('screen').width * 0.75,
-        marginHorizontal: -Dimensions.get('screen').width * 0.05,
-        textAlign: 'center',
-        marginBottom: 10
     }
 });
 

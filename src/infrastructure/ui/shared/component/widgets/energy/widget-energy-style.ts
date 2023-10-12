@@ -9,11 +9,8 @@ const WidgetEnergyStyle = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: ColorEnum.ClassicLightGreen,
         display: 'flex',
-        flexDirection: 'column'
-    },
-
-    circularView: {
-        alignSelf: 'center'
+        flexDirection: 'column',
+        justifyContent: 'center'
     },
 
     circle: {
@@ -21,15 +18,19 @@ const WidgetEnergyStyle = StyleSheet.create({
         alignSelf: 'center'
     },
 
+    textContainer: {
+        alignSelf: 'center',
+        marginTop: 24
+    },
+
     innerTitle: {
-        marginTop: 18,
-        fontSize: 15 * (Dimensions.get('screen').height / 900),
+        fontSize: 18 * (Dimensions.get('screen').height / 900),
         color: ColorEnum.ClassicGrey + 'C0',
         alignSelf: 'center'
     },
 
     earned: {
-        fontSize: 32 * (Dimensions.get('screen').height / 900),
+        fontSize: 33 * (Dimensions.get('screen').height / 900),
         alignSelf: 'center',
         color: ColorEnum.ClassicGrey + 'C0'
     },

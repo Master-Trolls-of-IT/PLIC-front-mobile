@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
-import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import { WidgetItem } from '~/domain/interfaces/props/widgets/widget-item';
@@ -13,21 +12,6 @@ const useWidgetPageData = () => {
         NavigationStore: { goBack },
         DataStore: { setWidgetParams }
     } = useStore();
-
-    const confirmButtonStyle = {
-        container: {
-            backgroundColor: ColorEnum.ClassicGreen,
-            borderRadius: 20,
-            width: 105,
-            height: 45
-        },
-
-        text: {
-            color: ColorEnum.ClassicGrey,
-            fontSize: 18,
-            fontWeight: 700
-        }
-    };
 
     const [handleDrop, setHandleDrop] = useState<{ isLine: boolean; id: number }>();
     const [widgetDropped, setWidgetDropped] = useState<{ type: 'small' | 'large'; x: number; y: number } | undefined>(
@@ -131,6 +115,13 @@ const useWidgetPageData = () => {
                         });
                     });
                     break;
+                case WidgetEnum.Water:
+                    setNewWidgetParams((prevState) => {
+                        return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
+                            type: WidgetEnum.Water
+                        });
+                    });
+                    break;
                 case WidgetEnum.Energy:
                     setNewWidgetParams((prevState) => {
                         return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, { type: WidgetEnum.Energy });
@@ -157,6 +148,7 @@ const useWidgetPageData = () => {
                     });
             }
         setIsAddSmallWidgetModalOpen(false);
+        setChosenWidget(WidgetEnum.Slot);
     }, [chosenWidget, firstNutrient.value, handleDrop, secondNutrient.value, thirdNutrient.value]);
 
     const [isErrorModal, setIsErrorModal] = useState(false);
@@ -183,14 +175,7 @@ const useWidgetPageData = () => {
         setHandleDrop: setHandleDrop
     });
 
-    const chosenWidgetAsset = require('~/domain/entities/assets/widget/chosen-widget.svg');
-    const calorieWidgetAsset = require('~/domain/entities/assets/widget/widget-calories.svg');
-    const ecoscoreWidgetAsset = require('~/domain/entities/assets/widget/widget-eco-score.svg');
-    const smallMultipleWidgetAsset = require('~/domain/entities/assets/widget/widget-mes-apports-multiple.svg');
-    const smallBasicWidgetAsset = require('~/domain/entities/assets/widget/widget-mes-apports-simple.svg');
-
     return {
-        confirmButtonStyle,
         handleDrop,
         setHandleDrop,
         widgetDropped,
@@ -209,12 +194,7 @@ const useWidgetPageData = () => {
         newWidgetParams,
         chosenWidget,
         setChosenWidget,
-        widgetField,
-        chosenWidgetAsset,
-        calorieWidgetAsset,
-        ecoscoreWidgetAsset,
-        smallBasicWidgetAsset,
-        smallMultipleWidgetAsset
+        widgetField
     };
 };
 

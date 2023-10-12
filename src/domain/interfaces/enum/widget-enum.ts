@@ -4,6 +4,7 @@ export enum WidgetEnum {
     'SmallSingle',
     'SmallMultiple',
     'Energy',
+    'Water',
     'Large',
     'Slot'
 }

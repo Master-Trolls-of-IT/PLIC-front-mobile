@@ -13,10 +13,10 @@ const WidgetEnergy = () => {
 
     return (
         <View style={WidgetEnergyStyle.widgetContainer}>
-            <View style={WidgetEnergyStyle.circularView}>
+            <View>
                 <AnimatedCircularProgress
                     style={WidgetEnergyStyle.circle}
-                    size={120}
+                    size={135}
                     width={12}
                     fill={energyPercentage}
                     tintColor={energyColor}
@@ -25,6 +25,8 @@ const WidgetEnergy = () => {
                     rotation={245}
                     lineCap={'round'}
                 />
+            </View>
+            <View style={WidgetEnergyStyle.textContainer}>
                 <Text style={{ ...WidgetEnergyStyle.innerTitle, ...CustomFontInterBold().text }}>
                     {NutrientsEnum.Energy}
                 </Text>

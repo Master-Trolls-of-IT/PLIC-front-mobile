@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { observer } from 'mobx-react';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import WidgetWaterStyle from '~/infrastructure/ui/shared/component/widgets/water/widget-water-style';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
@@ -54,4 +55,4 @@ const WidgetWater = () => {
     );
 };
 
-export default WidgetWater;
+export default observer(WidgetWater);

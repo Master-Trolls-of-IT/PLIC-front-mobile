@@ -12,6 +12,9 @@ export type WidgetItem =
           type: WidgetEnum.Energy;
       }
     | {
+          type: WidgetEnum.Water;
+      }
+    | {
           type: WidgetEnum.SmallSingle;
           nutrient: NutrientsEnum;
       }

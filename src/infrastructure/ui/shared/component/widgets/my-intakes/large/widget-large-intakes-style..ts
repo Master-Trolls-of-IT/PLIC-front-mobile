@@ -82,18 +82,21 @@ const WidgetLargeIntakesStyle = StyleSheet.create({
     },
 
     firstProgressBar: {
+        marginTop: 2,
         height: 9,
         color: ColorEnum.SlightlyOpaqueBlue,
         unfilledColor: ColorEnum.VeryOpaqueBlue
     },
 
     secondProgressBar: {
+        marginTop: 2,
         height: 9,
         color: ColorEnum.SlightlyOpaqueDarkGreen,
         unfilledColor: ColorEnum.VeryOpaqueDarkGreen
     },
 
     thirdProgressBar: {
+        marginTop: 2,
         height: 9,
         color: ColorEnum.SlightlyOpaqueDarkRed,
         unfilledColor: ColorEnum.VeryOpaqueDarkRed

@@ -44,7 +44,7 @@ const WidgetSmallMultipleIntakes = ({
                         </Text>
                     </View>
                     <Bar
-                        style={{ width: '100%' }}
+                        style={WidgetSmallMultipleIntakesStyle.bar}
                         {...WidgetSmallMultipleIntakesStyle.firstProgressBar}
                         animated={true}
                         progress={firstPercentage}
@@ -70,7 +70,7 @@ const WidgetSmallMultipleIntakes = ({
                         </Text>
                     </View>
                     <Bar
-                        style={{ width: '100%' }}
+                        style={WidgetSmallMultipleIntakesStyle.bar}
                         {...WidgetSmallMultipleIntakesStyle.secondProgressBar}
                         animated={true}
                         progress={secondPercentage}
@@ -96,7 +96,7 @@ const WidgetSmallMultipleIntakes = ({
                         </Text>
                     </View>
                     <Bar
-                        style={{ width: '100%' }}
+                        style={WidgetSmallMultipleIntakesStyle.bar}
                         {...WidgetSmallMultipleIntakesStyle.thirdProgressBar}
                         animated={true}
                         progress={thirdPercentage}
