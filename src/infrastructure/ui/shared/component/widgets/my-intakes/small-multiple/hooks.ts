@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import { useStore } from '~/infrastructure/controllers/store';
 import getNutrientObject from '~/infrastructure/ui/shared/helper/get-nutrient-object';

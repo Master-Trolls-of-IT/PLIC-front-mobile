@@ -1,37 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
-import { Dimensions, View } from 'react-native';
+import { View } from 'react-native';
 import WidgetSlotStyle from '~/infrastructure/ui/pages/widget-page/component/widget-slot/widget-slot-style';
 import { WidgetSlotProps } from '~/domain/interfaces/props/widgets/widget-slot-props';
+import useWidgetSlotData from '~/infrastructure/ui/pages/widget-page/component/widget-slot/hooks';
 
 const WidgetSlot = ({ id, widgetDropped, setHandleDrop }: WidgetSlotProps) => {
-    const slotRef = useRef<View>(null);
-
-    useEffect(() => {
-        slotRef.current?.measure((x, y, width, height, pageX, pageY) => {
-            if (widgetDropped)
-                switch (widgetDropped.type) {
-                    case 'small':
-                        if (
-                            widgetDropped.x >= pageX &&
-                            widgetDropped.x <= pageX + width &&
-                            widgetDropped.y >= pageY &&
-                            widgetDropped.y <= pageY + height
-                        ) {
-                            console.log('drop small in', id);
-                            setHandleDrop({ isLine: false, id: id });
-                        }
-                        break;
-                    case 'large':
-                        if (widgetDropped.y >= pageY && widgetDropped.y <= pageY + height) {
-                            console.log('drop large in', id, 'rounded to', Math.round(id / 2));
-                            setHandleDrop({ isLine: true, id: Math.round(id / 2) });
-                        }
-                }
-        });
-    }, [id, setHandleDrop, widgetDropped]);
-    const onMoveShouldSetResponderCapture = () => true;
-
+    const { slotRef, onMoveShouldSetResponderCapture } = useWidgetSlotData(id, widgetDropped, setHandleDrop);
     return (
         <View
             ref={slotRef}
