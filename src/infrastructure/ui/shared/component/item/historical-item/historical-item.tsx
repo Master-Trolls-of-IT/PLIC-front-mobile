@@ -14,7 +14,7 @@ import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/com
 import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item-style';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 
-const HistoricalItem = ({ barcode, name, brand, score, image, isFavorite, data, style, id }: HistoricalItemProps) => {
+const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data, style, id }: HistoricalItemProps) => {
     const {
         isExpended,
         onPress,
@@ -28,8 +28,8 @@ const HistoricalItem = ({ barcode, name, brand, score, image, isFavorite, data, 
         scoreColor,
         scorePercentage,
         onPressConsumedProductsButton,
-        toggleFavorite
-    } = useHistoricalItemData({ barcode, isFavorite: isFavorite, score });
+        toggleFavoriteHistory
+    } = useHistoricalItemData({ barcode, isFavourite: isFavourite, score });
 
     return (
         <Animated.View style={[animatedItemStyle, HistoricalItemStyle.item, style]}>
@@ -68,7 +68,7 @@ const HistoricalItem = ({ barcode, name, brand, score, image, isFavorite, data, 
                     </View>
                     <TouchableOpacity
                         onPress={() => {
-                            toggleFavorite(id);
+                            toggleFavoriteHistory(id);
                         }}
                         style={HistoricalItemStyle.favourite}>
                         <CustomSvg asset={favouriteIcon} height={30} width={30} />

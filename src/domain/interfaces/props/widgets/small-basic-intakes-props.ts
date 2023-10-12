@@ -1,5 +1,5 @@
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 
-export type SmallBasicIntakesProps = {
+export type WidgetSmallBasicIntakesProps = {
     nutrient: NutrientsEnum;
 };

@@ -6,9 +6,9 @@ import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { HistoricalItemDataProps } from '~/domain/interfaces/props/search-list/historical-item-data-props';
 import { useStore } from '~/infrastructure/controllers/store';
 
-const useHistoricalItemData = ({ barcode, isFavorite, score }: HistoricalItemDataProps) => {
+const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDataProps) => {
     const {
-        DataStore: { toggleFavorite },
+        DataStore: { toggleFavoriteHistory },
         NavigationStore: { navigate },
         LogStore: { error }
     } = useStore();
@@ -55,10 +55,10 @@ const useHistoricalItemData = ({ barcode, isFavorite, score }: HistoricalItemDat
     };
 
     const favouriteIcon = useMemo(() => {
-        return isFavorite
+        return isFavourite
             ? require('~/domain/entities/assets/icon/favourite-icon/favourite.svg')
             : require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
-    }, [isFavorite]);
+    }, [isFavourite]);
 
     return {
         isExpended,
@@ -73,7 +73,7 @@ const useHistoricalItemData = ({ barcode, isFavorite, score }: HistoricalItemDat
         scorePercentage,
         onPressConsumedProductsButton,
         onPressModalButton,
-        toggleFavorite
+        toggleFavoriteHistory
     };
 };
 

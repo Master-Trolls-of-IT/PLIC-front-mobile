@@ -4,7 +4,7 @@ import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
 import { useStore } from '~/infrastructure/controllers/store';
 import getNutrientObject from '~/infrastructure/ui/shared/helper/get-nutrient-object';
 
-const useLargeIntakesData = (
+const useWidgetLargeIntakesData = (
     firstNutrient: NutrientsEnum,
     secondNutrient: NutrientsEnum,
     thirdNutrient: NutrientsEnum
@@ -66,4 +66,4 @@ const useLargeIntakesData = (
     };
 };
 
-export default useLargeIntakesData;
+export default useWidgetLargeIntakesData;

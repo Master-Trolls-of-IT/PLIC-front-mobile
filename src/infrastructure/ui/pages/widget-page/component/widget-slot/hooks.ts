@@ -1,16 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { View } from 'react-native';
 
 const useWidgetSlotData = (
     id: number,
     widgetDropped: { type: 'small' | 'large'; x: number; y: number } | undefined,
-    setHandleDrop: React.Dispatch<React.SetStateAction<{ isLine: boolean; id: number }>>
+    setHandleDrop?: Dispatch<SetStateAction<{ isLine: boolean; id: number }>>
 ) => {
     const slotRef = useRef<View>(null);
 
     useEffect(() => {
-        slotRef.current?.measure((x, y, width, height, pageX, pageY) => {
-            if (widgetDropped)
+        slotRef.current?.measure((_x, _y, width, height, pageX, pageY) => {
+            if (widgetDropped && setHandleDrop)
                 switch (widgetDropped.type) {
                     case 'small':
                         if (

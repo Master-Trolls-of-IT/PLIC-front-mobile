@@ -7,7 +7,7 @@ import useEcoScoreData from '~/infrastructure/ui/shared/component/widgets/eco-sc
 import GenericEcoScoreStyle from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score-style';
 
 const GenericEcoScore = ({ ecoScore, style }: { ecoScore: number; style?: object }) => {
-    const { color } = useEcoScoreData(ecoScore);
+    const { color } = useEcoScoreData();
 
     return (
         <View style={{ ...GenericEcoScoreStyle.content, ...style }}>

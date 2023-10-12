@@ -17,6 +17,7 @@ const MealPageActiveItemStyle = StyleSheet.create({
         flexDirection: 'column',
         paddingBottom: 30
     },
+
     mainContainer: {
         width: '95%',
         display: 'flex',
@@ -24,6 +25,7 @@ const MealPageActiveItemStyle = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center'
     },
+
     title: {
         fontSize: 30,
         fontWeight: 'bold',
@@ -31,6 +33,7 @@ const MealPageActiveItemStyle = StyleSheet.create({
         width: 'auto',
         marginLeft: 10
     },
+
     okButton: {
         fontSize: 30,
         fontWeight: 'bold',
@@ -46,6 +49,7 @@ const MealPageActiveItemStyle = StyleSheet.create({
         alignItems: 'center',
         width: '100%'
     },
+
     favourite: {
         position: 'absolute',
         right: 20,
@@ -68,6 +72,7 @@ const MealPageActiveItemStyle = StyleSheet.create({
     mealName: {
         width: '45%'
     },
+
     mealTags: {
         width: '45%'
     },
@@ -78,12 +83,14 @@ const MealPageActiveItemStyle = StyleSheet.create({
         paddingBottom: 5,
         width: '100%'
     },
+
     columnLeft: {
         fontSize: 18,
         color: ColorEnum.ClassicBrown,
         paddingBottom: 8,
         width: '100%'
     },
+
     columnRight: {
         fontSize: 18,
         color: ColorEnum.ClassicBrown,
@@ -112,6 +119,7 @@ const MealPageActiveItemStyle = StyleSheet.create({
         fontSize: 15,
         alignSelf: 'center'
     },
+
     greenButtonText: {
         fontSize: 15,
         alignSelf: 'center'
@@ -124,16 +132,19 @@ const MealPageActiveItemStyle = StyleSheet.create({
     customModalChildren: {
         paddingTop: 10
     },
+
     addProductsContainer: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column'
     },
+
     productListContainer: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column'
     },
+
     content: {
         borderTopColor: ColorEnum.VeryOpaqueBrown,
         borderTopWidth: 1,

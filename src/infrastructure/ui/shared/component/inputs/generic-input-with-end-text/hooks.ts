@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { isNumber } from '~/infrastructure/ui/shared/helper/is-number';
 
-const useInputWithEndTextData = (
+const useGenericInputWithEndTextData = (
     input: string,
     dispatch: Dispatch<SetStateAction<string>> | ((value: string) => void)
 ) => {
@@ -16,7 +16,7 @@ const useInputWithEndTextData = (
             }
         });
     };
-    return { onChangeText, controlledInput };
+    return { input, onChangeText, controlledInput };
 };
 
-export default useInputWithEndTextData;
+export default useGenericInputWithEndTextData;

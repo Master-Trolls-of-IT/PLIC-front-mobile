@@ -21,6 +21,7 @@ const useWidgetPageData = () => {
             width: 105,
             height: 45
         },
+
         text: {
             color: ColorEnum.ClassicGrey,
             fontSize: 18,
@@ -28,8 +29,7 @@ const useWidgetPageData = () => {
         }
     };
 
-    const [handleDrop, setHandleDrop] = useState<{ isLine: boolean; id: number }>({ isLine: false, id: 0 });
-
+    const [handleDrop, setHandleDrop] = useState<{ isLine: boolean; id: number }>();
     const [widgetDropped, setWidgetDropped] = useState<{ type: 'small' | 'large'; x: number; y: number } | undefined>(
         undefined
     );
@@ -56,11 +56,11 @@ const useWidgetPageData = () => {
         }
     }, [handleDrop]);
 
-    const [choosenWidget, setChoosenWidget] = useState<WidgetEnum>(WidgetEnum.Slot);
+    const [chosenWidget, setChosenWidget] = useState<WidgetEnum>(WidgetEnum.Slot);
 
     const toggleModal = useCallback((value: boolean) => {
         setIsAddSmallWidgetModalOpen(value);
-        setChoosenWidget(WidgetEnum.Slot);
+        setChosenWidget(WidgetEnum.Slot);
     }, []);
 
     const nutrientsOptions: { label: string; value: string }[] = [
@@ -116,7 +116,7 @@ const useWidgetPageData = () => {
 
     const handleModalConfirm = useCallback(() => {
         if (handleDrop)
-            switch (choosenWidget) {
+            switch (chosenWidget) {
                 case WidgetEnum.Anecdote:
                     setNewWidgetParams((prevState) => {
                         return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
@@ -131,15 +131,15 @@ const useWidgetPageData = () => {
                         });
                     });
                     break;
-                case WidgetEnum.Calorie:
+                case WidgetEnum.Energy:
                     setNewWidgetParams((prevState) => {
-                        return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, { type: WidgetEnum.Calorie });
+                        return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, { type: WidgetEnum.Energy });
                     });
                     break;
-                case WidgetEnum.SmallBasic:
+                case WidgetEnum.SmallSingle:
                     setNewWidgetParams((prevState) => {
                         return getNewWidgetParamsWithSmallModal(prevState, handleDrop.id, {
-                            type: WidgetEnum.SmallBasic,
+                            type: WidgetEnum.SmallSingle,
                             nutrient: firstNutrient.value as NutrientsEnum
                         });
                     });
@@ -157,7 +157,7 @@ const useWidgetPageData = () => {
                     });
             }
         setIsAddSmallWidgetModalOpen(false);
-    }, [choosenWidget, firstNutrient.value, handleDrop, secondNutrient.value, thirdNutrient.value]);
+    }, [chosenWidget, firstNutrient.value, handleDrop, secondNutrient.value, thirdNutrient.value]);
 
     const [isErrorModal, setIsErrorModal] = useState(false);
 
@@ -184,7 +184,6 @@ const useWidgetPageData = () => {
     });
 
     const chosenWidgetAsset = require('~/domain/entities/assets/widget/chosen-widget.svg');
-    const anectodeWidgetAsset = require('~/domain/entities/assets/widget/widget-anecdotes.svg');
     const calorieWidgetAsset = require('~/domain/entities/assets/widget/widget-calories.svg');
     const ecoscoreWidgetAsset = require('~/domain/entities/assets/widget/widget-eco-score.svg');
     const smallMultipleWidgetAsset = require('~/domain/entities/assets/widget/widget-mes-apports-multiple.svg');
@@ -208,11 +207,10 @@ const useWidgetPageData = () => {
         handlePageConfig,
         goBack,
         newWidgetParams,
-        choosenWidget,
-        setChoosenWidget,
+        chosenWidget,
+        setChosenWidget,
         widgetField,
         chosenWidgetAsset,
-        anectodeWidgetAsset,
         calorieWidgetAsset,
         ecoscoreWidgetAsset,
         smallBasicWidgetAsset,

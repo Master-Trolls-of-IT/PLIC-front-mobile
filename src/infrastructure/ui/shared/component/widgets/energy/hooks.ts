@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import GetColorByPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import { useStore } from '~/infrastructure/controllers/store';
 
-const useWidgetCalorieData = () => {
+const useWidgetEnergyData = () => {
     const {
         DataStore: {
             dayEnergy,
@@ -24,4 +24,4 @@ const useWidgetCalorieData = () => {
         goal: energyGoal
     };
 };
-export default useWidgetCalorieData;
+export default useWidgetEnergyData;
