@@ -17,7 +17,7 @@ export enum ColorEnum {
     // Brown
     ClassicBrown = '#6D4C41',
     VeryOpaqueBrown = '#6D4C414C',
-    ExtraOpaqueBrown = '#6D4C412B',
+    ExtraOpaqueBrown = '#DAD1B3',
 
     // Green
     ClassicGreen = '#84CF3D',
@@ -43,6 +43,6 @@ export enum ColorEnum {
     ClassicRedWidget = '#F90101',
 
     // Yellow
-    ClassicYellowWidget = '#E0E420C6',
+    ClassicYellowWidget = '#D4DB00',
     ClassicDarkYellow = '#F6BE00'
 }

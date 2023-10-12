@@ -24,7 +24,7 @@ const useMealPageData = () => {
 
     const mockData: MealItemProps[] = [
         {
-            isFavorite: true,
+            isFavourite: true,
             id: '1',
             title: 'REPAS COMPLET 1',
             score: 82,
@@ -33,7 +33,7 @@ const useMealPageData = () => {
             mealTags: [mealItemTags.Japanese, mealItemTags.Vegetarian]
         },
         {
-            isFavorite: true,
+            isFavourite: true,
             id: '1',
             title: 'REPAS COMPLET 2',
             score: 82,
@@ -42,7 +42,7 @@ const useMealPageData = () => {
             mealTags: [mealItemTags.Vegetarian]
         },
         {
-            isFavorite: true,
+            isFavourite: true,
             id: '1',
             title: 'REPAS COMPLET 3',
             score: 82,
@@ -51,7 +51,7 @@ const useMealPageData = () => {
             mealTags: [mealItemTags.Japanese, mealItemTags.Vegetarian]
         },
         {
-            isFavorite: true,
+            isFavourite: true,
             id: '1',
             title: 'REPAS COMPLET 4',
             score: 82,
@@ -60,7 +60,7 @@ const useMealPageData = () => {
             mealTags: [mealItemTags.Japanese]
         },
         {
-            isFavorite: true,
+            isFavourite: true,
             id: '1',
             title: 'REPAS COMPLET 5',
             score: 82,

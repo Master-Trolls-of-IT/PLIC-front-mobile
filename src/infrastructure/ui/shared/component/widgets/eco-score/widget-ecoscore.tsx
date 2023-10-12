@@ -2,13 +2,13 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import useEcoScoreData from '~/infrastructure/ui/shared/component/widgets/eco-score/hooks';
+import useWidgetEcoScoreData from '~/infrastructure/ui/shared/component/widgets/eco-score/hooks';
 import WidgetIconGaia from '~/infrastructure/ui/shared/component/widgets/anecdote/component/widget-icon-gaia';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import WidgetEcoScoreStyle from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore-style';
 
-const EcoScore = ({ ecoScore, style }: { ecoScore: number; style?: object }) => {
-    const { color } = useEcoScoreData(ecoScore);
+const WidgetEcoScore = ({ ecoScore, style }: { ecoScore: number; style?: object }) => {
+    const { color } = useWidgetEcoScoreData(ecoScore);
 
     return (
         <View style={{ ...WidgetEcoScoreStyle.content, ...style }}>
@@ -33,4 +33,4 @@ const EcoScore = ({ ecoScore, style }: { ecoScore: number; style?: object }) => 
     );
 };
 
-export default EcoScore;
+export default WidgetEcoScore;

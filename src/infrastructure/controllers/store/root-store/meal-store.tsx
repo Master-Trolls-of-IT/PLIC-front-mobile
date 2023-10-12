@@ -24,7 +24,7 @@ class MealStore {
     toggleFavorite = (id: string) => {
         const index = this.mealList.findIndex((elem) => elem.id === id);
         const copy = [...this.mealList];
-        copy[index].isFavorite = !copy[index].isFavorite;
+        copy[index].isFavourite = !copy[index].isFavourite;
         this.mealList = [...copy];
     };
 }

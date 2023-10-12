@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import GetColorByPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 
-const useLargeIntakesData = (
+const useWidgetLargeIntakesData = (
     energy: NutrientData,
     firstNutrient: NutrientData,
     secondNutrient: NutrientData,
@@ -37,4 +37,4 @@ const useLargeIntakesData = (
     return { energyColor, energyPercentage, firstPercentage, secondPercentage, thirdPercentage };
 };
 
-export default useLargeIntakesData;
+export default useWidgetLargeIntakesData;

@@ -5,7 +5,7 @@ import { WidgetAnecdoteProps } from '~/domain/interfaces/props/widget-anecdote-p
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import WidgetAnecdoteStyle from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote-style';
 
-const HomePageAnecdote = ({ text, icon }: WidgetAnecdoteProps) => {
+const WidgetAnecdotes = ({ text, icon }: WidgetAnecdoteProps) => {
     return (
         <View style={WidgetAnecdoteStyle.anecdoteContainer}>
             <Text style={{ ...WidgetAnecdoteStyle.title, ...CustomFontInterBold().text }}>Anecdote</Text>
@@ -25,4 +25,4 @@ const HomePageAnecdote = ({ text, icon }: WidgetAnecdoteProps) => {
     );
 };
 
-export default HomePageAnecdote;
+export default WidgetAnecdotes;

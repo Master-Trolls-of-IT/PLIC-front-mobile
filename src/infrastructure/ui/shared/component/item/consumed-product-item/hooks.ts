@@ -7,11 +7,12 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: ConsumedProductItemDataProps) => {
     const {
-        DataStore: { setConsumedProducts, consumedProducts }
+        DataStore: { setConsumedProducts, consumedProducts, toggleFavoriteConsumedProducts }
     } = useStore();
 
-    const [itemId, setItemId] = useState('');
     const { deleteConsumedProduct } = useConsumedProductPageService();
+
+    const [itemId, setItemId] = useState('');
     const [isExpended, setIsExpended] = useState(false);
 
     const itemHeight = useSharedValue(100);
@@ -41,6 +42,7 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
                 setConsumedProducts(newConsumedProductItems ?? consumedProducts);
             };
             void deleteProduct();
+            setIsExpended(false);
         },
         [consumedProducts, deleteConsumedProduct, setConsumedProducts]
     );
@@ -60,7 +62,8 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
         scoreColor,
         scorePercentage,
         onPressDeleteConsumedProduct,
-        round
+        round,
+        toggleFavoriteConsumedProducts
     };
 };
 

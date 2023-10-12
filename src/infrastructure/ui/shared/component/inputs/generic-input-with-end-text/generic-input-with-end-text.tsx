@@ -3,7 +3,7 @@ import { Text, TextInput, View } from 'react-native';
 import { GenericInputWithEndTextProps } from '~/domain/interfaces/props/generic-input/generic-input-with-end-text-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import GenericInputWithEndTextStyle from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/generic-input-with-end-text-style';
-import useInputData from '~/infrastructure/ui/shared/helper/input-hooks';
+import useGenericInputWithEndTextData from '~/infrastructure/ui/shared/component/inputs/generic-input-with-end-text/hooks';
 
 const GenericInputWithEndText = ({
     title,
@@ -13,7 +13,7 @@ const GenericInputWithEndText = ({
     style,
     dispatch
 }: GenericInputWithEndTextProps) => {
-    const { onChangeText, controlledInput } = useInputData({ dispatch, type });
+    const { onChangeText, controlledInput } = useGenericInputWithEndTextData(type, dispatch);
 
     return (
         <View style={style}>

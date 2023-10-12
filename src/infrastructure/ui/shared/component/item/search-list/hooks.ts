@@ -83,12 +83,12 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                                 break;
                             case 'favasc':
                                 setDisplayData(
-                                    [...(mockedData as HistoricalItemProps[])].filter((elem) => elem.isFavorite)
+                                    [...(mockedData as HistoricalItemProps[])].filter((elem) => elem.isFavourite)
                                 );
                                 break;
                             case 'favdes':
                                 setDisplayData(
-                                    [...(mockedData as HistoricalItemProps[])].filter((elem) => !elem.isFavorite)
+                                    [...(mockedData as HistoricalItemProps[])].filter((elem) => !elem.isFavourite)
                                 );
                                 break;
                             default:
@@ -158,11 +158,11 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                                 setDisplayData([...(mockedData as MealItemProps[])].sort((a, b) => b.score - a.score));
                                 break;
                             case 'favasc':
-                                setDisplayData([...(mockedData as MealItemProps[])].filter((elem) => elem.isFavorite));
+                                setDisplayData([...(mockedData as MealItemProps[])].filter((elem) => elem.isFavourite));
                                 break;
                             case 'favdes':
                                 setDisplayData(
-                                    [...(mockedData as MealItemProps[])].filter((elem) => !elem.isFavorite)
+                                    [...(mockedData as MealItemProps[])].filter((elem) => !elem.isFavourite)
                                 );
                                 break;
                             case 'prodasc':

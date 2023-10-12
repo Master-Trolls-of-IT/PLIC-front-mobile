@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 
-const useSmallMultipleData = (
+const useWidgetSmallMultipleData = (
     firstNutrient: NutrientData,
     secondNutrient: NutrientData,
     thirdNutrient: NutrientData
@@ -34,4 +34,4 @@ const useSmallMultipleData = (
     return { firstPercentage, secondPercentage, thirdPercentage };
 };
 
-export default useSmallMultipleData;
+export default useWidgetSmallMultipleData;

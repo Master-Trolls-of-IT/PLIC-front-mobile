@@ -20,7 +20,6 @@ const ConsumedProductItem = ({
     score,
     image,
     isFavourite,
-    toggleFavourite,
     data,
     style
 }: ConsumedProductItemProps) => {
@@ -32,7 +31,8 @@ const ConsumedProductItem = ({
         scoreColor,
         scorePercentage,
         onPressDeleteConsumedProduct,
-        round
+        round,
+        toggleFavoriteConsumedProducts
     } = useConsumedProductItemData({ consumedQuantity, isFavourite, score });
 
     return (
@@ -74,7 +74,11 @@ const ConsumedProductItem = ({
                             {isNaN(score) ? 0 : score}
                         </Text>
                     </View>
-                    <TouchableOpacity onPress={toggleFavourite} style={ConsumedProductItemStyle.favourite}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            toggleFavoriteConsumedProducts(id);
+                        }}
+                        style={ConsumedProductItemStyle.favourite}>
                         <CustomSvg asset={favouriteIcon} height={30} width={30} />
                     </TouchableOpacity>
                 </View>

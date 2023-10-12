@@ -1,18 +1,18 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { View } from 'react-native';
-import HomePageAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
+import WidgetAnecdotes from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import HomePageBasket from '~/infrastructure/ui/pages/home-page/component/background/home-page-basket';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 import HomePageBlobsTop from '~/infrastructure/ui/pages/home-page/component/background/home-page-blobs-top';
 import useHomePageData from '~/infrastructure/ui/pages/home-page/hooks';
 import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
-import LargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/large-intakes';
+import WidgetLargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/widget-large-intakes';
 import WidgetWater from '~/infrastructure/ui/shared/component/widgets/water/widget-water';
 
 const HomePage = () => {
-    const { anecdoteObject, dailyNutrientsGoal, dailyNutrientsEarned, username, chooseRightDynamicImage, ecoScore } =
+    const { anecdoteObject, dailyNutrientsGoal, dailyNutrientsEarned, username, chooseRightDynamicImage } =
         useHomePageData();
 
     return (
@@ -34,7 +34,7 @@ const HomePage = () => {
 
                 <View style={HomePageStyle.widgetContainer}>
                     <View style={HomePageStyle.widgetContainerFirstRow}>
-                        <LargeIntakes
+                        <WidgetLargeIntakes
                             energy={{
                                 nutrientType: NutrientsEnum.Energy,
                                 earned: dailyNutrientsEarned.energy,
@@ -59,7 +59,7 @@ const HomePage = () => {
                     </View>
 
                     <View style={HomePageStyle.widgetContainerTwoWidgetRow}>
-                        <HomePageAnecdote {...anecdoteObject} />
+                        <WidgetAnecdotes {...anecdoteObject} />
                         <WidgetWater />
                     </View>
                 </View>

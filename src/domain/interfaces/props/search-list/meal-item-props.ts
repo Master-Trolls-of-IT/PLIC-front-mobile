@@ -7,6 +7,6 @@ export type MealItemProps = {
     numberOfProducts: number;
     ingredients: string[];
     mealTags: MealItemTag[];
-    isFavorite: boolean;
+    isFavourite: boolean;
     style?: object;
 };

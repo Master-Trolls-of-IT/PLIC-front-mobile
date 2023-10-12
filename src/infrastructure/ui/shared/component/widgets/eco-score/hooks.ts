@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import GetColorByPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 
-const useEcoScoreData = (percentage: number) => {
+const useWidgetEcoScoreData = (percentage: number) => {
     const [color, setColor] = useState(GetColorByPercentage(percentage));
 
     useMemo(() => {
@@ -13,4 +13,4 @@ const useEcoScoreData = (percentage: number) => {
     };
 };
 
-export default useEcoScoreData;
+export default useWidgetEcoScoreData;
