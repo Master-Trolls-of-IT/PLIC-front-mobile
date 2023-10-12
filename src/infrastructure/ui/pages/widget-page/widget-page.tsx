@@ -33,7 +33,13 @@ const WidgetPage = () => {
         goBack,
         setChoosenWidget,
         choosenWidget,
-        widgetField
+        widgetField,
+        chosenWidgetAsset,
+        calorieWidgetAsset,
+        anectodeWidgetAsset,
+        ecoscoreWidgetAsset,
+        smallMultipleWidgetAsset,
+        smallBasicWidgetAsset
     } = useWidgetPageData();
     return (
         <View style={WidgetPageStyle.container}>
@@ -70,82 +76,42 @@ const WidgetPage = () => {
                             style={WidgetPageStyle.scrollSelect}
                             contentContainerStyle={WidgetPageStyle.scrollSelectContent}>
                             <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.Anecdote)}>
-                                <CustomSvg
-                                    asset={require('~/domain/entities/assets/widget/widget-anecdotes.svg')}
-                                    height={75}
-                                    width={75}
-                                />
+                                <CustomSvg asset={anectodeWidgetAsset} height={75} width={75} />
                                 {choosenWidget == WidgetEnum.Anecdote && (
                                     <View style={WidgetPageStyle.choosenWidget}>
-                                        <CustomSvg
-                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
-                                            height={50}
-                                            width={50}
-                                        />
+                                        <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.Calorie)}>
-                                <CustomSvg
-                                    asset={require('~/domain/entities/assets/widget/widget-calories.svg')}
-                                    height={75}
-                                    width={75}
-                                />
+                                <CustomSvg asset={calorieWidgetAsset} height={75} width={75} />
                                 {choosenWidget == WidgetEnum.Calorie && (
                                     <View style={WidgetPageStyle.choosenWidget}>
-                                        <CustomSvg
-                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
-                                            height={50}
-                                            width={50}
-                                        />
+                                        <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.EcoScore)}>
-                                <CustomSvg
-                                    asset={require('~/domain/entities/assets/widget/widget-eco-score.svg')}
-                                    height={75}
-                                    width={75}
-                                />
+                                <CustomSvg asset={ecoscoreWidgetAsset} height={75} width={75} />
                                 {choosenWidget == WidgetEnum.EcoScore && (
                                     <View style={WidgetPageStyle.choosenWidget}>
-                                        <CustomSvg
-                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
-                                            height={50}
-                                            width={50}
-                                        />
+                                        <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.SmallMultiple)}>
-                                <CustomSvg
-                                    asset={require('~/domain/entities/assets/widget/widget-mes-apports-multiple.svg')}
-                                    height={75}
-                                    width={75}
-                                />
+                                <CustomSvg asset={smallMultipleWidgetAsset} height={75} width={75} />
                                 {choosenWidget == WidgetEnum.SmallMultiple && (
                                     <View style={WidgetPageStyle.choosenWidget}>
-                                        <CustomSvg
-                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
-                                            height={50}
-                                            width={50}
-                                        />
+                                        <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => setChoosenWidget(WidgetEnum.SmallBasic)}>
-                                <CustomSvg
-                                    asset={require('~/domain/entities/assets/widget/widget-mes-apports-simple.svg')}
-                                    height={75}
-                                    width={75}
-                                />
+                                <CustomSvg asset={smallBasicWidgetAsset} height={75} width={75} />
                                 {choosenWidget == WidgetEnum.SmallBasic && (
                                     <View style={WidgetPageStyle.choosenWidget}>
-                                        <CustomSvg
-                                            asset={require('~/domain/entities/assets/widget/chosen-widget.svg')}
-                                            height={50}
-                                            width={50}
-                                        />
+                                        <CustomSvg asset={chosenWidgetAsset} height={50} width={50} />
                                     </View>
                                 )}
                             </TouchableOpacity>
