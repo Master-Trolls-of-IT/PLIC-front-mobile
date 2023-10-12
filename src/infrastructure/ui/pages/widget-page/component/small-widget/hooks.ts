@@ -40,7 +40,7 @@ const useSmallWidgetData = (setWidgetDropped: (value: { type: 'small' | 'large';
     ).current;
 
     const onLayout = () => {
-        widgetRef.current.measure((x, y, width, height, pageX, pageY) => {
+        widgetRef.current?.measure((x, y, width, height, pageX, pageY) => {
             Xpos = pageX;
             Ypos = pageY;
         });

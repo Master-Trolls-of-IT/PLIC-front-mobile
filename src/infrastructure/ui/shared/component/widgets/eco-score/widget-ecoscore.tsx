@@ -7,14 +7,10 @@ import useEcoScoreData from '~/infrastructure/ui/shared/component/widgets/eco-sc
 import WidgetIconGaia from '~/infrastructure/ui/shared/component/widgets/anecdote/component/widget-icon-gaia';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import WidgetEcoScoreStyle from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore-style';
+import { WidgetEcoscoreProps } from '~/domain/interfaces/props/widgets/widget-ecoscore-props';
 
-<<<<<<< HEAD
-const EcoScore = ({ ecoScore, style }: { ecoScore: number; style?: object }) => {
-    const { color } = useEcoScoreData(ecoScore);
-=======
 const EcoScore = ({ style }: WidgetEcoscoreProps) => {
     const { color, ecoScore } = useEcoScoreData();
->>>>>>> ef564ea (Save before changing logic)
 
     return (
         <View style={{ ...WidgetEcoScoreStyle.content, ...style }}>
