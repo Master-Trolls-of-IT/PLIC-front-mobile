@@ -1,27 +1,26 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Bar } from 'react-native-progress';
+import { observer } from 'mobx-react';
 import useSmallMultipleData from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/hooks';
 import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import SmallMultipleIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/small-multiple-intakes-style.';
+import { SmallMultipleIntakesProps } from '~/domain/interfaces/props/widgets/small-multiple-intakes-props';
 
 const SmallMultipleIntakes = ({
-    firstNutrient,
-    secondNutrient,
-    thirdNutrient
-}: {
-    firstNutrient: NutrientData;
-    secondNutrient: NutrientData;
-    thirdNutrient: NutrientData;
-}) => {
-    const { firstPercentage, secondPercentage, thirdPercentage } = useSmallMultipleData(
-        firstNutrient,
-        secondNutrient,
-        thirdNutrient
-    );
+    nutrients: [firstNutrient, secondNutrient, thirdNutrient]
+}: SmallMultipleIntakesProps) => {
+    const {
+        firstPercentage,
+        secondPercentage,
+        thirdPercentage,
+        firstNutrientObject,
+        secondNutrientObject,
+        thirdNutrientObject
+    } = useSmallMultipleData(firstNutrient, secondNutrient, thirdNutrient);
 
     return (
         <View style={SmallMultipleIntakesStyle.container}>
@@ -30,11 +29,11 @@ const SmallMultipleIntakes = ({
                 <View style={SmallMultipleIntakesStyle.barContainer}>
                     <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
                         <Text style={{ ...SmallMultipleIntakesStyle.firstInnerTitle, ...customFontInterBold().text }}>
-                            {firstNutrient.nutrientType}
+                            {firstNutrientObject.nutrientType}
                         </Text>
                         <Text style={{ ...SmallMultipleIntakesStyle.firstInnerTitle, ...customFontInterBold().text }}>
-                            {firstNutrient.earned} / {firstNutrient.goal}
-                            {getUnitFromNutrient(firstNutrient.nutrientType)}
+                            {firstNutrientObject.earned} / {firstNutrientObject.goal}
+                            {getUnitFromNutrient(firstNutrientObject.nutrientType)}
                         </Text>
                     </View>
                     <Bar
@@ -48,11 +47,11 @@ const SmallMultipleIntakes = ({
                 <View style={SmallMultipleIntakesStyle.barContainer}>
                     <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
                         <Text style={{ ...SmallMultipleIntakesStyle.secondInnerTitle, ...customFontInterBold().text }}>
-                            {secondNutrient.nutrientType}
+                            {secondNutrientObject.nutrientType}
                         </Text>
                         <Text style={{ ...SmallMultipleIntakesStyle.secondInnerTitle, ...customFontInterBold().text }}>
-                            {secondNutrient.earned} / {secondNutrient.goal}
-                            {getUnitFromNutrient(secondNutrient.nutrientType)}
+                            {secondNutrientObject.earned} / {secondNutrientObject.goal}
+                            {getUnitFromNutrient(secondNutrientObject.nutrientType)}
                         </Text>
                     </View>
                     <Bar
@@ -66,11 +65,11 @@ const SmallMultipleIntakes = ({
                 <View style={SmallMultipleIntakesStyle.barContainer}>
                     <View style={SmallMultipleIntakesStyle.innerTitleContainer}>
                         <Text style={{ ...SmallMultipleIntakesStyle.thirdInnerTitle, ...customFontInterBold().text }}>
-                            {thirdNutrient.nutrientType}
+                            {thirdNutrientObject.nutrientType}
                         </Text>
                         <Text style={{ ...SmallMultipleIntakesStyle.thirdInnerTitle, ...customFontInterBold().text }}>
-                            {thirdNutrient.earned} / {thirdNutrient.goal}
-                            {getUnitFromNutrient(thirdNutrient.nutrientType)}
+                            {thirdNutrientObject.earned} / {thirdNutrientObject.goal}
+                            {getUnitFromNutrient(thirdNutrientObject.nutrientType)}
                         </Text>
                     </View>
                     <Bar
@@ -86,4 +85,4 @@ const SmallMultipleIntakes = ({
     );
 };
 
-export default SmallMultipleIntakes;
+export default observer(SmallMultipleIntakes);

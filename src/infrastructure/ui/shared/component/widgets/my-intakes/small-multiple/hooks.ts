@@ -1,37 +1,57 @@
 import { useMemo, useState } from 'react';
-import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { useStore } from '~/infrastructure/controllers/store';
+import getNutrientObject from '~/infrastructure/ui/shared/helper/get-nutrient-object';
 
 const useSmallMultipleData = (
-    firstNutrient: NutrientData,
-    secondNutrient: NutrientData,
-    thirdNutrient: NutrientData
+    firstNutrient: NutrientsEnum,
+    secondNutrient: NutrientsEnum,
+    thirdNutrient: NutrientsEnum
 ) => {
-    const [firstPercentage, setFirstPercentage] = useState(
-        firstNutrient.earned / (firstNutrient.goal === 0 ? 1 : firstNutrient.goal)
-    );
-    const [secondPercentage, setSecondPercentage] = useState(
-        secondNutrient.earned / (secondNutrient.goal === 0 ? 1 : secondNutrient.goal)
-    );
-    const [thirdPercentage, setThirdPercentage] = useState(
-        thirdNutrient.earned / (thirdNutrient.goal === 0 ? 1 : thirdNutrient.goal)
+    const {
+        DataStore: { dailyNutrientsGoal, dailyNutrientsEarned }
+    } = useStore();
+
+    const firstNutrientObject = getNutrientObject(firstNutrient, dailyNutrientsEarned, dailyNutrientsGoal);
+    const secondNutrientObject = getNutrientObject(secondNutrient, dailyNutrientsEarned, dailyNutrientsGoal);
+    const thirdNutrientObject = getNutrientObject(thirdNutrient, dailyNutrientsEarned, dailyNutrientsGoal);
+
+    const [firstPercentage, setFirstPercentage] = useState(firstNutrientObject.earned / firstNutrientObject.goal);
+    const [secondPercentage, setSecondPercentage] = useState(secondNutrientObject.earned / secondNutrientObject.goal);
+    const [thirdPercentage, setThirdPercentage] = useState(thirdNutrientObject.earned / thirdNutrientObject.goal);
+
+    useMemo(
+        () =>
+            setFirstPercentage(
+                firstNutrientObject.earned / (firstNutrientObject.goal === 0 ? 1 : firstNutrientObject.goal)
+            ),
+        [firstNutrientObject.earned, firstNutrientObject.goal]
     );
 
     useMemo(
-        () => setFirstPercentage(firstNutrient.earned / (firstNutrient.goal === 0 ? 1 : firstNutrient.goal)),
-        [firstNutrient.earned, firstNutrient.goal]
+        () =>
+            setSecondPercentage(
+                secondNutrientObject.earned / (secondNutrientObject.goal === 0 ? 1 : secondNutrientObject.goal)
+            ),
+        [secondNutrientObject.earned, secondNutrientObject.goal]
     );
 
     useMemo(
-        () => setSecondPercentage(secondNutrient.earned / (secondNutrient.goal === 0 ? 1 : secondNutrient.goal)),
-        [secondNutrient.earned, secondNutrient.goal]
+        () =>
+            setThirdPercentage(
+                thirdNutrientObject.earned / (thirdNutrientObject.goal === 0 ? 1 : thirdNutrientObject.goal)
+            ),
+        [thirdNutrientObject.earned, thirdNutrientObject.goal]
     );
 
-    useMemo(
-        () => setThirdPercentage(thirdNutrient.earned / (thirdNutrient.goal === 0 ? 1 : thirdNutrient.goal)),
-        [thirdNutrient.earned, thirdNutrient.goal]
-    );
-
-    return { firstPercentage, secondPercentage, thirdPercentage };
+    return {
+        firstPercentage,
+        secondPercentage,
+        thirdPercentage,
+        firstNutrientObject,
+        secondNutrientObject,
+        thirdNutrientObject
+    };
 };
 
 export default useSmallMultipleData;

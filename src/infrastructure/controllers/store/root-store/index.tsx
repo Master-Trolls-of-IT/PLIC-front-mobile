@@ -24,10 +24,10 @@ class RootStore {
 
     public constructor() {
         this.NavigationStore = new NavigationStore();
-        this.LoginStore = new LoginStore('LoginStore');
+        this.LoginStore = new LoginStore('LoginStore', this);
         this.LogStore = new LogStore('LogStore');
-        this.DataStore = new DataStore('DataStore');
         this.MealStore = new MealStore('MealStore');
+        this.DataStore = new DataStore('DataStore', this);
     }
 
     resetAllObservables = () => {

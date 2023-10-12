@@ -3,13 +3,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { makePersistable } from 'mobx-persist-store';
 import { UserData } from '~/domain/interfaces/services/user-data';
 import { defaultUserData } from '~/domain/interfaces/constant/default-user-data';
+import RootStore from '~/infrastructure/controllers/store/root-store/index';
 
 class LoginStore {
+    RootStore: RootStore;
     userData: UserData;
     accessToken: string;
     refreshToken = '';
 
-    constructor(storageKey: string) {
+    constructor(storageKey: string, rootStore: RootStore) {
+        this.RootStore = rootStore;
         this.userData = defaultUserData;
         this.accessToken = '';
 
@@ -39,6 +42,7 @@ class LoginStore {
 
     setUserData = (userData: UserData) => {
         this.userData = userData;
+        this.RootStore.DataStore.updateDailyNutrientsGoal();
     };
 
     setAccessToken = (accessToken: string) => {
