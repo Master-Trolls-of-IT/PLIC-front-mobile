@@ -11,6 +11,7 @@ import WidgetSmallSingleIntakes from '~/infrastructure/ui/shared/component/widge
 import WidgetEnergy from '~/infrastructure/ui/shared/component/widgets/energy/widget-energy';
 import WidgetSmallMultipleIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/widget-small-multiple-intakes';
 import WidgetEcoScore from '~/infrastructure/ui/shared/component/widgets/eco-score/widget-ecoscore';
+import WidgetWater from '~/infrastructure/ui/shared/component/widgets/water/widget-water';
 
 const useRenderWidgetField = (widgetParams: WidgetsParams, lineStyle: object, slotProps?: Partial<WidgetSlotProps>) => {
     return (
@@ -22,6 +23,8 @@ const useRenderWidgetField = (widgetParams: WidgetsParams, lineStyle: object, sl
                             return <WidgetAnecdote key={index} />;
                         case WidgetEnum.EcoScore:
                             return <WidgetEcoScore key={index} />;
+                        case WidgetEnum.Water:
+                            return <WidgetWater key={index} />;
                         case WidgetEnum.Large:
                             return (
                                 <WidgetLargeIntakes
@@ -54,6 +57,8 @@ const useRenderWidgetField = (widgetParams: WidgetsParams, lineStyle: object, sl
                             return <WidgetAnecdote key={index} />;
                         case WidgetEnum.EcoScore:
                             return <WidgetEcoScore key={index} />;
+                        case WidgetEnum.Water:
+                            return <WidgetWater key={index} />;
                         case WidgetEnum.Large:
                             return (
                                 <WidgetLargeIntakes

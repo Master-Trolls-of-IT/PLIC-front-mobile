@@ -8,8 +8,10 @@ const GetColorByPercentage = (percentage: number): ColorEnum => {
             return ColorEnum.ClassicOrangeWidget;
         case percentage < 75:
             return ColorEnum.ClassicYellowWidget;
-        default:
+        case percentage < 110:
             return ColorEnum.ClassicGreen;
+        default:
+            return ColorEnum.ClassicRedWidget;
     }
 };
 

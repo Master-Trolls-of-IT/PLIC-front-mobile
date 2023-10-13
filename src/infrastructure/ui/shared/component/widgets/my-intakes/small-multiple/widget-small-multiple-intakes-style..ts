@@ -66,6 +66,11 @@ const WidgetSmallMultipleIntakesStyle = StyleSheet.create({
         width: '85%',
         alignSelf: 'center',
         marginTop: 7
+    },
+
+    bar: {
+        width: '100%',
+        marginTop: 2
     }
 });
 
