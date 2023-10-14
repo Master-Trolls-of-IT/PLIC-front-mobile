@@ -25,7 +25,7 @@ const ConsumedProductItem = ({
 }: ConsumedProductItemProps) => {
     const {
         isExpended,
-        onPress,
+        onPressProduct,
         animatedItemStyle,
         favouriteIcon,
         scoreColor,
@@ -37,7 +37,7 @@ const ConsumedProductItem = ({
 
     return (
         <Animated.View style={[animatedItemStyle, ConsumedProductItemStyle.item, style]}>
-            <TouchableOpacity style={ConsumedProductItemStyle.container} activeOpacity={1} onPress={onPress}>
+            <TouchableOpacity style={ConsumedProductItemStyle.container} activeOpacity={1} onPress={onPressProduct}>
                 <View style={ConsumedProductItemStyle.header}>
                     <View style={ConsumedProductItemStyle.imageContainer}>
                         {image ? (

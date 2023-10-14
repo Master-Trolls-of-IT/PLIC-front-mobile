@@ -5,7 +5,9 @@ import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/m
 
 const useMealItemData = ({ score }: MealItemDataProps) => {
     const [isFavourite, setIsFavourite] = useState(false);
+
     const restaurantIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-restaurant.svg');
+
     const [imageNewHeight, imageNewWidth] = [92, 69];
     const [favouriteNewHeight, favouriteNewWidth] = [30, 30];
 
@@ -21,12 +23,10 @@ const useMealItemData = ({ score }: MealItemDataProps) => {
 
     const scoreStyle = useMemo(() => {
         switch (true) {
-            case score <= 25:
+            case score < 33:
                 return { ...MealItemStyle.score, color: ColorEnum.ClassicRedWidget };
-            case score <= 50:
-                return { ...MealItemStyle.score, color: ColorEnum.ClassicOrangeWidget };
-            case score <= 75:
-                return { ...MealItemStyle.score, color: ColorEnum.ClassicYellowWidget };
+            case score < 66:
+                return { ...MealItemStyle.score, color: ColorEnum.MealPageOrange };
             default:
                 return { ...MealItemStyle.score, color: ColorEnum.ClassicDarkGreen };
         }

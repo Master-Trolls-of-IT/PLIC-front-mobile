@@ -10,7 +10,7 @@ const useAppData = () => {
 
     const rootStore = createStore();
 
-    if (Platform.OS === 'android') NavigationBar.setBackgroundColorAsync('#00000000');
+    if (Platform.OS === 'android') void NavigationBar.setBackgroundColorAsync('#00000000');
 
     const gestureEnabled = { gestureEnabled: true };
     const gestureDisabled = { gestureEnabled: false };

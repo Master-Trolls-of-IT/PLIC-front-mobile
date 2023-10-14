@@ -51,8 +51,7 @@ const useAppContainerData = () => {
 
     const isMealPageSlideBar =
         activeScreen == PagesEnum.MealPage ||
-        (previousScreen == PagesEnum.MealPage && activeScreen == PagesEnum.HistoricalPage) ||
-        (previousScreen == PagesEnum.MealPage && activeScreen == PagesEnum.ConsumedProducts);
+        (previousScreen == PagesEnum.MealPage && activeScreen == PagesEnum.CreateMealPage);
     const isScanPageSlideBar =
         activeScreen == PagesEnum.ScanPage ||
         (previousScreen == PagesEnum.ScanPage && activeScreen == PagesEnum.HistoricalPage) ||

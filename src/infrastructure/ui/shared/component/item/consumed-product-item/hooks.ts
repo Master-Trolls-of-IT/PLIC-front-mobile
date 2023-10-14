@@ -31,7 +31,7 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
         return Number(newValue.toFixed(2));
     };
 
-    const onPress = () => {
+    const onPressProduct = () => {
         setIsExpended((prevState) => !prevState);
     };
 
@@ -56,7 +56,7 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
     return {
         itemId: { input: itemId, dispatch: setItemId },
         isExpended,
-        onPress,
+        onPressProduct,
         animatedItemStyle,
         favouriteIcon,
         scoreColor,

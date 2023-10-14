@@ -19,6 +19,7 @@ import ConsumedProductsPage from '~/infrastructure/ui/pages/consumed-products-pa
 import SettingsPage from '~/infrastructure/ui/pages/settings-page/settings-page';
 import PersonalDataPage from '~/infrastructure/ui/pages/personal-data-page/personal-data-page';
 import WidgetPage from '~/infrastructure/ui/pages/widget-page/widget-page';
+import CreateMealPage from '~/infrastructure/ui/pages/create-meal-page/create-meal-page';
 
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
@@ -44,7 +45,6 @@ function App() {
                         </Stack.Group>
 
                         {/* Settings group */}
-
                         <Stack.Group>
                             <Stack.Screen
                                 name={PagesEnum.SettingsPage}
@@ -61,15 +61,8 @@ function App() {
 
                         {/* App content Group */}
                         <Stack.Group>
-                            <Stack.Screen name={PagesEnum.MealPage} component={MealPage} options={gestureDisabled} />
-                            <Stack.Screen name={PagesEnum.ScanPage} component={ScanPage} options={gestureDisabled} />
                             <Stack.Screen name={PagesEnum.HomePage} component={HomePage} options={gestureDisabled} />
-                            <Stack.Screen
-                                name={PagesEnum.RecipePage}
-                                component={RecipePage}
-                                options={gestureDisabled}
-                            />
-                            <Stack.Screen name={PagesEnum.GamePage} component={GamePage} options={gestureDisabled} />
+                            <Stack.Screen name={PagesEnum.ScanPage} component={ScanPage} options={gestureDisabled} />
                             <Stack.Screen
                                 name={PagesEnum.HistoricalPage}
                                 component={HistoricalPage}
@@ -79,6 +72,22 @@ function App() {
                                 name={PagesEnum.ConsumedProducts}
                                 component={ConsumedProductsPage}
                                 options={gestureEnabled}
+                            />
+                            <Stack.Screen
+                                name={PagesEnum.RecipePage}
+                                component={RecipePage}
+                                options={gestureDisabled}
+                            />
+                            <Stack.Screen name={PagesEnum.GamePage} component={GamePage} options={gestureDisabled} />
+                        </Stack.Group>
+
+                        {/* Meal group */}
+                        <Stack.Group>
+                            <Stack.Screen name={PagesEnum.MealPage} component={MealPage} options={gestureDisabled} />
+                            <Stack.Screen
+                                name={PagesEnum.CreateMealPage}
+                                component={CreateMealPage}
+                                options={gestureDisabled}
                             />
                         </Stack.Group>
                     </Stack.Navigator>

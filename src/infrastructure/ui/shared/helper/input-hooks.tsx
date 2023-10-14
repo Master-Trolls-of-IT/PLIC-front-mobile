@@ -6,7 +6,8 @@ import {
     birthdateTooltipMessage,
     emailTooltipMessage,
     nameTooltipMessage,
-    passwordTooltipMessage
+    passwordTooltipMessage,
+    titleTooltipMessage
 } from '~/domain/interfaces/constant/tooltip-constant';
 import GenericInputStyle from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
@@ -66,6 +67,7 @@ const useInputData = ({
         if (type == InputEnum.Email) return emailTooltipMessage;
         else if (type == InputEnum.Password) return passwordTooltipMessage;
         else if (type == InputEnum.Birthdate) return birthdateTooltipMessage;
+        else if (type == InputEnum.Title) return titleTooltipMessage;
         else return nameTooltipMessage;
     };
 

@@ -2,6 +2,12 @@ import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const MealPageStyle = StyleSheet.create({
+    container: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+    },
+
     background: {
         backgroundColor: ColorEnum.ClassicBeige,
         height: '100%',
@@ -9,35 +15,29 @@ const MealPageStyle = StyleSheet.create({
         position: 'absolute'
     },
 
-    text: {
-        alignSelf: 'center',
-        fontSize: 30
-    },
-
     headerContainer: {
         marginTop: '28%',
         marginLeft: '10%'
     },
 
-    container: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column'
-    },
-
-    addButton: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+    text: {
         alignSelf: 'center',
-        width: '95%',
-        borderTopColor: ColorEnum.VeryOpaqueBrown,
-        borderTopWidth: 1
+        fontSize: 30
     },
 
-    plusImage: {
-        margin: 5
+    buttonContainer: {
+        position: 'absolute',
+        bottom: 14,
+        right: 10,
+        backgroundColor: ColorEnum.ClassicGreen,
+        borderRadius: 20,
+        width: 158,
+        height: 45
+    },
+
+    buttonText: {
+        color: ColorEnum.ClassicGrey,
+        fontSize: 18
     }
 });
 

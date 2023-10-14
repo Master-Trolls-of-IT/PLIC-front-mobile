@@ -11,3 +11,5 @@ export const passwordTooltipMessage =
     '• Un caractère spécial';
 
 export const birthdateTooltipMessage = 'La date doit être au format 01/01/1900';
+
+export const titleTooltipMessage = 'Le titre doit contenir aux moins 5 caractères';

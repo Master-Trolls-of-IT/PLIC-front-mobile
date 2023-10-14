@@ -10,7 +10,7 @@ const SearchListStyle = StyleSheet.create({
         width: '90%',
         alignSelf: 'center',
         borderBottomColor: ColorEnum.ClassicBrown,
-        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomWidth: 1,
         paddingTop: 15,
         paddingBottom: 15
     },
