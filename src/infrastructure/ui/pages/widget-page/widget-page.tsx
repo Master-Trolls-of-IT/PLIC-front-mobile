@@ -76,7 +76,7 @@ const WidgetPage = () => {
                 setThirdNutrient={setThirdNutrient}
                 handleModalConfirm={handleModalConfirm}
             />
-            <CustomModal isVisible={isErrorModal} dispatch={setIsErrorModal} title="Entrée non valide" titleSize={22} />
+            <CustomModal isVisible={isErrorModal} dispatch={setIsErrorModal} title="Entrée non valide" titleSize={22} customStyle={false}/>
         </View>
     );
 };

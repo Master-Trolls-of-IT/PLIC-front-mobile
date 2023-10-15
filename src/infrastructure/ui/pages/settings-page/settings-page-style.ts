@@ -1,5 +1,5 @@
-import { Dimensions, StyleSheet } from 'react-native';
-import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
+import {Dimensions, StyleSheet} from 'react-native';
+import {ColorEnum} from '~/domain/interfaces/enum/color-enum';
 
 const SettingsPageStyle = StyleSheet.create({
     container: {
@@ -28,6 +28,57 @@ const SettingsPageStyle = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between'
+    },
+
+    deleteAccount1Container: {},
+    deleteAccount1: {},
+
+    deleteAccount1TextContainer: {
+        marginTop: 10,
+        paddingTop: 10,
+        marginBottom: 10,
+        borderTopColor: ColorEnum.VeryOpaqueBrown,
+        borderTopWidth: 1
+    },
+    deleteAccount1Text: {
+        fontWeight: 'bold',
+        color: ColorEnum.ClassicBrown,
+    },
+    deleteAccount2Container: {},
+
+    buttonContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+
+    },
+    goBackButtonStyle: {
+        backgroundColor: ColorEnum.ClassicBrown,
+        borderRadius: 20,
+        width: 'auto',
+        height: 45
+    },
+    goBackButtonTextStyle: {
+        color: ColorEnum.ClassicBeige,
+        fontSize: 18,
+        fontWeight: '700',
+        marginLeft: 20,
+        marginRight: 20
+    },
+
+    confirmButtonStyle: {
+        backgroundColor: ColorEnum.ClassicRedIcon,
+        borderRadius: 20,
+        width: 'auto',
+        height: 45
+    },
+    confirmButtonTextStyle: {
+        color: ColorEnum.ClassicGrey,
+        fontSize: 18,
+        fontWeight: '700',
+        marginLeft: 20,
+        marginRight: 20
     },
 
     headerContainer: {
