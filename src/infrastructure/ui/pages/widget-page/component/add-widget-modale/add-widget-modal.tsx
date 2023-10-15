@@ -4,7 +4,7 @@ import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 import GenericDropDown from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/generic-dropdown';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 import { AddWidgetModalProps } from '~/domain/interfaces/props/AddWidgetModalProps';
 import AddWidgetModalStyle from '~/infrastructure/ui/pages/widget-page/component/add-widget-modale/add-widget-modal-style';
 import useAddWidgetModalData from '~/infrastructure/ui/pages/widget-page/component/add-widget-modale/hooks';

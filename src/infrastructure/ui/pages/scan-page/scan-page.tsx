@@ -33,7 +33,6 @@ const ScanPage = () => {
         toggleFavourite
     } = useScanPageData(navigate);
 
-    // TODO: Ajouter le cas des eaux minérales (pas les même nutriments) => modifier le parsing aussi
     return (
         <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>
             <View style={ScanPageStyle.background}>

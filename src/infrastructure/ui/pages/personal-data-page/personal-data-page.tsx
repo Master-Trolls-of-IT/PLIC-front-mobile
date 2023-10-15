@@ -13,7 +13,7 @@ import usePersonalDataPageData from '~/infrastructure/ui/pages/personal-data-pag
 import PersonalDataPageStyle from '~/infrastructure/ui/pages/personal-data-page/personal-data-page-style';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 
 const PersonalDataPage = () => {
     const {

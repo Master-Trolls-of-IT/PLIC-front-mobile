@@ -65,7 +65,7 @@ const CreateMealPageStyle = StyleSheet.create({
         left: 12
     },
 
-    scanButtonText: {
+    brownButtonText: {
         fontSize: 15 * (Dimensions.get('screen').height / 725),
         color: ColorEnum.ClassicBeige
     },
@@ -79,9 +79,40 @@ const CreateMealPageStyle = StyleSheet.create({
         right: 12
     },
 
-    validateButtonText: {
+    greenButtonText: {
         fontSize: 15 * (Dimensions.get('screen').height / 725),
         color: ColorEnum.ClassicGrey
+    },
+
+    validateModalContainer: {
+        width: 0.72 * Dimensions.get('screen').width
+    },
+
+    textValidateModalContainer: {
+        marginTop: 8,
+        color: ColorEnum.ClassicBrown,
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        textAlign: 'justify'
+    },
+
+    buttonValidateModalContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginHorizontal: 5
+    },
+
+    cancelValidateModalButtonContainer: {
+        backgroundColor: ColorEnum.ClassicBrown,
+        width: 117 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400)
+    },
+
+    validateModalButtonContainer: {
+        backgroundColor: ColorEnum.ClassicGreen,
+        width: 95 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400)
     }
 });
 

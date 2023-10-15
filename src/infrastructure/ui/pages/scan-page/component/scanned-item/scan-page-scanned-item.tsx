@@ -6,7 +6,7 @@ import { ScanPageScannedItemProps } from '~/domain/interfaces/props/scan-page-sc
 import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
 
 const ScanPageScannedItem = ({ scannedProduct, toggleFavourite, onPressScanAgain }: ScanPageScannedItemProps) => {

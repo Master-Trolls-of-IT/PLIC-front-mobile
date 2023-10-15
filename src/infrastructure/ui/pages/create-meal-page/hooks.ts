@@ -9,6 +9,7 @@ const useCreateMealPageData = () => {
     } = useStore();
 
     const [errorMessage, setErrorMessage] = useState(false);
+    const [isValidateModalVisible, setIsValidateModalVisible] = useState(false);
     const [mealTitleInput, setMealTitleInput] = useState('');
     // TODO : Lier cette liste à la vraie donnée
     const [productsList, setProductsList] = useState([
@@ -114,25 +115,39 @@ const useCreateMealPageData = () => {
         }
     ]);
 
+    const onPressCancelModal = () => {
+        setIsValidateModalVisible(false);
+    };
+
     // TODO : Ajout de la page de scan
     const onPressScanProduct = () => {};
 
-    // TODO : Ajout de la logique pour ajouter un repas en base de données et ajouter la modale
     const onPressValidateButton = () => {
         if (isValidInput(mealTitleInput, InputEnum.Title) && productsList.length > 0) {
-            goBack();
+            setErrorMessage(false);
+            setIsValidateModalVisible(true);
         } else {
             setErrorMessage(true);
         }
     };
 
+    // TODO : Ajout de la logique d'ajout de repas en base de données
+    const onPressValidateModalValidate = () => {
+        setIsValidateModalVisible(false);
+        goBack();
+    };
+
     return {
         errorMessage,
         goBack,
+        isValidateModalVisible,
+        setIsValidateModalVisible,
         mealTitleInput,
         setMealTitleInput,
+        onPressCancelModal,
         onPressScanProduct,
         onPressValidateButton,
+        onPressValidateModalValidate,
         productsList
     };
 };
