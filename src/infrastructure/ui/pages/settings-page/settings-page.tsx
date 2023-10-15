@@ -17,6 +17,9 @@ import {InputEnum} from "~/domain/interfaces/enum/input-type-enum";
 import CustomModal from "~/infrastructure/ui/shared/component/modal/custom-modal";
 import StartupPageStyle from "~/infrastructure/ui/pages/startup-page/startup-page-style";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
+import LoginPageStyle from "~/infrastructure/ui/pages/login-page/login-page-style";
+import GenericErrorMessage from "~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message";
+import {err} from "react-native-svg/lib/typescript/xml";
 
 const SettingsPage = () => {
     const {
@@ -36,7 +39,10 @@ const SettingsPage = () => {
         onDeleteAccountModalPress,
         onDeleteConfirm,
         onGoSettings,
-        inputPassword
+        inputPassword,
+        loader,
+        error,
+        errorMessage
     } =
         useSettingsPageData();
     return (
@@ -107,6 +113,11 @@ const SettingsPage = () => {
                         placeHolder={'********'}
                         {...inputPassword}
                     />
+                    <GenericErrorMessage
+                        text={errorMessage}
+                        style={SettingsPageStyle.errorMessage}
+                        error={error}
+                    />
                     <View style={SettingsPageStyle.buttonContainer}>
                         <GenericButton
                             title="Annuler"
@@ -119,6 +130,7 @@ const SettingsPage = () => {
                         <GenericButton
                             title="Confirmer"
                             onPress={onDeleteAccountModalPress}
+                            loader={loader}
                             style= {{
                                 container: SettingsPageStyle.confirmButtonStyle,
                                 text: SettingsPageStyle.confirmButtonTextStyle

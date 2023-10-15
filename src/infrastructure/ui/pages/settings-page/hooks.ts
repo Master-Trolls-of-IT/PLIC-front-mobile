@@ -2,10 +2,20 @@ import {useCallback, useState} from 'react';
 import {ColorEnum} from '~/domain/interfaces/enum/color-enum';
 import {useStore} from '~/infrastructure/controllers/store';
 import {PagesEnum} from '~/domain/interfaces/enum/pages-enum';
+import {isValidInput} from "~/infrastructure/ui/shared/helper/is-valid-input";
+import {InputEnum} from "~/domain/interfaces/enum/input-type-enum";
+import {LoginData} from "~/domain/interfaces/services/login";
+import passwordHashing from "~/infrastructure/controllers/password-hashing";
+import APIServices from "~/infrastructure/controllers/services/api";
+import {UserData} from "~/domain/interfaces/services/user-data";
+import formatTimpstampToDate from "~/infrastructure/ui/shared/helper/format-timpstamp-to-date";
+import DataStore from "~/infrastructure/controllers/store/root-store/data-store";
+import LoginStore from "~/infrastructure/controllers/store/root-store/login-store";
 
 const useSettingsPageData = () => {
     const {
-        NavigationStore: { navigate }
+        NavigationStore: { navigate },
+        LoginStore: {userData}
     } = useStore();
 
     const [validateDeleteAccount1, setValidateDeleteAccount1] = useState(false);
@@ -13,15 +23,51 @@ const useSettingsPageData = () => {
 
     const [inputPasswordString, setInputPassword] = useState('');
 
+    const [loader, setLoader] = useState(false);
+
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
     const onDeleteAccountPress = () => {
         setValidateDeleteAccount1(prevState => !prevState);
     }
 
-    const onDeleteAccountModalPress = () => {
-        setValidateDeleteAccount2(prevState => !prevState);
-        setValidateDeleteAccount1(prevState => !prevState);
+    const resetAllError = () => {
+        setError(false);
+        setErrorMessage('');
+    };
 
-    }
+    const onDeleteAccountModalPress = useCallback(async() => {
+        resetAllError();
+        setLoader(true);
+        if (isValidInput(inputPasswordString, InputEnum.Password)) {
+            const data: LoginData = {
+                email: userData.Email.toLowerCase(),
+                password: passwordHashing(inputPasswordString)
+            };
+            try {
+                const response = await APIServices.POST<UserData, LoginData>('/checkuser', data);
+                if (response.status === 202) {
+                    setValidateDeleteAccount2(true);
+                    setValidateDeleteAccount1(false);
+                } else {
+                    setError(true);
+                    setErrorMessage('Invalid Password, please try again')
+                }
+            } catch (e) {
+                setError(true);
+                setErrorMessage('Veuillez réessayer plus tard')
+                console.log(e)
+            }
+        } else {
+            setError(true);
+            setErrorMessage('Invalid password format');
+        }
+        setLoader(false);
+
+
+
+    }, [inputPasswordString]);
 
     const onDeleteConfirm = () => {
         navigateToStartPage();
@@ -95,6 +141,9 @@ const useSettingsPageData = () => {
         onDeleteAccountModalPress,
         onDeleteConfirm,
         onGoSettings,
+        loader,
+        error,
+        errorMessage,
         inputPassword: { input: inputPasswordString, dispatch: setInputPassword },
     };
 };

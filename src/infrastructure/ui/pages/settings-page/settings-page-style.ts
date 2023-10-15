@@ -46,6 +46,9 @@ const SettingsPageStyle = StyleSheet.create({
     },
     deleteAccount2Container: {},
 
+    errorMessage:{
+        margin: 5
+    },
     buttonContainer: {
         display: 'flex',
         flexDirection: 'row',
