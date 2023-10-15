@@ -31,7 +31,7 @@ const MealPageStyle = StyleSheet.create({
         right: 10,
         backgroundColor: ColorEnum.ClassicGreen,
         borderRadius: 20,
-        width: 158,
+        width: 158 * (Dimensions.get('screen').width / 400),
         height: 45
     },
 

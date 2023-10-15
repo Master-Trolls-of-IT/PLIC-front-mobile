@@ -14,7 +14,7 @@ export const isValidInput = (inputToCheck: string, type: InputEnum): boolean => 
     } else if (type == InputEnum.Search) {
         return true;
     } else {
-        return inputToCheck.length >= 5;
+        return inputToCheck.length >= 3;
     }
 
     const regex = new RegExp(stringRegex);
