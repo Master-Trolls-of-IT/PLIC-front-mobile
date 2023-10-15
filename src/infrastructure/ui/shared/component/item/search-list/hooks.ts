@@ -6,7 +6,7 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import { SearchListData, SearchListInputType } from '~/domain/interfaces/props/search-list/search-list-data-props';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
-import SearchListStyle from '~/infrastructure/ui/shared/component/item/search-list/search-list-style';
+import { MealProductItemProps } from '~/domain/interfaces/props/search-list/meal-product-item-props';
 
 const useSearchListData = (inputType: SearchListInputType, data: SearchListData) => {
     const [searchedText, setSearchedText] = useState('');
@@ -19,16 +19,19 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                 return data as HistoricalItemProps[];
             case ItemEnum.ConsumedProducts:
                 return data as ConsumedProductItemProps[];
+            case ItemEnum.MealProducts:
+                return data as MealProductItemProps[];
         }
     }, [data, inputType]);
 
     const [displayData, setDisplayData] = useState<
-        HistoricalItemProps[] | MealItemProps[] | ConsumedProductItemProps[]
+        HistoricalItemProps[] | MealItemProps[] | ConsumedProductItemProps[] | MealProductItemProps[]
     >(mockedData);
 
     useEffect(() => {
         setDisplayData(data);
     }, [data]);
+
     const onSearch = (search: string) => {
         setSearchedText(search);
         setDisplayData((prevState) => {
@@ -226,24 +229,21 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
         }
     })();
 
-    const searchListContainerStyle = useMemo(() => {
-        switch (inputType) {
-            case ItemEnum.Meal:
-                return { ...SearchListStyle.container, height: 0.57 * Dimensions.get('screen').height };
-            default:
-                return { ...SearchListStyle.container, height: 0.68 * Dimensions.get('screen').height };
-        }
-    }, [inputType]);
     const customFontBold = CustomFontInterBold();
 
+    const containerHeight =
+        inputType == ItemEnum.MealProducts
+            ? { height: 0.42 * Dimensions.get('screen').height }
+            : { height: 0.67 * Dimensions.get('screen').height };
+
     return {
+        containerHeight,
         displayData,
         searchedText,
         onSearch,
         onSelectedFilter,
         filterOptions,
-        customFontBold,
-        searchListContainerStyle
+        customFontBold
     };
 };
 

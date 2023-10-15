@@ -1,14 +1,14 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
-const ConsumedProductItemStyle = StyleSheet.create({
+const MealProductsItemStyle = StyleSheet.create({
     item: {
         width: '95%',
         paddingTop: 5,
         backgroundColor: ColorEnum.ExtraOpaqueBrown,
+        marginBottom: 10,
         borderRadius: 20,
-        alignSelf: 'center',
-        marginTop: 12
+        alignSelf: 'center'
     },
 
     container: {
@@ -93,25 +93,18 @@ const ConsumedProductItemStyle = StyleSheet.create({
         alignSelf: 'center'
     },
 
-    favourite: {
-        paddingTop: 10,
-        paddingLeft: 5,
-        width: '10%',
-        height: '50%'
-    },
-
-    myIntakesContainer: {
+    quantityContainer: {
         width: '95%',
         alignSelf: 'center',
         marginTop: 10
     },
 
-    myIntakesTitleContainer: {
+    quantityTitleContainer: {
         borderBottomColor: ColorEnum.ClassicBrown,
         borderBottomWidth: 1
     },
 
-    myIntakesTitle: {
+    quantityTitle: {
         fontSize: 15,
         color: ColorEnum.ClassicBrown,
         paddingBottom: 6,
@@ -119,54 +112,12 @@ const ConsumedProductItemStyle = StyleSheet.create({
         fontWeight: 'bold'
     },
 
-    myIntakesNutrientsContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%'
-    },
-
-    itemLine: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-
-    itemLineContent: {
-        fontSize: 16,
-        marginLeft: 5,
-        marginTop: 5 * (Dimensions.get('screen').height / 400),
-        color: ColorEnum.ClassicBrown
-    },
-
-    itemSameLineContent: {
-        fontSize: 16,
-        marginLeft: 5,
-        color: ColorEnum.ClassicBrown
-    },
-
-    contentLine: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-
-    lineContent: {
-        fontSize: 16,
-        margin: 3,
-        color: ColorEnum.ClassicBrown
-    },
-
-    addButtonContainer: {
+    editButtonContainer: {
         backgroundColor: ColorEnum.ClassicGreen,
         width: 329 * (Dimensions.get('screen').width / 400),
         height: 43 * (Dimensions.get('screen').width / 400),
         marginTop: 10,
         alignSelf: 'center'
-    },
-
-    addButtonText: {
-        fontSize: 15 * (Dimensions.get('screen').height / 725),
-        color: ColorEnum.ClassicGrey
     },
 
     deleteButtonContainer: {
@@ -175,7 +126,12 @@ const ConsumedProductItemStyle = StyleSheet.create({
         height: 43 * (Dimensions.get('screen').width / 400),
         marginTop: 10,
         alignSelf: 'center'
+    },
+
+    buttonText: {
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicGrey
     }
 });
 
-export default ConsumedProductItemStyle;
+export default MealProductsItemStyle;

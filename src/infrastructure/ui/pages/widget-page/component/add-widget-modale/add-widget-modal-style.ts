@@ -52,7 +52,7 @@ const AddWidgetModalStyle = StyleSheet.create({
 
     modalDropdownArea: {
         borderTopColor: ColorEnum.ClassicBrown,
-        borderTopWidth: StyleSheet.hairlineWidth,
+        borderTopWidth: 1,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -93,6 +93,11 @@ const AddWidgetModalStyle = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row-reverse',
         paddingVertical: 5
+    },
+
+    imageContainer: {
+        height: 75,
+        width: 75
     }
 });
 

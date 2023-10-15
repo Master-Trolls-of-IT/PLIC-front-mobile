@@ -1,6 +1,6 @@
 export const emailTooltipMessage = "Cet e-mail n'est pas valide";
 
-export const nameTooltipMessage = 'Le prénom doit contenir au moins 5 caractères';
+export const nameTooltipMessage = 'Le prénom doit contenir au moins 3 caractères';
 
 export const passwordTooltipMessage =
     'Le mot de passe doit au moins contenir :\n' +
@@ -11,3 +11,5 @@ export const passwordTooltipMessage =
     '• Un caractère spécial';
 
 export const birthdateTooltipMessage = 'La date doit être au format 01/01/1900';
+
+export const titleTooltipMessage = 'Le titre doit contenir aux moins 3 caractères';

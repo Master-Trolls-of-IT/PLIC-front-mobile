@@ -1,5 +1,6 @@
 export enum ItemEnum {
     Historical = 'Historical',
     Meal = 'Meal',
-    ConsumedProducts = 'ConsumedProducts'
+    ConsumedProducts = 'ConsumedProducts',
+    MealProducts = 'MealProducts'
 }
