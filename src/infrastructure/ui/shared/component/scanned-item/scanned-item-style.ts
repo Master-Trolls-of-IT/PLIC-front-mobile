@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
-const ScanPageScannedItemStyle = StyleSheet.create({
+const ScannedItemStyle = StyleSheet.create({
     scanModal: {
         position: 'absolute',
         width: '102%',
@@ -153,7 +153,8 @@ const ScanPageScannedItemStyle = StyleSheet.create({
 
     buttonText: {
         fontSize: 18,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        color: ColorEnum.ClassicGrey
     },
 
     buttonTextModal: {
@@ -177,4 +178,4 @@ const ScanPageScannedItemStyle = StyleSheet.create({
     }
 });
 
-export default ScanPageScannedItemStyle;
+export default ScannedItemStyle;

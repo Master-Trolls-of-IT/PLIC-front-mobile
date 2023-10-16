@@ -4,8 +4,14 @@ import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import useScanPageService from '~/application/page-service/scan-page-service';
 import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
+import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
+import { useStore } from '~/infrastructure/controllers/store';
 
 const useScanPageData = (navigate: NavigateProps) => {
+    const {
+        LogStore: { error }
+    } = useStore();
+
     const [inputBarCode, setInputBarCode] = useState('');
     const [hasPermission, setHasPermission] = useState(false);
     const [isScanned, setIsScanned] = useState(false);
@@ -13,6 +19,7 @@ const useScanPageData = (navigate: NavigateProps) => {
     const [scannedProduct, setScannedProduct] = useState<ProductInfo | undefined>(undefined);
 
     const { getProduct } = useScanPageService();
+    const { addConsumedProduct } = useScanPageScannedItemService();
 
     const askForCameraPermission = () => {
         (async () => {
@@ -47,6 +54,23 @@ const useScanPageData = (navigate: NavigateProps) => {
         setErrorResponse('');
     };
 
+    const onPressAddQuantity = async (quantity: string) => {
+        try {
+            await addConsumedProduct(scannedProduct?.barcode, quantity);
+            navigate(PagesEnum.ConsumedProducts);
+            onPressScanAgain();
+        } catch (err) {
+            if (err instanceof Error) {
+                error(
+                    'onPressModalButton > scanned-item ',
+                    'Unknown error while adding consumed Product to database',
+                    err.message
+                );
+            }
+        }
+    };
+
+    // TODO : Ajout de la logique du bouton favori dans la scan page
     const toggleFavourite = () => {};
 
     return {
@@ -60,7 +84,8 @@ const useScanPageData = (navigate: NavigateProps) => {
         onPressConsumedProductsButton,
         onPressSearchIcon,
         onPressScanAgain,
-        toggleFavourite
+        toggleFavourite,
+        onPressAddQuantity
     };
 };
 

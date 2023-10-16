@@ -11,7 +11,7 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
 import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
-import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item-style';
+import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 
 const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data, style, id }: HistoricalItemProps) => {
@@ -137,7 +137,7 @@ const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data,
                             <GenericInputWithSearchIconAndEndText
                                 placeHolder={'100'}
                                 endText={'g'}
-                                style={ScanPageScannedItemStyle.customModalChildren}
+                                style={ScannedItemStyle.customModalChildren}
                                 input={quantity}
                                 dispatch={setQuantity}
                                 onPressSearchIcon={onPressModalButton}></GenericInputWithSearchIconAndEndText>

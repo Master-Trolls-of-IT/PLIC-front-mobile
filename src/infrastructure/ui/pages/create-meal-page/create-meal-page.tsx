@@ -8,19 +8,21 @@ import GenericBackArrowIcon from '~/infrastructure/ui/shared/component/generic-b
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import TagsComponent from '~/infrastructure/ui/pages/create-meal-page/component/tags/tags-component';
 import SearchList from '~/infrastructure/ui/shared/component/item/search-list/search-list';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useCreateMealPageData from '~/infrastructure/ui/pages/create-meal-page/hooks';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
+import MealTags from '~/infrastructure/ui/pages/create-meal-page/component/meal-tags/meal-tags';
 
 const CreateMealPage = () => {
     const {
         errorMessage,
         goBack,
         isValidateModalVisible,
+        inputBarCode,
+        setInputBarCode,
         setIsValidateModalVisible,
         mealTitleInput,
         setMealTitleInput,
@@ -28,7 +30,7 @@ const CreateMealPage = () => {
         onPressScanProduct,
         onPressValidateButton,
         onPressValidateModalValidate,
-        productsList
+        mealProducts
     } = useCreateMealPageData();
 
     return (
@@ -60,13 +62,15 @@ const CreateMealPage = () => {
             />
 
             <Text style={{ ...CreateMealPageStyle.tagsTitle, ...CustomFontInterBold().text }}>Tags</Text>
-            <TagsComponent />
+            <View style={CreateMealPageStyle.tagsContainer}>
+                <MealTags />
+            </View>
 
             <Text style={{ ...CreateMealPageStyle.ingredientTitle, ...CustomFontInterBold().text }}>
                 Votre liste de produits ajoutés
             </Text>
             <View style={CreateMealPageStyle.ingredientTitleHairLine} />
-            <SearchList itemType={ItemEnum.MealProducts} data={productsList} />
+            <SearchList itemType={ItemEnum.MealProducts} data={mealProducts} />
 
             <GenericButton
                 title={'Scanner un produit'}

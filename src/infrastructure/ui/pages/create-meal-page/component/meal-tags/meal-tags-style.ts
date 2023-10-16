@@ -3,16 +3,11 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const TagsComponentStyle = StyleSheet.create({
     tagsContainer: {
-        borderTopColor: ColorEnum.ClassicBrown,
-        borderTopWidth: 1,
-        marginTop: 5,
-        alignSelf: 'center',
-        width: '92%',
         paddingTop: 11,
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 8
+        gap: 5
     },
 
     tags: {

@@ -14,6 +14,7 @@ import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-p
 import MealProductsItem from '~/infrastructure/ui/shared/component/item/meal-products-item/meal-products-item';
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { MealProductItemProps } from '~/domain/interfaces/props/search-list/meal-product-item-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
     const { containerHeight, displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } =
@@ -66,7 +67,7 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                 return (
                                     <MealProductsItem
                                         key={idx}
-                                        {...(item as ConsumedProductItemProps)}
+                                        {...(item as MealProductItemProps)}
                                         style={idx === 0 ? { marginTop: 0 } : {}}
                                     />
                                 );

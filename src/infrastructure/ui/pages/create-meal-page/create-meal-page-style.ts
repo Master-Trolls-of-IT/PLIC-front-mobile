@@ -39,6 +39,14 @@ const CreateMealPageStyle = StyleSheet.create({
         marginTop: Dimensions.get('screen').height * 0.02
     },
 
+    tagsContainer: {
+        borderTopColor: ColorEnum.ClassicBrown,
+        borderTopWidth: 1,
+        marginTop: 5,
+        width: '92%',
+        alignSelf: 'center'
+    },
+
     ingredientTitle: {
         color: ColorEnum.ClassicBrown,
         fontSize: 16 * (Dimensions.get('screen').height / 725),

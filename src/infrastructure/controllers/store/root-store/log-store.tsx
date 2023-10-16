@@ -12,8 +12,7 @@ class LogStore {
     constructor(storageKey: string) {
         this.logs = [];
         this.discordWebhookURL = process.env.DISCORD_WEBHOOK_URL + '';
-        //sends log to API every 10 seconds
-        //setInterval(this.sendLogs, 10000);
+
         makeObservable(
             this,
             {

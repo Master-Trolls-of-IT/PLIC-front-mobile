@@ -2,11 +2,11 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
-import useTagComponentData from '~/infrastructure/ui/pages/create-meal-page/component/tags/hooks';
 import { MealItemTag } from '~/domain/interfaces/props/meal-item-tag';
-import TagsComponentStyle from '~/infrastructure/ui/pages/create-meal-page/component/tags/tags-component-style';
+import useTagComponentData from '~/infrastructure/ui/pages/create-meal-page/component/meal-tags/hooks';
+import MealTagsStyle from '~/infrastructure/ui/pages/create-meal-page/component/meal-tags/meal-tags-style';
 
-const TagsComponent = () => {
+const MealTags = () => {
     const {
         assetCross,
         assetPlus,
@@ -20,32 +20,30 @@ const TagsComponent = () => {
     } = useTagComponentData();
 
     return (
-        <View style={TagsComponentStyle.tagsContainer}>
+        <View style={MealTagsStyle.tagsContainer}>
             {tags.map((tag: MealItemTag) => {
                 return (
-                    <View style={TagsComponentStyle.tags} key={tag.label}>
-                        <View style={{ ...TagsComponentStyle.circle, backgroundColor: tag.color }} />
-                        <Text style={{ ...TagsComponentStyle.tagsText, ...CustomFontInterBold().text }}>
-                            {tag.label}
-                        </Text>
-                        <TouchableOpacity style={TagsComponentStyle.crossContainer} onPress={onPressTagCross}>
+                    <View style={MealTagsStyle.tags} key={tag.label}>
+                        <View style={{ ...MealTagsStyle.circle, backgroundColor: tag.color }} />
+                        <Text style={{ ...MealTagsStyle.tagsText, ...CustomFontInterBold().text }}>{tag.label}</Text>
+                        <TouchableOpacity style={MealTagsStyle.crossContainer} onPress={onPressTagCross}>
                             <CustomSvg
                                 asset={assetCross}
                                 height={newCrossHeight}
                                 width={newCrossWidth}
-                                style={TagsComponentStyle.cross}
+                                style={MealTagsStyle.cross}
                             />
                         </TouchableOpacity>
                     </View>
                 );
             })}
-            <TouchableOpacity style={TagsComponentStyle.plusContainer} onPress={onPressTagPlus}>
-                <View style={TagsComponentStyle.tags}>
+            <TouchableOpacity style={MealTagsStyle.plusContainer} onPress={onPressTagPlus}>
+                <View style={MealTagsStyle.tags}>
                     <CustomSvg
                         asset={assetPlus}
                         height={newPlusHeight}
                         width={newPlusWidth}
-                        style={TagsComponentStyle.plus}
+                        style={MealTagsStyle.plus}
                     />
                 </View>
             </TouchableOpacity>
@@ -53,4 +51,4 @@ const TagsComponent = () => {
     );
 };
 
-export default TagsComponent;
+export default MealTags;

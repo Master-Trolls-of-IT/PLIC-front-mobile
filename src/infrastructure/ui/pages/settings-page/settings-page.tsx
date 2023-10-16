@@ -16,8 +16,10 @@ const SettingsPage = () => {
     const {
         NavigationStore: { goBack }
     } = useStore();
+
     const { logoutButtonStyle, deleteButtonStyle, arrowLinkAsset, navigateToPersonalDataPage, navigateToWidgetPage } =
         useSettingsPageData();
+
     return (
         <View style={SettingsPageStyle.container}>
             <View style={SettingsPageStyle.background}>

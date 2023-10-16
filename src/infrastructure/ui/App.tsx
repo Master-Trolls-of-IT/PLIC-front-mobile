@@ -20,6 +20,7 @@ import SettingsPage from '~/infrastructure/ui/pages/settings-page/settings-page'
 import PersonalDataPage from '~/infrastructure/ui/pages/personal-data-page/personal-data-page';
 import WidgetPage from '~/infrastructure/ui/pages/widget-page/widget-page';
 import CreateMealPage from '~/infrastructure/ui/pages/create-meal-page/create-meal-page';
+import CreateMealScanPage from '~/infrastructure/ui/pages/create-meal-scan-page/create-meal-scan-page';
 
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
@@ -87,7 +88,12 @@ function App() {
                             <Stack.Screen
                                 name={PagesEnum.CreateMealPage}
                                 component={CreateMealPage}
-                                options={gestureDisabled}
+                                options={gestureEnabled}
+                            />
+                            <Stack.Screen
+                                name={PagesEnum.CreateMealScanPage}
+                                component={CreateMealScanPage}
+                                options={gestureEnabled}
                             />
                         </Stack.Group>
                     </Stack.Navigator>

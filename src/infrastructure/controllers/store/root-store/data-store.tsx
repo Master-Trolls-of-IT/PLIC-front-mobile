@@ -74,6 +74,7 @@ class DataStore {
     addItem = (newItem: HistoricalItemProps) => {
         this.history = [newItem].concat(this.history);
     };
+
     setConsumedProducts = (newItems: ConsumedProductItemProps[]) => {
         this.consumedProducts = newItems;
     };

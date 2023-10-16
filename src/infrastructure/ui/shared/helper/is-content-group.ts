@@ -7,6 +7,7 @@ const isContentGroup = (routeName: PagesEnum) => {
         case PagesEnum.SignUpPage:
         case PagesEnum.SettingsPage:
         case PagesEnum.PersonalDataPage:
+        case PagesEnum.CreateMealScanPage:
         case PagesEnum.WidgetPage:
             return false;
         default:
