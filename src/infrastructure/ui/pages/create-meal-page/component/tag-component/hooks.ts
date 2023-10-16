@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
-import { TagComponentDataProps } from '~/domain/interfaces/props/tag-component-data-props';
+import { TagsComponentDataProps } from '~/domain/interfaces/props/tags/tags-component-data-props';
 
-const useTagComponentData = ({ tag, isCross, mealTagsSelected, dispatch }: TagComponentDataProps) => {
+const useTagsComponentData = ({ tag, isCross, mealTagsSelected, dispatch }: TagsComponentDataProps) => {
     const {
         CreateMealStore: { deleteMealTag }
     } = useStore();
 
     const [isSelected, setIsSelected] = useState(!isCross && mealTagsSelected.includes(tag));
 
-    const assetCross = require('~/domain/entities/assets/icon/icon-cross.svg');
+    const assetCross = require('~/domain/entities/assets/icon/tags/icon-cross.svg');
     const [newCrossHeight, newCrossWidth] = [12, 12];
 
     const assetSelected = require('~/domain/entities/assets/icon/icon-chosen.svg');
@@ -43,4 +43,4 @@ const useTagComponentData = ({ tag, isCross, mealTagsSelected, dispatch }: TagCo
     };
 };
 
-export default useTagComponentData;
+export default useTagsComponentData;

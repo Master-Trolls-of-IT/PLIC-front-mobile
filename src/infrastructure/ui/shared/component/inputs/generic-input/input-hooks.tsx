@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Dimensions } from 'react-native';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import {
     birthdateTooltipMessage,
     emailTooltipMessage,

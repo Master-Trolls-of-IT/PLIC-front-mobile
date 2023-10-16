@@ -1,9 +1,9 @@
 import { action, makeObservable, observable } from 'mobx';
-import { MealProductItemProps } from '~/domain/interfaces/props/search-list/meal-product-item-props';
-import { MealItemTag } from '~/domain/interfaces/props/meal-item-tag';
+import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
+import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
 
 class CreateMealStore {
-    mealProducts: MealProductItemProps[];
+    mealProducts: MealProductsItemProps[];
     mealTags: MealItemTag[];
 
     constructor() {
@@ -23,7 +23,7 @@ class CreateMealStore {
         });
     }
 
-    addMealProducts = (product: MealProductItemProps | undefined) => {
+    addMealProducts = (product: MealProductsItemProps | undefined) => {
         if (product) this.mealProducts.push(product);
     };
 

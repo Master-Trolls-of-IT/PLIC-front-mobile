@@ -1,5 +1,5 @@
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
-import { NutrientsUnitEnum } from '~/domain/interfaces/enum/nutrients-unit-enum';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
+import { NutrientsUnitEnum } from '~/domain/interfaces/enum/nutrients/nutrients-unit-enum';
 
 const GetUnitFromNutrient = (nutrientType: NutrientsEnum) => {
     switch (nutrientType) {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
-import { MealItemTag } from '~/domain/interfaces/props/meal-item-tag';
+import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
 
 const useMealTagsData = () => {
     const {
@@ -12,7 +12,7 @@ const useMealTagsData = () => {
     const [mealTagsSelected, setMealTagsSelected] = useState<MealItemTag[]>([]);
 
     const [newPlusHeight, newPlusWidth] = [17, 17];
-    const assetPlus = require('~/domain/entities/assets/icon/icon-plus.svg');
+    const assetPlus = require('~/domain/entities/assets/icon/tags/icon-plus.svg');
 
     const onPressTagPlus = () => {
         setIsTagsModalVisible(true);

@@ -1,7 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
-import { ScanPageScannedItemProps } from '~/domain/interfaces/props/scan-page-scanned-item-props';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
+import { ScannedItemProps } from '~/domain/interfaces/props/scanned-item/scanned-item-props';
 import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
@@ -15,7 +15,7 @@ const ScannedItem = ({
     toggleFavourite,
     onPressScanAgain,
     onPressAddQuantity
-}: ScanPageScannedItemProps) => {
+}: ScannedItemProps) => {
     const {
         modal,
         setModal,

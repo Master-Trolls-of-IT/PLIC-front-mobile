@@ -9,7 +9,7 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import MealProductsItemStyle from '~/infrastructure/ui/shared/component/item/meal-products-item/meal-products-item-style';
 import useMealProductsItemData from '~/infrastructure/ui/shared/component/item/meal-products-item/hooks';
-import { MealProductItemProps } from '~/domain/interfaces/props/search-list/meal-product-item-props';
+import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
 import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
@@ -24,7 +24,7 @@ const MealProductsItem = ({
     iswater,
     serving,
     style
-}: MealProductItemProps) => {
+}: MealProductsItemProps) => {
     const {
         animatedItemStyle,
         customFontInterBold,

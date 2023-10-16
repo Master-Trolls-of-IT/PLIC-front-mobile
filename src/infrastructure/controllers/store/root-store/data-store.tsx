@@ -1,11 +1,11 @@
 import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
 import { WidgetsParams } from '~/domain/interfaces/props/widgets/widgets-params';
 import RootStore from '~/infrastructure/controllers/store/root-store/index';
-import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/get-daily-nutrients-goal';
+import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/nutrient/get-daily-nutrients-goal';
 import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
 import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
 

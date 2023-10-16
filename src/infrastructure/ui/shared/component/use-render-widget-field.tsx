@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { WidgetsParams } from '~/domain/interfaces/props/widgets/widgets-params';
 import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
 import WidgetAnecdote from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
 import WidgetSlot from '~/infrastructure/ui/pages/widget-page/component/widget-slot/widget-slot';
 import { WidgetSlotProps } from '~/domain/interfaces/props/widgets/widget-slot-props';
 import WidgetLargeIntakes from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/widget-large-intakes';

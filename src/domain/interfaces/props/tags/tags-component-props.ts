@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { MealItemTag } from '~/domain/interfaces/props/meal-item-tag';
+import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
 
 export type TagsComponentProps = {
     tag: MealItemTag;

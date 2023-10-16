@@ -1,9 +1,9 @@
 import React from 'react';
 import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import CustomModalStyle from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal-style';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import { CustomModalWithHeaderProps } from '~/domain/interfaces/props/custom-modal-with-header-props';
+import { CustomModalWithHeaderProps } from '~/domain/interfaces/props/custom-modal/custom-modal-with-header-props';
 import useCustomModalWithHeaderData from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/hooks';
 import CustomModalWithHeaderStyle from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header-style';
 

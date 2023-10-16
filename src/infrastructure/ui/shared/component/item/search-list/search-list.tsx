@@ -6,15 +6,15 @@ import SearchListStyle from '~/infrastructure/ui/shared/component/item/search-li
 import HistoricalItem from '~/infrastructure/ui/shared/component/item/historical-item/historical-item';
 import { SearchListProps } from '~/domain/interfaces/props/search-list/search-list-props';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
-import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-props';
 import ConsumedProductItem from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
 import MealItem from '~/infrastructure/ui/shared/component/item/meal-item/meal-item';
-import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
 import MealProductsItem from '~/infrastructure/ui/shared/component/item/meal-products-item/meal-products-item';
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import { MealProductItemProps } from '~/domain/interfaces/props/search-list/meal-product-item-props';
+import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
     const { containerHeight, displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } =
@@ -67,7 +67,7 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                 return (
                                     <MealProductsItem
                                         key={idx}
-                                        {...(item as MealProductItemProps)}
+                                        {...(item as MealProductsItemProps)}
                                         style={idx === 0 ? { marginTop: 0 } : {}}
                                     />
                                 );

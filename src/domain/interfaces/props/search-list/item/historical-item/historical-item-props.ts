@@ -1,4 +1,4 @@
-import { ProductNutrients } from '~/domain/interfaces/services/product-nutrients';
+import { ProductNutrients } from '~/domain/interfaces/props/nutrients/product-nutrients';
 
 export type HistoricalItemProps = {
     id: string;

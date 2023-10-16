@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
 
 class MealStore {
     mealList: MealItemProps[];

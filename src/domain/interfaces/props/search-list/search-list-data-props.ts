@@ -1,8 +1,8 @@
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
-import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
-import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
-import { MealProductItemProps } from '~/domain/interfaces/props/search-list/meal-product-item-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-props';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
+import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
 
 export type SearchListDataProps =
     | ((inputType: ItemEnum.Historical, data: HistoricalItemProps[]) => object)
@@ -18,4 +18,4 @@ export type SearchListData =
     | HistoricalItemProps[]
     | MealItemProps[]
     | ConsumedProductItemProps[]
-    | MealProductItemProps[];
+    | MealProductsItemProps[];

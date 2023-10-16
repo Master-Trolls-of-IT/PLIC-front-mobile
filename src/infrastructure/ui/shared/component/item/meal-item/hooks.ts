@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
-import { MealItemDataProps } from '~/domain/interfaces/props/meal-item-data-props';
+import { MealItemDataProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-data-props';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 
 const useMealItemData = ({ score }: MealItemDataProps) => {

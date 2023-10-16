@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { GenericDropDownProps } from '~/domain/interfaces/props/generic-dropdown-props';
+import { GenericDropDownProps } from '~/domain/interfaces/props/generic/generic-dropdown-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useGenericDropDownData from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/hooks';
 import GenericDropDownStyle from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/generic-dropdown-style';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 
 const GenericDropDown = ({ title, dispatch, options, style }: GenericDropDownProps) => {
     const { selected, dropdownIcon, toggleDropdown, renderDropdown, DropdownButton } = useGenericDropDownData(

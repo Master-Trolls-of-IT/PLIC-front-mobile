@@ -3,7 +3,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import useScanPageService from '~/application/page-service/scan-page-service';
-import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
+import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
 import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
 import { useStore } from '~/infrastructure/controllers/store';
 

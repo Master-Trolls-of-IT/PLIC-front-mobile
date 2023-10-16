@@ -1,5 +1,5 @@
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
-import { NutrientData } from '~/domain/interfaces/props/nutrient-data';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
+import { NutrientData } from '~/domain/interfaces/props/nutrients/nutrient-data';
 import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
 
 const getNutrientObject = (

@@ -8,7 +8,7 @@ import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generi
 import GenericBackArrowIcon from '~/infrastructure/ui/shared/component/generic-back-arrow-icon/generic-back-arrow-icon';
 import { useStore } from '~/infrastructure/controllers/store';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useSettingsPageData from '~/infrastructure/ui/pages/settings-page/hooks';
 
@@ -55,7 +55,7 @@ const SettingsPage = () => {
                     <View style={SettingsPageStyle.link}>
                         <TouchableOpacity style={SettingsPageStyle.touchableLink}>
                             <Text style={{ ...CustomFontInterBold().text, ...SettingsPageStyle.linkText }}>
-                                Proposez un nouveau produit
+                                Proposer un nouveau produit
                             </Text>
                             <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
                         </TouchableOpacity>

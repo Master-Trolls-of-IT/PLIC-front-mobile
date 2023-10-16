@@ -1,5 +1,5 @@
 import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
 
 export type WidgetItem =
     | {

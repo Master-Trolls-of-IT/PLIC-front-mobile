@@ -1,4 +1,4 @@
-import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
+import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
 
 export type ScannedItemDataProps = {
     scannedProduct: ProductInfo | undefined;

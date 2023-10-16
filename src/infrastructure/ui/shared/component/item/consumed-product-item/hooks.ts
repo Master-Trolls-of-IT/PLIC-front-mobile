@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
-import { ConsumedProductItemDataProps } from '~/domain/interfaces/props/search-list/consumed-product-item-data-props';
+import { ConsumedProductItemDataProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-data-props';
 import { useStore } from '~/infrastructure/controllers/store';
 
 const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: ConsumedProductItemDataProps) => {

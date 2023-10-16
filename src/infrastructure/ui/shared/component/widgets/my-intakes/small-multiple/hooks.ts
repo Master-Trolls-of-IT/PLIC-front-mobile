@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
 import { useStore } from '~/infrastructure/controllers/store';
-import getNutrientObject from '~/infrastructure/ui/shared/helper/get-nutrient-object';
+import getNutrientObject from '~/infrastructure/ui/shared/helper/nutrient/get-nutrient-object';
 
 const useWidgetSmallMultipleData = (
     firstNutrient: NutrientsEnum,

@@ -4,7 +4,7 @@ import { Bar } from 'react-native-progress';
 import { observer } from 'mobx-react';
 import useWidgetSmallMultipleData from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/hooks';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
+import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/nutrient/get-unit-from-nutrient';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import WidgetSmallMultipleIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/small-multiple/widget-small-multiple-intakes-style.';
 import { WidgetSmallMultipleIntakesProps } from '~/domain/interfaces/props/widgets/small-multiple-intakes-props';

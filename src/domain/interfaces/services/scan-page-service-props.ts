@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
+import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
 
 export type ScanPageServiceProps = {
     inputBarCode: string;

@@ -2,7 +2,7 @@ import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reani
 import { useState } from 'react';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import { useStore } from '~/infrastructure/controllers/store';
-import { MealProductsItemDataProps } from '~/domain/interfaces/props/search-list/meal-products-item-data-props';
+import { MealProductsItemDataProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-data-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 const useMealProductsItemData = ({ id, score, consumedQuantity, iswater, serving }: MealProductsItemDataProps) => {

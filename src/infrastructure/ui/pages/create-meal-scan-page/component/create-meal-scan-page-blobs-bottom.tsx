@@ -1,6 +1,6 @@
 import { Dimensions } from 'react-native';
 import React from 'react';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 
 const CreateMealScanPageBlobsBottom = () => {
     const asset = require('~/domain/entities/assets/login-page/login-page-blobs-bottom.svg');

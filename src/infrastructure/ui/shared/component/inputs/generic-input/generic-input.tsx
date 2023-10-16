@@ -2,10 +2,10 @@ import React, { RefObject } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import GenericInputStyle from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input-style';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import { GenericInputProps } from '~/domain/interfaces/props/generic-input/generic-input-props';
+import { GenericInputProps } from '~/domain/interfaces/props/generic/generic-input/generic-input-props';
 import GenericTooltip from '~/infrastructure/ui/shared/component/generic-tooltip/generic-tooltip';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import useInputData from '~/infrastructure/ui/shared/helper/input-hooks';
+import useInputData from '~/infrastructure/ui/shared/component/inputs/generic-input/input-hooks';
 import useGenericDropDownData from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/hooks';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 

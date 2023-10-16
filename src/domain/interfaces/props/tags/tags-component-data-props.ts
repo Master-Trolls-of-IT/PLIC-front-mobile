@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import { MealItemTag } from '~/domain/interfaces/props/meal-item-tag';
+import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
 
-export type TagComponentDataProps = {
+export type TagsComponentDataProps = {
     tag: MealItemTag;
     isCross: boolean;
     mealTagsSelected: MealItemTag[];

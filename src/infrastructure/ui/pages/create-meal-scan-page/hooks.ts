@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useStore } from '~/infrastructure/controllers/store';
 import useScanPageService from '~/application/page-service/scan-page-service';
-import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
-import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-ecoScore-value';
+import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
+import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-eco-score-value';
 
 const useCreateMealScanPageData = () => {
     const {

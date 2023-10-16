@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse, CreateAxiosDefaults, RawAxiosRequestHeaders } from 'axios';
-import IAPIServices from '~/domain/interfaces/services/IAPIServices';
+import ApiServices from '~/domain/interfaces/services/api-services';
 import { GenericResponse } from '~/domain/interfaces/services/generic-response';
 
-class APIServices implements IAPIServices {
+class APIServices implements ApiServices {
     static instance: APIServices;
     baseURL: string;
     baseHeaders: RawAxiosRequestHeaders;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-ecoScore-value';
+import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-eco-score-value';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score';
 import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
-import { ScannedItemDataProps } from '~/domain/interfaces/props/scanned-item-data-props';
+import { ScannedItemDataProps } from '~/domain/interfaces/props/scanned-item/scanned-item-data-props';
 
 const useScannedItemData = ({ scannedProduct, onPressAddQuantity }: ScannedItemDataProps) => {
     const [modal, setModal] = useState(false);

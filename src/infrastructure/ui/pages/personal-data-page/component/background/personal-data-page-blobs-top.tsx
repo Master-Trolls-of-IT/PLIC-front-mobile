@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 
 const PersonalDataPageBlobsTop = () => {
     const asset = require('~/domain/entities/assets/sign-up-page/sign-up-page-blobs-top.svg');
