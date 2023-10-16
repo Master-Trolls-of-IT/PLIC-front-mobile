@@ -11,4 +11,5 @@ export type MealProductItemProps = {
     data: ProductNutrients;
     style?: object;
     serving: number;
+    iswater: boolean;
 };

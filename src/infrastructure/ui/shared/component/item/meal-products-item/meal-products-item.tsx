@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Bar } from 'react-native-progress';
 import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
+import { observer } from 'mobx-react';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import useCustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular-hooks';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
@@ -9,17 +10,41 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import MealProductsItemStyle from '~/infrastructure/ui/shared/component/item/meal-products-item/meal-products-item-style';
 import useMealProductsItemData from '~/infrastructure/ui/shared/component/item/meal-products-item/hooks';
 import { MealProductItemProps } from '~/domain/interfaces/props/search-list/meal-product-item-props';
+import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
+import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
 
-const MealProductsItem = ({ id, name, brand, consumedQuantity, score, image, style }: MealProductItemProps) => {
+const MealProductsItem = ({
+    id,
+    name,
+    brand,
+    consumedQuantity,
+    score,
+    image,
+    iswater,
+    serving,
+    style
+}: MealProductItemProps) => {
     const {
         animatedItemStyle,
+        customFontInterBold,
         onPressProduct,
         scorePercentage,
         scoreColor,
-        onPressDeleteMealProduct,
         onPressEditMealProductQuantity,
-        isExpended
-    } = useMealProductsItemData({ score });
+        onPressValidateEditModal,
+        isExpended,
+        isEditModalOpen,
+        setIsEditModalOpen,
+        servingQuantity,
+        onPressAddServing,
+        setQuantity,
+        isDeleteModalOpen,
+        setIsDeleteModalOpen,
+        onPressCancelDeleteModal,
+        onPressDeleteModal,
+        onPressValidateDeleteModal
+    } = useMealProductsItemData({ id, score, consumedQuantity, iswater, serving });
 
     return (
         <Animated.View style={[animatedItemStyle, MealProductsItemStyle.item, style]}>
@@ -74,7 +99,7 @@ const MealProductsItem = ({ id, name, brand, consumedQuantity, score, image, sty
                         </View>
                         <GenericButton
                             title="Modifier la quantité consommée"
-                            onPress={() => onPressEditMealProductQuantity()}
+                            onPress={onPressEditMealProductQuantity}
                             style={{
                                 container: MealProductsItemStyle.editButtonContainer,
                                 text: MealProductsItemStyle.buttonText
@@ -82,7 +107,7 @@ const MealProductsItem = ({ id, name, brand, consumedQuantity, score, image, sty
                         />
                         <GenericButton
                             title="Supprimer ce produit consommé"
-                            onPress={() => onPressDeleteMealProduct(id)}
+                            onPress={onPressDeleteModal}
                             style={{
                                 container: MealProductsItemStyle.deleteButtonContainer,
                                 text: MealProductsItemStyle.buttonText
@@ -90,9 +115,76 @@ const MealProductsItem = ({ id, name, brand, consumedQuantity, score, image, sty
                         />
                     </Animated.View>
                 )}
+
+                {isEditModalOpen && (
+                    <CustomModal
+                        isVisible={isEditModalOpen}
+                        dispatch={setIsEditModalOpen}
+                        title={'Modifier la quantité\n consommée'}
+                        titleSize={22}>
+                        <GenericInputWithSearchIconAndEndText
+                            placeHolder={iswater ? '25' : '100'}
+                            endText={iswater ? 'cl' : 'g'}
+                            style={MealProductsItemStyle.customModalChildren}
+                            input={consumedQuantity}
+                            dispatch={setQuantity}
+                            onPressSearchIcon={onPressValidateEditModal}
+                        />
+
+                        {servingQuantity ? (
+                            <GenericButton
+                                title={'Ajouter une portion'}
+                                onPress={onPressAddServing}
+                                style={{
+                                    container: MealProductsItemStyle.quantityModalButtonContainer,
+                                    text: MealProductsItemStyle.quantityModalButtonText
+                                }}
+                            />
+                        ) : (
+                            <></>
+                        )}
+                    </CustomModal>
+                )}
+
+                {isDeleteModalOpen && (
+                    <CustomModalWithHeader
+                        title={'Supprimer le produit'}
+                        isVisible={isDeleteModalOpen}
+                        dispatch={setIsDeleteModalOpen}>
+                        <View style={MealProductsItemStyle.deleteModalContainer}>
+                            <Text
+                                style={{
+                                    ...MealProductsItemStyle.textDeleteModalContainer,
+                                    ...customFontInterBold
+                                }}>
+                                {'Confirmer la suppression de ce produit du repas ?'}
+                            </Text>
+
+                            <View style={MealProductsItemStyle.buttonDeleteModalContainer}>
+                                <GenericButton
+                                    title={'Annuler'}
+                                    onPress={onPressCancelDeleteModal}
+                                    style={{
+                                        container: MealProductsItemStyle.deleteModalCancelButtonContainer,
+                                        text: MealProductsItemStyle.brownButtonText
+                                    }}
+                                />
+
+                                <GenericButton
+                                    title={'Valider'}
+                                    onPress={onPressValidateDeleteModal}
+                                    style={{
+                                        container: MealProductsItemStyle.deleteModalValidateButtonContainer,
+                                        text: MealProductsItemStyle.greenButtonText
+                                    }}
+                                />
+                            </View>
+                        </View>
+                    </CustomModalWithHeader>
+                )}
             </TouchableOpacity>
         </Animated.View>
     );
 };
 
-export default MealProductsItem;
+export default observer(MealProductsItem);

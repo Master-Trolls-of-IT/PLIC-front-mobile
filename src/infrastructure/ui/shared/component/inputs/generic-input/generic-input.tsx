@@ -7,6 +7,7 @@ import GenericTooltip from '~/infrastructure/ui/shared/component/generic-tooltip
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useInputData from '~/infrastructure/ui/shared/helper/input-hooks';
 import useGenericDropDownData from '~/infrastructure/ui/shared/component/inputs/generic-dropdown/hooks';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GenericInput = ({
     title,
@@ -42,6 +43,7 @@ const GenericInput = ({
                 <TextInput
                     ref={DropdownButton as RefObject<TextInput>}
                     placeholder={placeHolder}
+                    placeholderTextColor={ColorEnum.ExtraOpaqueGrey}
                     style={{ ...GenericInputStyle.border, ...CustomFontInterBold().text }}
                     secureTextEntry={secureTextEntry}
                     onChangeText={onChangeText}

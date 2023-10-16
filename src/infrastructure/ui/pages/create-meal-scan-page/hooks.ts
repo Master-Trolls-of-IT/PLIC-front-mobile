@@ -59,7 +59,8 @@ const useCreateMealScanPageData = () => {
                 image: scannedProduct?.image_url,
                 score: chooseRightEcoScoreValue(scannedProduct?.ecoscore),
                 serving: scannedProduct?.serving,
-                consumedQuantity: quantity
+                consumedQuantity: quantity,
+                iswater: scannedProduct?.iswater
             });
         setIsScanned(false);
         goBack();

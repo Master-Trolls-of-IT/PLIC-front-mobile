@@ -14,6 +14,7 @@ const GenericInputStyle = StyleSheet.create({
     },
 
     border: {
+        color: ColorEnum.ClassicGrey,
         height: 43 * (Dimensions.get('screen').height / 900),
         paddingLeft: 35,
         paddingRight: 25,

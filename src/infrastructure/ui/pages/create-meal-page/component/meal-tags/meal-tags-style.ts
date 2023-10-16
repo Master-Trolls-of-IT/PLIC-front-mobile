@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
-const TagsComponentStyle = StyleSheet.create({
+const MealTagsStyle = StyleSheet.create({
     tagsContainer: {
         paddingTop: 11,
         display: 'flex',
@@ -19,28 +19,21 @@ const TagsComponentStyle = StyleSheet.create({
         borderRadius: 10
     },
 
-    circle: {
-        width: 16,
-        height: 16,
-        borderRadius: 16 / 2,
-        marginTop: 1
+    tagsModalContainer: {
+        width: 0.82 * Dimensions.get('screen').width
     },
 
-    tagsText: {
-        marginLeft: 6,
-        fontSize: 12 * (Dimensions.get('screen').height / 725),
+    tagsModalText: {
+        marginTop: 15,
+        textAlign: 'justify',
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
         color: ColorEnum.ClassicBrown
     },
 
-    crossContainer: {
-        marginLeft: 3,
-        marginTop: 1,
-        padding: 3,
-        justifyContent: 'center'
-    },
-
-    cross: {
-        alignSelf: 'center'
+    inputContainer: {
+        alignSelf: 'center',
+        width: '100%',
+        marginTop: 5
     },
 
     plusContainer: {
@@ -49,7 +42,46 @@ const TagsComponentStyle = StyleSheet.create({
 
     plus: {
         alignSelf: 'center'
+    },
+
+    modalTagsScrollViewContainer: {
+        marginTop: 8,
+        height: 0.15 * Dimensions.get('screen').height
+    },
+
+    modalTagsContainer: {
+        marginTop: 8,
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8
+    },
+
+    validateButtonTagsModalContainer: {
+        backgroundColor: ColorEnum.ClassicGreen,
+        width: 95 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400)
+    },
+
+    validateButtonTextTagsModal: {
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicGrey
+    },
+
+    footerTagsModalContainer: {
+        marginTop: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+
+    footerTagsModalText: {
+        marginTop: 5,
+        textAlign: 'justify',
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicBrown
     }
 });
 
-export default TagsComponentStyle;
+export default MealTagsStyle;

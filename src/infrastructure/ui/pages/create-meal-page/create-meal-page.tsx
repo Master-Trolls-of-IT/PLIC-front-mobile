@@ -19,15 +19,13 @@ import MealTags from '~/infrastructure/ui/pages/create-meal-page/component/meal-
 const CreateMealPage = () => {
     const {
         errorMessage,
-        goBack,
         isValidateModalVisible,
-        inputBarCode,
-        setInputBarCode,
         setIsValidateModalVisible,
         mealTitleInput,
         setMealTitleInput,
         onPressCancelModal,
         onPressScanProduct,
+        onPressBackArrow,
         onPressValidateButton,
         onPressValidateModalValidate,
         mealProducts
@@ -37,7 +35,7 @@ const CreateMealPage = () => {
         <View style={CreateMealPageStyle.container}>
             <View style={CreateMealPageStyle.background}>
                 <CreateMealPageBlobsTop />
-                <GenericBackArrowIcon goBack={goBack} />
+                <GenericBackArrowIcon goBack={onPressBackArrow} />
             </View>
 
             <GenericHeaderText

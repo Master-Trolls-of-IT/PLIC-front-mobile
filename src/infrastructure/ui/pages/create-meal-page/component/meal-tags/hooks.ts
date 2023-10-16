@@ -1,40 +1,48 @@
 import { useState } from 'react';
-import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
+import { useStore } from '~/infrastructure/controllers/store';
+import { MealItemTag } from '~/domain/interfaces/props/meal-item-tag';
 
-const useTagComponentData = () => {
-    const assetCross = require('~/domain/entities/assets/icon/icon-cross.svg');
+const useMealTagsData = () => {
+    const {
+        CreateMealStore: { mealTags, setMealTags }
+    } = useStore();
+
+    const [isTagsModalVisible, setIsTagsModalVisible] = useState(false);
+    const [searchInput, setSearchInput] = useState('');
+    const [mealTagsSelected, setMealTagsSelected] = useState<MealItemTag[]>([]);
+
+    const [newPlusHeight, newPlusWidth] = [17, 17];
     const assetPlus = require('~/domain/entities/assets/icon/icon-plus.svg');
 
-    const [newCrossHeight, newCrossWidth] = [12, 12];
-    const [newPlusHeight, newPlusWidth] = [17, 17];
-    const [tags, setTags] = useState([
-        {
-            label: 'Végétarien',
-            color: ColorEnum.ClassicDarkGreen
-        },
-        {
-            label: 'Japonais',
-            color: ColorEnum.ClassicRedIcon
-        }
-    ]);
+    const onPressTagPlus = () => {
+        setIsTagsModalVisible(true);
+    };
 
-    // TODO : Ajout de la logique de suppression de tag
-    const onPressTagCross = () => {};
+    const onPressWrongIconTagsModal = () => {
+        setIsTagsModalVisible(false);
+        setSearchInput('');
+    };
 
-    // TODO : Ajout de la logiqe d'ajout de tag
-    const onPressTagPlus = () => {};
+    const onPressValidateTagsModal = () => {
+        setIsTagsModalVisible(false);
+        setSearchInput('');
+        setMealTags(mealTagsSelected);
+    };
 
     return {
-        assetCross,
         assetPlus,
-        newCrossWidth,
-        newCrossHeight,
+        isTagsModalVisible,
+        onPressWrongIconTagsModal,
+        searchInput,
+        setSearchInput,
         newPlusHeight,
         newPlusWidth,
-        tags,
-        onPressTagCross,
-        onPressTagPlus
+        mealTags,
+        mealTagsSelected,
+        setMealTagsSelected,
+        onPressTagPlus,
+        onPressValidateTagsModal
     };
 };
 
-export default useTagComponentData;
+export default useMealTagsData;

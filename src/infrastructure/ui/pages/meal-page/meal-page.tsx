@@ -10,7 +10,7 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import MealPageBlobsTop from '~/infrastructure/ui/pages/meal-page/component/background/meal-page-blobs-top';
 
 const MealPage = () => {
-    const { mealList, mockData, onPressCreateMeal } = useMealPageData();
+    const { mealList, onPressCreateMeal } = useMealPageData();
 
     return (
         <View style={MealPageStyle.container}>
@@ -24,7 +24,7 @@ const MealPage = () => {
                 containerStyle={MealPageStyle.headerContainer}
             />
 
-            <SearchList itemType={ItemEnum.Meal} data={mockData} />
+            <SearchList itemType={ItemEnum.Meal} data={mealList} />
 
             <GenericButton
                 title={'Créer un repas'}

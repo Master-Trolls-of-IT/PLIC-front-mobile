@@ -6,7 +6,7 @@ import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const useCreateMealPageData = () => {
     const {
-        CreateMealStore: { mealProducts },
+        CreateMealStore: { mealProducts, resetStore },
         NavigationStore: { navigate, goBack }
     } = useStore();
 
@@ -33,9 +33,15 @@ const useCreateMealPageData = () => {
         }
     };
 
+    const onPressBackArrow = () => {
+        resetStore();
+        goBack();
+    };
+
     // TODO : Ajout de la logique d'ajout de repas en base de données
     const onPressValidateModalValidate = () => {
         setIsValidateModalVisible(false);
+        resetStore();
         goBack();
     };
 
@@ -52,6 +58,7 @@ const useCreateMealPageData = () => {
         onPressScanProduct,
         onPressValidateButton,
         onPressValidateModalValidate,
+        onPressBackArrow,
         mealProducts
     };
 };
