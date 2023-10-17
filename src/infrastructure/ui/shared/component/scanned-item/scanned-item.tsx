@@ -67,7 +67,7 @@ const ScannedItem = ({
                 {showRightEcoScore}
             </View>
 
-            {!scannedProduct?.iswater && (
+            {!scannedProduct?.isWater && (
                 <View style={ScannedItemStyle.myIntakesContainer}>
                     <View style={ScannedItemStyle.myIntakesTitleContainer}>
                         <Text style={{ ...ScannedItemStyle.myIntakesTitle, ...interBoldText }}>Apports pour 100g</Text>
@@ -120,7 +120,7 @@ const ScannedItem = ({
 
             <GenericButton
                 title={
-                    scannedProduct?.iswater || createMealProduct
+                    scannedProduct?.isWater || createMealProduct
                         ? 'Ajouter la quantité consommée'
                         : 'Ajouter aux produits consommés'
                 }
@@ -133,8 +133,8 @@ const ScannedItem = ({
 
             <CustomModal isVisible={modal} dispatch={setModal} title={'Ajouter la quantité\n consommée'} titleSize={22}>
                 <GenericInputWithSearchIconAndEndText
-                    placeHolder={scannedProduct?.iswater ? '25' : '100'}
-                    endText={scannedProduct?.iswater ? 'cl' : 'g'}
+                    placeHolder={scannedProduct?.isWater ? '25' : '100'}
+                    endText={scannedProduct?.isWater ? 'cl' : 'g'}
                     style={ScannedItemStyle.customModalChildren}
                     input={quantity}
                     dispatch={setQuantity}

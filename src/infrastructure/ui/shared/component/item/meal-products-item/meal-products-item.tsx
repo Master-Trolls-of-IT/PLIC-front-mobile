@@ -21,7 +21,7 @@ const MealProductsItem = ({
     consumedQuantity,
     score,
     image,
-    iswater,
+    isWater,
     serving,
     style
 }: MealProductsItemProps) => {
@@ -44,7 +44,7 @@ const MealProductsItem = ({
         onPressCancelDeleteModal,
         onPressDeleteModal,
         onPressValidateDeleteModal
-    } = useMealProductsItemData({ id, score, consumedQuantity, iswater, serving });
+    } = useMealProductsItemData({ id, score, consumedQuantity, isWater, serving });
 
     return (
         <Animated.View style={[animatedItemStyle, MealProductsItemStyle.item, style]}>
@@ -123,8 +123,8 @@ const MealProductsItem = ({
                         title={'Modifier la quantité\n consommée'}
                         titleSize={22}>
                         <GenericInputWithSearchIconAndEndText
-                            placeHolder={iswater ? '25' : '100'}
-                            endText={iswater ? 'cl' : 'g'}
+                            placeHolder={isWater ? '25' : '100'}
+                            endText={isWater ? 'cl' : 'g'}
                             style={MealProductsItemStyle.customModalChildren}
                             input={consumedQuantity}
                             dispatch={setQuantity}
