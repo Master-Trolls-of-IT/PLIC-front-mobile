@@ -2,17 +2,17 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
 import { Bar } from 'react-native-progress';
-import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-props';
 import useHistoricalItemData from '~/infrastructure/ui/shared/component/item/historical-item/hooks';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import useCustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular-hooks';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
 import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
-import ScanPageScannedItemStyle from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item-style';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 
 const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data, style, id }: HistoricalItemProps) => {
     const {
@@ -137,7 +137,7 @@ const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data,
                             <GenericInputWithSearchIconAndEndText
                                 placeHolder={'100'}
                                 endText={'g'}
-                                style={ScanPageScannedItemStyle.customModalChildren}
+                                style={ScannedItemStyle.customModalChildren}
                                 input={quantity}
                                 dispatch={setQuantity}
                                 onPressSearchIcon={onPressModalButton}></GenericInputWithSearchIconAndEndText>

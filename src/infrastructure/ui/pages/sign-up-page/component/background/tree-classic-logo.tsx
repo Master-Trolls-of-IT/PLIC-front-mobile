@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import signUpPageStyle from '~/infrastructure/ui/pages/sign-up-page/sign-up-page-style';
 
 const SignUpPageTreeClassicLogo = () => {

@@ -1,10 +1,10 @@
 import { View, Animated, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import { observer } from 'mobx-react';
-import { MealItemProps } from '~/domain/interfaces/props/search-list/meal-item-props';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useMealItemData from '~/infrastructure/ui/shared/component/item/meal-item/hooks';
 
 const MealItem = ({ title, numberOfProducts, score, ingredients, mealTags, style }: MealItemProps) => {

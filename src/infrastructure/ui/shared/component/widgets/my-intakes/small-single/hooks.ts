@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
-import { NutrientsUnitEnum } from '~/domain/interfaces/enum/nutrients-unit-enum';
-import GetColorFromNutrient from '~/infrastructure/ui/shared/helper/get-color-from-nutrient';
-import GetUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
+import { NutrientsUnitEnum } from '~/domain/interfaces/enum/nutrients/nutrients-unit-enum';
+import GetColorFromNutrient from '~/infrastructure/ui/shared/helper/nutrient/get-color-from-nutrient';
+import GetUnitFromNutrient from '~/infrastructure/ui/shared/helper/nutrient/get-unit-from-nutrient';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
-import getNutrientObject from '~/infrastructure/ui/shared/helper/get-nutrient-object';
+import getNutrientObject from '~/infrastructure/ui/shared/helper/nutrient/get-nutrient-object';
 import { useStore } from '~/infrastructure/controllers/store';
 
 const useWidgetSmallSingleIntakesData = (nutrientType: NutrientsEnum) => {

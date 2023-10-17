@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
-import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
-import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/consumed-product-props';
+import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
 
 const useConsumedProductPageService = () => {
     const {

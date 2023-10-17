@@ -3,7 +3,7 @@ import { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reani
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
-import { HistoricalItemDataProps } from '~/domain/interfaces/props/search-list/historical-item-data-props';
+import { HistoricalItemDataProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-data-props';
 import { useStore } from '~/infrastructure/controllers/store';
 
 const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDataProps) => {

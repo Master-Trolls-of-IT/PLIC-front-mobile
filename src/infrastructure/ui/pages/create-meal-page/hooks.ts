@@ -2,138 +2,63 @@ import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const useCreateMealPageData = () => {
     const {
-        NavigationStore: { goBack }
+        CreateMealStore: { mealProducts, resetStore },
+        NavigationStore: { navigate, goBack }
     } = useStore();
 
     const [errorMessage, setErrorMessage] = useState(false);
+    const [isValidateModalVisible, setIsValidateModalVisible] = useState(false);
     const [mealTitleInput, setMealTitleInput] = useState('');
-    // TODO : Lier cette liste à la vraie donnée
-    const [productsList, setProductsList] = useState([
-        {
-            id: '1',
-            name: 'Boisson gazéfiée',
-            brand: 'Coca Zéro',
-            score: 82,
-            image: 'https://images.openfoodfacts.org/images/products/544/900/021/4911/front_fr.200.400.jpg',
-            data: {
-                carbohydrates: 399,
-                energyKcal: 6,
-                energyKj: 56,
-                fat: 2,
-                fiber: 45,
-                proteins: 90,
-                salt: 1,
-                saturatedFat: 3,
-                sugar: 89
-            },
-            consumedQuantity: 9,
-            style: {}
-        },
-        {
-            id: '1',
-            name: 'Boisson gazéfiée',
-            brand: 'Coca Zéro',
-            score: 82,
-            image: 'https://images.openfoodfacts.org/images/products/544/900/021/4911/front_fr.200.400.jpg',
-            data: {
-                carbohydrates: 399,
-                energyKcal: 6,
-                energyKj: 56,
-                fat: 2,
-                fiber: 45,
-                proteins: 90,
-                salt: 1,
-                saturatedFat: 3,
-                sugar: 89
-            },
-            consumedQuantity: 9,
-            style: {}
-        },
-        {
-            id: '1',
-            name: 'Boisson gazéfiée',
-            brand: 'Coca Zéro',
-            score: 82,
-            image: 'https://images.openfoodfacts.org/images/products/544/900/021/4911/front_fr.200.400.jpg',
-            data: {
-                carbohydrates: 399,
-                energyKcal: 6,
-                energyKj: 56,
-                fat: 2,
-                fiber: 45,
-                proteins: 90,
-                salt: 1,
-                saturatedFat: 3,
-                sugar: 89
-            },
-            consumedQuantity: 9,
-            style: {}
-        },
-        {
-            id: '1',
-            name: 'Boisson gazéfiée',
-            brand: 'Coca Zéro',
-            score: 82,
-            image: 'https://images.openfoodfacts.org/images/products/544/900/021/4911/front_fr.200.400.jpg',
-            data: {
-                carbohydrates: 399,
-                energyKcal: 6,
-                energyKj: 56,
-                fat: 2,
-                fiber: 45,
-                proteins: 90,
-                salt: 1,
-                saturatedFat: 3,
-                sugar: 89
-            },
-            consumedQuantity: 9,
-            style: {}
-        },
-        {
-            id: '1',
-            name: 'Boisson gazéfiée',
-            brand: 'Coca Zéro',
-            score: 82,
-            image: 'https://images.openfoodfacts.org/images/products/544/900/021/4911/front_fr.200.400.jpg',
-            data: {
-                carbohydrates: 399,
-                energyKcal: 6,
-                energyKj: 56,
-                fat: 2,
-                fiber: 45,
-                proteins: 90,
-                salt: 1,
-                saturatedFat: 3,
-                sugar: 89
-            },
-            consumedQuantity: 9,
-            style: {}
-        }
-    ]);
+    const [inputBarCode, setInputBarCode] = useState('');
 
-    // TODO : Ajout de la page de scan
-    const onPressScanProduct = () => {};
+    const onPressCancelModal = () => {
+        setIsValidateModalVisible(false);
+    };
 
-    // TODO : Ajout de la logique pour ajouter un repas en base de données et ajouter la modale
+    const onPressScanProduct = () => {
+        navigate(PagesEnum.CreateMealScanPage);
+    };
+
     const onPressValidateButton = () => {
-        if (isValidInput(mealTitleInput, InputEnum.Title) && productsList.length > 0) {
-            goBack();
+        if (isValidInput(mealTitleInput, InputEnum.Title) && mealProducts.length > 0) {
+            setErrorMessage(false);
+            setIsValidateModalVisible(true);
         } else {
             setErrorMessage(true);
         }
     };
 
+    const onPressBackArrow = () => {
+        resetStore();
+        goBack();
+    };
+
+    // TODO : Ajout de la logique d'ajout de repas en base de données
+    const onPressValidateModalValidate = () => {
+        setIsValidateModalVisible(false);
+        resetStore();
+        goBack();
+    };
+
     return {
         errorMessage,
         goBack,
+        isValidateModalVisible,
+        inputBarCode,
+        setInputBarCode,
+        setIsValidateModalVisible,
         mealTitleInput,
         setMealTitleInput,
+        onPressCancelModal,
         onPressScanProduct,
         onPressValidateButton,
-        productsList
+        onPressValidateModalValidate,
+        onPressBackArrow,
+        mealProducts
     };
 };
 

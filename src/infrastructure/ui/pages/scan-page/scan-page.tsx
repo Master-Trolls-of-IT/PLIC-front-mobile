@@ -12,7 +12,7 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import GenericInputWithSearchIcon from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon/generic-input-with-search-icon';
 import { useStore } from '~/infrastructure/controllers/store';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
-import ScanPageScannedItem from '~/infrastructure/ui/pages/scan-page/component/scanned-item/scan-page-scanned-item';
+import ScannedItem from '~/infrastructure/ui/shared/component/scanned-item/scanned-item';
 
 const ScanPage = () => {
     const {
@@ -30,10 +30,10 @@ const ScanPage = () => {
         onPressSearchIcon,
         onPressScanAgain,
         scannedProduct,
-        toggleFavourite
+        toggleFavourite,
+        onPressAddQuantity
     } = useScanPageData(navigate);
 
-    // TODO: Ajouter le cas des eaux minérales (pas les même nutriments) => modifier le parsing aussi
     return (
         <KeyboardAwareScrollView nestedScrollEnabled bounces={false}>
             <View style={ScanPageStyle.background}>
@@ -91,10 +91,11 @@ const ScanPage = () => {
             </View>
 
             {isScanned && (
-                <ScanPageScannedItem
+                <ScannedItem
                     scannedProduct={scannedProduct}
                     toggleFavourite={toggleFavourite}
                     onPressScanAgain={onPressScanAgain}
+                    onPressAddQuantity={onPressAddQuantity}
                 />
             )}
         </KeyboardAwareScrollView>

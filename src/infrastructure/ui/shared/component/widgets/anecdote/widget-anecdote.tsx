@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import WidgetAnecdoteStyle from '~/infrastructure/ui/shared/component/widgets/anecdote/widget-anecdote-style';
 import useWidgetAnecdoteData from '~/infrastructure/ui/shared/component/widgets/anecdote/hooks';
 

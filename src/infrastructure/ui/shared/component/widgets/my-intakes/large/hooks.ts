@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import GetColorByPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
 import { useStore } from '~/infrastructure/controllers/store';
-import getNutrientObject from '~/infrastructure/ui/shared/helper/get-nutrient-object';
+import getNutrientObject from '~/infrastructure/ui/shared/helper/nutrient/get-nutrient-object';
 
 const useWidgetLargeIntakesData = (
     firstNutrient: NutrientsEnum,

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
 import { WidgetItem } from '~/domain/interfaces/props/widgets/widget-item';
-import useRenderWidgetField from '~/infrastructure/ui/shared/helper/use-render-widget-field';
+import useRenderWidgetField from '~/infrastructure/ui/shared/component/use-render-widget-field';
 import WidgetPageStyle from '~/infrastructure/ui/pages/widget-page/widget-page-style';
 import { WidgetsParams } from '~/domain/interfaces/props/widgets/widgets-params';
 

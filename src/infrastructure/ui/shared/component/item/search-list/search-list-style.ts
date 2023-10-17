@@ -25,10 +25,10 @@ const SearchListStyle = StyleSheet.create({
     },
 
     noData: {
-        fontSize: 21,
+        fontSize: 19,
         color: ColorEnum.ClassicBrown,
         alignSelf: 'center',
-        marginTop: '50%'
+        marginTop: '15%'
     }
 });
 

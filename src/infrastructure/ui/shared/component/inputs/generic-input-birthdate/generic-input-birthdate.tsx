@@ -1,6 +1,6 @@
 import React from 'react';
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
-import { GenericInputBirthdateProps } from '~/domain/interfaces/props/generic-input/generic-input-birthdate-props';
+import { GenericInputBirthdateProps } from '~/domain/interfaces/props/generic/generic-input/generic-input-birthdate-props';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import useGenericInputBirthdateData from '~/infrastructure/ui/shared/component/inputs/generic-input-birthdate/hooks';
 

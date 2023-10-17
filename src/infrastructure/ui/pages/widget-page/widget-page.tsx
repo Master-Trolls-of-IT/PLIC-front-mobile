@@ -10,7 +10,7 @@ import SmallBlankWidget from '~/infrastructure/ui/pages/widget-page/component/sm
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import LargeBlankWidget from '~/infrastructure/ui/pages/widget-page/component/large-widget/large-blank-widget';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 import useWidgetPageData from '~/infrastructure/ui/pages/widget-page/hooks';
 import AddWidgetModal from '~/infrastructure/ui/pages/widget-page/component/add-widget-modale/add-widget-modal';
 

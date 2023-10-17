@@ -62,7 +62,8 @@ const MealItemStyle = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         maxWidth: '90%',
-        fontSize: 12
+        fontSize: 12,
+        marginTop: 5
     },
 
     score: {

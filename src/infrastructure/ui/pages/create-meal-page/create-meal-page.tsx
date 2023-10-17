@@ -8,29 +8,34 @@ import GenericBackArrowIcon from '~/infrastructure/ui/shared/component/generic-b
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import TagsComponent from '~/infrastructure/ui/pages/create-meal-page/component/tags/tags-component';
 import SearchList from '~/infrastructure/ui/shared/component/item/search-list/search-list';
 import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useCreateMealPageData from '~/infrastructure/ui/pages/create-meal-page/hooks';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
+import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
+import MealTags from '~/infrastructure/ui/pages/create-meal-page/component/meal-tags/meal-tags';
 
 const CreateMealPage = () => {
     const {
         errorMessage,
-        goBack,
+        isValidateModalVisible,
+        setIsValidateModalVisible,
         mealTitleInput,
         setMealTitleInput,
+        onPressCancelModal,
         onPressScanProduct,
+        onPressBackArrow,
         onPressValidateButton,
-        productsList
+        onPressValidateModalValidate,
+        mealProducts
     } = useCreateMealPageData();
 
     return (
         <View style={CreateMealPageStyle.container}>
             <View style={CreateMealPageStyle.background}>
                 <CreateMealPageBlobsTop />
-                <GenericBackArrowIcon goBack={goBack} />
+                <GenericBackArrowIcon goBack={onPressBackArrow} />
             </View>
 
             <GenericHeaderText
@@ -55,18 +60,23 @@ const CreateMealPage = () => {
             />
 
             <Text style={{ ...CreateMealPageStyle.tagsTitle, ...CustomFontInterBold().text }}>Tags</Text>
-            <TagsComponent />
+            <View style={CreateMealPageStyle.tagsContainer}>
+                <MealTags />
+            </View>
 
             <Text style={{ ...CreateMealPageStyle.ingredientTitle, ...CustomFontInterBold().text }}>
                 Votre liste de produits ajoutés
             </Text>
             <View style={CreateMealPageStyle.ingredientTitleHairLine} />
-            <SearchList itemType={ItemEnum.MealProducts} data={productsList} />
+            <SearchList itemType={ItemEnum.MealProducts} data={mealProducts} />
 
             <GenericButton
                 title={'Scanner un produit'}
                 onPress={onPressScanProduct}
-                style={{ container: CreateMealPageStyle.scanButtonContainer, text: CreateMealPageStyle.scanButtonText }}
+                style={{
+                    container: CreateMealPageStyle.scanButtonContainer,
+                    text: CreateMealPageStyle.brownButtonText
+                }}
             />
 
             <GenericButton
@@ -74,9 +84,40 @@ const CreateMealPage = () => {
                 onPress={onPressValidateButton}
                 style={{
                     container: CreateMealPageStyle.validateButtonContainer,
-                    text: CreateMealPageStyle.validateButtonText
+                    text: CreateMealPageStyle.greenButtonText
                 }}
             />
+
+            <CustomModalWithHeader
+                title={mealTitleInput}
+                isVisible={isValidateModalVisible}
+                dispatch={setIsValidateModalVisible}>
+                <View style={CreateMealPageStyle.validateModalContainer}>
+                    <Text style={{ ...CreateMealPageStyle.textValidateModalContainer, ...CustomFontInterBold().text }}>
+                        {"Confirmer l'ajout de ce repas à vos repas enregistrés ?"}
+                    </Text>
+
+                    <View style={CreateMealPageStyle.buttonValidateModalContainer}>
+                        <GenericButton
+                            title={'Annuler'}
+                            onPress={onPressCancelModal}
+                            style={{
+                                container: CreateMealPageStyle.cancelValidateModalButtonContainer,
+                                text: CreateMealPageStyle.brownButtonText
+                            }}
+                        />
+
+                        <GenericButton
+                            title={'Valider'}
+                            onPress={onPressValidateModalValidate}
+                            style={{
+                                container: CreateMealPageStyle.validateModalButtonContainer,
+                                text: CreateMealPageStyle.greenButtonText
+                            }}
+                        />
+                    </View>
+                </View>
+            </CustomModalWithHeader>
         </View>
     );
 };

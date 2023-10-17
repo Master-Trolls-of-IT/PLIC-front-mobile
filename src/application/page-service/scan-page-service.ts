@@ -1,10 +1,10 @@
 import axios from 'axios';
 import uuid from 'react-native-uuid';
 import { useStore } from '~/infrastructure/controllers/store';
-import { ScanPageServiceProps } from '~/domain/interfaces/props/scan-page-service-props';
-import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
-import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
-import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-ecoScore-value';
+import { ScanPageServiceProps } from '~/domain/interfaces/services/scan-page-service-props';
+import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-props';
+import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-eco-score-value';
 
 const useScanPageService = () => {
     const {
