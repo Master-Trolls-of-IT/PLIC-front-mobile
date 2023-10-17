@@ -30,6 +30,7 @@ const useScannedItemData = ({ scannedProduct, onPressAddQuantity }: ScannedItemD
         }
     };
 
+    // TODO : Ajout de la quantité d'eau consommée dans le store
     const onPressModalButton = async () => {
         setModal(false);
         void onPressAddQuantity(quantity);
@@ -39,8 +40,7 @@ const useScannedItemData = ({ scannedProduct, onPressAddQuantity }: ScannedItemD
     const interBoldText = CustomFontInterBold().text;
 
     const showRightEcoScore = (() => {
-        if (scannedProduct?.iswater) return <GenericEcoScore ecoScore={100} />;
-        else if (ecoScore != 0) return <GenericEcoScore ecoScore={ecoScore} />;
+        if (ecoScore != 0) return <GenericEcoScore ecoScore={ecoScore} />;
         else
             return (
                 <View style={ScannedItemStyle.ecoScoreContainer}>
@@ -49,7 +49,7 @@ const useScannedItemData = ({ scannedProduct, onPressAddQuantity }: ScannedItemD
             );
     })();
 
-    const servingQuantity = scannedProduct?.iswater ? 25 : scannedProduct?.serving ?? 0;
+    const servingQuantity = scannedProduct?.isWater ? 25 : scannedProduct?.serving ?? 0;
 
     const onPressAddServing = () => {
         setQuantity(String(Number(quantity) + servingQuantity));

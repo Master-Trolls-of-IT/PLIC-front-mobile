@@ -55,19 +55,22 @@ const useScanPageData = (navigate: NavigateProps) => {
     };
 
     const onPressAddQuantity = async (quantity: string) => {
-        try {
-            await addConsumedProduct(scannedProduct?.barcode, quantity);
-            navigate(PagesEnum.ConsumedProducts);
-            onPressScanAgain();
-        } catch (err) {
-            if (err instanceof Error) {
-                error(
-                    'onPressModalButton > scanned-item ',
-                    'Unknown error while adding consumed Product to database',
-                    err.message
-                );
+        if (!scannedProduct?.isWater) {
+            try {
+                await addConsumedProduct(scannedProduct?.barcode, quantity);
+                navigate(PagesEnum.ConsumedProducts);
+            } catch (err) {
+                if (err instanceof Error) {
+                    error(
+                        'onPressModalButton > scanned-item ',
+                        'Unknown error while adding consumed Product to database',
+                        err.message
+                    );
+                }
             }
         }
+        onPressScanAgain();
+        setIsScanned(false);
     };
 
     // TODO : Ajout de la logique du bouton favori dans la scan page

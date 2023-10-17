@@ -8,7 +8,7 @@ export type ProductInfo = {
     nutriscore: NutriScore;
     ecoscore: string;
     consumedQuantity?: number;
-    iswater: boolean;
+    isWater: boolean;
     serving: number;
 };
 

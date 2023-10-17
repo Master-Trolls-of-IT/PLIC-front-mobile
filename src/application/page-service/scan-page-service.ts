@@ -9,8 +9,15 @@ import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-r
 const useScanPageService = () => {
     const {
         LogStore: { error },
-        DataStore: { addItem }
+        DataStore: { addItem, history }
     } = useStore();
+
+    const isBarCodePresent = (barcode: string): boolean => {
+        for (const product of history) {
+            if (product.barcode === barcode) return false;
+        }
+        return true;
+    };
 
     const getProduct = ({ inputBarCode, productDispatch, errorDispatch }: ScanPageServiceProps) =>
         axios
@@ -19,7 +26,8 @@ const useScanPageService = () => {
                 const productInfo = response.data.data as ProductInfo;
                 productInfo.barcode = inputBarCode;
                 productDispatch(productInfo);
-                if (!productInfo?.iswater)
+
+                if (!productInfo?.isWater && isBarCodePresent(productInfo.barcode)) {
                     addItem({
                         id: uuid.v4(),
                         barcode: inputBarCode,
@@ -31,6 +39,7 @@ const useScanPageService = () => {
                         isFavourite: false,
                         serving: productInfo?.serving
                     } as HistoricalItemProps);
+                }
             })
             .catch((e) => {
                 errorDispatch("Le code barre n'existe pas");

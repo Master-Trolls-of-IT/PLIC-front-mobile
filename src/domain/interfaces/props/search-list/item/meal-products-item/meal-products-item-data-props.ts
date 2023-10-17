@@ -2,6 +2,6 @@ export type MealProductsItemDataProps = {
     id: string;
     score: number;
     consumedQuantity: string;
-    iswater: boolean;
+    isWater: boolean;
     serving: number;
 };
