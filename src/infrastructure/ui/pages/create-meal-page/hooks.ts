@@ -19,7 +19,6 @@ const useCreateMealPageData = () => {
         setIsValidateModalVisible(false);
     };
 
-    // TODO : Ajout de la page de scan
     const onPressScanProduct = () => {
         navigate(PagesEnum.CreateMealScanPage);
     };
