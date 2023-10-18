@@ -41,7 +41,6 @@ const useCreateMealPageData = () => {
         goBack();
     };
 
-    // TODO : Ajout de la logique d'ajout de repas en base de données
     const onPressValidateModalValidate = async () => {
         setIsValidateModalVisible(false);
         const mealData: MealData = {
