@@ -18,7 +18,7 @@ const useMealPageService = () => {
                 }
             });
         } catch (err) {
-            error('useMealPageService', 'Caught an exception', (err as AxiosError).message);
+            error('useMealPageService', 'Caught an exception.', (err as AxiosError).message);
         }
     };
 
