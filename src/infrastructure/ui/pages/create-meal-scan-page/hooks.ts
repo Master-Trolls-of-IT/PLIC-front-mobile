@@ -52,7 +52,7 @@ const useCreateMealScanPageData = () => {
         if (scannedProduct)
             addMealProducts({
                 id: scannedProduct.id,
-                barcode: inputBarCode,
+                barcode: scannedProduct.barcode,
                 name: scannedProduct?.name,
                 brand: scannedProduct?.brand,
                 data: scannedProduct?.nutrients,
