@@ -1,21 +1,21 @@
-import {useCallback, useState} from 'react';
-import {ColorEnum} from '~/domain/interfaces/enum/color-enum';
-import {useStore} from '~/infrastructure/controllers/store';
-import {PagesEnum} from '~/domain/interfaces/enum/pages-enum';
-import {isValidInput} from "~/infrastructure/ui/shared/helper/is-valid-input";
-import {InputEnum} from "~/domain/interfaces/enum/input-type-enum";
-import {LoginData} from "~/domain/interfaces/services/login";
-import passwordHashing from "~/infrastructure/controllers/password-hashing";
-import APIServices from "~/infrastructure/controllers/services/api";
-import {UserData} from "~/domain/interfaces/services/user-data";
-import formatTimpstampToDate from "~/infrastructure/ui/shared/helper/format-timpstamp-to-date";
-import DataStore from "~/infrastructure/controllers/store/root-store/data-store";
-import LoginStore from "~/infrastructure/controllers/store/root-store/login-store";
+import { useCallback, useState } from 'react';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
+import { useStore } from '~/infrastructure/controllers/store';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
+import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
+import { LoginData } from '~/domain/interfaces/services/login';
+import passwordHashing from '~/infrastructure/controllers/password-hashing';
+import APIServices from '~/infrastructure/controllers/services/api';
+import { UserData } from '~/domain/interfaces/services/user-data';
+import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
+import DataStore from '~/infrastructure/controllers/store/root-store/data-store';
+import LoginStore from '~/infrastructure/controllers/store/root-store/login-store';
 
 const useSettingsPageData = () => {
     const {
         NavigationStore: { navigate },
-        LoginStore: {userData}
+        LoginStore: { userData }
     } = useStore();
 
     const [validateDeleteAccount1, setValidateDeleteAccount1] = useState(false);
@@ -28,16 +28,32 @@ const useSettingsPageData = () => {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
+    const navigateToPersonalDataPage = useCallback(() => {
+        navigate(PagesEnum.PersonalDataPage);
+    }, [navigate]);
+
+    const navigateToWidgetPage = useCallback(() => {
+        navigate(PagesEnum.WidgetPage);
+    }, [navigate]);
+
+    const navigateToStartPage = useCallback(() => {
+        navigate(PagesEnum.LoginPage);
+    }, [navigate]);
+
+    const navigateToSettingsPage = useCallback(() => {
+        navigate(PagesEnum.SettingsPage);
+    }, [navigate]);
+
     const onDeleteAccountPress = () => {
-        setValidateDeleteAccount1(prevState => !prevState);
-    }
+        setValidateDeleteAccount1((prevState) => !prevState);
+    };
 
     const resetAllError = () => {
         setError(false);
         setErrorMessage('');
     };
 
-    const onDeleteAccountModalPress = useCallback(async() => {
+    const onDeleteAccountModalPress = useCallback(async () => {
         resetAllError();
         setLoader(true);
         if (isValidInput(inputPasswordString, InputEnum.Password)) {
@@ -52,33 +68,43 @@ const useSettingsPageData = () => {
                     setValidateDeleteAccount1(false);
                 } else {
                     setError(true);
-                    setErrorMessage('Invalid Password, please try again')
+                    setErrorMessage('Invalid Password, please try again');
                 }
             } catch (e) {
                 setError(true);
-                setErrorMessage('Veuillez réessayer plus tard')
-                console.log(e)
+                setErrorMessage('Veuillez réessayer plus tard');
+                console.log(e);
             }
         } else {
             setError(true);
             setErrorMessage('Invalid password format');
         }
         setLoader(false);
-
-
-
     }, [inputPasswordString]);
 
-    const onDeleteConfirm = () => {
-        navigateToStartPage();
-    }
+    const onDeleteConfirm = async () => {
+        try {
+            const response = await APIServices.DELETE(`/users/${userData.Id}`);
+            if (response.status === 200) {
+                setValidateDeleteAccount2(false);
+                setValidateDeleteAccount1(false);
+                navigateToStartPage();
+            } else {
+                setError(true);
+                setErrorMessage('Error on Account Deletion');
+            }
+        } catch (e) {
+            setError(true);
+            setErrorMessage('Veuillez réessayer plus tard');
+            console.log(e);
+        }
+    };
 
     const onGoSettings = () => {
         setValidateDeleteAccount1(false);
         setValidateDeleteAccount2(false);
         navigateToSettingsPage();
-    }
-
+    };
 
     const logoutButtonStyle = {
         container: {
@@ -111,22 +137,6 @@ const useSettingsPageData = () => {
 
     const arrowLinkAsset = require('~/domain/entities/assets/home-page/arrow-link.svg');
 
-    const navigateToPersonalDataPage = useCallback(() => {
-        navigate(PagesEnum.PersonalDataPage);
-    }, [navigate]);
-
-    const navigateToWidgetPage = useCallback(() => {
-        navigate(PagesEnum.WidgetPage);
-    }, [navigate]);
-
-    const navigateToStartPage = useCallback(() => {
-        navigate(PagesEnum.LoginPage);
-    }, [navigate]);
-
-    const navigateToSettingsPage = useCallback(()=> {
-        navigate(PagesEnum.SettingsPage);
-    }, [navigate]);
-
     return {
         logoutButtonStyle,
         deleteButtonStyle,
@@ -144,7 +154,7 @@ const useSettingsPageData = () => {
         loader,
         error,
         errorMessage,
-        inputPassword: { input: inputPasswordString, dispatch: setInputPassword },
+        inputPassword: { input: inputPasswordString, dispatch: setInputPassword }
     };
 };
 
