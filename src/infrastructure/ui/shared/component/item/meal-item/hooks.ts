@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { MealItemDataProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-data-props';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
@@ -22,7 +23,7 @@ const useMealItemData = ({ score, isFavourite }: MealItemDataProps) => {
     const [favouriteNewHeight, favouriteNewWidth] = [30, 30];
     const [deleteNewHeight, deleteNewWidth] = [40, 40];
     const [editNewHeight, editNewWidth] = [40, 40];
-    const [expandAnimationTime, showButtonsAnimationTime] = [400, 250];
+    const [expandAnimationTime, showButtonsAnimationTime] = [400, 200];
 
     const favouriteIcon = useMemo(() => {
         return isFavourite
@@ -32,7 +33,12 @@ const useMealItemData = ({ score, isFavourite }: MealItemDataProps) => {
 
     const animatedItemStyle = useAnimatedStyle(() => {
         return {
-            height: withTiming(expandedContentHeight.value * (isExpanded ? 1.4 : 1), { duration: expandAnimationTime })
+            height: withDelay(
+                isExpanded ? 0 : showButtonsAnimationTime,
+                withTiming(isExpanded ? expandedContentHeight.value * 1.4 : expandedContentHeight.value, {
+                    duration: expandAnimationTime
+                })
+            )
         };
     });
 
