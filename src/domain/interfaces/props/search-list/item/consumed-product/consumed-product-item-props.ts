@@ -3,6 +3,7 @@ import { ProductNutrients } from '~/domain/interfaces/props/nutrients/product-nu
 export type ConsumedProductItemProps = {
     id: string;
     name: string;
+    barcode: string;
     brand: string;
     score: number;
     consumedQuantity: number;
@@ -10,5 +11,7 @@ export type ConsumedProductItemProps = {
     isFavourite: boolean;
     toggleFavourite: () => void;
     data: ProductNutrients;
+    isWater: boolean;
+    serving: number;
     style?: object;
 };

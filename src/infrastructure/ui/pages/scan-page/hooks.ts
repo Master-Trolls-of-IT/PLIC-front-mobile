@@ -6,20 +6,22 @@ import useScanPageService from '~/application/page-service/scan-page-service';
 import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
 import useScanPageScannedItemService from '~/application/page-service/scan-page-scanned-item-service';
 import { useStore } from '~/infrastructure/controllers/store';
+import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
 
 const useScanPageData = (navigate: NavigateProps) => {
     const {
-        LogStore: { error }
+        DataStore: { consumedProducts }
     } = useStore();
+
+    const { getProduct } = useScanPageService();
+    const { addConsumedProduct } = useScanPageScannedItemService();
+    const { editQuantityConsumedProduct } = useConsumedProductPageService();
 
     const [inputBarCode, setInputBarCode] = useState('');
     const [hasPermission, setHasPermission] = useState(false);
     const [isScanned, setIsScanned] = useState(false);
     const [errorResponse, setErrorResponse] = useState('');
     const [scannedProduct, setScannedProduct] = useState<ProductInfo | undefined>(undefined);
-
-    const { getProduct } = useScanPageService();
-    const { addConsumedProduct } = useScanPageScannedItemService();
 
     const askForCameraPermission = () => {
         (async () => {
@@ -55,19 +57,16 @@ const useScanPageData = (navigate: NavigateProps) => {
     };
 
     const onPressAddQuantity = async (quantity: string) => {
-        if (!scannedProduct?.isWater) {
-            try {
+        if (scannedProduct && !scannedProduct.isWater) {
+            const productAlreadyExist = consumedProducts.find((product) => product.barcode === scannedProduct.barcode);
+
+            if (productAlreadyExist) {
+                const newQuantity: number = Number(quantity) + productAlreadyExist.consumedQuantity;
+                void editQuantityConsumedProduct(scannedProduct?.barcode, newQuantity);
+            } else {
                 await addConsumedProduct(scannedProduct?.barcode, quantity);
-                navigate(PagesEnum.ConsumedProducts);
-            } catch (err) {
-                if (err instanceof Error) {
-                    error(
-                        'onPressModalButton > scanned-item ',
-                        'Unknown error while adding consumed Product to database',
-                        err.message
-                    );
-                }
             }
+            navigate(PagesEnum.ConsumedProducts);
         }
         onPressScanAgain();
         setIsScanned(false);
