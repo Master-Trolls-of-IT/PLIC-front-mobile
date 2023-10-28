@@ -57,6 +57,7 @@ class DataStore {
                 toggleFavoriteHistory: action,
                 toggleFavoriteConsumedProducts: action,
                 setConsumedProducts: action,
+                editConsumedProductQuantity: action,
                 setWidgetParams: action,
                 setEcoScore: action,
                 updateDailyNutrientsGoal: action
@@ -77,6 +78,14 @@ class DataStore {
 
     setConsumedProducts = (newItems: ConsumedProductItemProps[]) => {
         this.consumedProducts = newItems;
+    };
+
+    editConsumedProductQuantity = (id: string, quantity: number) => {
+        this.consumedProducts.map((product) => {
+            if (product.id === id) {
+                product.consumedQuantity = quantity;
+            }
+        });
     };
 
     toggleFavoriteHistory = (id: string) => {

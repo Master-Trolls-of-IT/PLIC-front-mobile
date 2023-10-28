@@ -175,6 +175,63 @@ const ConsumedProductItemStyle = StyleSheet.create({
         height: 43 * (Dimensions.get('screen').width / 400),
         marginTop: 10,
         alignSelf: 'center'
+    },
+
+    deleteModalContainer: {
+        width: 0.72 * Dimensions.get('screen').width
+    },
+
+    textDeleteModalContainer: {
+        marginTop: 8,
+        color: ColorEnum.ClassicBrown,
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        textAlign: 'justify'
+    },
+
+    buttonDeleteModalContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginHorizontal: 5
+    },
+
+    brownButtonText: {
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicBeige
+    },
+
+    greenButtonText: {
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicGrey
+    },
+
+    deleteModalCancelButtonContainer: {
+        backgroundColor: ColorEnum.ClassicBrown,
+        width: 117 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400)
+    },
+
+    deleteModalValidateButtonContainer: {
+        backgroundColor: ColorEnum.ClassicGreen,
+        width: 95 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400)
+    },
+
+    customModalChildren: {
+        paddingTop: 10
+    },
+
+    quantityModalButtonContainer: {
+        marginTop: 10,
+        backgroundColor: ColorEnum.ClassicGreen,
+        height: 43 * (Dimensions.get('screen').height / 900),
+        width: 202 * (Dimensions.get('screen').width / 400)
+    },
+
+    quantityModalButtonText: {
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.SlightlyOpaqueGrey
     }
 });
 

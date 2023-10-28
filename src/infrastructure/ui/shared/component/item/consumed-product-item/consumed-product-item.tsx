@@ -3,37 +3,53 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
 import { Bar } from 'react-native-progress';
 import { observer } from 'mobx-react';
-import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
-import useCustomFontInterRegular from '~/application/utils/font/custom-font-inter-regular-hooks';
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
 import ConsumedProductItemStyle from '~/infrastructure/ui/shared/component/item/consumed-product-item/consumed-product-item-style';
 import useConsumedProductItemData from '~/infrastructure/ui/shared/component/item/consumed-product-item/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
+import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
+import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 
 const ConsumedProductItem = ({
     id,
     name,
     brand,
+    barcode,
     consumedQuantity,
     score,
     image,
     isFavourite,
     data,
+    isWater,
+    serving,
     style
 }: ConsumedProductItemProps) => {
     const {
+        customFontInterBold,
         isExpended,
         onPressProduct,
         animatedItemStyle,
+        isDeleteModalOpen,
+        setIsDeleteModalOpen,
+        isEditModalOpen,
+        setIsEditModalOpen,
+        editModalQuantity,
+        setEditModalQuantity,
         favouriteIcon,
         scoreColor,
         scorePercentage,
-        onPressDeleteConsumedProduct,
+        onPressValidateDeleteModal,
+        onPressDeleteButton,
+        onPressEditModalButton,
+        onPressCancelDeleteModal,
+        onPressAddServing,
+        onPressEditQuantityButton,
         round,
         toggleFavoriteConsumedProducts
-    } = useConsumedProductItemData({ consumedQuantity, isFavourite, score });
+    } = useConsumedProductItemData({ barcode, id, consumedQuantity, isFavourite, score, serving });
 
     return (
         <Animated.View style={[animatedItemStyle, ConsumedProductItemStyle.item, style]}>
@@ -48,12 +64,8 @@ const ConsumedProductItem = ({
                     </View>
 
                     <View style={ConsumedProductItemStyle.titleField}>
-                        <Text style={{ ...ConsumedProductItemStyle.title, ...useCustomFontInterBold().text }}>
-                            {brand}
-                        </Text>
-                        <Text
-                            style={{ ...ConsumedProductItemStyle.description, ...useCustomFontInterRegular().text }}
-                            numberOfLines={3}>
+                        <Text style={{ ...ConsumedProductItemStyle.title, ...customFontInterBold }}>{brand}</Text>
+                        <Text style={{ ...ConsumedProductItemStyle.description }} numberOfLines={3}>
                             {name}
                         </Text>
                     </View>
@@ -70,7 +82,7 @@ const ConsumedProductItem = ({
                                 animated={false}
                             />
                         </View>
-                        <Text style={{ ...ConsumedProductItemStyle.score, ...useCustomFontInterBold().text }}>
+                        <Text style={{ ...ConsumedProductItemStyle.score, ...customFontInterBold }}>
                             {isNaN(score) ? 0 : score}
                         </Text>
                     </View>
@@ -138,7 +150,7 @@ const ConsumedProductItem = ({
                         </View>
                         <GenericButton
                             title="Modifier la quantité consommée"
-                            onPress={() => {}}
+                            onPress={onPressEditQuantityButton}
                             style={{
                                 container: ConsumedProductItemStyle.addButtonContainer,
                                 text: ConsumedProductItemStyle.addButtonText
@@ -146,7 +158,7 @@ const ConsumedProductItem = ({
                         />
                         <GenericButton
                             title="Supprimer ce produit consommé"
-                            onPress={() => onPressDeleteConsumedProduct(id)}
+                            onPress={onPressDeleteButton}
                             style={{
                                 container: ConsumedProductItemStyle.deleteButtonContainer,
                                 text: ConsumedProductItemStyle.addButtonText
@@ -155,6 +167,73 @@ const ConsumedProductItem = ({
                     </Animated.View>
                 )}
             </TouchableOpacity>
+
+            {isDeleteModalOpen && (
+                <CustomModalWithHeader
+                    title={'Supprimer le produit'}
+                    isVisible={isDeleteModalOpen}
+                    dispatch={setIsDeleteModalOpen}>
+                    <View style={ConsumedProductItemStyle.deleteModalContainer}>
+                        <Text
+                            style={{
+                                ...ConsumedProductItemStyle.textDeleteModalContainer,
+                                ...customFontInterBold
+                            }}>
+                            {'Confirmer la suppression de ce produit consommé ?'}
+                        </Text>
+
+                        <View style={ConsumedProductItemStyle.buttonDeleteModalContainer}>
+                            <GenericButton
+                                title={'Annuler'}
+                                onPress={onPressCancelDeleteModal}
+                                style={{
+                                    container: ConsumedProductItemStyle.deleteModalCancelButtonContainer,
+                                    text: ConsumedProductItemStyle.brownButtonText
+                                }}
+                            />
+
+                            <GenericButton
+                                title={'Valider'}
+                                onPress={onPressValidateDeleteModal}
+                                style={{
+                                    container: ConsumedProductItemStyle.deleteModalValidateButtonContainer,
+                                    text: ConsumedProductItemStyle.greenButtonText
+                                }}
+                            />
+                        </View>
+                    </View>
+                </CustomModalWithHeader>
+            )}
+
+            {isEditModalOpen && (
+                <CustomModal
+                    isVisible={isEditModalOpen}
+                    dispatch={setIsEditModalOpen}
+                    title={'Ajouter la quantité\n consommée'}
+                    titleSize={22}>
+                    <GenericInputWithSearchIconAndEndText
+                        placeHolder={isWater ? '25' : '100'}
+                        endText={isWater ? 'cl' : 'g'}
+                        style={ConsumedProductItemStyle.customModalChildren}
+                        input={editModalQuantity}
+                        dispatch={setEditModalQuantity}
+                        onPressSearchIcon={onPressEditModalButton}
+                    />
+
+                    {serving ? (
+                        <GenericButton
+                            title={'Ajouter une portion'}
+                            onPress={onPressAddServing}
+                            style={{
+                                container: ConsumedProductItemStyle.quantityModalButtonContainer,
+                                text: ConsumedProductItemStyle.quantityModalButtonText
+                            }}
+                        />
+                    ) : (
+                        <></>
+                    )}
+                </CustomModal>
+            )}
         </Animated.View>
     );
 };
