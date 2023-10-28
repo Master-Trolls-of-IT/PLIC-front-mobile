@@ -72,7 +72,8 @@ const useConsumedProductPageService = () => {
                 const response = await APIServices.DELETE<ConsumedProduct[]>(
                     `product/consumed/${productId}/user/${Email}`
                 );
-                return mapResponse(response.data);
+
+                return mapResponse(response.data ?? []);
             } catch (err) {
                 if (err instanceof Error) {
                     error('useConsumedProductPageService', 'Could not delete consumed product', err.message);
