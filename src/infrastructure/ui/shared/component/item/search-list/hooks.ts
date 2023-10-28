@@ -7,6 +7,7 @@ import { SearchListData, SearchListInputType } from '~/domain/interfaces/props/s
 import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
 import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
+import { compareStrings } from '~/infrastructure/ui/shared/helper/compare-strings';
 
 const useSearchListData = (inputType: SearchListInputType, data: SearchListData) => {
     const [searchedText, setSearchedText] = useState('');
@@ -38,15 +39,15 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
             switch (inputType) {
                 case ItemEnum.Historical:
                     return (mockedData as HistoricalItemProps[]).filter(
-                        (Item) => Item.name.includes(search) || Item.name.includes(search)
+                        (item) => compareStrings(item.name, search) || compareStrings(item.name, search)
                     );
                 case ItemEnum.ConsumedProducts:
                     return (mockedData as ConsumedProductItemProps[]).filter(
-                        (Item) => Item.name.includes(search) || Item.name.includes(search)
+                        (item) => compareStrings(item.name, search) || compareStrings(item.name, search)
                     );
                 case ItemEnum.Meal:
                     return (mockedData as MealItemProps[]).filter(
-                        (Item) => Item.title.includes(search) || Item.title.includes(search)
+                        (item) => compareStrings(item.title, search) || compareStrings(item.title, search)
                     );
                 default:
                     return prevState;

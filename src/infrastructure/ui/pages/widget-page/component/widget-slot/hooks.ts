@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
-import { View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 
 const useWidgetSlotData = (
     id: number,
@@ -10,20 +10,27 @@ const useWidgetSlotData = (
 
     useEffect(() => {
         slotRef.current?.measure((_x, _y, width, height, pageX, pageY) => {
+            const middleSmallBlankWidget = (Dimensions.get('screen').width * 0.4) / 3;
+            const middleLargeBlankWidgetWidth = (Dimensions.get('screen').width * 0.85) / 3;
+            const middleLargeBlankWidgetHeight = (Dimensions.get('screen').width * 0.4) / 3;
+
             if (widgetDropped && setHandleDrop)
                 switch (widgetDropped.type) {
                     case 'small':
                         if (
-                            widgetDropped.x >= pageX &&
-                            widgetDropped.x <= pageX + width &&
-                            widgetDropped.y >= pageY &&
-                            widgetDropped.y <= pageY + height
+                            widgetDropped.x + middleSmallBlankWidget >= pageX &&
+                            widgetDropped.x + middleSmallBlankWidget <= pageX + width &&
+                            widgetDropped.y + middleSmallBlankWidget >= pageY &&
+                            widgetDropped.y + middleSmallBlankWidget <= pageY + height
                         ) {
                             setHandleDrop({ isLine: false, id: id });
                         }
                         break;
                     case 'large':
-                        if (widgetDropped.y >= pageY && widgetDropped.y <= pageY + height) {
+                        if (
+                            widgetDropped.y + middleLargeBlankWidgetHeight >= pageY &&
+                            widgetDropped.y + middleLargeBlankWidgetWidth <= pageY + height
+                        ) {
                             setHandleDrop({ isLine: true, id: Math.round(id / 2) });
                         }
                 }
