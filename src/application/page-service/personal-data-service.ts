@@ -7,9 +7,10 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const usePersonalDataServices = () => {
     const {
-        LoginStore: { userData },
-        LogStore: { error }
+        UserStore: { userData },
+        LogsStore: { error }
     } = useStore();
+
     const updateUserData = async (newUserData: UserData) => {
         try {
             const response: GenericResponse<UserData> = await APIServices.PATCH<UserData, UserData>(

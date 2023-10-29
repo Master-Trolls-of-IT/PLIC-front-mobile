@@ -4,7 +4,7 @@ import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
 
 const useMealTagsData = () => {
     const {
-        CreateMealStore: { mealTags, setMealTags }
+        MealStore: { mealTags, setMealTags }
     } = useStore();
 
     const [isTagsModalVisible, setIsTagsModalVisible] = useState(false);

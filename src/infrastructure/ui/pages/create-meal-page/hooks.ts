@@ -8,9 +8,9 @@ import useMealPageService from '~/application/page-service/meal-page-service';
 
 const useCreateMealPageData = () => {
     const {
-        CreateMealStore: { mealProducts, mealTags, resetStore },
+        MealStore: { mealProducts, mealTags, resetStore },
         NavigationStore: { navigate, goBack },
-        LoginStore: { userData }
+        UserStore: { userData }
     } = useStore();
 
     const { addMeal } = useMealPageService();

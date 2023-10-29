@@ -18,8 +18,8 @@ const useLoginPageData = () => {
     const [loader, setLoader] = useState(false);
 
     const {
-        LoginStore: { setRefreshToken, setAccessToken, setUserData },
-        LogStore: { warn },
+        UserStore: { setRefreshToken, setAccessToken, setUserData },
+        LogsStore: { warn },
         NavigationStore: { navigate }
     } = useStore();
     const { RefreshTokenGen } = useLoginPageService();

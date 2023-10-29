@@ -5,7 +5,7 @@ import { UserData } from '~/domain/interfaces/services/user-data';
 import { defaultUserData } from '~/domain/interfaces/constant/default-user-data';
 import RootStore from '~/infrastructure/controllers/store/root-store/index';
 
-class LoginStore {
+class UserStore {
     RootStore: RootStore;
     userData: UserData;
     accessToken: string;
@@ -25,10 +25,12 @@ class LoginStore {
 
                 setUserData: action,
                 setRefreshToken: action,
-                setAccessToken: action
+                setAccessToken: action,
+                resetStore: action
             },
             { autoBind: true }
         );
+
         void makePersistable(
             this,
             {
@@ -60,4 +62,4 @@ class LoginStore {
     };
 }
 
-export default LoginStore;
+export default UserStore;

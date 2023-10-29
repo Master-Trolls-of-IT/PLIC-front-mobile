@@ -7,10 +7,10 @@ import { EditConsumedProductQuantity } from '~/domain/interfaces/services/edit-c
 
 const useConsumedProductPageService = () => {
     const {
-        LoginStore: {
+        UserStore: {
             userData: { Email }
         },
-        LogStore: { error }
+        LogsStore: { error }
     } = useStore();
 
     type ConsumedProduct = { product: ProductInfo; quantity: number };

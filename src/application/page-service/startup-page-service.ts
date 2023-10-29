@@ -4,7 +4,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const useStartUpPageService = () => {
     const {
-        LogStore: { error }
+        LogsStore: { error }
     } = useStore();
     const APIPing = async () => {
         try {

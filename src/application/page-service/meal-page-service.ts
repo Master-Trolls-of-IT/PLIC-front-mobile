@@ -7,7 +7,7 @@ import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 const useMealPageService = () => {
     const {
         NavigationStore: { navigate },
-        LogStore: { error }
+        LogsStore: { error }
     } = useStore();
 
     const addMeal = async (mealData: MealData) => {

@@ -4,7 +4,7 @@ import { TagsComponentDataProps } from '~/domain/interfaces/props/tags/tags-comp
 
 const useTagsComponentData = ({ tag, isCross, mealTagsSelected, dispatch }: TagsComponentDataProps) => {
     const {
-        CreateMealStore: { deleteMealTag }
+        MealStore: { deleteMealTag }
     } = useStore();
 
     const [isSelected, setIsSelected] = useState(!isCross && mealTagsSelected.includes(tag));

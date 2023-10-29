@@ -4,7 +4,7 @@ import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 
 const useHomePageData = () => {
     const {
-        LoginStore: { userData },
+        UserStore: { userData },
         DataStore: { widgetsParams }
     } = useStore();
 

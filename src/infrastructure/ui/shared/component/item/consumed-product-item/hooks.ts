@@ -15,7 +15,7 @@ const useConsumedProductItemData = ({
     serving
 }: ConsumedProductItemDataProps) => {
     const {
-        DataStore: {
+        ConsumedProductStore: {
             setConsumedProducts,
             editConsumedProductQuantity,
             consumedProducts,

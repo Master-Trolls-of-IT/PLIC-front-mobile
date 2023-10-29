@@ -8,8 +8,8 @@ import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-r
 
 const useScanPageService = () => {
     const {
-        LogStore: { error },
-        DataStore: { addItem, history }
+        LogsStore: { error },
+        HistoryStore: { addItem, history }
     } = useStore();
 
     const isBarCodePresent = (barcode: string): boolean => {
