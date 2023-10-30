@@ -5,9 +5,8 @@ import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/gener
 import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
 import { ScannedItemDataProps } from '~/domain/interfaces/props/scanned-item/scanned-item-data-props';
 
-const useScannedItemData = ({ scannedProduct, onPressAddQuantity }: ScannedItemDataProps) => {
+const useScannedItemData = ({ scannedProduct }: ScannedItemDataProps) => {
     const [modal, setModal] = useState(false);
-    const [quantity, setQuantity] = useState('');
 
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
@@ -29,13 +28,6 @@ const useScannedItemData = ({ scannedProduct, onPressAddQuantity }: ScannedItemD
         }
     };
 
-    // TODO : Ajout de la quantité d'eau consommée dans le store
-    const onPressModalButton = async () => {
-        setModal(false);
-        void onPressAddQuantity(quantity);
-        setQuantity('');
-    };
-
     const interBoldText = CustomFontInterBold().text;
 
     const showRightEcoScore = (() => {
@@ -48,23 +40,12 @@ const useScannedItemData = ({ scannedProduct, onPressAddQuantity }: ScannedItemD
             );
     })();
 
-    const servingQuantity = scannedProduct?.isWater ? 25 : scannedProduct?.serving ?? 0;
-
-    const onPressAddServing = () => {
-        setQuantity(String(Number(quantity) + servingQuantity));
-    };
-
     return {
         modal,
         setModal,
         chooseRightNutriScoreImage,
         horizontalScrollLineAsset,
-        quantity,
-        servingQuantity,
-        setQuantity,
         unfilledFavouriteAsset,
-        onPressModalButton,
-        onPressAddServing,
         interBoldText,
         showRightEcoScore
     };

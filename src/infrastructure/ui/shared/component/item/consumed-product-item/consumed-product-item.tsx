@@ -10,8 +10,7 @@ import ConsumedProductItemStyle from '~/infrastructure/ui/shared/component/item/
 import useConsumedProductItemData from '~/infrastructure/ui/shared/component/item/consumed-product-item/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
-import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
+import ModalAddQuantity from '~/infrastructure/ui/shared/component/modal/modal-add-quantity/modal-add-quantity';
 
 const ConsumedProductItem = ({
     id,
@@ -36,20 +35,17 @@ const ConsumedProductItem = ({
         setIsDeleteModalOpen,
         isEditModalOpen,
         setIsEditModalOpen,
-        editModalQuantity,
-        setEditModalQuantity,
         favouriteIcon,
         scoreColor,
         scorePercentage,
         onPressValidateDeleteModal,
         onPressDeleteButton,
-        onPressEditModalButton,
+        addQuantity,
         onPressCancelDeleteModal,
-        onPressAddServing,
         onPressEditQuantityButton,
         round,
         toggleFavoriteConsumedProducts
-    } = useConsumedProductItemData({ barcode, id, consumedQuantity, isFavourite, score, serving });
+    } = useConsumedProductItemData({ barcode, id, consumedQuantity, isFavourite, score });
 
     return (
         <Animated.View style={[animatedItemStyle, ConsumedProductItemStyle.item, style]}>
@@ -205,35 +201,15 @@ const ConsumedProductItem = ({
                 </CustomModalWithHeader>
             )}
 
-            {isEditModalOpen && (
-                <CustomModal
-                    isVisible={isEditModalOpen}
-                    dispatch={setIsEditModalOpen}
-                    title={'Ajouter la quantité\n consommée'}
-                    titleSize={22}>
-                    <GenericInputWithSearchIconAndEndText
-                        placeHolder={isWater ? '25' : '100'}
-                        endText={isWater ? 'cl' : 'g'}
-                        style={ConsumedProductItemStyle.customModalChildren}
-                        input={editModalQuantity}
-                        dispatch={setEditModalQuantity}
-                        onPressSearchIcon={onPressEditModalButton}
-                    />
-
-                    {serving ? (
-                        <GenericButton
-                            title={'Ajouter une portion'}
-                            onPress={onPressAddServing}
-                            style={{
-                                container: ConsumedProductItemStyle.quantityModalButtonContainer,
-                                text: ConsumedProductItemStyle.quantityModalButtonText
-                            }}
-                        />
-                    ) : (
-                        <></>
-                    )}
-                </CustomModal>
-            )}
+            <ModalAddQuantity
+                title={'Modifier la quantité\n consommée'}
+                modal={isEditModalOpen}
+                setModal={setIsEditModalOpen}
+                addQuantity={addQuantity}
+                isWater={isWater}
+                serving={serving}
+                defaultQuantity={String(consumedQuantity)}
+            />
         </Animated.View>
     );
 };
