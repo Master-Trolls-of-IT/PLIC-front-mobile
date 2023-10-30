@@ -58,7 +58,7 @@ const useLoginPageData = () => {
                     }
                     const userDataCopy = response.data;
 
-                    userDataCopy.Birthdate = formatTimestampToDate(userDataCopy.Birthdate);
+                    userDataCopy.birthdate = formatTimestampToDate(userDataCopy.birthdate);
                     setUserData(userDataCopy);
                     navigate(PagesEnum.HomePage);
                 } else {

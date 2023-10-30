@@ -52,7 +52,7 @@ const useSettingsPageData = () => {
         setLoader(true);
         if (isValidInput(inputPasswordString, InputEnum.Password)) {
             const data: LoginData = {
-                email: userData.Email.toLowerCase(),
+                email: userData.email.toLowerCase(),
                 password: passwordHashing(inputPasswordString)
             };
             try {
@@ -68,11 +68,11 @@ const useSettingsPageData = () => {
             setErrorMessage('Le champ mot de passe est invalide');
         }
         setLoader(false);
-    }, [inputPasswordString, userData.Email]);
+    }, [inputPasswordString, userData.email]);
 
     const onDeleteConfirm = async () => {
         try {
-            await APIServices.DELETE(`/users/${userData.Id}`);
+            await APIServices.DELETE(`/users/${userData.id}`);
             setDeleteConfirmationModal(false);
             setDeletePasswordModal(false);
             navigateToStartPage();

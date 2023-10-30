@@ -63,17 +63,17 @@ const useSignUpPageData = (goBack: () => void) => {
             setLoader(true);
             if (checkAllInputs) {
                 const data: Partial<SignUpData> = {
-                    Email: inputEmailString.toLowerCase(),
-                    Username: inputEmailString,
+                    email: inputEmailString.toLowerCase(),
+                    username: inputEmailString,
                     Password: PasswordHashing(inputPasswordString),
-                    Birthdate: inputBirthdateString,
-                    Weight: +inputWeightString,
-                    Height: +inputHeightString,
-                    Gender: +inputGenderString.value,
-                    Pseudo: inputNameString,
-                    Rights: 0,
-                    Sportiveness: +inputSportActivityString,
-                    BasalMetabolism: basalMetabolism
+                    birthdate: inputBirthdateString,
+                    weight: +inputWeightString,
+                    height: +inputHeightString,
+                    gender: +inputGenderString.value,
+                    pseudo: inputNameString,
+                    rights: 0,
+                    sportiveness: +inputSportActivityString,
+                    basalMetabolism: basalMetabolism
                 };
 
                 await SignUp(data, setErrorOnServer, setErrorOnEmailAlreadyExists);
