@@ -9,7 +9,9 @@ class RecipeStore {
         makeObservable(
             this,
             {
-                resetStore: action
+                resetStore: action,
+                addRecipe: action,
+                toggleFavorite: action
             },
             { autoBind: true }
         );
