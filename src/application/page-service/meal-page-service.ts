@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { MealData } from '~/domain/interfaces/services/meal-data';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';

@@ -1,4 +1,6 @@
-import { Animated, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import Animated, { FadeIn, FadeOutUp } from 'react-native-reanimated';
+
 import React from 'react';
 import { observer } from 'mobx-react';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
@@ -6,6 +8,7 @@ import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/m
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useMealItemData from '~/infrastructure/ui/shared/component/item/meal-item/hooks';
+import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 
 const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, tags, style }: MealItemProps) => {
     const {
@@ -13,16 +16,28 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
         toggleFavorite,
         scoreStyle,
         restaurantIcon,
+        deleteIcon,
+        editIcon,
         imageNewHeight,
         imageNewWidth,
         favouriteNewHeight,
         favouriteNewWidth,
+        deleteNewHeight,
+        deleteNewWidth,
+        editNewHeight,
+        editNewWidth,
         isExpanded,
-        setIsExpanded
+        setIsExpanded,
+        animatedItemStyle,
+        showExpandedView,
+        showButtonsAnimationTime
     } = useMealItemData({ score, isFavourite });
     return (
-        <Animated.View style={{ ...MealItemStyle.item, ...style }}>
-            <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)}>
+        <Animated.View style={[MealItemStyle.item, style, animatedItemStyle]}>
+            <TouchableOpacity
+                onPress={() => {
+                    setIsExpanded(!isExpanded);
+                }}>
                 <View style={MealItemStyle.container}>
                     <View style={MealItemStyle.imageContainer}>
                         <CustomSvg asset={restaurantIcon} height={imageNewHeight} width={imageNewWidth} />
@@ -71,10 +86,19 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
                     </TouchableOpacity>
                 </View>
             </TouchableOpacity>
-            {isExpanded && (
-                <View>
-                    <Text>{'test'}</Text>
-                </View>
+            {isExpanded && showExpandedView && (
+                <Animated.View
+                    style={[MealItemStyle.expandedSection]}
+                    entering={FadeIn.duration(showButtonsAnimationTime)}
+                    exiting={FadeOutUp.duration(showButtonsAnimationTime)}>
+                    <CustomSvg asset={deleteIcon} width={deleteNewWidth} height={deleteNewHeight} />
+                    <GenericButton
+                        title="Consommer ce repas"
+                        style={{ text: MealItemStyle.buttonText, container: MealItemStyle.consumeButtonContainer }}
+                        onPress={() => {}}
+                    />
+                    <CustomSvg asset={editIcon} width={editNewWidth} height={editNewHeight} />
+                </Animated.View>
             )}
         </Animated.View>
     );

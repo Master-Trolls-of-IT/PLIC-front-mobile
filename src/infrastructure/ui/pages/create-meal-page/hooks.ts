@@ -51,7 +51,6 @@ const useCreateMealPageData = () => {
                 return { barcode: product.barcode, quantity: product.consumedQuantity } as ProductQuantity;
             })
         };
-
         await addMeal(mealData);
         getMeals(userData.email).then((mealItemProps) => {
             setMealList(mealItemProps);
