@@ -15,7 +15,6 @@ import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-in
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
 
 const SettingsPage = () => {
