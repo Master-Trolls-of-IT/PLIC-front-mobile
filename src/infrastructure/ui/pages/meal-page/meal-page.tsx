@@ -18,12 +18,6 @@ const MealPage = () => {
                 <MealPageBlobsTop />
             </View>
 
-            <GenericHeaderText
-                firstText={'Vos Repas'}
-                secondText={'Créer un repas ou visualisez un repas enregistré'}
-                containerStyle={MealPageStyle.headerContainer}
-            />
-
             <SearchList itemType={ItemEnum.Meal} data={mealList} />
 
             <GenericButton
