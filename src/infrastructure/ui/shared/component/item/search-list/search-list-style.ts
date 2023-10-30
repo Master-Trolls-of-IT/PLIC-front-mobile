@@ -10,7 +10,7 @@ const SearchListStyle = StyleSheet.create({
         width: '90%',
         alignSelf: 'center',
         borderBottomColor: ColorEnum.ClassicBrown,
-        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomWidth: 1,
         paddingTop: 15,
         paddingBottom: 15
     },
@@ -25,10 +25,10 @@ const SearchListStyle = StyleSheet.create({
     },
 
     noData: {
-        fontSize: 21,
+        fontSize: 19,
         color: ColorEnum.ClassicBrown,
         alignSelf: 'center',
-        marginTop: '50%'
+        marginTop: '15%'
     }
 });
 

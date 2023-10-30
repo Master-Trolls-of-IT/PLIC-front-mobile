@@ -1,9 +1,9 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import { GenericInputWithSearchIconProps } from '~/domain/interfaces/props/generic-input/generic-input-with-search-icon-props';
+import { GenericInputWithSearchIconProps } from '~/domain/interfaces/props/generic/generic-input/generic-input-with-search-icon-props';
 import GenericInputWithSearchIconStyle from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon/generic-input-with-search-icon-style';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useGenericInputWithSearchIconData from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon/hooks';
 
 const GenericInputWithSearchIcon = ({

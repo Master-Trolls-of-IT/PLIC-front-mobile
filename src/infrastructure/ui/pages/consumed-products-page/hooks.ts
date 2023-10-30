@@ -1,27 +1,21 @@
-import { useEffect } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
+import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
 
 const useConsumedProductsData = () => {
     const {
         NavigationStore: { goBack },
-        DataStore: { consumedProducts, setConsumedProducts }
+        ConsumedProductStore: { consumedProducts, setConsumedProducts }
     } = useStore();
 
     const { getConsumedProducts } = useConsumedProductPageService();
 
-    useEffect(() => {
-        let ignore = false;
+    useEffectOnce(() => {
         setConsumedProducts([]);
         getConsumedProducts().then((result) => {
-            if (!ignore) {
-                setConsumedProducts(result);
-            }
+            setConsumedProducts(result);
         });
-        return () => {
-            ignore = true;
-        };
-    }, [getConsumedProducts, setConsumedProducts]);
+    });
 
     return {
         goBack,

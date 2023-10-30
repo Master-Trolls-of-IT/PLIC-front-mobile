@@ -4,7 +4,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { observer } from 'mobx-react';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients-enum';
+import { NutrientsEnum } from '~/domain/interfaces/enum/nutrients/nutrients-enum';
 import WidgetEnergyStyle from '~/infrastructure/ui/shared/component/widgets/energy/widget-energy-style';
 import useWidgetEnergyData from '~/infrastructure/ui/shared/component/widgets/energy/hooks';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import GenericButtonStyle from '~/infrastructure/ui/shared/component/generic-button/generic-button-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import { GenericButtonProps } from '~/domain/interfaces/props/generic-button-props';
+import { GenericButtonProps } from '~/domain/interfaces/props/generic/generic-button-props';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const GenericButton = ({ title, style, loader, onPress }: GenericButtonProps) => {

@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 
 const useGenericBackArrowIconData = (goBack: () => void) => {
-    const asset = require('~/domain/entities/assets/icon/icon-back-arrow.svg');
+    const asset = require('~/domain/entities/assets/icon/arrow/icon-back-arrow.svg');
 
     const newHeight: number = Dimensions.get('screen').height / 18;
     const newWidth: number = Dimensions.get('screen').width;

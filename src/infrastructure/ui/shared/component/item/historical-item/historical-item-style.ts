@@ -108,7 +108,7 @@ const HistoricalItemStyle = StyleSheet.create({
 
     myIntakesTitleContainer: {
         borderBottomColor: ColorEnum.ClassicBrown,
-        borderBottomWidth: StyleSheet.hairlineWidth
+        borderBottomWidth: 1
     },
 
     myIntakesTitle: {

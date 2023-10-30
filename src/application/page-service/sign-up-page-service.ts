@@ -8,8 +8,8 @@ import { UserData } from '~/domain/interfaces/services/user-data';
 const useSignUpPageService = () => {
     const {
         NavigationStore: { navigate },
-        LoginStore: { setUserData },
-        LogStore: { error }
+        UserStore: { setUserData },
+        LogsStore: { error }
     } = useStore();
 
     const SignUp = async (

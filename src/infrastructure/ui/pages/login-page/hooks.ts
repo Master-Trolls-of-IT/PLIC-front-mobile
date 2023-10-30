@@ -8,7 +8,7 @@ import passwordHashing from '~/infrastructure/controllers/password-hashing';
 import { useStore } from '~/infrastructure/controllers/store';
 import useLoginPageService from '~/application/page-service/login-page-service';
 import { UserData } from '~/domain/interfaces/services/user-data';
-import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
+import formatTimestampToDate from '~/infrastructure/ui/shared/helper/format-timestamp-to-date';
 
 const useLoginPageData = () => {
     const [inputEmailString, setInputEmail] = useState('');
@@ -18,8 +18,8 @@ const useLoginPageData = () => {
     const [loader, setLoader] = useState(false);
 
     const {
-        LoginStore: { setRefreshToken, setAccessToken, setUserData },
-        LogStore: { warn },
+        UserStore: { setRefreshToken, setAccessToken, setUserData },
+        LogsStore: { warn },
         NavigationStore: { navigate }
     } = useStore();
     const { RefreshTokenGen } = useLoginPageService();
@@ -58,7 +58,7 @@ const useLoginPageData = () => {
                     }
                     const userDataCopy = response.data;
 
-                    userDataCopy.Birthdate = formatTimpstampToDate(userDataCopy.Birthdate);
+                    userDataCopy.Birthdate = formatTimestampToDate(userDataCopy.Birthdate);
                     setUserData(userDataCopy);
                     navigate(PagesEnum.HomePage);
                 } else {

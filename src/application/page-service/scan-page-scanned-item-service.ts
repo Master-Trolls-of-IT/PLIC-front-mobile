@@ -4,10 +4,10 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const useScanPageScannedItemService = () => {
     const {
-        LoginStore: {
+        UserStore: {
             userData: { Email }
         },
-        LogStore: { error }
+        LogsStore: { error }
     } = useStore();
 
     const addConsumedProduct = async (barcode: string | undefined, quantity: string) => {

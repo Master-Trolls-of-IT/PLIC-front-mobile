@@ -2,18 +2,33 @@ import { useCallback, useMemo, useState } from 'react';
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import getColorFromPercentage from '~/infrastructure/ui/shared/helper/get-color-from-percentage';
 import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
-import { ConsumedProductItemDataProps } from '~/domain/interfaces/props/search-list/consumed-product-item-data-props';
+import { ConsumedProductItemDataProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-data-props';
 import { useStore } from '~/infrastructure/controllers/store';
+import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 
-const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: ConsumedProductItemDataProps) => {
+const useConsumedProductItemData = ({
+    barcode,
+    id,
+    consumedQuantity,
+    isFavourite,
+    score,
+    serving
+}: ConsumedProductItemDataProps) => {
     const {
-        DataStore: { setConsumedProducts, consumedProducts, toggleFavoriteConsumedProducts }
+        ConsumedProductStore: {
+            setConsumedProducts,
+            editConsumedProductQuantity,
+            consumedProducts,
+            toggleFavoriteConsumedProducts
+        }
     } = useStore();
 
-    const { deleteConsumedProduct } = useConsumedProductPageService();
+    const { deleteConsumedProduct, editQuantityConsumedProduct } = useConsumedProductPageService();
 
-    const [itemId, setItemId] = useState('');
     const [isExpended, setIsExpended] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [editModalQuantity, setEditModalQuantity] = useState(String(consumedQuantity));
 
     const itemHeight = useSharedValue(100);
     const scorePercentage = score / 100;
@@ -31,21 +46,48 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
         return Number(newValue.toFixed(2));
     };
 
-    const onPress = () => {
+    const onPressProduct = () => {
         setIsExpended((prevState) => !prevState);
     };
 
-    const onPressDeleteConsumedProduct = useCallback(
-        (id: string) => {
-            const deleteProduct = async () => {
-                const newConsumedProductItems = await deleteConsumedProduct(id);
-                setConsumedProducts(newConsumedProductItems ?? consumedProducts);
-            };
-            void deleteProduct();
-            setIsExpended(false);
-        },
-        [consumedProducts, deleteConsumedProduct, setConsumedProducts]
-    );
+    const onPressDeleteButton = () => {
+        setIsDeleteModalOpen(true);
+    };
+
+    const onPressCancelDeleteModal = () => {
+        setIsDeleteModalOpen(false);
+    };
+
+    const onPressEditQuantityButton = () => {
+        setIsEditModalOpen(true);
+    };
+
+    const onPressEditModalButton = useCallback(() => {
+        const newQuantity = Number(editModalQuantity);
+
+        const editProductQuantity = async () => {
+            await editQuantityConsumedProduct(barcode, newQuantity);
+        };
+
+        void editProductQuantity();
+        editConsumedProductQuantity(id, newQuantity);
+        setIsEditModalOpen(false);
+    }, [barcode, editConsumedProductQuantity, editModalQuantity, editQuantityConsumedProduct, id]);
+
+    const onPressAddServing = () => {
+        setEditModalQuantity(String(consumedQuantity + Number(serving)));
+    };
+
+    const onPressValidateDeleteModal = useCallback(() => {
+        const deleteProduct = async () => {
+            const newConsumedProductItems = await deleteConsumedProduct(id);
+            setConsumedProducts(newConsumedProductItems ?? consumedProducts);
+        };
+
+        void deleteProduct();
+        setIsExpended(false);
+        setIsDeleteModalOpen(false);
+    }, [consumedProducts, deleteConsumedProduct, id, setConsumedProducts]);
 
     const favouriteIcon = useMemo(() => {
         return isFavourite
@@ -53,15 +95,28 @@ const useConsumedProductItemData = ({ consumedQuantity, isFavourite, score }: Co
             : require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     }, [isFavourite]);
 
+    const customFontInterBold = useCustomFontInterBold().text;
+
     return {
-        itemId: { input: itemId, dispatch: setItemId },
+        customFontInterBold,
         isExpended,
-        onPress,
+        onPressProduct,
         animatedItemStyle,
+        isDeleteModalOpen,
+        setIsDeleteModalOpen,
+        isEditModalOpen,
+        setIsEditModalOpen,
+        editModalQuantity,
+        setEditModalQuantity,
         favouriteIcon,
         scoreColor,
         scorePercentage,
-        onPressDeleteConsumedProduct,
+        onPressValidateDeleteModal,
+        onPressDeleteButton,
+        onPressEditModalButton,
+        onPressCancelDeleteModal,
+        onPressAddServing,
+        onPressEditQuantityButton,
         round,
         toggleFavoriteConsumedProducts
     };

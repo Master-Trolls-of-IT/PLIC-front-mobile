@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useAppContainerData from '~/infrastructure/ui/shared/component/app-container/hooks';
 import AppContainerStyle from '~/infrastructure/ui/shared/component/app-container/app-container-style';
 

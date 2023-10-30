@@ -1,10 +1,10 @@
 import { useStore } from '~/infrastructure/controllers/store';
-import useRenderWidgetField from '~/infrastructure/ui/shared/helper/use-render-widget-field';
+import useRenderWidgetField from '~/infrastructure/ui/shared/component/use-render-widget-field';
 import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 
 const useHomePageData = () => {
     const {
-        LoginStore: { userData },
+        UserStore: { userData },
         DataStore: { widgetsParams }
     } = useStore();
 

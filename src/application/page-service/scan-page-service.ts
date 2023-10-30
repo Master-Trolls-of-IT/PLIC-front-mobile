@@ -1,16 +1,23 @@
 import axios from 'axios';
 import uuid from 'react-native-uuid';
 import { useStore } from '~/infrastructure/controllers/store';
-import { ScanPageServiceProps } from '~/domain/interfaces/props/scan-page-service-props';
-import { ProductInfo } from '~/domain/interfaces/services/product-nutrients';
-import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/historical-item-props';
-import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-ecoScore-value';
+import { ScanPageServiceProps } from '~/domain/interfaces/services/scan-page-service-props';
+import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
+import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-props';
+import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-eco-score-value';
 
 const useScanPageService = () => {
     const {
-        LogStore: { error },
-        DataStore: { addItem }
+        LogsStore: { error },
+        HistoryStore: { addItem, history }
     } = useStore();
+
+    const isBarCodePresent = (barcode: string): boolean => {
+        for (const product of history) {
+            if (product.barcode === barcode) return false;
+        }
+        return true;
+    };
 
     const getProduct = ({ inputBarCode, productDispatch, errorDispatch }: ScanPageServiceProps) =>
         axios
@@ -19,7 +26,8 @@ const useScanPageService = () => {
                 const productInfo = response.data.data as ProductInfo;
                 productInfo.barcode = inputBarCode;
                 productDispatch(productInfo);
-                if (!productInfo?.iswater)
+
+                if (!productInfo?.isWater && isBarCodePresent(productInfo.barcode)) {
                     addItem({
                         id: uuid.v4(),
                         barcode: inputBarCode,
@@ -31,6 +39,7 @@ const useScanPageService = () => {
                         isFavourite: false,
                         serving: productInfo?.serving
                     } as HistoricalItemProps);
+                }
             })
             .catch((e) => {
                 errorDispatch("Le code barre n'existe pas");

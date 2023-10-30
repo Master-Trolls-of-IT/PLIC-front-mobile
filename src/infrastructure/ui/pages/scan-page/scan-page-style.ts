@@ -67,7 +67,7 @@ const ScanPageStyle = StyleSheet.create({
 
     text: {
         marginBottom: 15,
-        marginTop: 15,
+        marginTop: 20,
         alignSelf: 'center',
         color: ColorEnum.ClassicBrown,
         fontSize: 18
@@ -80,7 +80,8 @@ const ScanPageStyle = StyleSheet.create({
         width: 360 * (Dimensions.get('screen').width / 400),
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginTop: 5
     },
 
     buttonContainer: {

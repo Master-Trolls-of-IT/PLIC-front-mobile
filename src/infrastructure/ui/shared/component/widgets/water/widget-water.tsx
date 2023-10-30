@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import WidgetWaterStyle from '~/infrastructure/ui/shared/component/widgets/water/widget-water-style';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
-import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
+import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useWidgetWaterData from '~/infrastructure/ui/shared/component/widgets/water/hooks';
 import WidgetIconSingleArrow from '~/infrastructure/ui/shared/component/widgets/water/component/widget-icon-single-arrow';

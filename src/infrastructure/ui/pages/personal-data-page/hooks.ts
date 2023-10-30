@@ -7,7 +7,7 @@ import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const usePersonalDataPageData = () => {
     const {
-        LoginStore: { userData, setUserData },
+        UserStore: { userData, setUserData },
         NavigationStore: { navigate }
     } = useStore();
     const { updateUserData } = usePersonalDataServices();

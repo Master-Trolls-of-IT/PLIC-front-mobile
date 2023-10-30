@@ -1,16 +1,20 @@
 import { stopPersisting } from 'mobx-persist-store';
 import NavigationStore from '~/infrastructure/controllers/store/root-store/navigation-store';
-import LoginStore from '~/infrastructure/controllers/store/root-store/login-store';
-import LogStore from '~/infrastructure/controllers/store/root-store/log-store';
+import UserStore from '~/infrastructure/controllers/store/root-store/user-store';
+import LogsStore from '~/infrastructure/controllers/store/root-store/logs-store';
 import DataStore from '~/infrastructure/controllers/store/root-store/data-store';
 import MealStore from '~/infrastructure/controllers/store/root-store/meal-store';
+import HistoryStore from '~/infrastructure/controllers/store/root-store/history-store';
+import ConsumedProductStore from '~/infrastructure/controllers/store/root-store/consumed-product-store';
 
 class RootStore {
     NavigationStore: NavigationStore;
-    LoginStore: LoginStore;
-    LogStore: LogStore;
+    UserStore: UserStore;
+    LogsStore: LogsStore;
     DataStore: DataStore;
     MealStore: MealStore;
+    HistoryStore: HistoryStore;
+    ConsumedProductStore: ConsumedProductStore;
 
     static instance: RootStore;
 
@@ -24,20 +28,29 @@ class RootStore {
 
     public constructor() {
         this.NavigationStore = new NavigationStore();
-        this.LoginStore = new LoginStore('LoginStore', this);
-        this.LogStore = new LogStore('LogStore');
+        this.UserStore = new UserStore('UserStore', this);
+        this.DataStore = new DataStore(this);
+        this.HistoryStore = new HistoryStore('HistoryStore');
+        this.ConsumedProductStore = new ConsumedProductStore('ConsumedProductStore');
         this.MealStore = new MealStore('MealStore');
-        this.DataStore = new DataStore('DataStore', this);
+        this.LogsStore = new LogsStore('LogsStore');
     }
 
     resetAllObservables = () => {
-        this.LoginStore.resetStore();
-        this.LogStore.resetStore();
+        this.UserStore.resetStore();
+        this.DataStore.resetStore();
+        this.HistoryStore.resetStore();
+        this.ConsumedProductStore.resetStore();
+        this.MealStore.resetStore();
+        this.LogsStore.resetStore();
     };
 
     clearAllDomainStores = () => {
-        stopPersisting(this.LoginStore);
-        stopPersisting(this.LogStore);
+        stopPersisting(this.UserStore);
+        stopPersisting(this.HistoryStore);
+        stopPersisting(this.ConsumedProductStore);
+        stopPersisting(this.MealStore);
+        stopPersisting(this.LogsStore);
     };
 }
 

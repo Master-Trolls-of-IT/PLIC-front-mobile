@@ -7,7 +7,7 @@ import useWidgetLargeIntakesData from '~/infrastructure/ui/shared/component/widg
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/get-unit-from-nutrient';
+import getUnitFromNutrient from '~/infrastructure/ui/shared/helper/nutrient/get-unit-from-nutrient';
 import WidgetLargeIntakesStyle from '~/infrastructure/ui/shared/component/widgets/my-intakes/large/widget-large-intakes-style.';
 import { WidgetLargeIntakesProps } from '~/domain/interfaces/props/widgets/large-intakes-props';
 

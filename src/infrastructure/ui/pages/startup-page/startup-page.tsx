@@ -6,7 +6,7 @@ import StartUpPageBlobsTop from '~/infrastructure/ui/pages/startup-page/componen
 import StartUpPageBlobsBottom from '~/infrastructure/ui/pages/startup-page/component/startup-page-blobs-bottom';
 import StartUpPageLargeClassicLogo from '~/infrastructure/ui/pages/startup-page/component/startup-page-large-classic-logo';
 import useStartupPageData from '~/infrastructure/ui/pages/startup-page/hooks';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import QuitApp from '~/infrastructure/ui/shared/helper/quit-app';
 import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';

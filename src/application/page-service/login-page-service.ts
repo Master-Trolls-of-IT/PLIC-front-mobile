@@ -6,7 +6,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const useLoginPageService = () => {
     const {
-        LogStore: { error }
+        LogsStore: { error }
     } = useStore();
     const RefreshTokenGen = async (password: string): Promise<string> => {
         try {
