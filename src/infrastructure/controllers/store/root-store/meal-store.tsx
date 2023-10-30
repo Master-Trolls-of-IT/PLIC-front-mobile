@@ -45,6 +45,10 @@ class MealStore {
         this.mealList = [newItem].concat(this.mealList);
     };
 
+    setMealList = (newItems: MealItemProps[]) => {
+        this.mealList = newItems;
+    };
+
     toggleFavorite = (id: string) => {
         const index = this.mealList.findIndex((elem) => elem.id === id);
         const copy = [...this.mealList];

@@ -2,18 +2,19 @@ import { useMemo, useState } from 'react';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { MealItemDataProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-data-props';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
+import { useStore } from '~/infrastructure/controllers/store';
 
-const useMealItemData = ({ score }: MealItemDataProps) => {
-    const [isFavourite, setIsFavourite] = useState(false);
+const useMealItemData = ({ score, isFavourite }: MealItemDataProps) => {
+    const {
+        MealStore: { toggleFavorite }
+    } = useStore();
+
+    const [isExpanded, setIsExpanded] = useState(false);
 
     const restaurantIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-restaurant.svg');
 
     const [imageNewHeight, imageNewWidth] = [92, 69];
     const [favouriteNewHeight, favouriteNewWidth] = [30, 30];
-
-    const toggleFavourite = () => {
-        setIsFavourite(!isFavourite);
-    };
 
     const favouriteIcon = useMemo(() => {
         return isFavourite
@@ -33,15 +34,16 @@ const useMealItemData = ({ score }: MealItemDataProps) => {
     }, [score]);
 
     return {
-        isFavourite,
         favouriteIcon,
-        toggleFavourite,
+        toggleFavorite,
         scoreStyle,
         restaurantIcon,
         imageNewHeight,
         imageNewWidth,
         favouriteNewHeight,
-        favouriteNewWidth
+        favouriteNewWidth,
+        isExpanded,
+        setIsExpanded
     };
 };
 

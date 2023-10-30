@@ -1,8 +1,10 @@
 import { AxiosError } from 'axios';
+import { useCallback } from 'react';
 import { MealData } from '~/domain/interfaces/services/meal-data';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
 
 const useMealPageService = () => {
     const {
@@ -18,11 +20,22 @@ const useMealPageService = () => {
                 }
             });
         } catch (err) {
-            error('useMealPageService', 'Caught an exception.', (err as AxiosError).message);
+            error('useMealPageService', 'AddMeal : Caught an exception.', (err as AxiosError).message);
         }
     };
 
-    return { addMeal };
+    const getMeals = useCallback(async (email: string): Promise<MealItemProps[]> => {
+        try {
+            console.log(111);
+            const response = await APIServices.GET<MealItemProps[]>(`/meal/${email}`);
+            return response.data as MealItemProps[];
+        } catch (err) {
+            error('useMealPageService', 'GetMeals: Caught an exception.', (err as AxiosError).message);
+            return [];
+        }
+    }, []);
+
+    return { addMeal, getMeals };
 };
 
 export default useMealPageService;

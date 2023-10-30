@@ -1,4 +1,4 @@
-import { View, Animated, TouchableOpacity, Text } from 'react-native';
+import { Animated, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { observer } from 'mobx-react';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
@@ -7,21 +7,22 @@ import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-b
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useMealItemData from '~/infrastructure/ui/shared/component/item/meal-item/hooks';
 
-const MealItem = ({ title, numberOfProducts, score, ingredients, mealTags, style }: MealItemProps) => {
+const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, tags, style }: MealItemProps) => {
     const {
         favouriteIcon,
-        toggleFavourite,
+        toggleFavorite,
         scoreStyle,
         restaurantIcon,
         imageNewHeight,
         imageNewWidth,
         favouriteNewHeight,
-        favouriteNewWidth
-    } = useMealItemData({ score });
-
+        favouriteNewWidth,
+        isExpanded,
+        setIsExpanded
+    } = useMealItemData({ score, isFavourite });
     return (
         <Animated.View style={{ ...MealItemStyle.item, ...style }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)}>
                 <View style={MealItemStyle.container}>
                     <View style={MealItemStyle.imageContainer}>
                         <CustomSvg asset={restaurantIcon} height={imageNewHeight} width={imageNewWidth} />
@@ -37,12 +38,16 @@ const MealItem = ({ title, numberOfProducts, score, ingredients, mealTags, style
                         </View>
 
                         <Text style={{ ...MealItemStyle.ingredients, ...useCustomFontInterBold().text }}>
-                            {ingredients.join(' • ')}
+                            {products
+                                .map((product) => {
+                                    return product.productInfo.name;
+                                })
+                                .join(' • ')}
                         </Text>
 
                         <View style={MealItemStyle.mealTags}>
                             <Text style={{ ...useCustomFontInterBold().text }}>
-                                {mealTags.map((mealTag, index) => (
+                                {tags.map((mealTag, index) => (
                                     <Text
                                         key={index}
                                         style={{
@@ -50,18 +55,27 @@ const MealItem = ({ title, numberOfProducts, score, ingredients, mealTags, style
                                             color: mealTag.color
                                         }}>
                                         {mealTag.label}
-                                        {index < mealTags.length - 1 && ' • '}
+                                        {index < tags.length - 1 && ' • '}
                                     </Text>
                                 ))}
                             </Text>
                         </View>
                     </View>
 
-                    <TouchableOpacity onPress={toggleFavourite} style={MealItemStyle.favourite}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            toggleFavorite(id);
+                        }}
+                        style={MealItemStyle.favourite}>
                         <CustomSvg asset={favouriteIcon} height={favouriteNewHeight} width={favouriteNewWidth} />
                     </TouchableOpacity>
                 </View>
             </TouchableOpacity>
+            {isExpanded && (
+                <View>
+                    <Text>{'test'}</Text>
+                </View>
+            )}
         </Animated.View>
     );
 };

@@ -8,12 +8,12 @@ import useMealPageService from '~/application/page-service/meal-page-service';
 
 const useCreateMealPageData = () => {
     const {
-        MealStore: { mealProducts, mealTags, resetStore },
+        MealStore: { mealProducts, mealTags, resetStore, setMealList },
         NavigationStore: { navigate, goBack },
         UserStore: { userData }
     } = useStore();
 
-    const { addMeal } = useMealPageService();
+    const { addMeal, getMeals } = useMealPageService();
     const [errorMessage, setErrorMessage] = useState(false);
     const [isValidateModalVisible, setIsValidateModalVisible] = useState(false);
     const [mealTitleInput, setMealTitleInput] = useState('');
@@ -48,11 +48,14 @@ const useCreateMealPageData = () => {
             tags: mealTags,
             email: userData.email,
             products: mealProducts.map((product) => {
-                return { barcode: product.barcode, quantity: product.barcode } as ProductQuantity;
+                return { barcode: product.barcode, quantity: product.consumedQuantity } as ProductQuantity;
             })
         };
 
         await addMeal(mealData);
+        getMeals(userData.email).then((mealItemProps) => {
+            setMealList(mealItemProps);
+        });
         resetStore();
         goBack();
     };
