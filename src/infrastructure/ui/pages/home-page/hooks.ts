@@ -4,14 +4,14 @@ import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 
 const useHomePageData = () => {
     const {
-        LoginStore: { userData },
+        UserStore: { userData },
         DataStore: { widgetsParams }
     } = useStore();
 
     // TODO : calculate eco-score from daily products eaten
     const ecoScore = 82;
 
-    const username = userData.Pseudo;
+    const username = userData.pseudo;
 
     // TODO : retrieve the right nutrients earned from daily products eaten for all nutrients type
     const chooseRightDynamicImage = () => {

@@ -10,7 +10,7 @@ import useConsumedProductPageService from '~/application/page-service/consumed-p
 
 const useScanPageData = (navigate: NavigateProps) => {
     const {
-        DataStore: { consumedProducts }
+        ConsumedProductStore: { consumedProducts }
     } = useStore();
 
     const { getProduct } = useScanPageService();

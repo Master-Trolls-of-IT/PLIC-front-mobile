@@ -7,7 +7,7 @@ import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const usePersonalDataPageData = () => {
     const {
-        LoginStore: { userData, setUserData },
+        UserStore: { userData, setUserData },
         NavigationStore: { navigate }
     } = useStore();
     const { updateUserData } = usePersonalDataServices();
@@ -18,15 +18,15 @@ const usePersonalDataPageData = () => {
         { label: 'Autre', value: '2' }
     ];
 
-    const [newUsername, setNewUsername] = useState(userData.Pseudo);
-    const [newBirthDate, setNewBirthDate] = useState(userData.Birthdate);
+    const [newUsername, setNewUsername] = useState(userData.pseudo);
+    const [newBirthDate, setNewBirthDate] = useState(userData.birthdate);
     const [newGender, setNewGender] = useState<{ label: string; value: string }>(
-        genderOptions.find((elem) => parseInt(elem.value) === userData.Gender) ?? { label: 'Autre', value: '2' }
+        genderOptions.find((elem) => parseInt(elem.value) === userData.gender) ?? { label: 'Autre', value: '2' }
     );
-    const [newHeight, setNewHeight] = useState(userData.Height.toString());
-    const [newWeight, setNewWeight] = useState(userData.Weight.toString());
-    const [newSportActivity, setNewSportActivity] = useState(userData.Sportiveness.toString());
-    const [newEmail, setNewEmail] = useState(userData.Email);
+    const [newHeight, setNewHeight] = useState(userData.height.toString());
+    const [newWeight, setNewWeight] = useState(userData.weight.toString());
+    const [newSportActivity, setNewSportActivity] = useState(userData.sportiveness.toString());
+    const [newEmail, setNewEmail] = useState(userData.email);
     const [newPassword, setNewPassword] = useState('');
 
     const profileAsset = require('~/domain/entities/assets/home-page/home-page-settings-profile.svg');
@@ -85,13 +85,13 @@ const usePersonalDataPageData = () => {
 
     const isUserDataChanges = useMemo(
         () =>
-            userData.Email !== newEmail ||
-            userData.Pseudo !== newUsername ||
-            userData.Weight !== parseInt(newWeight) ||
-            userData.Height !== parseInt(newHeight) ||
-            userData.Sportiveness !== parseInt(newSportActivity) ||
-            userData.Birthdate !== newBirthDate ||
-            userData.Gender !== parseInt(newGender.value),
+            userData.email !== newEmail ||
+            userData.pseudo !== newUsername ||
+            userData.weight !== parseInt(newWeight) ||
+            userData.height !== parseInt(newHeight) ||
+            userData.sportiveness !== parseInt(newSportActivity) ||
+            userData.birthdate !== newBirthDate ||
+            userData.gender !== parseInt(newGender.value),
         [
             newBirthDate,
             newEmail,
@@ -100,13 +100,13 @@ const usePersonalDataPageData = () => {
             newSportActivity,
             newUsername,
             newWeight,
-            userData.Birthdate,
-            userData.Email,
-            userData.Gender,
-            userData.Height,
-            userData.Pseudo,
-            userData.Sportiveness,
-            userData.Weight
+            userData.birthdate,
+            userData.email,
+            userData.gender,
+            userData.height,
+            userData.pseudo,
+            userData.sportiveness,
+            userData.weight
         ]
     );
 
@@ -125,24 +125,24 @@ const usePersonalDataPageData = () => {
     useEffect(() => {
         if (confirmChanges) {
             const newDatas = {
-                Id: userData.Id,
-                Email: newEmail,
-                Pseudo: newUsername,
-                Weight: parseInt(newWeight),
-                Height: parseInt(newHeight),
-                Gender: parseInt(newGender.value),
-                Sportiveness: parseInt(newSportActivity),
-                Birthdate: newBirthDate,
-                Username: userData.Username,
-                Rights: userData.Rights,
-                BasalMetabolism: getBasalMetabolism(
+                id: userData.id,
+                email: newEmail,
+                pseudo: newUsername,
+                weight: parseInt(newWeight),
+                height: parseInt(newHeight),
+                gender: parseInt(newGender.value),
+                sportiveness: parseInt(newSportActivity),
+                birthdate: newBirthDate,
+                username: userData.username,
+                rights: userData.rights,
+                basalMetabolism: getBasalMetabolism(
                     parseInt(newGender.value),
                     parseInt(newWeight),
                     parseInt(newHeight),
                     newBirthDate,
                     parseInt(newSportActivity)
                 ),
-                AvatarId: null
+                avatarId: null
             };
 
             updateUserData(newDatas)
@@ -165,9 +165,9 @@ const usePersonalDataPageData = () => {
         newWeight,
         setUserData,
         updateUserData,
-        userData.Id,
-        userData.Rights,
-        userData.Username
+        userData.id,
+        userData.rights,
+        userData.username
     ]);
 
     return {

@@ -7,17 +7,18 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const usePersonalDataServices = () => {
     const {
-        LoginStore: { userData },
-        LogStore: { error }
+        UserStore: { userData },
+        LogsStore: { error }
     } = useStore();
+
     const updateUserData = async (newUserData: UserData) => {
         try {
             const response: GenericResponse<UserData> = await APIServices.PATCH<UserData, UserData>(
-                '/users/' + newUserData.Id,
+                '/users/' + newUserData.id,
                 newUserData
             );
             const userDataCopy = response.data;
-            userDataCopy.Birthdate = formatTimestampToDate(userDataCopy.Birthdate);
+            userDataCopy.birthdate = formatTimestampToDate(userDataCopy.birthdate);
             return userDataCopy;
         } catch (err) {
             error('useHomePageService', "Impossible de modifier l'utilisateur", (err as AxiosError).message);

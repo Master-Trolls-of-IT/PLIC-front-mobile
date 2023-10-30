@@ -3,7 +3,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 const useHistoricalPageData = () => {
     const {
         NavigationStore: { goBack },
-        DataStore: { history }
+        HistoryStore: { history }
     } = useStore();
 
     return {

@@ -1,16 +1,16 @@
 import { UserData } from '~/domain/interfaces/services/user-data';
 
 export const defaultUserData: UserData = {
-    Email: '',
-    Username: '',
-    Birthdate: '',
-    Weight: 0,
-    Height: 0,
-    Gender: 0,
-    Pseudo: '',
-    Rights: 0,
-    Sportiveness: 0,
-    BasalMetabolism: 0,
-    AvatarId: null,
-    Id: 0
+    email: '',
+    username: '',
+    birthdate: '',
+    weight: 0,
+    height: 0,
+    gender: 0,
+    pseudo: '',
+    rights: 0,
+    sportiveness: 0,
+    basalMetabolism: 0,
+    avatarId: null,
+    id: 0
 };

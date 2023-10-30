@@ -18,8 +18,8 @@ const useLoginPageData = () => {
     const [loader, setLoader] = useState(false);
 
     const {
-        LoginStore: { setRefreshToken, setAccessToken, setUserData },
-        LogStore: { warn },
+        UserStore: { setRefreshToken, setAccessToken, setUserData },
+        LogsStore: { warn },
         NavigationStore: { navigate }
     } = useStore();
     const { RefreshTokenGen } = useLoginPageService();
@@ -56,9 +56,9 @@ const useLoginPageData = () => {
                     } else {
                         warn('useLoginPageData', 'Received an empty access or refresh token', '');
                     }
-                    const userDataCopy = response.data;
+                    const userDataCopy: UserData = response.data;
 
-                    userDataCopy.Birthdate = formatTimestampToDate(userDataCopy.Birthdate);
+                    userDataCopy.birthdate = formatTimestampToDate(userDataCopy.birthdate);
                     setUserData(userDataCopy);
                     navigate(PagesEnum.HomePage);
                 } else {

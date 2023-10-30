@@ -5,7 +5,7 @@ import APIServices from '~/infrastructure/controllers/services/api';
 import { LogsLevelEnum } from '~/domain/interfaces/enum/logs-enum';
 import { CustomLog } from '~/domain/interfaces/services/custom-log';
 
-class LogStore {
+class LogsStore {
     logs: CustomLog[];
     discordWebhookURL: string;
 
@@ -57,10 +57,6 @@ class LogStore {
         this.addLog(source, LogsLevelEnum.Error, message, details);
     };
 
-    resetStore = () => {
-        this.logs = [];
-    };
-
     addLog = (source: string, level: LogsLevelEnum, message: string, details: string) => {
         const date = new Date().toISOString();
         const customLog: CustomLog = { level, message, details, source, date };
@@ -90,5 +86,9 @@ class LogStore {
             console.error('Failed to send Discord notification:', error);
         }
     };
+
+    resetStore = () => {
+        this.logs = [];
+    };
 }
-export default LogStore;
+export default LogsStore;

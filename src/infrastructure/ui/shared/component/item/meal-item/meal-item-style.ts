@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const MealItemStyle = StyleSheet.create({
@@ -68,6 +68,25 @@ const MealItemStyle = StyleSheet.create({
 
     score: {
         fontSize: 14
+    },
+
+    consumeButtonContainer: {
+        backgroundColor: ColorEnum.ClassicGreen,
+        borderRadius: 20,
+        width: 223 * (Dimensions.get('screen').width / 400),
+        height: 43
+    },
+
+    buttonText: {
+        fontSize: 18,
+        color: ColorEnum.ClassicGrey
+    },
+
+    expandedSection: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginBottom: 10
     }
 });
 

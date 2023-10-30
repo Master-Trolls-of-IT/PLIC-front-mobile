@@ -7,7 +7,7 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 
 const useMealProductsItemData = ({ id, score, consumedQuantity, isWater, serving }: MealProductsItemDataProps) => {
     const {
-        CreateMealStore: { deleteMealProduct, editMealProductQuantity }
+        MealStore: { deleteMealProduct, editMealProductQuantity }
     } = useStore();
 
     const [isExpended, setIsExpended] = useState(false);

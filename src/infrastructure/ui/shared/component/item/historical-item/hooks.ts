@@ -8,9 +8,9 @@ import { useStore } from '~/infrastructure/controllers/store';
 
 const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDataProps) => {
     const {
-        DataStore: { toggleFavoriteHistory },
+        HistoryStore: { toggleFavoriteHistory },
         NavigationStore: { navigate },
-        LogStore: { error }
+        LogsStore: { error }
     } = useStore();
 
     const { addConsumedProduct } = useScanPageScannedItemService();

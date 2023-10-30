@@ -7,7 +7,7 @@ import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-r
 
 const useCreateMealScanPageData = () => {
     const {
-        CreateMealStore: { addMealProducts },
+        MealStore: { addMealProducts },
         NavigationStore: { goBack }
     } = useStore();
 

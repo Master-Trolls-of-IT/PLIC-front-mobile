@@ -5,7 +5,7 @@ import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
 const useConsumedProductsData = () => {
     const {
         NavigationStore: { goBack },
-        DataStore: { consumedProducts, setConsumedProducts }
+        ConsumedProductStore: { consumedProducts, setConsumedProducts }
     } = useStore();
 
     const { getConsumedProducts } = useConsumedProductPageService();
