@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
+import { SvgUri } from 'react-native-svg';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { ColorEnum } from "~/domain/interfaces/enum/color-enum";
 
 interface RecipeItemProps {
     image: string;
@@ -21,18 +22,18 @@ const styles = StyleSheet.create({
         height: 164,
         padding: 16,
         marginBottom: 16,
-        borderRadius: 20, // Bord arrondi
+        borderRadius: 20,
         backgroundColor: ColorEnum.ExtraOpaqueBrown
     },
     container: {
-        flexDirection: 'row' // Disposition en ligne (deux colonnes)
+        flexDirection: 'row'
     },
     leftContainer: {
-        flex: 1 // Égal partage de l'espace entre les deux conteneurs
+        flex: 1
     },
     rightContainer: {
-        flex: 2, // Égal partage de l'espace entre les deux conteneurs
-        marginLeft: 10 // Marge entre les deux conteneurs
+        flex: 2,
+        marginLeft: 10
     },
     image: {
         width: 100,
@@ -68,6 +69,13 @@ const styles = StyleSheet.create({
     },
     tags: {
         fontSize: 16
+    },
+    ratingContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    ratingText: {
+        fontSize: 16
     }
 });
 
@@ -91,9 +99,16 @@ const RecipeItem: React.FC<RecipeItemProps> = ({
                 </View>
                 <View style={styles.rightContainer}>
                     <Text style={styles.name}>{name}</Text>
-                    <Text style={styles.rating}>
-                        {rating} / 5 ({numRatings} évaluations)
-                    </Text>
+                    <View style={styles.ratingContainer}>
+                        <SvgUri
+                            width="100%"
+                            height="100%"
+                            uri="~/src/domain/entities/assets/icon/icon-note.svg" // Assurez-vous que le chemin vers votre fichier SVG est correct
+                        />
+                        <Text style={styles.ratingText}>
+                            {rating} / 5 ({numRatings} évaluations)
+                        </Text>
+                    </View>
                     <Text style={styles.prepTime}>
                         {prepTime} {' • '} {difficulty} {' • '} Score : {ecoScore}
                     </Text>
