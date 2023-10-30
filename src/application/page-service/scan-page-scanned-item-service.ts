@@ -5,14 +5,14 @@ import { useStore } from '~/infrastructure/controllers/store';
 const useScanPageScannedItemService = () => {
     const {
         UserStore: {
-            userData: { Email }
+            userData: { email }
         },
         LogsStore: { error }
     } = useStore();
 
     const addConsumedProduct = async (barcode: string | undefined, quantity: string) => {
         try {
-            await APIServices.POST('product/consumed', { email: Email, barcode: barcode, quantity: quantity }).then(
+            await APIServices.POST('product/consumed', { email: email, barcode: barcode, quantity: quantity }).then(
                 (response) => {
                     if (response.status != 200) {
                         error(

@@ -11,7 +11,7 @@ const useHomePageData = () => {
     // TODO : calculate eco-score from daily products eaten
     const ecoScore = 82;
 
-    const username = userData.Pseudo;
+    const username = userData.pseudo;
 
     // TODO : retrieve the right nutrients earned from daily products eaten for all nutrients type
     const chooseRightDynamicImage = () => {

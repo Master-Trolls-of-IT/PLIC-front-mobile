@@ -46,7 +46,7 @@ const useCreateMealPageData = () => {
         const mealData: MealData = {
             title: mealTitleInput,
             tags: mealTags,
-            email: userData.Email,
+            email: userData.email,
             products: mealProducts.map((product) => {
                 return { barcode: product.barcode, quantity: product.barcode } as ProductQuantity;
             })

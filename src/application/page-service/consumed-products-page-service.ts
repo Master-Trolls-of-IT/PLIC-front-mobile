@@ -8,7 +8,7 @@ import { EditConsumedProductQuantity } from '~/domain/interfaces/services/edit-c
 const useConsumedProductPageService = () => {
     const {
         UserStore: {
-            userData: { Email }
+            userData: { email }
         },
         LogsStore: { error }
     } = useStore();
@@ -38,7 +38,7 @@ const useConsumedProductPageService = () => {
 
     const getConsumedProducts = useCallback(async () => {
         try {
-            const encodedEmail = encodeURIComponent(Email);
+            const encodedEmail = encodeURIComponent(email);
             const response = await APIServices.GET<ConsumedProduct[]>(`product/consumed/user/${encodedEmail}`);
             return mapResponse(response.data);
         } catch (err) {
@@ -47,13 +47,13 @@ const useConsumedProductPageService = () => {
             }
             return [];
         }
-    }, [mapResponse, Email, error]);
+    }, [mapResponse, email, error]);
 
     const editQuantityConsumedProduct = useCallback(
         async (barcode: string, quantity: number) => {
             try {
                 await APIServices.PATCH<EditConsumedProductQuantity, EditConsumedProductQuantity>(`product/consumed`, {
-                    email: Email,
+                    email: email,
                     barcode: barcode,
                     quantity: quantity
                 });
@@ -63,14 +63,14 @@ const useConsumedProductPageService = () => {
                 }
             }
         },
-        [Email, error]
+        [email, error]
     );
 
     const deleteConsumedProduct = useCallback(
         async (productId: string) => {
             try {
                 const response = await APIServices.DELETE<ConsumedProduct[]>(
-                    `product/consumed/${productId}/user/${Email}`
+                    `product/consumed/${productId}/user/${email}`
                 );
 
                 return mapResponse(response.data ?? []);
@@ -80,7 +80,7 @@ const useConsumedProductPageService = () => {
                 }
             }
         },
-        [mapResponse, Email, error]
+        [mapResponse, email, error]
     );
 
     return {
