@@ -30,7 +30,7 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
     >(mockedData);
 
     useEffect(() => {
-        setDisplayData(data);
+        setDisplayData(data ?? []);
     }, [data]);
 
     const onSearch = (search: string) => {
