@@ -6,7 +6,7 @@ import DataStore from '~/infrastructure/controllers/store/root-store/data-store'
 import MealStore from '~/infrastructure/controllers/store/root-store/meal-store';
 import HistoryStore from '~/infrastructure/controllers/store/root-store/history-store';
 import ConsumedProductStore from '~/infrastructure/controllers/store/root-store/consumed-product-store';
-
+import RecipeStore from '~/infrastructure/controllers/store/root-store/recipe-store';
 class RootStore {
     NavigationStore: NavigationStore;
     UserStore: UserStore;
@@ -15,6 +15,7 @@ class RootStore {
     MealStore: MealStore;
     HistoryStore: HistoryStore;
     ConsumedProductStore: ConsumedProductStore;
+    RecipeStore: RecipeStore;
 
     static instance: RootStore;
 
@@ -34,6 +35,7 @@ class RootStore {
         this.ConsumedProductStore = new ConsumedProductStore('ConsumedProductStore');
         this.MealStore = new MealStore('MealStore');
         this.LogsStore = new LogsStore('LogsStore');
+        this.RecipeStore = new RecipeStore();
     }
 
     resetAllObservables = () => {
@@ -43,6 +45,7 @@ class RootStore {
         this.ConsumedProductStore.resetStore();
         this.MealStore.resetStore();
         this.LogsStore.resetStore();
+        this.RecipeStore.resetStore();
     };
 
     clearAllDomainStores = () => {
