@@ -42,7 +42,7 @@ const GenericInputWithSearchIconAndEndText = ({
                 <TouchableOpacity
                     style={GenericInputWithSearchIconAndEndTextStyle.containerSearchIcon}
                     onPress={onPressSearch}
-                    disabled={input === ''}>
+                    disabled={input === '' || input === '0'}>
                     <CustomSvg
                         asset={assetSearchInput}
                         style={GenericInputWithSearchIconAndEndTextStyle.searchIcon}
