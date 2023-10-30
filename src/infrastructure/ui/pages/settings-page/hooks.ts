@@ -18,8 +18,8 @@ const useSettingsPageData = () => {
         LoginStore: { userData }
     } = useStore();
 
-    const [validateDeleteAccount1, setValidateDeleteAccount1] = useState(false);
-    const [validateDeleteAccount2, setValidateDeleteAccount2] = useState(false);
+    const [deletePasswordModal, setDeletePasswordModal] = useState(false);
+    const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
 
     const [inputPasswordString, setInputPassword] = useState('');
 
@@ -45,7 +45,7 @@ const useSettingsPageData = () => {
     }, [navigate]);
 
     const onDeleteAccountPress = () => {
-        setValidateDeleteAccount1((prevState) => !prevState);
+        setDeletePasswordModal((prevState) => !prevState);
     };
 
     const resetAllError = () => {
@@ -62,47 +62,35 @@ const useSettingsPageData = () => {
                 password: passwordHashing(inputPasswordString)
             };
             try {
-                const response = await APIServices.POST<UserData, LoginData>('/checkuser', data);
-                if (response.status === 202) {
-                    setValidateDeleteAccount2(true);
-                    setValidateDeleteAccount1(false);
-                } else {
-                    setError(true);
-                    setErrorMessage('Invalid Password, please try again');
-                }
+                await APIServices.POST<UserData, LoginData>('/checkuser', data);
+                setDeleteConfirmationModal(true);
+                setDeletePasswordModal(false);
             } catch (e) {
                 setError(true);
                 setErrorMessage('Veuillez réessayer plus tard');
-                console.log(e);
             }
         } else {
             setError(true);
-            setErrorMessage('Invalid password format');
+            setErrorMessage('Format de mot de passe incorrect.');
         }
         setLoader(false);
-    }, [inputPasswordString]);
+    }, [inputPasswordString, userData.Email]);
 
     const onDeleteConfirm = async () => {
         try {
-            const response = await APIServices.DELETE(`/users/${userData.Id}`);
-            if (response.status === 200) {
-                setValidateDeleteAccount2(false);
-                setValidateDeleteAccount1(false);
-                navigateToStartPage();
-            } else {
-                setError(true);
-                setErrorMessage('Error on Account Deletion');
-            }
+            await APIServices.DELETE(`/users/${userData.Id}`);
+            setDeleteConfirmationModal(false);
+            setDeletePasswordModal(false);
+            navigateToStartPage();
         } catch (e) {
             setError(true);
             setErrorMessage('Veuillez réessayer plus tard');
-            console.log(e);
         }
     };
 
     const onGoSettings = () => {
-        setValidateDeleteAccount1(false);
-        setValidateDeleteAccount2(false);
+        setDeletePasswordModal(false);
+        setDeleteConfirmationModal(false);
         navigateToSettingsPage();
     };
 
@@ -143,10 +131,10 @@ const useSettingsPageData = () => {
         arrowLinkAsset,
         navigateToPersonalDataPage,
         navigateToWidgetPage,
-        validateDeleteAccount1,
-        validateDeleteAccount2,
-        setValidateDeleteAccount1,
-        setValidateDeleteAccount2,
+        deletePasswordModal,
+        deleteConfirmationModal,
+        setDeletePasswordModal,
+        setDeleteConfirmationModal,
         onDeleteAccountPress,
         onDeleteAccountModalPress,
         onDeleteConfirm,

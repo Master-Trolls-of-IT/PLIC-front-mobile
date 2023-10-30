@@ -20,15 +20,6 @@ const CustomModalStyle = StyleSheet.create({
         borderColor: ColorEnum.ClassicBrown
     },
 
-    customModalView: {
-        padding: 15,
-        alignSelf: 'center',
-        backgroundColor: ColorEnum.ClassicDarkBeige,
-        borderRadius: 20,
-        borderWidth: 3,
-        borderColor: ColorEnum.ClassicBrown
-    },
-
     title: {
         alignSelf: 'center',
         fontSize: 24,

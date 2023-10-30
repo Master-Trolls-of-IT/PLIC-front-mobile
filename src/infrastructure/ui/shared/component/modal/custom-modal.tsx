@@ -6,13 +6,13 @@ import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold
 import useCustomModalData from '~/infrastructure/ui/shared/component/modal/hooks';
 import CustomSvg from '~/infrastructure/ui/shared/custom-svg';
 
-const CustomModal = ({ children, isVisible, dispatch, title, titleSize, customStyle }: CustomModalProps) => {
+const CustomModal = ({ children, isVisible, dispatch, title, titleSize }: CustomModalProps) => {
     const { height, width, onPressWrongButton, wrongAsset } = useCustomModalData();
 
     return (
         <Modal visible={isVisible} animationType={'fade'} transparent>
             <View style={CustomModalStyle.container}>
-                <View style={customStyle ? CustomModalStyle.customModalView :  CustomModalStyle.modalView}>
+                <View style={CustomModalStyle.modalView}>
                     <TouchableOpacity onPress={() => onPressWrongButton(dispatch)} style={CustomModalStyle.wrongAsset}>
                         <CustomSvg asset={wrongAsset} height={height} width={width} />
                     </TouchableOpacity>

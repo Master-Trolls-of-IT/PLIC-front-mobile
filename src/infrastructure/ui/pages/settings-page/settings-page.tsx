@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { err } from 'react-native-svg/lib/typescript/xml';
 import SettingsPageBlobsTop from '~/infrastructure/ui/pages/settings-page/component/background/settings-page-blobs-top';
 import SettingsPageBlobsBottom from '~/infrastructure/ui/pages/settings-page/component/background/settings-page-blobs-bottom';
 import LoginPageTreeClassicLogo from '~/infrastructure/ui/pages/settings-page/component/background/tree-classic-logo';
@@ -16,9 +14,8 @@ import useSettingsPageData from '~/infrastructure/ui/pages/settings-page/hooks';
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
-import StartupPageStyle from '~/infrastructure/ui/pages/startup-page/startup-page-style';
-import LoginPageStyle from '~/infrastructure/ui/pages/login-page/login-page-style';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
+import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 const SettingsPage = () => {
     const {
@@ -30,10 +27,10 @@ const SettingsPage = () => {
         arrowLinkAsset,
         navigateToPersonalDataPage,
         navigateToWidgetPage,
-        validateDeleteAccount1,
-        validateDeleteAccount2,
-        setValidateDeleteAccount1,
-        setValidateDeleteAccount2,
+        deletePasswordModal,
+        deleteConfirmationModal,
+        setDeletePasswordModal,
+        setDeleteConfirmationModal,
         onDeleteAccountPress,
         onDeleteAccountModalPress,
         onDeleteConfirm,
@@ -100,13 +97,12 @@ const SettingsPage = () => {
                 </View>
             </View>
             <CustomModal
-                isVisible={validateDeleteAccount1}
-                dispatch={setValidateDeleteAccount1}
+                isVisible={deletePasswordModal}
+                dispatch={setDeletePasswordModal}
                 title="Suppression de compte"
-                titleSize={25}
-                customStyle={true}>
-                <View style={SettingsPageStyle.deleteAccount1TextContainer}>
-                    <Text style={SettingsPageStyle.deleteAccount1Text}>
+                titleSize={25}>
+                <View style={SettingsPageStyle.deletePasswordTextContainer}>
+                    <Text style={{ ...SettingsPageStyle.deletePasswordText, ...customFontInterBold().text }}>
                         Vous êtes sur le point de supprimer votre compte. Veuillez entrer votre mot de passe ci-dessous
                         pour confirmer:
                     </Text>
@@ -134,13 +130,12 @@ const SettingsPage = () => {
                 </View>
             </CustomModal>
             <CustomModal
-                isVisible={validateDeleteAccount2}
-                dispatch={setValidateDeleteAccount2}
+                isVisible={deleteConfirmationModal}
+                dispatch={setDeleteConfirmationModal}
                 title="Suppression de compte"
-                titleSize={25}
-                customStyle={true}>
-                <View style={SettingsPageStyle.deleteAccount1TextContainer}>
-                    <Text style={SettingsPageStyle.deleteAccount1Text}>
+                titleSize={25}>
+                <View style={SettingsPageStyle.deletePasswordTextContainer}>
+                    <Text style={{ ...SettingsPageStyle.deletePasswordText, ...customFontInterBold().text }}>
                         Êtes-vous absolument certain de vouloir supprimer votre compte ? Cette action est irréversible.
                     </Text>
                 </View>

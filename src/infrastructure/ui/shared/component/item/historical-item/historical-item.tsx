@@ -133,8 +133,7 @@ const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data,
                             isVisible={modal}
                             dispatch={setModal}
                             title={'Ajouter la quantité\n consommée'}
-                            titleSize={22}
-                        customStyle={false}>
+                            titleSize={22}>
                             <GenericInputWithSearchIconAndEndText
                                 placeHolder={'100'}
                                 endText={'g'}

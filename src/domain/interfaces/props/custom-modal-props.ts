@@ -6,5 +6,4 @@ export type CustomModalProps = {
     dispatch: Dispatch<SetStateAction<boolean>> | ((value: boolean) => void);
     title: string;
     titleSize: number;
-    customStyle: boolean;
 };

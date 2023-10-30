@@ -33,8 +33,7 @@ const AddWidgetModal = ({
             isVisible={isAddSmallWidgetModalOpen}
             dispatch={toggleModal}
             title="Personnalisation"
-            titleSize={24}
-        customStyle={false}>
+            titleSize={24}>
             <View style={AddWidgetModalStyle.addModalContent}>
                 <View style={AddWidgetModalStyle.scrollSelectContainer}>
                     <ScrollView

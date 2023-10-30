@@ -139,8 +139,7 @@ const PersonalDataPage = () => {
                         isVisible={isConfirmModalOpen}
                         dispatch={setIsConfirmModalOpen}
                         title="Confirmer les changements"
-                        titleSize={25}
-                    customStyle={false}>
+                        titleSize={25}>
                         <GenericButton
                             title="Oui"
                             onPress={handleDoubleCheckConfirm}
@@ -163,21 +162,18 @@ const PersonalDataPage = () => {
                         dispatch={handleCloseSuccessModal}
                         title="Changements éffectués avec succès"
                         titleSize={22}
-                        customStyle={false}
                     />
                     <CustomModal
                         isVisible={isFailModalOpen}
                         dispatch={setIsFailModalOpen}
                         title="Echec de la modification"
                         titleSize={22}
-                        customStyle={false}
                     />
                     <CustomModal
                         isVisible={isChangesModalOpen}
                         dispatch={setIsChangesModalOpen}
                         title="Aucun changements"
                         titleSize={22}
-                        customStyle={false}
                     />
                 </ScrollView>
             </View>
