@@ -1,25 +1,69 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { MealItemDataProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-data-props';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
+import { useStore } from '~/infrastructure/controllers/store';
 
-const useMealItemData = ({ score }: MealItemDataProps) => {
-    const [isFavourite, setIsFavourite] = useState(false);
+const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps) => {
+    const {
+        MealStore: { toggleFavorite }
+    } = useStore();
+
+    const [isExpanded, setIsExpanded] = useState(false);
+    const expandedContentHeight = useSharedValue(120);
+    const [showExpandedView, setShowExpandedView] = useState(false);
 
     const restaurantIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-restaurant.svg');
+    const deleteIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-delete.svg');
+    const editIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-edit.svg');
 
     const [imageNewHeight, imageNewWidth] = [92, 69];
     const [favouriteNewHeight, favouriteNewWidth] = [30, 30];
-
-    const toggleFavourite = () => {
-        setIsFavourite(!isFavourite);
-    };
+    const [deleteNewHeight, deleteNewWidth] = [40, 40];
+    const [editNewHeight, editNewWidth] = [40, 40];
+    const [expandAnimationTime, showButtonsAnimationTime] = [400, 200];
 
     const favouriteIcon = useMemo(() => {
         return isFavourite
             ? require('~/domain/entities/assets/icon/favourite-icon/favourite.svg')
             : require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     }, [isFavourite]);
+
+    const animatedItemStyle = useAnimatedStyle(() => {
+        return {
+            height: withDelay(
+                isExpanded ? 0 : showButtonsAnimationTime,
+                withTiming(isExpanded ? expandedContentHeight.value * 1.4 : expandedContentHeight.value, {
+                    duration: expandAnimationTime
+                })
+            )
+        };
+    });
+
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
+
+    const toggleFavourite = () => {
+        toggleFavorite(id);
+    };
+    const productNames = products
+        .map((product) => {
+            return product.name;
+        })
+        .join(' • ');
+
+    const consumeMeal = () => {};
+
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            setShowExpandedView(isExpanded);
+        }, expandAnimationTime);
+        return () => {
+            clearTimeout(timeOut);
+        };
+    }, [expandAnimationTime, isExpanded]);
 
     const scoreStyle = useMemo(() => {
         switch (true) {
@@ -33,15 +77,28 @@ const useMealItemData = ({ score }: MealItemDataProps) => {
     }, [score]);
 
     return {
-        isFavourite,
         favouriteIcon,
-        toggleFavourite,
-        scoreStyle,
+        favouriteNewHeight,
+        favouriteNewWidth,
         restaurantIcon,
         imageNewHeight,
         imageNewWidth,
-        favouriteNewHeight,
-        favouriteNewWidth
+        deleteIcon,
+        deleteNewHeight,
+        deleteNewWidth,
+        editIcon,
+        editNewHeight,
+        editNewWidth,
+        toggleFavourite,
+        scoreStyle,
+        isExpanded,
+        toggleExpand,
+        animatedItemStyle,
+        expandedContentHeight,
+        showExpandedView,
+        showButtonsAnimationTime,
+        productNames,
+        consumeMeal
     };
 };
 
