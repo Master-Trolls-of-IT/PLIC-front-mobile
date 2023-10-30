@@ -8,6 +8,18 @@ const SettingsPageStyle = StyleSheet.create({
         flexDirection: 'column'
     },
 
+    inputModal: {
+        marginTop: 8
+    },
+
+    redText: {
+        color: ColorEnum.ClassicRedIcon
+    },
+
+    deleteModalContainer: {
+        width: 0.85 * Dimensions.get('screen').width
+    },
+
     background: {
         position: 'absolute',
         backgroundColor: ColorEnum.ClassicBeige,
@@ -30,15 +42,11 @@ const SettingsPageStyle = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
-    deletePasswordTextContainer: {
-        marginVertical: 10,
-        paddingTop: 10,
-        borderTopColor: ColorEnum.VeryOpaqueBrown,
-        borderTopWidth: 1
-    },
-
     deletePasswordText: {
-        color: ColorEnum.ClassicBrown
+        marginTop: 8,
+        color: ColorEnum.ClassicBrown,
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        textAlign: 'justify'
     },
 
     errorMessage: {
@@ -49,7 +57,7 @@ const SettingsPageStyle = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 20
+        marginTop: 13
     },
 
     goBackButtonStyle: {
@@ -67,14 +75,13 @@ const SettingsPageStyle = StyleSheet.create({
     confirmButtonStyle: {
         backgroundColor: ColorEnum.ClassicRedIcon,
         borderRadius: 20,
-        width: 'auto',
+        width: 129 * (Dimensions.get('screen').width / 400),
         height: 45
     },
 
     confirmButtonTextStyle: {
         color: ColorEnum.ClassicGrey,
-        fontSize: 18,
-        marginHorizontal: 20
+        fontSize: 18
     },
 
     headerContainer: {

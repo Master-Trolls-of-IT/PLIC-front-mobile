@@ -13,9 +13,10 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import useSettingsPageData from '~/infrastructure/ui/pages/settings-page/hooks';
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal';
 import GenericErrorMessage from '~/infrastructure/ui/shared/component/texts/generic-error-text/generic-error-message';
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
+import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
+import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
 
 const SettingsPage = () => {
     const {
@@ -34,7 +35,7 @@ const SettingsPage = () => {
         onDeleteAccountPress,
         onDeleteAccountModalPress,
         onDeleteConfirm,
-        onGoSettings,
+        onPressCancelDeleteModal,
         inputPassword,
         loader,
         error,
@@ -97,68 +98,76 @@ const SettingsPage = () => {
                     />
                 </View>
             </View>
-            <CustomModal
-                isVisible={deletePasswordModal}
-                dispatch={setDeletePasswordModal}
+            <CustomModalWithHeader
                 title="Suppression de compte"
-                titleSize={25}>
-                <View style={SettingsPageStyle.deletePasswordTextContainer}>
+                titleSize={22}
+                isVisible={deletePasswordModal}
+                dispatch={setDeletePasswordModal}>
+                <View style={SettingsPageStyle.deleteModalContainer}>
                     <Text style={{ ...SettingsPageStyle.deletePasswordText, ...customFontInterBold().text }}>
-                        Vous êtes sur le point de supprimer votre compte. Veuillez entrer votre mot de passe ci-dessous
-                        pour confirmer:
+                        Vous êtes sur le point de <Text style={SettingsPageStyle.redText}>supprimer </Text> votre
+                        compte. Veuillez entrer votre mot de passe ci-dessous pour confirmer :
                     </Text>
-                </View>
-                <GenericInput type={InputEnum.Password} placeHolder={'********'} {...inputPassword} />
-                <GenericErrorMessage text={errorMessage} style={SettingsPageStyle.errorMessage} error={error} />
-                <View style={SettingsPageStyle.buttonContainer}>
-                    <GenericButton
-                        title="Annuler"
-                        onPress={onGoSettings}
-                        style={{
-                            container: SettingsPageStyle.goBackButtonStyle,
-                            text: SettingsPageStyle.goBackButtonTextStyle
-                        }}
+                    <GenericInput
+                        style={SettingsPageStyle.inputModal}
+                        type={InputEnum.Password}
+                        placeHolder={'********'}
+                        {...inputPassword}
                     />
-                    <GenericButton
-                        title="Confirmer"
-                        onPress={onDeleteAccountModalPress}
-                        loader={loader}
-                        style={{
-                            container: SettingsPageStyle.confirmButtonStyle,
-                            text: SettingsPageStyle.confirmButtonTextStyle
-                        }}
-                    />
+                    <GenericErrorMessage text={errorMessage} style={SettingsPageStyle.errorMessage} error={error} />
+                    <View style={SettingsPageStyle.buttonContainer}>
+                        <GenericButton
+                            title="Annuler"
+                            onPress={onPressCancelDeleteModal}
+                            style={{
+                                container: SettingsPageStyle.goBackButtonStyle,
+                                text: SettingsPageStyle.goBackButtonTextStyle
+                            }}
+                        />
+                        <GenericButton
+                            title="Confirmer"
+                            onPress={onDeleteAccountModalPress}
+                            loader={loader}
+                            style={{
+                                container: SettingsPageStyle.confirmButtonStyle,
+                                text: SettingsPageStyle.confirmButtonTextStyle
+                            }}
+                        />
+                    </View>
                 </View>
-            </CustomModal>
-            <CustomModal
+            </CustomModalWithHeader>
+            <CustomModalWithHeader
                 isVisible={deleteConfirmationModal}
                 dispatch={setDeleteConfirmationModal}
                 title="Suppression de compte"
-                titleSize={25}>
-                <View style={SettingsPageStyle.deletePasswordTextContainer}>
+                titleSize={22}>
+                <View style={SettingsPageStyle.deleteModalContainer}>
                     <Text style={{ ...SettingsPageStyle.deletePasswordText, ...customFontInterBold().text }}>
-                        Êtes-vous absolument certain de vouloir supprimer votre compte ? Cette action est irréversible.
+                        Êtes-vous absolument certain de vouloir{' '}
+                        <Text style={SettingsPageStyle.redText}>supprimer </Text>
+                        votre compte ? Cette action est <Text style={SettingsPageStyle.redText}>irréversible</Text>.
                     </Text>
+
+                    <View style={SettingsPageStyle.buttonContainer}>
+                        <GenericButton
+                            title="Annuler"
+                            onPress={onPressCancelDeleteModal}
+                            style={{
+                                container: SettingsPageStyle.goBackButtonStyle,
+                                text: SettingsPageStyle.goBackButtonTextStyle
+                            }}
+                        />
+                        <GenericButton
+                            title="Confirmer"
+                            onPress={onDeleteConfirm}
+                            style={{
+                                container: SettingsPageStyle.confirmButtonStyle,
+                                text: SettingsPageStyle.confirmButtonTextStyle
+                            }}
+                        />
+                    </View>
                 </View>
-                <View style={SettingsPageStyle.buttonContainer}>
-                    <GenericButton
-                        title="Annuler"
-                        onPress={onGoSettings}
-                        style={{
-                            container: SettingsPageStyle.goBackButtonStyle,
-                            text: SettingsPageStyle.goBackButtonTextStyle
-                        }}
-                    />
-                    <GenericButton
-                        title="Confirmer"
-                        onPress={onDeleteConfirm}
-                        style={{
-                            container: SettingsPageStyle.confirmButtonStyle,
-                            text: SettingsPageStyle.confirmButtonTextStyle
-                        }}
-                    />
-                </View>
-            </CustomModal>
+            </CustomModalWithHeader>
         </View>
     );
 };

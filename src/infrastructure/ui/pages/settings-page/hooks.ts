@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { Dimensions } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
@@ -8,14 +9,11 @@ import { LoginData } from '~/domain/interfaces/services/login';
 import passwordHashing from '~/infrastructure/controllers/password-hashing';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { UserData } from '~/domain/interfaces/services/user-data';
-import formatTimpstampToDate from '~/infrastructure/ui/shared/helper/format-timpstamp-to-date';
-import DataStore from '~/infrastructure/controllers/store/root-store/data-store';
-import LoginStore from '~/infrastructure/controllers/store/root-store/login-store';
 
 const useSettingsPageData = () => {
     const {
         NavigationStore: { navigate },
-        LoginStore: { userData }
+        UserStore: { userData }
     } = useStore();
 
     const [deletePasswordModal, setDeletePasswordModal] = useState(false);
@@ -38,10 +36,6 @@ const useSettingsPageData = () => {
 
     const navigateToStartPage = useCallback(() => {
         navigate(PagesEnum.LoginPage);
-    }, [navigate]);
-
-    const navigateToSettingsPage = useCallback(() => {
-        navigate(PagesEnum.SettingsPage);
     }, [navigate]);
 
     const onDeleteAccountPress = () => {
@@ -67,11 +61,11 @@ const useSettingsPageData = () => {
                 setDeletePasswordModal(false);
             } catch (e) {
                 setError(true);
-                setErrorMessage('Veuillez réessayer plus tard');
+                setErrorMessage('Le mot de passe est incorrect');
             }
         } else {
             setError(true);
-            setErrorMessage('Format de mot de passe incorrect.');
+            setErrorMessage('Le champ mot de passe est invalide');
         }
         setLoader(false);
     }, [inputPasswordString, userData.Email]);
@@ -88,24 +82,23 @@ const useSettingsPageData = () => {
         }
     };
 
-    const onGoSettings = () => {
+    const onPressCancelDeleteModal = () => {
         setDeletePasswordModal(false);
         setDeleteConfirmationModal(false);
-        navigateToSettingsPage();
+        setInputPassword('');
     };
 
     const logoutButtonStyle = {
         container: {
             backgroundColor: ColorEnum.ClassicBrown,
             borderRadius: 20,
-            width: 180,
+            width: 180 * (Dimensions.get('screen').width / 400),
             height: 45,
             marginTop: 25
         },
         text: {
             color: ColorEnum.ClassicBeige,
-            fontSize: 18,
-            fontWeight: 700
+            fontSize: 18
         }
     };
 
@@ -113,13 +106,12 @@ const useSettingsPageData = () => {
         container: {
             backgroundColor: ColorEnum.ClassicRedIcon,
             borderRadius: 20,
-            width: 220,
+            width: 220 * (Dimensions.get('screen').width / 400),
             height: 45
         },
         text: {
             color: ColorEnum.ClassicGrey,
-            fontSize: 18,
-            fontWeight: 700
+            fontSize: 18
         }
     };
 
@@ -138,7 +130,7 @@ const useSettingsPageData = () => {
         onDeleteAccountPress,
         onDeleteAccountModalPress,
         onDeleteConfirm,
-        onGoSettings,
+        onPressCancelDeleteModal,
         loader,
         error,
         errorMessage,
