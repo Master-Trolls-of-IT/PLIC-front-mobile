@@ -13,7 +13,7 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, tags, style }: MealItemProps) => {
     const {
         favouriteIcon,
-        toggleFavorite,
+        toggleFavourite,
         scoreStyle,
         restaurantIcon,
         deleteIcon,
@@ -27,17 +27,16 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
         editNewHeight,
         editNewWidth,
         isExpanded,
-        setIsExpanded,
+        toggleExpand,
         animatedItemStyle,
         showExpandedView,
-        showButtonsAnimationTime
-    } = useMealItemData({ score, isFavourite });
+        showButtonsAnimationTime,
+        productNames,
+        consumeMeal
+    } = useMealItemData({ id, score, isFavourite, products });
     return (
         <Animated.View style={[MealItemStyle.item, style, animatedItemStyle]}>
-            <TouchableOpacity
-                onPress={() => {
-                    setIsExpanded(!isExpanded);
-                }}>
+            <TouchableOpacity onPress={toggleExpand}>
                 <View style={MealItemStyle.container}>
                     <View style={MealItemStyle.imageContainer}>
                         <CustomSvg asset={restaurantIcon} height={imageNewHeight} width={imageNewWidth} />
@@ -53,11 +52,7 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
                         </View>
 
                         <Text style={{ ...MealItemStyle.ingredients, ...useCustomFontInterBold().text }}>
-                            {products
-                                .map((product) => {
-                                    return product.productInfo.name;
-                                })
-                                .join(' • ')}
+                            {productNames}
                         </Text>
 
                         <View style={MealItemStyle.mealTags}>
@@ -77,25 +72,21 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
                         </View>
                     </View>
 
-                    <TouchableOpacity
-                        onPress={() => {
-                            toggleFavorite(id);
-                        }}
-                        style={MealItemStyle.favourite}>
+                    <TouchableOpacity onPress={toggleFavourite} style={MealItemStyle.favourite}>
                         <CustomSvg asset={favouriteIcon} height={favouriteNewHeight} width={favouriteNewWidth} />
                     </TouchableOpacity>
                 </View>
             </TouchableOpacity>
             {isExpanded && showExpandedView && (
                 <Animated.View
-                    style={[MealItemStyle.expandedSection]}
+                    style={{ ...MealItemStyle.expandedSection }}
                     entering={FadeIn.duration(showButtonsAnimationTime)}
                     exiting={FadeOutUp.duration(showButtonsAnimationTime)}>
                     <CustomSvg asset={deleteIcon} width={deleteNewWidth} height={deleteNewHeight} />
                     <GenericButton
                         title="Consommer ce repas"
                         style={{ text: MealItemStyle.buttonText, container: MealItemStyle.consumeButtonContainer }}
-                        onPress={() => {}}
+                        onPress={consumeMeal}
                     />
                     <CustomSvg asset={editIcon} width={editNewWidth} height={editNewHeight} />
                 </Animated.View>

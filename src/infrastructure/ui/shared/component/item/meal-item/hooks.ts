@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
-import { Animated } from 'react-native';
+import { useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { MealItemDataProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-data-props';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 import { useStore } from '~/infrastructure/controllers/store';
 
-const useMealItemData = ({ score, isFavourite }: MealItemDataProps) => {
+const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps) => {
     const {
         MealStore: { toggleFavorite }
     } = useStore();
@@ -42,6 +41,21 @@ const useMealItemData = ({ score, isFavourite }: MealItemDataProps) => {
         };
     });
 
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
+
+    const toggleFavourite = () => {
+        toggleFavorite(id);
+    };
+    const productNames = products
+        .map((product) => {
+            return product.name;
+        })
+        .join(' • ');
+
+    const consumeMeal = () => {};
+
     useEffect(() => {
         const timeOut = setTimeout(() => {
             setShowExpandedView(isExpanded);
@@ -75,14 +89,16 @@ const useMealItemData = ({ score, isFavourite }: MealItemDataProps) => {
         editIcon,
         editNewHeight,
         editNewWidth,
-        toggleFavorite,
+        toggleFavourite,
         scoreStyle,
         isExpanded,
-        setIsExpanded,
+        toggleExpand,
         animatedItemStyle,
         expandedContentHeight,
         showExpandedView,
-        showButtonsAnimationTime
+        showButtonsAnimationTime,
+        productNames,
+        consumeMeal
     };
 };
 

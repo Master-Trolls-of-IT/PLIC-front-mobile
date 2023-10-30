@@ -23,6 +23,7 @@ class MealStore {
                 mealTags: observable,
 
                 addMeal: action,
+                setMealList: action,
                 toggleFavorite: action,
                 setMealTags: action,
                 addMealProducts: action,
