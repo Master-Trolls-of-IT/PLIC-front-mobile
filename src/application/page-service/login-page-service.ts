@@ -8,6 +8,7 @@ const useLoginPageService = () => {
     const {
         LogsStore: { error }
     } = useStore();
+
     const RefreshTokenGen = async (password: string): Promise<string> => {
         try {
             const response: GenericResponse<{ token: string }> = await APIServices.GET(
