@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import { useStore } from '~/infrastructure/controllers/store';
-import { RecipeInfo } from '~/domain/interfaces/props/recipe-item/recipe-item-props';
+import { RecipeInfo } from '~/domain/interfaces/props/recipe-item/recipe-item-info';
 
 const useRecipePageData = (navigate: NavigateProps) => {
     const {
