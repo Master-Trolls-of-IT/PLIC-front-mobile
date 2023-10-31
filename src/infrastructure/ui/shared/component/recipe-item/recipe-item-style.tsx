@@ -69,8 +69,7 @@ const RecipeItemStyle = StyleSheet.create({
         marginTop: 3,
         paddingTop: 8,
         borderTopWidth: 2,
-        borderColor: ColorEnum.ClassicBrown,
-        height: '100%'
+        borderColor: ColorEnum.ClassicBrown
     },
     preperationContainer: {},
     preperationHeader: {
@@ -218,8 +217,12 @@ const RecipeItemStyle = StyleSheet.create({
     },
 
     buttonContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         width: '100%',
-        height: 43 * (Dimensions.get('screen').width / 400)
+        height: 43 * (Dimensions.get('screen').width / 400),
+        marginVertical: 10
     },
 
     buttonText: {

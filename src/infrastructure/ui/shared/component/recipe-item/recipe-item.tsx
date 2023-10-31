@@ -1,4 +1,4 @@
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Button, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import RecipeItemStyle from '~/infrastructure/ui/shared/component/recipe-item/recipe-item-style';
 import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';

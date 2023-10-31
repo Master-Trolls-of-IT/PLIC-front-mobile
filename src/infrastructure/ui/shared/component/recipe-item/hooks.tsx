@@ -50,7 +50,7 @@ const useRecipeItemData = ({ recipe }: { recipe: RecipeInfo }) => {
         container: {
             backgroundColor: ColorEnum.ClassicRedIcon,
             borderRadius: 20,
-            width: 220 * (Dimensions.get('screen').width / 400),
+            width: 180 * (Dimensions.get('screen').width / 400),
             height: 45
         },
         text: {
@@ -62,7 +62,7 @@ const useRecipeItemData = ({ recipe }: { recipe: RecipeInfo }) => {
         container: {
             backgroundColor: ColorEnum.ClassicGreen,
             borderRadius: 20,
-            width: 220 * (Dimensions.get('screen').width / 400),
+            width: 180 * (Dimensions.get('screen').width / 400),
             height: 45
         },
         text: {
