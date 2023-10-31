@@ -20,9 +20,10 @@ const useLoginPageData = () => {
     const {
         UserStore: { setRefreshToken, setAccessToken, setUserData },
         LogsStore: { warn },
-        NavigationStore: { navigate }
+        NavigationStore: { navigate },
+        ConsumedProductStore: { setConsumedProducts }
     } = useStore();
-    const { RefreshTokenGen } = useLoginPageService();
+    const { RefreshTokenGen, getConsumedProducts } = useLoginPageService();
 
     const resetAllError = () => {
         setErrorOnLogin(false);
@@ -60,7 +61,16 @@ const useLoginPageData = () => {
 
                     userDataCopy.birthdate = formatTimestampToDate(userDataCopy.birthdate);
                     setUserData(userDataCopy);
-                    navigate(PagesEnum.HomePage);
+                    getConsumedProducts(response.data.email)
+                        .then((newConsumedProducts) => {
+                            setConsumedProducts(newConsumedProducts);
+                        })
+                        .catch(() => {
+                            setConsumedProducts([]);
+                        })
+                        .finally(() => {
+                            navigate(PagesEnum.HomePage);
+                        });
                 } else {
                     setErrorOnServer(true);
                 }
@@ -79,7 +89,9 @@ const useLoginPageData = () => {
         setAccessToken,
         setRefreshToken,
         setUserData,
-        warn
+        warn,
+        getConsumedProducts,
+        setConsumedProducts
     ]);
 
     const selectRightErrorMessage = () => {
