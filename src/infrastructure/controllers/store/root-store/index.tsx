@@ -27,7 +27,7 @@ class RootStore {
     }
 
     public constructor() {
-        this.NavigationStore = new NavigationStore();
+        this.NavigationStore = new NavigationStore(this);
         this.UserStore = new UserStore('UserStore', this);
         this.DataStore = new DataStore(this);
         this.HistoryStore = new HistoryStore('HistoryStore');
