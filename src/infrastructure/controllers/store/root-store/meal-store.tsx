@@ -30,6 +30,7 @@ class MealStore {
                 editMealProductQuantity: action,
                 deleteMealProduct: action,
                 deleteMealTag: action,
+                deleteMeal: action,
                 resetStore: action
             },
             { autoBind: true }
@@ -79,6 +80,10 @@ class MealStore {
 
     deleteMealTag = (tag: MealItemTag) => {
         this.mealTags = this.mealTags.filter((tagItem) => tagItem.label != tag.label);
+    };
+
+    deleteMeal = (id: string) => {
+        this.mealList = this.mealList.filter((meal) => meal.id != id);
     };
 
     resetStore = () => {
