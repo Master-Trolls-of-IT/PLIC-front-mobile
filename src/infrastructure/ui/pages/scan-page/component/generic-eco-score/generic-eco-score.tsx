@@ -3,11 +3,11 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import React from 'react';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
-import useEcoScoreData from '~/infrastructure/ui/shared/component/widgets/eco-score/hooks';
 import GenericEcoScoreStyle from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score-style';
+import useGenericEcoScoreData from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/hooks';
 
 const GenericEcoScore = ({ ecoScore, style }: { ecoScore: number; style?: object }) => {
-    const { color } = useEcoScoreData();
+    const { color } = useGenericEcoScoreData(ecoScore);
 
     return (
         <View style={{ ...GenericEcoScoreStyle.content, ...style }}>

@@ -31,7 +31,7 @@ const ScanPage = () => {
         onPressScanAgain,
         scannedProduct,
         toggleFavourite,
-        onPressAddQuantity
+        addQuantity
     } = useScanPageData(navigate);
 
     return (
@@ -95,7 +95,7 @@ const ScanPage = () => {
                     scannedProduct={scannedProduct}
                     toggleFavourite={toggleFavourite}
                     onPressScanAgain={onPressScanAgain}
-                    onPressAddQuantity={onPressAddQuantity}
+                    onPressAddQuantity={addQuantity}
                 />
             )}
         </KeyboardAwareScrollView>

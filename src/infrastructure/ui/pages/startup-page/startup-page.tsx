@@ -19,6 +19,7 @@ const StartUpPage = () => {
         void startupPageLifecycle();
     });
 
+    // TODO : Change Custom modal in Custom modal with header
     return (
         <View style={StartUpPageStyle.container}>
             <Animated.View style={[{ transform: [{ translateY: slideAnimTop }] }]}>

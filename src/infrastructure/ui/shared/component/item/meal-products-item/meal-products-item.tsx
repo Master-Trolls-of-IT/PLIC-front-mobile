@@ -10,9 +10,8 @@ import GenericButton from '~/infrastructure/ui/shared/component/generic-button/g
 import MealProductsItemStyle from '~/infrastructure/ui/shared/component/item/meal-products-item/meal-products-item-style';
 import useMealProductsItemData from '~/infrastructure/ui/shared/component/item/meal-products-item/hooks';
 import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
-import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
 import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
+import ModalAddQuantity from '~/infrastructure/ui/shared/component/modal/modal-add-quantity/modal-add-quantity';
 
 const MealProductsItem = ({
     id,
@@ -26,25 +25,22 @@ const MealProductsItem = ({
     style
 }: MealProductsItemProps) => {
     const {
+        addQuantity,
         animatedItemStyle,
         customFontInterBold,
-        onPressProduct,
-        scorePercentage,
-        scoreColor,
-        onPressEditMealProductQuantity,
-        onPressValidateEditModal,
-        isExpended,
         isEditModalOpen,
         setIsEditModalOpen,
-        servingQuantity,
-        onPressAddServing,
-        setQuantity,
         isDeleteModalOpen,
         setIsDeleteModalOpen,
+        isExpended,
+        onPressEditMealProductQuantity,
+        onPressProduct,
+        scoreColor,
+        scorePercentage,
         onPressCancelDeleteModal,
         onPressDeleteModal,
         onPressValidateDeleteModal
-    } = useMealProductsItemData({ id, score, consumedQuantity, isWater, serving });
+    } = useMealProductsItemData({ id, score });
 
     return (
         <Animated.View style={[animatedItemStyle, MealProductsItemStyle.item, style]}>
@@ -116,35 +112,15 @@ const MealProductsItem = ({
                     </Animated.View>
                 )}
 
-                {isEditModalOpen && (
-                    <CustomModal
-                        isVisible={isEditModalOpen}
-                        dispatch={setIsEditModalOpen}
-                        title={'Modifier la quantité\n consommée'}
-                        titleSize={22}>
-                        <GenericInputWithSearchIconAndEndText
-                            placeHolder={isWater ? '25' : '100'}
-                            endText={isWater ? 'cl' : 'g'}
-                            style={MealProductsItemStyle.customModalChildren}
-                            input={consumedQuantity}
-                            dispatch={setQuantity}
-                            onPressSearchIcon={onPressValidateEditModal}
-                        />
-
-                        {servingQuantity ? (
-                            <GenericButton
-                                title={'Ajouter une portion'}
-                                onPress={onPressAddServing}
-                                style={{
-                                    container: MealProductsItemStyle.quantityModalButtonContainer,
-                                    text: MealProductsItemStyle.quantityModalButtonText
-                                }}
-                            />
-                        ) : (
-                            <></>
-                        )}
-                    </CustomModal>
-                )}
+                <ModalAddQuantity
+                    title={'Modifier la quantité\n consommée'}
+                    modal={isEditModalOpen}
+                    setModal={setIsEditModalOpen}
+                    addQuantity={addQuantity}
+                    isWater={isWater}
+                    serving={serving}
+                    defaultQuantity={consumedQuantity}
+                />
 
                 {isDeleteModalOpen && (
                     <CustomModalWithHeader

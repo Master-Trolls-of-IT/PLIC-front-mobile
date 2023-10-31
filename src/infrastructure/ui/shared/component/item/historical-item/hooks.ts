@@ -5,19 +5,20 @@ import useScanPageScannedItemService from '~/application/page-service/scan-page-
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 import { HistoricalItemDataProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-data-props';
 import { useStore } from '~/infrastructure/controllers/store';
+import useConsumedProductPageService from '~/application/page-service/consumed-products-page-service';
 
 const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDataProps) => {
     const {
         HistoryStore: { toggleFavoriteHistory },
         NavigationStore: { navigate },
-        LogsStore: { error }
+        ConsumedProductStore: { consumedProducts }
     } = useStore();
 
     const { addConsumedProduct } = useScanPageScannedItemService();
+    const { editQuantityConsumedProduct } = useConsumedProductPageService();
 
     const [isExpended, setIsExpended] = useState(false);
     const [modal, setModal] = useState(false);
-    const [quantity, setQuantity] = useState('100');
 
     const itemHeight = useSharedValue(100);
     const scorePercentage = score / 100;
@@ -38,20 +39,16 @@ const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDa
         setModal(true);
     };
 
-    const onPressModalButton = async () => {
-        setModal(false);
-        try {
+    const addQuantity = async (quantity: string) => {
+        const productAlreadyExist = consumedProducts.find((product) => product.barcode === barcode);
+
+        if (productAlreadyExist) {
+            const newQuantity: number = Number(quantity) + productAlreadyExist.consumedQuantity;
+            void editQuantityConsumedProduct(barcode, newQuantity);
+        } else {
             await addConsumedProduct(barcode, quantity);
-            navigate(PagesEnum.ConsumedProducts);
-        } catch (err) {
-            if (err instanceof Error) {
-                error(
-                    'onPressModalButton > historical-item ',
-                    'Unknown error while adding consumed Product to database',
-                    err.message
-                );
-            }
         }
+        navigate(PagesEnum.ConsumedProducts);
     };
 
     const favouriteIcon = useMemo(() => {
@@ -63,8 +60,6 @@ const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDa
     return {
         isExpended,
         onPress,
-        quantity,
-        setQuantity,
         modal,
         setModal,
         animatedItemStyle,
@@ -72,7 +67,7 @@ const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDa
         scoreColor,
         scorePercentage,
         onPressConsumedProductsButton,
-        onPressModalButton,
+        addQuantity,
         toggleFavoriteHistory
     };
 };

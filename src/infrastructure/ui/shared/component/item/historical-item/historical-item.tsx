@@ -10,26 +10,33 @@ import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import HistoricalItemStyle from '~/infrastructure/ui/shared/component/item/historical-item/historical-item-style';
-import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
-import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
+import ModalAddQuantity from '~/infrastructure/ui/shared/component/modal/modal-add-quantity/modal-add-quantity';
 
-const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data, style, id }: HistoricalItemProps) => {
+const HistoricalItem = ({
+    barcode,
+    name,
+    brand,
+    score,
+    image,
+    isFavourite,
+    data,
+    style,
+    id,
+    serving
+}: HistoricalItemProps) => {
     const {
         isExpended,
         onPress,
-        quantity,
-        setQuantity,
         modal,
         setModal,
         animatedItemStyle,
         favouriteIcon,
-        onPressModalButton,
         scoreColor,
         scorePercentage,
         onPressConsumedProductsButton,
+        addQuantity,
         toggleFavoriteHistory
-    } = useHistoricalItemData({ barcode, isFavourite: isFavourite, score });
+    } = useHistoricalItemData({ barcode, isFavourite, score });
 
     return (
         <Animated.View style={[animatedItemStyle, HistoricalItemStyle.item, style]}>
@@ -129,19 +136,12 @@ const HistoricalItem = ({ barcode, name, brand, score, image, isFavourite, data,
                             }}
                         />
 
-                        <CustomModal
-                            isVisible={modal}
-                            dispatch={setModal}
-                            title={'Ajouter la quantité\n consommée'}
-                            titleSize={22}>
-                            <GenericInputWithSearchIconAndEndText
-                                placeHolder={'100'}
-                                endText={'g'}
-                                style={ScannedItemStyle.customModalChildren}
-                                input={quantity}
-                                dispatch={setQuantity}
-                                onPressSearchIcon={onPressModalButton}></GenericInputWithSearchIconAndEndText>
-                        </CustomModal>
+                        <ModalAddQuantity
+                            modal={modal}
+                            setModal={setModal}
+                            addQuantity={addQuantity}
+                            serving={serving}
+                        />
                     </Animated.View>
                 )}
             </TouchableOpacity>

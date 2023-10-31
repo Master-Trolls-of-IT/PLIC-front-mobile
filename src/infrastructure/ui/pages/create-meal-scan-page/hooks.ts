@@ -3,7 +3,6 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useStore } from '~/infrastructure/controllers/store';
 import useScanPageService from '~/application/page-service/scan-page-service';
 import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
-import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-eco-score-value';
 
 const useCreateMealScanPageData = () => {
     const {
@@ -57,7 +56,7 @@ const useCreateMealScanPageData = () => {
                 brand: scannedProduct?.brand,
                 data: scannedProduct?.nutrients,
                 image: scannedProduct?.image_url,
-                score: chooseRightEcoScoreValue(scannedProduct?.ecoscore),
+                score: Number(scannedProduct?.ecoscore),
                 serving: scannedProduct?.serving,
                 consumedQuantity: quantity,
                 isWater: scannedProduct?.isWater

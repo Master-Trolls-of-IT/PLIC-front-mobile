@@ -4,7 +4,6 @@ import { useStore } from '~/infrastructure/controllers/store';
 import { ScanPageServiceProps } from '~/domain/interfaces/services/scan-page-service-props';
 import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
 import { HistoricalItemProps } from '~/domain/interfaces/props/search-list/item/historical-item/historical-item-props';
-import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-eco-score-value';
 
 const useScanPageService = () => {
     const {
@@ -35,7 +34,7 @@ const useScanPageService = () => {
                         brand: productInfo?.brand,
                         data: productInfo?.nutrients,
                         image: productInfo?.image_url,
-                        score: chooseRightEcoScoreValue(productInfo?.ecoscore),
+                        score: Number(productInfo?.ecoscore),
                         isFavourite: false,
                         serving: productInfo?.serving
                     } as HistoricalItemProps);

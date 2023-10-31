@@ -56,7 +56,7 @@ const useScanPageData = (navigate: NavigateProps) => {
         setErrorResponse('');
     };
 
-    const onPressAddQuantity = async (quantity: string) => {
+    const addQuantity = async (quantity: string) => {
         if (scannedProduct && !scannedProduct.isWater) {
             const productAlreadyExist = consumedProducts.find((product) => product.barcode === scannedProduct.barcode);
 
@@ -87,7 +87,7 @@ const useScanPageData = (navigate: NavigateProps) => {
         onPressSearchIcon,
         onPressScanAgain,
         toggleFavourite,
-        onPressAddQuantity
+        addQuantity
     };
 };
 
