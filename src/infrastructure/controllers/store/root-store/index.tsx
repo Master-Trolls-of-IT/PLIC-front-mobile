@@ -31,7 +31,7 @@ class RootStore {
         this.UserStore = new UserStore('UserStore', this);
         this.DataStore = new DataStore(this);
         this.HistoryStore = new HistoryStore('HistoryStore');
-        this.ConsumedProductStore = new ConsumedProductStore('ConsumedProductStore');
+        this.ConsumedProductStore = new ConsumedProductStore('ConsumedProductStore', this);
         this.MealStore = new MealStore('MealStore');
         this.LogsStore = new LogsStore('LogsStore');
     }
