@@ -4,15 +4,19 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { MealItemDataProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-data-props';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 import { useStore } from '~/infrastructure/controllers/store';
+import useMealPageService from '~/application/page-service/meal-page-service';
+import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 
 const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps) => {
     const {
-        MealStore: { toggleFavorite }
+        MealStore: { toggleFavorite, deleteMeal }
     } = useStore();
 
+    const { deleteMeal: deleteMealService } = useMealPageService();
     const [isExpanded, setIsExpanded] = useState(false);
     const expandedContentHeight = useSharedValue(120);
     const [showExpandedView, setShowExpandedView] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const restaurantIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-restaurant.svg');
     const deleteIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-delete.svg');
@@ -23,6 +27,8 @@ const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps
     const [deleteNewHeight, deleteNewWidth] = [40, 40];
     const [editNewHeight, editNewWidth] = [40, 40];
     const [expandAnimationTime, showButtonsAnimationTime] = [400, 200];
+
+    const customFontInterBold = useCustomFontInterBold().text;
 
     const favouriteIcon = useMemo(() => {
         return isFavourite
@@ -53,6 +59,20 @@ const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps
             return product.name;
         })
         .join(' • ');
+
+    const onPressDeleteButton = () => {
+        setIsDeleteModalOpen(true);
+    };
+
+    const onPressCancelDeleteModal = () => {
+        setIsDeleteModalOpen(false);
+    };
+
+    const onPressValidateDeleteModal = async () => {
+        await deleteMealService(id);
+        deleteMeal(id);
+        setIsDeleteModalOpen(false);
+    };
 
     const consumeMeal = () => {};
 
@@ -98,7 +118,13 @@ const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps
         showExpandedView,
         showButtonsAnimationTime,
         productNames,
-        consumeMeal
+        consumeMeal,
+        onPressDeleteButton,
+        isDeleteModalOpen,
+        setIsDeleteModalOpen,
+        onPressCancelDeleteModal,
+        onPressValidateDeleteModal,
+        customFontInterBold
     };
 };
 

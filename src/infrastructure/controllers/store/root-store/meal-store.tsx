@@ -30,7 +30,9 @@ class MealStore {
                 editMealProductQuantity: action,
                 deleteMealProduct: action,
                 deleteMealTag: action,
-                resetStore: action
+                deleteMeal: action,
+                resetStore: action,
+                resetCreateMealStore: action
             },
             { autoBind: true }
         );
@@ -81,9 +83,18 @@ class MealStore {
         this.mealTags = this.mealTags.filter((tagItem) => tagItem.label != tag.label);
     };
 
+    deleteMeal = (id: string) => {
+        this.mealList = this.mealList.filter((meal) => meal.id != id);
+    };
+
     resetStore = () => {
         this.mealList = [];
-        this.mealList = [];
+        this.mealProducts = [];
+        this.mealTags = [];
+    };
+
+    resetCreateMealStore = () => {
+        this.mealProducts = [];
         this.mealTags = [];
     };
 }
