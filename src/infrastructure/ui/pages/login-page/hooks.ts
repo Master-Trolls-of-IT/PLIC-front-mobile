@@ -57,7 +57,7 @@ const useLoginPageData = () => {
                     } else {
                         warn('useLoginPageData', 'Received an empty access or refresh token', '');
                     }
-                    const userDataCopy = response.data;
+                    const userDataCopy: UserData = response.data;
 
                     userDataCopy.birthdate = formatTimestampToDate(userDataCopy.birthdate);
                     setUserData(userDataCopy);

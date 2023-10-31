@@ -4,10 +4,6 @@ import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-i
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
 import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
 
-export type SearchListDataProps =
-    | ((inputType: ItemEnum.Historical, data: HistoricalItemProps[]) => object)
-    | ((inputType: ItemEnum.Meal, data: MealItemProps[]) => object);
-
 export type SearchListInputType =
     | ItemEnum.Historical
     | ItemEnum.Meal

@@ -23,6 +23,7 @@ class MealStore {
                 mealTags: observable,
 
                 addMeal: action,
+                setMealList: action,
                 toggleFavorite: action,
                 setMealTags: action,
                 addMealProducts: action,
@@ -43,6 +44,10 @@ class MealStore {
 
     addMeal = (newItem: MealItemProps) => {
         this.mealList = [newItem].concat(this.mealList);
+    };
+
+    setMealList = (newItems: MealItemProps[]) => {
+        this.mealList = newItems;
     };
 
     toggleFavorite = (id: string) => {

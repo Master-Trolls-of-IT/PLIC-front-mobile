@@ -13,6 +13,7 @@ const useLoginPageService = () => {
     } = useStore();
 
     const { mapResponse } = useMapConsumedProductResponse();
+
     const RefreshTokenGen = async (password: string): Promise<string> => {
         try {
             const response: GenericResponse<{ token: string }> = await APIServices.GET(
