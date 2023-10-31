@@ -31,7 +31,8 @@ class MealStore {
                 deleteMealProduct: action,
                 deleteMealTag: action,
                 deleteMeal: action,
-                resetStore: action
+                resetStore: action,
+                resetCreateMealStore: action
             },
             { autoBind: true }
         );
@@ -88,7 +89,12 @@ class MealStore {
 
     resetStore = () => {
         this.mealList = [];
-        this.mealList = [];
+        this.mealProducts = [];
+        this.mealTags = [];
+    };
+
+    resetCreateMealStore = () => {
+        this.mealProducts = [];
         this.mealTags = [];
     };
 }

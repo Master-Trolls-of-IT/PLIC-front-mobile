@@ -8,7 +8,7 @@ import useMealPageService from '~/application/page-service/meal-page-service';
 
 const useCreateMealPageData = () => {
     const {
-        MealStore: { addMeal, mealProducts, mealTags, resetStore },
+        MealStore: { addMeal, mealProducts, mealTags, resetStore, resetCreateMealStore },
         NavigationStore: { navigate, goBack },
         UserStore: { userData }
     } = useStore();
@@ -54,7 +54,7 @@ const useCreateMealPageData = () => {
 
         const mealItemProps = await saveMeal(mealData);
         addMeal(mealItemProps);
-        resetStore();
+        resetCreateMealStore();
         goBack();
     };
 
