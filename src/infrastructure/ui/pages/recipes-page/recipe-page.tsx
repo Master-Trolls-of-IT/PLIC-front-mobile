@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { observer } from 'mobx-react';
 import recipePageStyle from '~/infrastructure/ui/pages/recipes-page/recipe-page-style';
 import RecipePageBlobsTop from '~/infrastructure/ui/pages/recipes-page/component/background/recipe-page-blobs-top';
 import SearchList from '~/infrastructure/ui/shared/component/item/search-list/search-list';
@@ -12,7 +13,7 @@ const RecipePage = () => {
     const { recipeList, onPressCreateRecipe, onPressShowRecipePage } = useRecipePageData();
 
     return (
-        <View>
+        <View style={recipePageStyle.container}>
             <View style={recipePageStyle.background}>
                 <RecipePageBlobsTop />
             </View>
@@ -47,4 +48,4 @@ const RecipePage = () => {
     );
 };
 
-export default RecipePage;
+export default observer(RecipePage);

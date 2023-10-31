@@ -153,9 +153,9 @@ const useRecipePageData = () => {
         }
     ];
 
-    const onPressCreateRecipe = () => {}; // TODO
+    const onPressCreateRecipe = () => {}; // TODO create page of create recipe and logic behind.
 
-    const onPressShowRecipePage = () => {}; //TODO
+    const onPressShowRecipePage = () => {}; //TODO create page of favorite recipe by user.
 
     return {
         recipeList,

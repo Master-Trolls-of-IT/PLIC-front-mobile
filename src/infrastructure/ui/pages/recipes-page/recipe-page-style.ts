@@ -14,14 +14,12 @@ const RecipePageStyle = StyleSheet.create({
 
     header: {
         fontSize: 30,
-        fontWeight: 'bold',
         marginTop: 20,
         marginLeft: 16
     },
 
     title: {
         fontSize: 18,
-        fontWeight: 'bold',
         textTransform: 'uppercase'
     },
 
@@ -33,8 +31,7 @@ const RecipePageStyle = StyleSheet.create({
         backgroundColor: ColorEnum.ClassicBeige,
         height: '100%',
         width: Dimensions.get('screen').width,
-        position: 'absolute',
-        zIndex: -1
+        position: 'absolute'
     },
 
     headerContainer: {
