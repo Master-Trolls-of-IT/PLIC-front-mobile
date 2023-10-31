@@ -38,7 +38,8 @@ const SettingsPage = () => {
         inputPassword,
         loader,
         error,
-        errorMessage
+        errorMessage,
+        onPressLogout
     } = useSettingsPageData();
 
     return (
@@ -89,7 +90,7 @@ const SettingsPage = () => {
                             <CustomSvg asset={arrowLinkAsset} height={20} width={20} />
                         </TouchableOpacity>
                     </View>
-                    <GenericButton title="Se déconnecter" onPress={() => {}} style={logoutButtonStyle} />
+                    <GenericButton title="Se déconnecter" onPress={onPressLogout} style={logoutButtonStyle} />
                     <GenericButton
                         title="Supprimer le compte"
                         onPress={onDeleteAccountPress}
