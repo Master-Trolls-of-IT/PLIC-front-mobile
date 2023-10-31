@@ -1,7 +1,6 @@
 import React from 'react';
-import { SvgUri } from 'react-native-svg';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { ColorEnum } from "~/domain/interfaces/enum/color-enum";
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 interface RecipeItemProps {
     image: string;
@@ -100,11 +99,6 @@ const RecipeItem: React.FC<RecipeItemProps> = ({
                 <View style={styles.rightContainer}>
                     <Text style={styles.name}>{name}</Text>
                     <View style={styles.ratingContainer}>
-                        <SvgUri
-                            width="100%"
-                            height="100%"
-                            uri="~/src/domain/entities/assets/icon/icon-note.svg" // Assurez-vous que le chemin vers votre fichier SVG est correct
-                        />
                         <Text style={styles.ratingText}>
                             {rating} / 5 ({numRatings} évaluations)
                         </Text>

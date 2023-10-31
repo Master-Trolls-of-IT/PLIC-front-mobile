@@ -22,11 +22,17 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                 return data as ConsumedProductItemProps[];
             case ItemEnum.MealProducts:
                 return data as MealProductsItemProps[];
+            case ItemEnum.Recipe:
+                return data as RecipeItemProps[];
         }
     }, [data, inputType]);
 
     const [displayData, setDisplayData] = useState<
-        HistoricalItemProps[] | MealItemProps[] | ConsumedProductItemProps[] | MealProductsItemProps[]
+        | HistoricalItemProps[]
+        | MealItemProps[]
+        | ConsumedProductItemProps[]
+        | MealProductsItemProps[]
+        | RecipeItemProps[]
     >(mockedData);
 
     useEffect(() => {
@@ -47,6 +53,10 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                     );
                 case ItemEnum.Meal:
                     return (mockedData as MealItemProps[]).filter(
+                        (item) => compareStrings(item.title, search) || compareStrings(item.title, search)
+                    );
+                case ItemEnum.Recipe:
+                    return (mockedData as RecipeItemProps[]).filter(
                         (item) => compareStrings(item.title, search) || compareStrings(item.title, search)
                     );
                 default:
@@ -187,6 +197,71 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                                 setDisplayData(mockedData);
                         }
                     })();
+                case ItemEnum.Recipe:
+                    return (() => {
+                        switch (item.value) {
+                            case 'aphaasc':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].sort((a, b) =>
+                                        a.title.localeCompare(b.title)
+                                    )
+                                );
+                                break;
+                            case 'aphades':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])]
+                                        .sort((a, b) => a.title.localeCompare(b.title))
+                                        .reverse()
+                                );
+                                break;
+                            case 'scoreasc':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].sort((a, b) => a.score - b.score)
+                                );
+                                break;
+                            case 'scoredes':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].sort((a, b) => b.score - a.score)
+                                );
+                                break;
+                            case 'favasc':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].filter((elem) => elem.isFavourite)
+                                );
+                                break;
+                            case 'favdes':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].filter((elem) => !elem.isFavourite)
+                                );
+                                break;
+                            case 'ratasc':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].sort((a, b) => a.rating - b.rating)
+                                );
+                                break;
+                            case 'ratdes':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].sort((a, b) => b.rating - a.rating)
+                                );
+                                break;
+                            case 'numbratasc':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].sort(
+                                        (a, b) => a.numberOfRatings - b.numberOfRatings
+                                    )
+                                );
+                                break;
+                            case 'numbratdes':
+                                setDisplayData(
+                                    [...(mockedData as RecipeItemProps[])].sort(
+                                        (a, b) => b.numberOfRatings - a.numberOfRatings
+                                    )
+                                );
+                                break;
+                            default:
+                                setDisplayData(mockedData);
+                        }
+                    })();
                 default:
             }
         },
@@ -224,6 +299,19 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                     { label: 'Non Favoris', value: 'favdes' },
                     { label: 'Nombre de Produits \u{25B2}', value: 'prodasc' },
                     { label: 'Nombre de Produits \u{25BC}', value: 'proddec' }
+                ]);
+            case ItemEnum.Recipe:
+                return baseFilters.concat([
+                    { label: 'Nom par ordre alphabétique \u{25B2}', value: 'aphaasc' },
+                    { label: 'Nom par ordre alphabétique \u{25BC}', value: 'aphades' },
+                    { label: 'Eco-Score \u{25B2}', value: 'scoreasc' },
+                    { label: 'Eco-Score \u{25BC}', value: 'scoredes' },
+                    { label: 'Favoris', value: 'favasc' },
+                    { label: 'Non Favoris', value: 'favdes' },
+                    { label: 'Les mieux notées \u{25B2}', value: 'ratasc' },
+                    { label: 'Les moins bien notées \u{25BC}', value: 'ratdec' },
+                    { label: "Le plus d'avis \u{25B2}", value: 'numbratasc' },
+                    { label: "Le moins d'avis \u{25BC}", value: 'numbratdes' }
                 ]);
             default:
                 return baseFilters;

@@ -39,44 +39,40 @@ export const recipeData = [
 ];
 
 const RecipePage = () => {
-    const { mealList, onPressCreateRecipe } = useRecipePageData();
+    const { recipeList, onPressCreateRecipe, onPressShowRecipePage } = useRecipePageData();
 
     return (
-        <View style={recipePageStyle.container}>
+        <View>
             <View style={recipePageStyle.background}>
                 <RecipePageBlobsTop />
             </View>
-            <View style={recipePageStyle.header}>
+            <View style={recipePageStyle.container}>
                 <GenericHeaderText
                     firstText={'Recettes'}
                     secondText={`Découvrez les recettes du moment !`}
                     containerStyle={recipePageStyle.headerContainer}
                 />
             </View>
-            {recipeData.map((recipe) => (
-                <RecipeItem
-                    key={recipe.id}
-                    name={recipe.title}
-                    rating={recipe.rating}
-                    numRatings={recipe.numRatings}
-                    prepTime={recipe.prepTime}
-                    difficulty={recipe.difficulty}
-                    ecoScore={recipe.ecoScore}
-                    mainIngredients={recipe.mainIngredients}
-                    createdBy={recipe.createdBy}
-                    tags={recipe.tags}
-                    image={recipe.image}
-                />
-            ))}
+            <SearchList itemType={ItemEnum.Recipe} data={recipeList} />
 
-            <GenericButton
-                title={'Créer une recette'}
-                onPress={onPressCreateRecipe}
-                style={{
-                    container: recipePageStyle.buttonContainer,
-                    text: recipePageStyle.buttonText
-                }}
-            />
+            <View style={recipePageStyle.buttonContainer}>
+                <GenericButton
+                    title={'Mes recettes'}
+                    style={{
+                        container: recipePageStyle.brownButtonContainer,
+                        text: recipePageStyle.brownButtonText
+                    }}
+                    onPress={onPressCreateRecipe}
+                />
+                <GenericButton
+                    title={'Créer une recette'}
+                    style={{
+                        container: recipePageStyle.greenButtonContainer,
+                        text: recipePageStyle.greenButtonText
+                    }}
+                    onPress={onPressShowRecipePage}
+                />
+            </View>
         </View>
     );
 };
