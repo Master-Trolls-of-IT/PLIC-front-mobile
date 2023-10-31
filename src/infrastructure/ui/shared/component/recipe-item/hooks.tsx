@@ -1,9 +1,11 @@
-import { Text, View } from 'react-native';
-import React from 'react';
+import { Dimensions, Text, View } from 'react-native';
+import React, { useMemo } from 'react';
 import chooseRightEcoScoreValue from '~/infrastructure/ui/shared/helper/choose-right-eco-score-value';
 import { RecipeInfo } from '~/domain/interfaces/props/recipe-item/recipe-item-info';
 import GenericEcoScore from '~/infrastructure/ui/pages/scan-page/component/generic-eco-score/generic-eco-score';
 import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
+import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
+import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const useRecipeItemData = ({ recipe }: { recipe: RecipeInfo }) => {
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
@@ -34,17 +36,51 @@ const useRecipeItemData = ({ recipe }: { recipe: RecipeInfo }) => {
             );
     })();
 
-    const onPressGoBack = () => {
-        //TODO faire la fonction pour aller en arrière
+    const scoreStyle = useMemo(() => {
+        switch (true) {
+            case recipe.score < 33:
+                return { ...MealItemStyle.score, color: ColorEnum.ClassicRedWidget };
+            case recipe.score < 66:
+                return { ...MealItemStyle.score, color: ColorEnum.MealPageOrange };
+            default:
+                return { ...MealItemStyle.score, color: ColorEnum.ClassicDarkGreen };
+        }
+    }, [recipe.score]);
+    const deleteButtonStyle = {
+        container: {
+            backgroundColor: ColorEnum.ClassicRedIcon,
+            borderRadius: 20,
+            width: 220 * (Dimensions.get('screen').width / 400),
+            height: 45
+        },
+        text: {
+            color: ColorEnum.ClassicGrey,
+            fontSize: 18
+        }
     };
-
+    const editButtonStyle = {
+        container: {
+            backgroundColor: ColorEnum.ClassicGreen,
+            borderRadius: 20,
+            width: 220 * (Dimensions.get('screen').width / 400),
+            height: 45
+        },
+        text: {
+            color: ColorEnum.ClassicGrey,
+            fontSize: 18
+        }
+    };
+    const sendReview = () => {};
     return {
         unfilledFavouriteAsset,
         horizontalScrollLineAsset,
         ecoScore,
         chooseRightNutriScoreImage,
-        onPressGoBack,
-        showRightEcoScore
+        showRightEcoScore,
+        scoreStyle,
+        sendReview,
+        deleteButtonStyle,
+        editButtonStyle
     };
 };
 

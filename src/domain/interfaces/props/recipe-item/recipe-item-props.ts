@@ -4,4 +4,5 @@ import { RecipeInfo } from '~/domain/interfaces/props/recipe-item/recipe-item-in
 export type RecipeItemProps = {
     recipe: RecipeInfo;
     toggleFavourite: () => void;
+    goBack: () => void;
 };

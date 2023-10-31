@@ -1,3 +1,5 @@
+import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
+
 export type RecipeInfo = {
     id: string;
     name: string;
@@ -11,6 +13,7 @@ export type RecipeInfo = {
     isFavourite: boolean;
     ecoScore: string;
     nutriscore: NutriScore;
+    tags: RecipeItemTag[];
 };
 
 type NutriScore = {
