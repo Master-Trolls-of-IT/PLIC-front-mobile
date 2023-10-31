@@ -8,7 +8,7 @@ import useMealPageService from '~/application/page-service/meal-page-service';
 
 const useCreateMealPageData = () => {
     const {
-        MealStore: { addMeal, mealProducts, mealTags, resetStore, resetCreateMealStore },
+        MealStore: { addMeal, mealProducts, mealTags, resetCreateMealStore },
         NavigationStore: { navigate, goBack },
         UserStore: { userData }
     } = useStore();
@@ -37,7 +37,7 @@ const useCreateMealPageData = () => {
     };
 
     const onPressBackArrow = () => {
-        resetStore();
+        resetCreateMealStore();
         goBack();
     };
 
