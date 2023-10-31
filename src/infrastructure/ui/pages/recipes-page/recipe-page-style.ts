@@ -21,7 +21,8 @@ const RecipePageStyle = StyleSheet.create({
 
     title: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
     },
 
     ingredients: {
@@ -42,13 +43,9 @@ const RecipePageStyle = StyleSheet.create({
     },
 
     buttonContainer: {
-        bottom: 14,
-        marginTop: 200,
-        right: 10,
-        backgroundColor: ColorEnum.ClassicGreen,
-        borderRadius: 20,
-        width: 158 * (Dimensions.get('screen').width / 400),
-        height: 45
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     },
     brownButtonContainer: {
         backgroundColor: ColorEnum.ClassicBrown,
@@ -57,7 +54,7 @@ const RecipePageStyle = StyleSheet.create({
     },
 
     brownButtonText: {
-        fontSize: 16 * (Dimensions.get('screen').height / 725),
+        fontSize: 16,
         color: ColorEnum.ClassicBeige
     },
 
@@ -68,7 +65,7 @@ const RecipePageStyle = StyleSheet.create({
     },
 
     greenButtonText: {
-        fontSize: 16 * (Dimensions.get('screen').height / 725),
+        fontSize: 16,
         color: ColorEnum.SlightlyOpaqueGrey
     }
 });

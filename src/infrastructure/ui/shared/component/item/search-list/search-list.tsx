@@ -15,6 +15,8 @@ import MealProductsItem from '~/infrastructure/ui/shared/component/item/meal-pro
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
+import RecipeItem from '~/infrastructure/ui/shared/component/item/recipe-item/recipe-item';
+import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
 
 const SearchList = ({ itemType, data }: SearchListProps) => {
     const { containerHeight, displayData, onSearch, searchedText, onSelectedFilter, filterOptions, customFontBold } =
@@ -68,6 +70,14 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                     <MealProductsItem
                                         key={idx}
                                         {...(item as MealProductsItemProps)}
+                                        style={idx === 0 ? { marginTop: 0 } : {}}
+                                    />
+                                );
+                            case ItemEnum.Recipe:
+                                return (
+                                    <RecipeItem
+                                        key={idx}
+                                        {...(item as RecipeItemProps)}
                                         style={idx === 0 ? { marginTop: 0 } : {}}
                                     />
                                 );

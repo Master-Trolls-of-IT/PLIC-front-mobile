@@ -4,13 +4,13 @@ const useRecipePageData = () => {
     const recipeList: RecipeItemProps[] = [
         {
             id: '1',
-            image: 'https://example.com/recipe1.jpg',
+            image: 'https://images.openfoodfacts.org/images/products/885/205/213/5306/front_en.12.400.jpg',
             title: 'Lasagnes au four',
             rating: 4.5,
             numberOfRatings: 25,
             duration: 30,
             difficulty: 'Facile',
-            score: 4.2,
+            score: 42,
             ingredients: ['Feuilles de lasagne', 'Viande hachée', 'Sauce tomate', 'Fromage', 'Oignon'],
             author: 'Chef Paolo',
             steps: [
@@ -29,13 +29,13 @@ const useRecipePageData = () => {
         },
         {
             id: '2',
-            image: 'https://example.com/recipe2.jpg',
+            image: 'https://images.openfoodfacts.org/images/products/885/205/213/5306/front_en.12.400.jpg',
             title: 'Salade César',
             rating: 4.0,
             numberOfRatings: 30,
             duration: 20,
             difficulty: 'Facile',
-            score: 3.8,
+            score: 38,
             ingredients: ['Laitue romaine', 'Poulet grillé', 'Croûtons', 'Parmesan', 'Sauce César'],
             author: 'Chef Julia',
             steps: [
@@ -53,13 +53,13 @@ const useRecipePageData = () => {
         },
         {
             id: '3',
-            image: 'https://example.com/recipe3.jpg',
+            image: 'https://images.openfoodfacts.org/images/products/885/205/213/5306/front_en.12.400.jpg',
             title: 'Pâtes Carbonara',
             rating: 4.7,
             numberOfRatings: 28,
             duration: 20,
             difficulty: 'Facile',
-            score: 4.0,
+            score: 90,
             ingredients: ['Spaghetti', 'Guanciale', 'Œufs', 'Parmesan', 'Poivre noir'],
             author: 'Chef Giuseppe',
             steps: [
@@ -78,13 +78,13 @@ const useRecipePageData = () => {
         },
         {
             id: '4',
-            image: 'https://example.com/recipe4.jpg',
+            image: 'https://images.openfoodfacts.org/images/products/885/205/213/5306/front_en.12.400.jpg',
             title: 'Tarte aux pommes',
             rating: 4.2,
             numberOfRatings: 22,
             duration: 50,
             difficulty: 'Moyen',
-            score: 3.8,
+            score: 38,
             ingredients: ['Pâte brisée', 'Pommes', 'Sucre', 'Cannelle', 'Œuf'],
             author: 'Chef Sophie',
             steps: [
@@ -104,13 +104,13 @@ const useRecipePageData = () => {
         },
         {
             id: '5',
-            image: 'https://example.com/recipe5.jpg',
+            image: 'https://images.openfoodfacts.org/images/products/885/205/213/5306/front_en.12.400.jpg',
             title: 'Sushi au saumon',
             rating: 4.9,
             numberOfRatings: 39,
             duration: 40,
             difficulty: 'Difficile',
-            score: 4.5,
+            score: 75,
             ingredients: ['Riz à sushi', 'Saumon frais', 'Nori', 'Wasabi', 'Soyu'],
             author: 'Chef Hiroshi',
             steps: [
@@ -129,13 +129,13 @@ const useRecipePageData = () => {
         },
         {
             id: '6',
-            image: 'https://example.com/recipe6.jpg',
+            image: 'https://images.openfoodfacts.org/images/products/885/205/213/5306/front_en.12.400.jpg',
             title: 'Salade de quinoa aux légumes',
             rating: 4.3,
             numberOfRatings: 33,
             duration: 25,
             difficulty: 'Facile',
-            score: 3.9,
+            score: 99,
             ingredients: ['Quinoa', 'Tomates', 'Concombres', 'Poivrons', 'Vinaigrette'],
             author: 'Chef Marie',
             steps: [
