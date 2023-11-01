@@ -4,20 +4,17 @@ import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-r
 
 const useRecipePageData = () => {
     const {
-        RecipeStore: { recipeList }
+        RecipeStore: { recipeList, activeRecipe, setActiveRecipe }
     } = useStore();
 
-    const [isRecipeActive, setIsRecipeActive] = useState(false);
-    const [activeRecipe, setActiveRecipe] = useState<ActiveRecipeInfo>();
     const [errorResponse, setErrorResponse] = useState('');
 
     const onPressViewDetail = (recipe: ActiveRecipeInfo) => {
         setActiveRecipe(recipe);
-        setIsRecipeActive(true);
     };
 
     const onPressGoBack = async () => {
-        setIsRecipeActive(false);
+        setActiveRecipe(undefined);
         setErrorResponse('');
     };
 
@@ -33,7 +30,6 @@ const useRecipePageData = () => {
         //TODO
     };
     return {
-        isRecipeActive,
         onPressViewDetail,
         activeRecipe,
         recipeList,

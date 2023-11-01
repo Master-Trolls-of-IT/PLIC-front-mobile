@@ -10,15 +10,8 @@ import useRecipePageData from '~/infrastructure/ui/pages/recipes-page/hooks';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import ActiveRecipeItem from '~/infrastructure/ui/shared/component/recipe-item/recipe-item';
 const RecipePage = () => {
-    const {
-        recipeList,
-        toggleFavourite,
-        onPressShowMyRecipes,
-        onPressCreateRecipe,
-        onPressGoBack,
-        activeRecipe,
-        isRecipeActive
-    } = useRecipePageData();
+    const { recipeList, toggleFavourite, onPressShowMyRecipes, onPressCreateRecipe, onPressGoBack, activeRecipe } =
+        useRecipePageData();
 
     return (
         <View style={recipePageStyle.container}>
@@ -53,7 +46,7 @@ const RecipePage = () => {
                 />
             </View>
 
-            {isRecipeActive && (
+            {activeRecipe && (
                 <ActiveRecipeItem
                     activeRecipe={activeRecipe}
                     toggleFavourite={toggleFavourite}

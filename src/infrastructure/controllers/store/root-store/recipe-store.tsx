@@ -1,9 +1,11 @@
 import { action, makeObservable, observable } from 'mobx';
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
+import { RecipeItemInfo } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-info';
+import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
 
 class RecipeStore {
     recipeList: RecipeItemProps[];
-
+    activeRecipe: RecipeItemInfo | undefined;
     constructor() {
         this.recipeList = [
             {
@@ -45,14 +47,17 @@ class RecipeStore {
                 }
             }
         ];
+        this.activeRecipe = undefined;
         makeObservable(
             this,
             {
                 recipeList: observable,
+                activeRecipe: observable,
 
                 resetStore: action,
                 addRecipe: action,
-                toggleFavorite: action
+                toggleFavorite: action,
+                setActiveRecipe: action
             },
             { autoBind: true }
         );
@@ -69,6 +74,9 @@ class RecipeStore {
         this.recipeList = [...copy];
     };
 
+    setActiveRecipe = (activeRecipe: ActiveRecipeInfo | undefined) => {
+        this.activeRecipe = activeRecipe;
+    };
     resetStore = () => {
         this.recipeList = [];
     };
