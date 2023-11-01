@@ -4,5 +4,4 @@ export type RecipeItemProps = {
     recipe: RecipeInfo;
     toggleFavourite: () => void;
     goBack: () => void;
-    onPressConsumeMeal: () => void;
 };

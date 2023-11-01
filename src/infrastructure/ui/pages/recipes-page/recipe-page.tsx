@@ -7,16 +7,8 @@ import useRecipePageData from '~/infrastructure/ui/pages/recipes-page/hooks';
 import ActiveRecipeItem from '~/infrastructure/ui/shared/component/recipe-item/recipe-item';
 
 const RecipePage = () => {
-    const {
-        isRecipeActive,
-        onPressConsumeMeal,
-        onPressViewDetail,
-        activeRecipe,
-        recipeList,
-        toggleFavourite,
-        onPressGoBack,
-        mockRecipe
-    } = useRecipePageData();
+    const { isRecipeActive, onPressViewDetail, activeRecipe, recipeList, toggleFavourite, onPressGoBack, mockRecipe } =
+        useRecipePageData();
 
     return (
         <View style={RecipePageStyle.background}>
@@ -25,12 +17,7 @@ const RecipePage = () => {
                 <Text>Boutton Temporaire pour activer la popup</Text>
             </TouchableOpacity>
             {isRecipeActive && (
-                <ActiveRecipeItem
-                    recipe={mockRecipe}
-                    toggleFavourite={toggleFavourite}
-                    goBack={onPressGoBack}
-                    onPressConsumeMeal={onPressConsumeMeal}
-                />
+                <ActiveRecipeItem recipe={mockRecipe} toggleFavourite={toggleFavourite} goBack={onPressGoBack} />
             )}
         </View>
     );

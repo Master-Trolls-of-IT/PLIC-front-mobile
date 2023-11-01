@@ -6,7 +6,7 @@ import { RecipeItemProps } from '~/domain/interfaces/props/recipe-item/recipe-it
 import useRecipeItemData from '~/infrastructure/ui/shared/component/recipe-item/hooks';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-const ActiveRecipeItem = ({ toggleFavourite, recipe, goBack, onPressConsumeMeal }: RecipeItemProps) => {
+const ActiveRecipeItem = ({ toggleFavourite, recipe, goBack }: RecipeItemProps) => {
     const {
         unfilledFavouriteAsset,
         horizontalScrollLineAsset,
@@ -120,7 +120,7 @@ const ActiveRecipeItem = ({ toggleFavourite, recipe, goBack, onPressConsumeMeal 
                     </View>
                 </TouchableOpacity>
                 <View style={RecipeItemStyle.buttonContainer}>
-                    <GenericButton title="Supprimer" onPress={onPressConsumeMeal} style={deleteButtonStyle} />
+                    <GenericButton title="Supprimer" onPress={() => {}} style={deleteButtonStyle} />
                     <GenericButton title="Modifier" onPress={() => {}} style={editButtonStyle} />
                 </View>
             </ScrollView>

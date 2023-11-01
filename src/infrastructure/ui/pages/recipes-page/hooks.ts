@@ -51,10 +51,6 @@ const useRecipePageData = () => {
         setActiveRecipe(mockRecipe);
         setIsRecipeActive(true);
     };
-    const onPressConsumeMeal = async (/*quantity: string*/) => {
-        //TODO Ajouter les recettes aux aliments consommés (Fonctions Front + back à faire)
-        //await addRecipe(recipe);
-    };
 
     const onPressGoBack = async () => {
         setIsRecipeActive(false);
@@ -66,7 +62,6 @@ const useRecipePageData = () => {
     };
     return {
         isRecipeActive,
-        onPressConsumeMeal,
         onPressViewDetail,
         activeRecipe,
         recipeList,
