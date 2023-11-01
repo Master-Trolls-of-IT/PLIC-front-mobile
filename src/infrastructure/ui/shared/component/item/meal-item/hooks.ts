@@ -9,14 +9,15 @@ import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-b
 
 const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps) => {
     const {
-        MealStore: { toggleFavorite, deleteMeal }
+        MealStore: { toggleFavorite, deleteMeal, getMeal }
     } = useStore();
 
-    const { deleteMeal: deleteMealService } = useMealPageService();
+    const { deleteMeal: deleteMealService, consumeMeal } = useMealPageService();
     const [isExpanded, setIsExpanded] = useState(false);
     const expandedContentHeight = useSharedValue(120);
     const [showExpandedView, setShowExpandedView] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isConsumeModalOpen, setIsConsumeModalOpen] = useState(false);
 
     const restaurantIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-restaurant.svg');
     const deleteIcon = require('~/domain/entities/assets/meal-page/meal-item/icon-delete.svg');
@@ -74,7 +75,19 @@ const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps
         setIsDeleteModalOpen(false);
     };
 
-    const consumeMeal = () => {};
+    const onPressConsumeMealButton = () => {
+        setIsConsumeModalOpen(true);
+    };
+
+    const onPressCancelConsumeModal = () => {
+        setIsConsumeModalOpen(false);
+    };
+
+    const onPressValidateConsumeModal = async () => {
+        const meal = getMeal(id);
+        await consumeMeal(meal);
+        setIsConsumeModalOpen(false);
+    };
 
     useEffect(() => {
         const timeOut = setTimeout(() => {
@@ -114,14 +127,17 @@ const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps
         isExpanded,
         toggleExpand,
         animatedItemStyle,
-        expandedContentHeight,
         showExpandedView,
         showButtonsAnimationTime,
         productNames,
-        consumeMeal,
+        onPressConsumeMealButton,
+        onPressValidateConsumeModal,
         onPressDeleteButton,
         isDeleteModalOpen,
+        isConsumeModalOpen,
         setIsDeleteModalOpen,
+        setIsConsumeModalOpen,
+        onPressCancelConsumeModal,
         onPressCancelDeleteModal,
         onPressValidateDeleteModal,
         customFontInterBold

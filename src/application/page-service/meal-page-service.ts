@@ -4,12 +4,16 @@ import { MealData } from '~/domain/interfaces/services/meal-data';
 import APIServices from '~/infrastructure/controllers/services/api';
 import { useStore } from '~/infrastructure/controllers/store';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
+import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
+import useMapConsumedProductResponse from '~/infrastructure/ui/shared/helper/useMapConsumedProductResponse';
+import { ConsumedProduct } from '~/domain/interfaces/services/consumed-product';
 
 const useMealPageService = () => {
     const {
         LogsStore: { error }
     } = useStore();
 
+    const { mapResponse } = useMapConsumedProductResponse();
     const saveMeal = async (mealData: MealData): Promise<MealItemProps> => {
         try {
             const response = await APIServices.POST<MealItemProps, MealData>('/meal', mealData);
@@ -44,7 +48,20 @@ const useMealPageService = () => {
         [error]
     );
 
-    return { saveMeal, getMeals, deleteMeal };
+    const consumeMeal = useCallback(
+        async (meal: MealItemProps) => {
+            try {
+                const response = await APIServices.POST<ConsumedProduct[], MealItemProps>('/meal/consumed', meal);
+                return mapResponse(response.data) as ConsumedProductItemProps[];
+            } catch (err) {
+                error('useMealPageService', 'consumeMeal: Caught an exception.', (err as AxiosError).message);
+                return null;
+            }
+        },
+        [error, mapResponse]
+    );
+
+    return { saveMeal, getMeals, deleteMeal, consumeMeal };
 };
 
 export default useMealPageService;

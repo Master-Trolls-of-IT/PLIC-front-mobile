@@ -16,7 +16,7 @@ const useMapConsumedProductResponse = () => {
                 image: consumedProduct.product.image_url,
                 score: parseInt(consumedProduct.product.ecoscore ?? '0'),
                 isWater: consumedProduct.product.isWater,
-                serving: consumedProduct.product.serving,
+                serving: consumedProduct.product.serving ?? 0,
                 isFavourite: false,
                 toggleFavourite: () => {}
             });

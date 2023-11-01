@@ -14,7 +14,7 @@ const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDa
         ConsumedProductStore: { consumedProducts }
     } = useStore();
 
-    const { addConsumedProduct } = useScanPageScannedItemService();
+    const { addConsumedProduct: saveConsumedProduct } = useScanPageScannedItemService();
     const { editQuantityConsumedProduct } = useConsumedProductPageService();
 
     const [isExpended, setIsExpended] = useState(false);
@@ -46,7 +46,7 @@ const useHistoricalItemData = ({ barcode, isFavourite, score }: HistoricalItemDa
             const newQuantity: number = Number(quantity) + productAlreadyExist.consumedQuantity;
             void editQuantityConsumedProduct(barcode, newQuantity);
         } else {
-            await addConsumedProduct(barcode, quantity);
+            await saveConsumedProduct(barcode, quantity);
         }
         navigate(PagesEnum.ConsumedProducts);
     };

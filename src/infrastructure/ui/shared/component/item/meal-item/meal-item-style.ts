@@ -89,7 +89,7 @@ const MealItemStyle = StyleSheet.create({
         marginBottom: 10
     },
 
-    textDeleteModalContainer: {
+    textModalContainer: {
         marginTop: 8,
         color: ColorEnum.ClassicBrown,
         fontSize: 15 * (Dimensions.get('screen').height / 725),
@@ -97,7 +97,7 @@ const MealItemStyle = StyleSheet.create({
         marginBottom: 5
     },
 
-    buttonDeleteModalContainer: {
+    buttonModalContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -105,7 +105,7 @@ const MealItemStyle = StyleSheet.create({
         marginHorizontal: 5
     },
 
-    deleteModalCancelButtonContainer: {
+    ModalCancelButtonContainer: {
         backgroundColor: ColorEnum.ClassicBrown,
         width: 117 * (Dimensions.get('screen').width / 400),
         height: 43 * (Dimensions.get('screen').width / 400)
@@ -116,7 +116,7 @@ const MealItemStyle = StyleSheet.create({
         color: ColorEnum.ClassicBeige
     },
 
-    deleteModalValidateButtonContainer: {
+    ModalValidateButtonContainer: {
         backgroundColor: ColorEnum.ClassicGreen,
         width: 95 * (Dimensions.get('screen').width / 400),
         height: 43 * (Dimensions.get('screen').width / 400)
