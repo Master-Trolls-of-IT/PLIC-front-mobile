@@ -48,6 +48,10 @@ class MealStore {
         this.mealList = [newItem].concat(this.mealList);
     };
 
+    getMeal = (id: string): MealItemProps => {
+        return this.mealList.find((meal) => meal.id == id) as MealItemProps;
+    };
+
     setMealList = (newItems: MealItemProps[]) => {
         this.mealList = newItems;
     };

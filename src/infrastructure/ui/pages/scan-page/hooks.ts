@@ -14,7 +14,7 @@ const useScanPageData = (navigate: NavigateProps) => {
     } = useStore();
 
     const { getProduct } = useScanPageService();
-    const { addConsumedProduct } = useScanPageScannedItemService();
+    const { addConsumedProduct: saveConsumedProduct } = useScanPageScannedItemService();
     const { editQuantityConsumedProduct } = useConsumedProductPageService();
 
     const [inputBarCode, setInputBarCode] = useState('');
@@ -64,7 +64,7 @@ const useScanPageData = (navigate: NavigateProps) => {
                 const newQuantity: number = Number(quantity) + productAlreadyExist.consumedQuantity;
                 void editQuantityConsumedProduct(scannedProduct?.barcode, newQuantity);
             } else {
-                await addConsumedProduct(scannedProduct?.barcode, quantity);
+                await saveConsumedProduct(scannedProduct?.barcode, quantity);
             }
             navigate(PagesEnum.ConsumedProducts);
         }

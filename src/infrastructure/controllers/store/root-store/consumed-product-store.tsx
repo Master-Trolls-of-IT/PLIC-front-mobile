@@ -17,6 +17,8 @@ class ConsumedProductStore {
             {
                 consumedProducts: observable,
 
+                addConsumedProduct: action,
+                addConsumedProducts: action,
                 setConsumedProducts: action,
                 editConsumedProductQuantity: action,
                 toggleFavoriteConsumedProducts: action,
@@ -27,7 +29,7 @@ class ConsumedProductStore {
 
         void makePersistable(this, {
             name: storageKey,
-            properties: ['consumedProducts'],
+            properties: [],
             storage: AsyncStorage
         });
     }
@@ -51,6 +53,14 @@ class ConsumedProductStore {
         copy[index].isFavourite = !copy[index].isFavourite;
         this.consumedProducts = [...copy];
     };
+
+    addConsumedProduct(product: ConsumedProductItemProps) {
+        this.consumedProducts.push(product);
+    }
+
+    addConsumedProducts(products: ConsumedProductItemProps[]) {
+        this.consumedProducts = this.consumedProducts.concat(products);
+    }
 
     resetStore = () => {
         this.consumedProducts = [];

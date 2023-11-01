@@ -34,10 +34,14 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
         showExpandedView,
         showButtonsAnimationTime,
         productNames,
-        consumeMeal,
-        isDeleteModalOpen,
+        onPressConsumeMealButton,
+        onPressCancelConsumeModal,
+        onPressValidateConsumeModal,
         onPressDeleteButton,
+        isDeleteModalOpen,
         setIsDeleteModalOpen,
+        isConsumeModalOpen,
+        setIsConsumeModalOpen,
         onPressCancelDeleteModal,
         onPressValidateDeleteModal,
         customFontInterBold
@@ -96,7 +100,7 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
                     <GenericButton
                         title="Consommer ce repas"
                         style={{ text: MealItemStyle.buttonText, container: MealItemStyle.consumeButtonContainer }}
-                        onPress={consumeMeal}
+                        onPress={onPressConsumeMealButton}
                     />
                     <CustomSvg asset={editIcon} width={editNewWidth} height={editNewHeight} />
                 </Animated.View>
@@ -110,19 +114,19 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
                     <View style={mealItemStyle.validateModalContainer}>
                         <Text
                             style={{
-                                ...mealItemStyle.textDeleteModalContainer,
+                                ...mealItemStyle.textModalContainer,
                                 ...customFontInterBold
                             }}>
                             Êtes-vous sûr de vouloir <Text style={mealItemStyle.redDeleteText}>supprimer</Text> ce repas
                             ?
                         </Text>
 
-                        <View style={mealItemStyle.buttonDeleteModalContainer}>
+                        <View style={mealItemStyle.buttonModalContainer}>
                             <GenericButton
                                 title={'Annuler'}
                                 onPress={onPressCancelDeleteModal}
                                 style={{
-                                    container: mealItemStyle.deleteModalCancelButtonContainer,
+                                    container: mealItemStyle.ModalCancelButtonContainer,
                                     text: mealItemStyle.brownButtonText
                                 }}
                             />
@@ -131,7 +135,44 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
                                 title={'Valider'}
                                 onPress={onPressValidateDeleteModal}
                                 style={{
-                                    container: mealItemStyle.deleteModalValidateButtonContainer,
+                                    container: mealItemStyle.ModalValidateButtonContainer,
+                                    text: mealItemStyle.greenButtonText
+                                }}
+                            />
+                        </View>
+                    </View>
+                </CustomModalWithHeader>
+            )}
+            {isConsumeModalOpen && (
+                <CustomModalWithHeader
+                    title={'Repas complet'}
+                    titleSize={18}
+                    isVisible={isConsumeModalOpen}
+                    dispatch={setIsConsumeModalOpen}>
+                    <View style={mealItemStyle.validateModalContainer}>
+                        <Text
+                            style={{
+                                ...mealItemStyle.textModalContainer,
+                                ...customFontInterBold
+                            }}>
+                            Voulez-vous ajouter ce repas aux produits consommés ?
+                        </Text>
+
+                        <View style={mealItemStyle.buttonModalContainer}>
+                            <GenericButton
+                                title={'Annuler'}
+                                onPress={onPressCancelConsumeModal}
+                                style={{
+                                    container: mealItemStyle.ModalCancelButtonContainer,
+                                    text: mealItemStyle.brownButtonText
+                                }}
+                            />
+
+                            <GenericButton
+                                title={'Valider'}
+                                onPress={onPressValidateConsumeModal}
+                                style={{
+                                    container: mealItemStyle.ModalValidateButtonContainer,
                                     text: mealItemStyle.greenButtonText
                                 }}
                             />
