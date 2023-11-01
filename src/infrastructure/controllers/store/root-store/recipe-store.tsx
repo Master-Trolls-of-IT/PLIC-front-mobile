@@ -1,4 +1,4 @@
-import { action, makeObservable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
 
 class RecipeStore {
@@ -9,6 +9,8 @@ class RecipeStore {
         makeObservable(
             this,
             {
+                recipeList: observable,
+
                 resetStore: action,
                 addRecipe: action,
                 toggleFavorite: action
