@@ -20,7 +20,7 @@ class RecipeStore {
     }
 
     addRecipe = (newItem: RecipeItemProps) => {
-        this.recipeList = [newItem].concat(this.recipeList);
+        if (newItem) this.recipeList.push(newItem);
     };
 
     toggleFavorite = (id: string) => {
