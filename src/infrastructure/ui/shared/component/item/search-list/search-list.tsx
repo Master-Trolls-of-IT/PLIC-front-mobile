@@ -74,7 +74,6 @@ const SearchList = ({ itemType, data }: SearchListProps) => {
                                     />
                                 );
                             case ItemEnum.Recipe:
-                                console.log(item);
                                 return (
                                     <RecipeItem
                                         key={idx}

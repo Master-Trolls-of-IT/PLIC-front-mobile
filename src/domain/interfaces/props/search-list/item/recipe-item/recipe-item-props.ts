@@ -1,21 +1,6 @@
-import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
+import { RecipeItemInfo } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-info';
 
 export type RecipeItemProps = {
-    id: string;
-    title: string;
-    rating: number;
-    numberOfRatings: number;
-    duration: number;
-    difficulty: string;
-    score: number;
-    ingredients: string[];
-    author: string;
-    steps: string[];
-    tags: MealItemTag[];
-    isFavourite: boolean;
-    image?: string;
-    kcal: number;
+    recipeItem: RecipeItemInfo;
     style?: object;
-    toggleFavourite: () => void;
-    goBack: () => void;
 };

@@ -12,12 +12,12 @@ import ActiveRecipeItem from '~/infrastructure/ui/shared/component/recipe-item/r
 const RecipePage = () => {
     const {
         recipeList,
-        activeRecipe,
-        isRecipeActive,
         toggleFavourite,
-        onPressGoBack,
         onPressShowMyRecipes,
-        onPressCreateRecipe
+        onPressCreateRecipe,
+        onPressGoBack,
+        activeRecipe,
+        isRecipeActive
     } = useRecipePageData();
 
     return (
@@ -52,8 +52,13 @@ const RecipePage = () => {
                     onPress={onPressCreateRecipe}
                 />
             </View>
+
             {isRecipeActive && (
-                <ActiveRecipeItem recipe={activeRecipe} toggleFavourite={toggleFavourite} goBack={onPressGoBack} />
+                <ActiveRecipeItem
+                    activeRecipe={activeRecipe}
+                    toggleFavourite={toggleFavourite}
+                    goBack={onPressGoBack}
+                />
             )}
         </View>
     );

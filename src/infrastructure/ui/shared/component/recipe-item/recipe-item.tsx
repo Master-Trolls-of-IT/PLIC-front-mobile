@@ -5,23 +5,8 @@ import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useRecipeItemData from '~/infrastructure/ui/shared/component/recipe-item/hooks';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
-const ActiveRecipeItem = ({
-    toggleFavourite,
-    id,
-    goBack,
-    title,
-    rating,
-    numberOfRatings,
-    score,
-    ingredients,
-    author,
-    steps,
-    tags,
-    isFavourite,
-    image,
-    kcal
-}: RecipeItemProps) => {
+import { ActiveRecipeItemProps } from '~/domain/interfaces/props/recipe-item/active-recipe-item-props';
+const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecipeItemProps) => {
     const {
         unfilledFavouriteAsset,
         horizontalScrollLineAsset,
@@ -29,7 +14,7 @@ const ActiveRecipeItem = ({
         sendReview,
         deleteButtonStyle,
         editButtonStyle
-    } = useRecipeItemData({ score, id, ingredients, isFavourite });
+    } = useRecipeItemData({ activeRecipe });
     return (
         <View style={RecipeItemStyle.recipeModal}>
             <TouchableOpacity onPress={toggleFavourite} style={RecipeItemStyle.favourite}>
@@ -40,23 +25,25 @@ const ActiveRecipeItem = ({
             </TouchableOpacity>
             <View style={RecipeItemStyle.headerContainer}>
                 <View style={RecipeItemStyle.imageContainer}>
-                    {image ? (
-                        <Image style={RecipeItemStyle.image} source={{ uri: image }} />
+                    {activeRecipe?.image ? (
+                        <Image style={RecipeItemStyle.image} source={{ uri: activeRecipe?.image }} />
                     ) : (
                         <Text style={RecipeItemStyle.imageText}>Image indisponible</Text>
                     )}
                 </View>
                 <View style={RecipeItemStyle.descriptionContainer}>
-                    <Text style={{ ...RecipeItemStyle.title, ...useCustomFontInterBold().text }}>{title}</Text>
+                    <Text style={{ ...RecipeItemStyle.title, ...useCustomFontInterBold().text }}>
+                        {activeRecipe?.title}
+                    </Text>
 
                     <View style={RecipeItemStyle.review}>
                         <Text style={{ ...RecipeItemStyle.reviewText, ...useCustomFontInterBold().text }}>
-                            {rating} Out of {numberOfRatings} ratings.
+                            {activeRecipe?.rating} Out of {activeRecipe?.numberOfRatings} ratings.
                         </Text>
                     </View>
                     <View style={RecipeItemStyle.mealTags}>
                         <Text style={{ ...useCustomFontInterBold().text }}>
-                            {tags.map((mealTag, index) => (
+                            {activeRecipe?.tags.map((mealTag, index) => (
                                 <Text
                                     key={index}
                                     style={{
@@ -64,7 +51,7 @@ const ActiveRecipeItem = ({
                                         color: mealTag.color
                                     }}>
                                     {mealTag.label}
-                                    {index < tags.length - 1 && ' • '}
+                                    {index < activeRecipe?.tags.length - 1 && ' • '}
                                 </Text>
                             ))}
                         </Text>
@@ -72,11 +59,13 @@ const ActiveRecipeItem = ({
                     <View style={RecipeItemStyle.authorAndScoreContainer}>
                         <View style={RecipeItemStyle.author}>
                             <Text style={{ ...RecipeItemStyle.authorText, ...useCustomFontInterBold().text }}>
-                                {author}
+                                {activeRecipe?.author}
                             </Text>
                         </View>
                         <View style={RecipeItemStyle.score}>
-                            <Text style={{ ...scoreStyle, ...useCustomFontInterBold().text }}>Score: {score}</Text>
+                            <Text style={{ ...scoreStyle, ...useCustomFontInterBold().text }}>
+                                Score: {activeRecipe?.score}
+                            </Text>
                         </View>
                     </View>
                 </View>
@@ -86,19 +75,19 @@ const ActiveRecipeItem = ({
                 <View style={RecipeItemStyle.ingredientsContainer}>
                     <View style={RecipeItemStyle.ingredientsHeader}>
                         <Text style={{ ...RecipeItemStyle.ingredientsText, ...useCustomFontInterBold().text }}>
-                            Ingédients • {kcal} Kcal par portion
+                            Ingédients • {activeRecipe?.kcal} Kcal par portion
                         </Text>
                     </View>
                     <View style={RecipeItemStyle.ingredientsContent}>
                         <Text>
-                            {ingredients.map((ingredient, index) => (
+                            {activeRecipe?.ingredients.map((ingredient, index) => (
                                 <Text
                                     key={index}
                                     style={{
                                         ...RecipeItemStyle.ingredients
                                     }}>
                                     • {ingredient}
-                                    {index < ingredients.length - 1 && '\n'}
+                                    {index < activeRecipe?.ingredients.length - 1 && '\n'}
                                 </Text>
                             ))}
                         </Text>
@@ -112,14 +101,14 @@ const ActiveRecipeItem = ({
                     </View>
                     <View style={RecipeItemStyle.preperationContent}>
                         <Text>
-                            {steps.map((step, index) => (
+                            {activeRecipe?.steps.map((step, index) => (
                                 <Text
                                     key={index}
                                     style={{
                                         ...RecipeItemStyle.ingredients
                                     }}>
                                     {index + 1}. {step}
-                                    {index < steps.length - 1 && '\n'}
+                                    {index < activeRecipe.steps.length - 1 && '\n'}
                                 </Text>
                             ))}
                         </Text>

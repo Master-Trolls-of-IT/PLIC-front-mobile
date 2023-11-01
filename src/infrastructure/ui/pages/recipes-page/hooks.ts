@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
-import { RecipeInfo } from '~/domain/interfaces/props/recipe-item/recipe-item-info';
+import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
 
 const useRecipePageData = () => {
     const {
@@ -8,10 +8,10 @@ const useRecipePageData = () => {
     } = useStore();
 
     const [isRecipeActive, setIsRecipeActive] = useState(false);
-    const [activeRecipe, setActiveRecipe] = useState<RecipeInfo | undefined>();
+    const [activeRecipe, setActiveRecipe] = useState<ActiveRecipeInfo>();
     const [errorResponse, setErrorResponse] = useState('');
 
-    const onPressViewDetail = (recipe: RecipeInfo) => {
+    const onPressViewDetail = (recipe: ActiveRecipeInfo) => {
         setActiveRecipe(recipe);
         setIsRecipeActive(true);
     };
