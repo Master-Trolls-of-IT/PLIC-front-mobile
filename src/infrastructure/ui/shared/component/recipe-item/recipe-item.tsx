@@ -1,20 +1,15 @@
-import { Button, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import RecipeItemStyle from '~/infrastructure/ui/shared/component/recipe-item/recipe-item-style';
-import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import { RecipeItemProps } from '~/domain/interfaces/props/recipe-item/recipe-item-props';
 import useRecipeItemData from '~/infrastructure/ui/shared/component/recipe-item/hooks';
-import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-const ActiveRecipeItem = ({ toggleFavourite, recipe, goBack }: RecipeItemProps) => {
+const ActiveRecipeItem = ({ toggleFavourite, recipe, goBack, onPressConsumeMeal }: RecipeItemProps) => {
     const {
         unfilledFavouriteAsset,
         horizontalScrollLineAsset,
-        ecoScore,
-        chooseRightNutriScoreImage,
-        showRightEcoScore,
         scoreStyle,
         sendReview,
         deleteButtonStyle,
@@ -125,7 +120,7 @@ const ActiveRecipeItem = ({ toggleFavourite, recipe, goBack }: RecipeItemProps) 
                     </View>
                 </TouchableOpacity>
                 <View style={RecipeItemStyle.buttonContainer}>
-                    <GenericButton title="Supprimer" onPress={() => {}} style={deleteButtonStyle} />
+                    <GenericButton title="Supprimer" onPress={onPressConsumeMeal} style={deleteButtonStyle} />
                     <GenericButton title="Modifier" onPress={() => {}} style={editButtonStyle} />
                 </View>
             </ScrollView>

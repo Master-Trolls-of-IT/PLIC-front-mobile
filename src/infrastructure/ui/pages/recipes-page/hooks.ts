@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { NavigateProps } from '~/domain/interfaces/props/navigate-props';
 import { useStore } from '~/infrastructure/controllers/store';
 import { RecipeInfo } from '~/domain/interfaces/props/recipe-item/recipe-item-info';
 
-const useRecipePageData = (navigate: NavigateProps) => {
+const useRecipePageData = () => {
     const {
         RecipeStore: { recipeList }
     } = useStore();
@@ -52,7 +51,7 @@ const useRecipePageData = (navigate: NavigateProps) => {
         setActiveRecipe(mockRecipe);
         setIsRecipeActive(true);
     };
-    const onPressConsumeMeal = async (quantity: string) => {
+    const onPressConsumeMeal = async (/*quantity: string*/) => {
         //TODO Ajouter les recettes aux aliments consommés (Fonctions Front + back à faire)
         //await addRecipe(recipe);
     };
