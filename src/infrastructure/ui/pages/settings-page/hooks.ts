@@ -3,18 +3,15 @@ import { Dimensions } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { useStore } from '~/infrastructure/controllers/store';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
-import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
-import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import { LoginData } from '~/domain/interfaces/services/login';
-import passwordHashing from '~/infrastructure/controllers/password-hashing';
-import APIServices from '~/infrastructure/controllers/services/api';
-import { UserData } from '~/domain/interfaces/services/user-data';
+import useLoginPageService from '~/application/page-service/login-page-service';
 
 const useSettingsPageData = () => {
     const {
-        NavigationStore: { navigate },
+        NavigationStore: { navigate, resetNavigation },
         UserStore: { userData }
     } = useStore();
+
+    const { deleteUser, checkUser } = useLoginPageService();
 
     const [deletePasswordModal, setDeletePasswordModal] = useState(false);
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
@@ -34,10 +31,6 @@ const useSettingsPageData = () => {
         navigate(PagesEnum.WidgetPage);
     }, [navigate]);
 
-    const navigateToStartPage = useCallback(() => {
-        navigate(PagesEnum.LoginPage);
-    }, [navigate]);
-
     const onDeleteAccountPress = () => {
         setDeletePasswordModal((prevState) => !prevState);
     };
@@ -50,42 +43,43 @@ const useSettingsPageData = () => {
     const onDeleteAccountModalPress = useCallback(async () => {
         resetAllError();
         setLoader(true);
-        if (isValidInput(inputPasswordString, InputEnum.Password)) {
-            const data: LoginData = {
-                email: userData.email.toLowerCase(),
-                password: passwordHashing(inputPasswordString)
-            };
-            try {
-                await APIServices.POST<UserData, LoginData>('/checkuser', data);
+        checkUser(userData.email.toLowerCase(), inputPasswordString)
+            .then(() => {
                 setDeleteConfirmationModal(true);
                 setDeletePasswordModal(false);
-            } catch (e) {
+            })
+            .catch((err) => {
                 setError(true);
-                setErrorMessage('Le mot de passe est incorrect');
-            }
-        } else {
-            setError(true);
-            setErrorMessage('Le champ mot de passe est invalide');
-        }
-        setLoader(false);
-    }, [inputPasswordString, userData.email]);
+                setErrorMessage(() => {
+                    if (err instanceof Error) {
+                        if (err.message === 'invalid password') return 'Le mot de passe est incorrect';
+                    }
+                    return 'Le mot de passe est incorrect';
+                });
+            });
+    }, [checkUser, inputPasswordString, userData.email]);
 
     const onDeleteConfirm = async () => {
-        try {
-            await APIServices.DELETE(`/users/${userData.id}`);
-            setDeleteConfirmationModal(false);
-            setDeletePasswordModal(false);
-            navigateToStartPage();
-        } catch (e) {
-            setError(true);
-            setErrorMessage('Veuillez réessayer plus tard');
-        }
+        deleteUser(userData.id)
+            .then(() => {
+                setDeleteConfirmationModal(false);
+                setDeletePasswordModal(false);
+                resetNavigation();
+            })
+            .catch(() => {
+                setError(true);
+                setErrorMessage('Veuillez réessayer plus tard');
+            });
     };
 
     const onPressCancelDeleteModal = () => {
         setDeletePasswordModal(false);
         setDeleteConfirmationModal(false);
         setInputPassword('');
+    };
+
+    const onPressLogout = () => {
+        resetNavigation();
     };
 
     const logoutButtonStyle = {
@@ -134,6 +128,7 @@ const useSettingsPageData = () => {
         loader,
         error,
         errorMessage,
+        onPressLogout,
         inputPassword: { input: inputPasswordString, dispatch: setInputPassword }
     };
 };

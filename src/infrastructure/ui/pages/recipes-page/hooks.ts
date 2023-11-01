@@ -7,48 +7,12 @@ const useRecipePageData = () => {
         RecipeStore: { recipeList }
     } = useStore();
 
-    const [isRecipeActive, setIsRecipeActive] = useState(true);
-    const [activeRecipe, setActiveRecipe] = useState<RecipeInfo | undefined>(undefined);
+    const [isRecipeActive, setIsRecipeActive] = useState(false);
+    const [activeRecipe, setActiveRecipe] = useState<RecipeInfo | undefined>();
     const [errorResponse, setErrorResponse] = useState('');
-    const mockRecipe: RecipeInfo = {
-        id: '1',
-        name: 'DELICIOUS PASTA',
-        score: 4.5,
-        ingredients: [
-            'Pasta',
-            'Tomato Sauce',
-            'Cheese',
-            'test',
-            'estt',
-            'klfmd',
-            'Pasta',
-            'Tomato Sauce',
-            'Cheese',
-            'test',
-            'estt',
-            'klfmd'
-        ],
-        recipe: ['Boil pasta', 'Add tomato sauce', 'Sprinkle cheese', 'Enjoy!', 'test'],
-        kcal: 350,
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS71yJdPSVTxX0SsIfhXR8-0JQ0Wq1IWM1aQ7he2j4&s',
-        author: 'Chef John',
-        style: { cuisine: 'Italian', difficulty: 'Easy' },
-        isFavourite: true,
-        ecoScore: '90',
-        nutriscore: {
-            score: 32,
-            grade: 'prout'
-        },
-        tags: [
-            {
-                label: 'prout',
-                color: 'red'
-            },
-            { label: 'prout2', color: 'green' }
-        ]
-    };
-    const onPressViewDetail = () => {
-        setActiveRecipe(mockRecipe);
+
+    const onPressViewDetail = (recipe: RecipeInfo) => {
+        setActiveRecipe(recipe);
         setIsRecipeActive(true);
     };
 
@@ -60,6 +24,14 @@ const useRecipePageData = () => {
     const toggleFavourite = () => {
         //TODO Faire la fonction favourite
     };
+
+    const onPressCreateRecipe = () => {
+        //TODO Faire ca
+    };
+
+    const onPressShowMyRecipes = () => {
+        //TODO
+    };
     return {
         isRecipeActive,
         onPressViewDetail,
@@ -68,7 +40,8 @@ const useRecipePageData = () => {
         toggleFavourite,
         errorResponse,
         onPressGoBack,
-        mockRecipe
+        onPressShowMyRecipes,
+        onPressCreateRecipe
     };
 };
 

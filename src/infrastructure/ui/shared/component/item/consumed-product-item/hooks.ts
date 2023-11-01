@@ -11,8 +11,7 @@ const useConsumedProductItemData = ({
     id,
     consumedQuantity,
     isFavourite,
-    score,
-    serving
+    score
 }: ConsumedProductItemDataProps) => {
     const {
         ConsumedProductStore: {
@@ -28,7 +27,6 @@ const useConsumedProductItemData = ({
     const [isExpended, setIsExpended] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [editModalQuantity, setEditModalQuantity] = useState(String(consumedQuantity));
 
     const itemHeight = useSharedValue(100);
     const scorePercentage = score / 100;
@@ -62,21 +60,20 @@ const useConsumedProductItemData = ({
         setIsEditModalOpen(true);
     };
 
-    const onPressEditModalButton = useCallback(() => {
-        const newQuantity = Number(editModalQuantity);
+    const addQuantity = useCallback(
+        (quantity: string) => {
+            const newQuantity = Number(quantity);
 
-        const editProductQuantity = async () => {
-            await editQuantityConsumedProduct(barcode, newQuantity);
-        };
+            const editProductQuantity = async () => {
+                await editQuantityConsumedProduct(barcode, newQuantity);
+            };
 
-        void editProductQuantity();
-        editConsumedProductQuantity(id, newQuantity);
-        setIsEditModalOpen(false);
-    }, [barcode, editConsumedProductQuantity, editModalQuantity, editQuantityConsumedProduct, id]);
-
-    const onPressAddServing = () => {
-        setEditModalQuantity(String(consumedQuantity + Number(serving)));
-    };
+            void editProductQuantity();
+            editConsumedProductQuantity(id, newQuantity);
+            setIsEditModalOpen(false);
+        },
+        [barcode, editConsumedProductQuantity, editQuantityConsumedProduct, id]
+    );
 
     const onPressValidateDeleteModal = useCallback(() => {
         const deleteProduct = async () => {
@@ -106,16 +103,13 @@ const useConsumedProductItemData = ({
         setIsDeleteModalOpen,
         isEditModalOpen,
         setIsEditModalOpen,
-        editModalQuantity,
-        setEditModalQuantity,
         favouriteIcon,
         scoreColor,
         scorePercentage,
         onPressValidateDeleteModal,
         onPressDeleteButton,
-        onPressEditModalButton,
+        addQuantity,
         onPressCancelDeleteModal,
-        onPressAddServing,
         onPressEditQuantityButton,
         round,
         toggleFavoriteConsumedProducts

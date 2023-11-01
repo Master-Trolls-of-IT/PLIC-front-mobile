@@ -5,9 +5,8 @@ import { ScannedItemProps } from '~/domain/interfaces/props/scanned-item/scanned
 import ScannedItemStyle from '~/infrastructure/ui/shared/component/scanned-item/scanned-item-style';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
-import CustomModal from '~/infrastructure/ui/shared/component/modal/custom-modal/custom-modal';
-import GenericInputWithSearchIconAndEndText from '~/infrastructure/ui/shared/component/inputs/generic-input-with-search-icon-and-end-text/generic-input-with-search-icon-and-end-text';
 import useScannedItemData from '~/infrastructure/ui/shared/component/scanned-item/hooks';
+import ModalAddQuantity from '~/infrastructure/ui/shared/component/modal/modal-add-quantity/modal-add-quantity';
 
 const ScannedItem = ({
     scannedProduct,
@@ -21,15 +20,10 @@ const ScannedItem = ({
         setModal,
         chooseRightNutriScoreImage,
         horizontalScrollLineAsset,
-        quantity,
-        setQuantity,
         unfilledFavouriteAsset,
-        onPressModalButton,
-        onPressAddServing,
-        servingQuantity,
         interBoldText,
         showRightEcoScore
-    } = useScannedItemData({ scannedProduct, onPressAddQuantity });
+    } = useScannedItemData({ scannedProduct });
 
     // TODO: Corriger le problèmes avec les glucides dans le parsing
     return (
@@ -131,29 +125,13 @@ const ScannedItem = ({
                 }}
             />
 
-            <CustomModal isVisible={modal} dispatch={setModal} title={'Ajouter la quantité\n consommée'} titleSize={22}>
-                <GenericInputWithSearchIconAndEndText
-                    placeHolder={scannedProduct?.isWater ? '25' : '100'}
-                    endText={scannedProduct?.isWater ? 'cl' : 'g'}
-                    style={ScannedItemStyle.customModalChildren}
-                    input={quantity}
-                    dispatch={setQuantity}
-                    onPressSearchIcon={onPressModalButton}
-                />
-
-                {servingQuantity ? (
-                    <GenericButton
-                        title={'Ajouter une portion'}
-                        onPress={onPressAddServing}
-                        style={{
-                            container: ScannedItemStyle.quantityModalButtonContainer,
-                            text: ScannedItemStyle.quantityModalButtonText
-                        }}
-                    />
-                ) : (
-                    <></>
-                )}
-            </CustomModal>
+            <ModalAddQuantity
+                modal={modal}
+                setModal={setModal}
+                addQuantity={onPressAddQuantity}
+                isWater={scannedProduct?.isWater}
+                serving={scannedProduct?.serving}
+            />
         </View>
     );
 };

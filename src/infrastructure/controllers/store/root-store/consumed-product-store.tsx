@@ -2,12 +2,15 @@ import { action, makeObservable, observable } from 'mobx';
 import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
+import RootStore from '~/infrastructure/controllers/store/root-store/index';
 
 class ConsumedProductStore {
+    rootStore: RootStore;
     consumedProducts: ConsumedProductItemProps[];
 
-    constructor(storageKey: string) {
+    constructor(storageKey: string, rootStore: RootStore) {
         this.consumedProducts = [];
+        this.rootStore = rootStore;
 
         makeObservable(
             this,
@@ -30,6 +33,7 @@ class ConsumedProductStore {
     }
 
     setConsumedProducts = (newItems: ConsumedProductItemProps[]) => {
+        this.rootStore.DataStore.updateDailyNutrientEarned(newItems);
         this.consumedProducts = newItems;
     };
 

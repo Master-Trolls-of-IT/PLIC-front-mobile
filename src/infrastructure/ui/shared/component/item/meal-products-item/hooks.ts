@@ -5,7 +5,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 import { MealProductsItemDataProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-data-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
-const useMealProductsItemData = ({ id, score, consumedQuantity, isWater, serving }: MealProductsItemDataProps) => {
+const useMealProductsItemData = ({ id, score }: MealProductsItemDataProps) => {
     const {
         MealStore: { deleteMealProduct, editMealProductQuantity }
     } = useStore();
@@ -13,7 +13,6 @@ const useMealProductsItemData = ({ id, score, consumedQuantity, isWater, serving
     const [isExpended, setIsExpended] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    const [quantity, setQuantity] = useState(consumedQuantity);
 
     const scorePercentage = score / 100;
     const scoreColor = getColorFromPercentage(score);
@@ -25,8 +24,6 @@ const useMealProductsItemData = ({ id, score, consumedQuantity, isWater, serving
         };
     });
 
-    const servingQuantity = isWater ? 25 : serving ?? 0;
-
     const onPressProduct = () => {
         setIsExpended((prevState) => !prevState);
     };
@@ -35,18 +32,8 @@ const useMealProductsItemData = ({ id, score, consumedQuantity, isWater, serving
         setIsEditModalOpen(true);
     };
 
-    const onPressDeleteMealProduct = () => {
-        setIsDeleteModalOpen(true);
-    };
-
-    const onPressValidateEditModal = async () => {
-        setIsEditModalOpen(false);
+    const addQuantity = async (quantity: string) => {
         editMealProductQuantity(id, quantity);
-        setQuantity('');
-    };
-
-    const onPressAddServing = () => {
-        setQuantity(String(Number(quantity) + servingQuantity));
     };
 
     const onPressDeleteModal = () => {
@@ -65,6 +52,7 @@ const useMealProductsItemData = ({ id, score, consumedQuantity, isWater, serving
     const customFontInterBold = CustomFontInterBold().text;
 
     return {
+        addQuantity,
         animatedItemStyle,
         customFontInterBold,
         isEditModalOpen,
@@ -72,15 +60,10 @@ const useMealProductsItemData = ({ id, score, consumedQuantity, isWater, serving
         isDeleteModalOpen,
         setIsDeleteModalOpen,
         isExpended,
-        onPressDeleteMealProduct,
         onPressEditMealProductQuantity,
-        onPressValidateEditModal,
         onPressProduct,
         scoreColor,
         scorePercentage,
-        servingQuantity,
-        onPressAddServing,
-        setQuantity,
         onPressCancelDeleteModal,
         onPressDeleteModal,
         onPressValidateDeleteModal

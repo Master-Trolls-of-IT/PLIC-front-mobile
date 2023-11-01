@@ -1,14 +1,21 @@
-import { ProductNutrients } from '~/domain/interfaces/props/nutrients/product-nutrients';
+import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
 
 export type RecipeItemProps = {
     id: string;
-    name: string;
+    title: string;
+    rating: number;
+    numberOfRatings: number;
+    duration: number;
+    difficulty: string;
     score: number;
     ingredients: string[];
-    recipe: string[];
-    kcal: number;
-    image?: string;
     author: string;
-    style?: object;
+    steps: string[];
+    tags: MealItemTag[];
     isFavourite: boolean;
+    image?: string;
+    kcal: number;
+    style?: object;
+    toggleFavourite: () => void;
+    goBack: () => void;
 };

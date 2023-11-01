@@ -1,25 +1,62 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { observer } from 'mobx-react';
-import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
-import RecipePageStyle from '~/infrastructure/ui/pages/recipes-page/recipe-page-style';
+import recipePageStyle from '~/infrastructure/ui/pages/recipes-page/recipe-page-style';
+import RecipePageBlobsTop from '~/infrastructure/ui/pages/recipes-page/component/background/recipe-page-blobs-top';
+import SearchList from '~/infrastructure/ui/shared/component/item/search-list/search-list';
+import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
+import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useRecipePageData from '~/infrastructure/ui/pages/recipes-page/hooks';
+import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
 import ActiveRecipeItem from '~/infrastructure/ui/shared/component/recipe-item/recipe-item';
-
 const RecipePage = () => {
-    const { isRecipeActive, onPressViewDetail, activeRecipe, recipeList, toggleFavourite, onPressGoBack, mockRecipe } =
-        useRecipePageData();
+    const {
+        recipeList,
+        activeRecipe,
+        isRecipeActive,
+        toggleFavourite,
+        onPressGoBack,
+        onPressShowMyRecipes,
+        onPressCreateRecipe
+    } = useRecipePageData();
 
     return (
-        <View style={RecipePageStyle.background}>
-            <Text style={{ ...RecipePageStyle.text, ...CustomFontInterBold().text }}>Recipe Page</Text>
-            <TouchableOpacity onPress={onPressViewDetail}>
-                <Text>Boutton Temporaire pour activer la popup</Text>
-            </TouchableOpacity>
+        <View style={recipePageStyle.container}>
+            <View style={recipePageStyle.background}>
+                <RecipePageBlobsTop />
+            </View>
+            <View style={recipePageStyle.container}>
+                <GenericHeaderText
+                    firstText={'Recettes'}
+                    secondText={`Découvrez les recettes du moment !`}
+                    containerStyle={recipePageStyle.headerContainer}
+                />
+            </View>
+            <SearchList itemType={ItemEnum.Recipe} data={recipeList} />
+
+            <View style={recipePageStyle.buttonContainer}>
+                <GenericButton
+                    title={'Mes recettes'}
+                    style={{
+                        container: recipePageStyle.brownButtonContainer,
+                        text: recipePageStyle.brownButtonText
+                    }}
+                    onPress={onPressShowMyRecipes}
+                />
+                <GenericButton
+                    title={'Créer une recette'}
+                    style={{
+                        container: recipePageStyle.greenButtonContainer,
+                        text: recipePageStyle.greenButtonText
+                    }}
+                    onPress={onPressCreateRecipe}
+                />
+            </View>
             {isRecipeActive && (
-                <ActiveRecipeItem recipe={mockRecipe} toggleFavourite={toggleFavourite} goBack={onPressGoBack} />
+                <ActiveRecipeItem recipe={activeRecipe} toggleFavourite={toggleFavourite} goBack={onPressGoBack} />
             )}
         </View>
     );
 };
+
 export default observer(RecipePage);

@@ -9,6 +9,8 @@ import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-b
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useMealItemData from '~/infrastructure/ui/shared/component/item/meal-item/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
+import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
+import mealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 
 const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, tags, style }: MealItemProps) => {
     const {
@@ -32,7 +34,13 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
         showExpandedView,
         showButtonsAnimationTime,
         productNames,
-        consumeMeal
+        consumeMeal,
+        isDeleteModalOpen,
+        onPressDeleteButton,
+        setIsDeleteModalOpen,
+        onPressCancelDeleteModal,
+        onPressValidateDeleteModal,
+        customFontInterBold
     } = useMealItemData({ id, score, isFavourite, products });
     return (
         <Animated.View style={[MealItemStyle.item, style, animatedItemStyle]}>
@@ -82,7 +90,9 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
                     style={{ ...MealItemStyle.expandedSection }}
                     entering={FadeIn.duration(showButtonsAnimationTime)}
                     exiting={FadeOutUp.duration(showButtonsAnimationTime)}>
-                    <CustomSvg asset={deleteIcon} width={deleteNewWidth} height={deleteNewHeight} />
+                    <TouchableOpacity onPress={onPressDeleteButton}>
+                        <CustomSvg asset={deleteIcon} width={deleteNewWidth} height={deleteNewHeight} />
+                    </TouchableOpacity>
                     <GenericButton
                         title="Consommer ce repas"
                         style={{ text: MealItemStyle.buttonText, container: MealItemStyle.consumeButtonContainer }}
@@ -90,6 +100,44 @@ const MealItem = ({ id, title, isFavourite, numberOfProducts, score, products, t
                     />
                     <CustomSvg asset={editIcon} width={editNewWidth} height={editNewHeight} />
                 </Animated.View>
+            )}
+            {isDeleteModalOpen && (
+                <CustomModalWithHeader
+                    title={'Repas complet'}
+                    titleSize={18}
+                    isVisible={isDeleteModalOpen}
+                    dispatch={setIsDeleteModalOpen}>
+                    <View style={mealItemStyle.validateModalContainer}>
+                        <Text
+                            style={{
+                                ...mealItemStyle.textDeleteModalContainer,
+                                ...customFontInterBold
+                            }}>
+                            Êtes-vous sûr de vouloir <Text style={mealItemStyle.redDeleteText}>supprimer</Text> ce repas
+                            ?
+                        </Text>
+
+                        <View style={mealItemStyle.buttonDeleteModalContainer}>
+                            <GenericButton
+                                title={'Annuler'}
+                                onPress={onPressCancelDeleteModal}
+                                style={{
+                                    container: mealItemStyle.deleteModalCancelButtonContainer,
+                                    text: mealItemStyle.brownButtonText
+                                }}
+                            />
+
+                            <GenericButton
+                                title={'Valider'}
+                                onPress={onPressValidateDeleteModal}
+                                style={{
+                                    container: mealItemStyle.deleteModalValidateButtonContainer,
+                                    text: mealItemStyle.greenButtonText
+                                }}
+                            />
+                        </View>
+                    </View>
+                </CustomModalWithHeader>
             )}
         </Animated.View>
     );

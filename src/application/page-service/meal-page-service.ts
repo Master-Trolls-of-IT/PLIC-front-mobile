@@ -33,7 +33,18 @@ const useMealPageService = () => {
         [error]
     );
 
-    return { saveMeal, getMeals };
+    const deleteMeal = useCallback(
+        async (mealID: string) => {
+            try {
+                await APIServices.DELETE(`/meal/${mealID}`);
+            } catch (err) {
+                error('useMealPageService', 'deleteMeal: Caught an exception.', (err as AxiosError).message);
+            }
+        },
+        [error]
+    );
+
+    return { saveMeal, getMeals, deleteMeal };
 };
 
 export default useMealPageService;
