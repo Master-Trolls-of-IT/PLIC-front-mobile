@@ -70,7 +70,6 @@ const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecip
                     </View>
                 </View>
             </View>
-            {/* eslint-disable-next-line react/jsx-no-undef */}
             <ScrollView style={RecipeItemStyle.contentContainer}>
                 <View style={RecipeItemStyle.ingredientsContainer}>
                     <View style={RecipeItemStyle.ingredientsHeader}>

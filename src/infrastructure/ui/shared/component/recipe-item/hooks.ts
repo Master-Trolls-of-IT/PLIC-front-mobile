@@ -42,7 +42,9 @@ const useRecipeItemData = ({ activeRecipe }: ActiveRecipeItemDataProps) => {
             fontSize: 18
         }
     };
-    const sendReview = () => {};
+    const sendReview = () => {
+        //TODO
+    };
     return {
         unfilledFavouriteAsset,
         horizontalScrollLineAsset,
