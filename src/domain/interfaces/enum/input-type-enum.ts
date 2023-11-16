@@ -5,5 +5,6 @@ export enum InputEnum {
     Password = 'password',
     Number = 'number',
     Search = 'search',
-    Title = 'title'
+    Title = 'title',
+    Duration = 'duration'
 }

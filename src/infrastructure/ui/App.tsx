@@ -21,6 +21,7 @@ import PersonalDataPage from '~/infrastructure/ui/pages/personal-data-page/perso
 import WidgetPage from '~/infrastructure/ui/pages/widget-page/widget-page';
 import CreateMealPage from '~/infrastructure/ui/pages/create-meal-page/create-meal-page';
 import CreateMealScanPage from '~/infrastructure/ui/pages/create-meal-scan-page/create-meal-scan-page';
+import CreateRecipePage from '~/infrastructure/ui/pages/create-recipe-page/create-recipe-page';
 
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
@@ -74,11 +75,7 @@ function App() {
                                 component={ConsumedProductsPage}
                                 options={gestureEnabled}
                             />
-                            <Stack.Screen
-                                name={PagesEnum.RecipePage}
-                                component={RecipePage}
-                                options={gestureDisabled}
-                            />
+
                             <Stack.Screen name={PagesEnum.GamePage} component={GamePage} options={gestureDisabled} />
                         </Stack.Group>
 
@@ -94,6 +91,19 @@ function App() {
                                 name={PagesEnum.CreateMealScanPage}
                                 component={CreateMealScanPage}
                                 options={gestureEnabled}
+                            />
+                        </Stack.Group>
+                        {/* Recipe group */}
+                        <Stack.Group>
+                            <Stack.Screen
+                                name={PagesEnum.RecipePage}
+                                component={RecipePage}
+                                options={gestureDisabled}
+                            />
+                            <Stack.Screen
+                                name={PagesEnum.CreateRecipePage}
+                                component={CreateRecipePage}
+                                options={gestureDisabled}
                             />
                         </Stack.Group>
                     </Stack.Navigator>

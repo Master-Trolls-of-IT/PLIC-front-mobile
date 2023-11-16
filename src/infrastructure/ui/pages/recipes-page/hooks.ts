@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const useRecipePageData = () => {
     const {
+        NavigationStore: { navigate },
         RecipeStore: { recipeList, activeRecipe, setActiveRecipe }
     } = useStore();
 
@@ -23,7 +25,7 @@ const useRecipePageData = () => {
     };
 
     const onPressCreateRecipe = () => {
-        //TODO Faire ca
+        navigate(PagesEnum.CreateRecipePage);
     };
 
     const onPressShowMyRecipes = () => {
