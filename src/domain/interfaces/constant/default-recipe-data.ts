@@ -1,4 +1,3 @@
-import { RecipeItemInfo } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-info';
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
 
 export const defaultRecipeData: RecipeItemProps[] = [
