@@ -1,14 +1,17 @@
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
+import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const useRecipePageData = () => {
     const {
+        NavigationStore: { navigate },
         RecipeStore: { recipeList, activeRecipe, setActiveRecipe }
     } = useStore();
 
     const [errorResponse, setErrorResponse] = useState('');
-
+    const navigation = useNavigation();
     const onPressViewDetail = (recipe: ActiveRecipeInfo) => {
         setActiveRecipe(recipe);
     };
@@ -26,8 +29,8 @@ const useRecipePageData = () => {
         //TODO Faire ca
     };
 
-    const onPressShowMyRecipes = () => {
-        //TODO
+    const onPressShowMyRecipes = async () => {
+        navigate(PagesEnum.MyRecipesPage);
     };
     return {
         onPressViewDetail,
