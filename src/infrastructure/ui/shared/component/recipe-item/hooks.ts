@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { ActiveRecipeItemDataProps } from '~/domain/interfaces/props/recipe-item/active-recipe-item-data-props';
