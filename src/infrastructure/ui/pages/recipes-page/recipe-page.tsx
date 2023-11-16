@@ -8,9 +8,10 @@ import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useRecipePageData from '~/infrastructure/ui/pages/recipes-page/hooks';
 import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generic-header-text/generic-header-text';
-
+import ActiveRecipeItem from '~/infrastructure/ui/shared/component/recipe-item/recipe-item';
 const RecipePage = () => {
-    const { recipeList, onPressCreateRecipe, onPressShowRecipePage } = useRecipePageData();
+    const { recipeList, toggleFavourite, onPressShowMyRecipes, onPressCreateRecipe, onPressGoBack, activeRecipe } =
+        useRecipePageData();
 
     return (
         <View style={recipePageStyle.container}>
@@ -33,7 +34,7 @@ const RecipePage = () => {
                         container: recipePageStyle.brownButtonContainer,
                         text: recipePageStyle.brownButtonText
                     }}
-                    onPress={onPressCreateRecipe}
+                    onPress={onPressShowMyRecipes}
                 />
                 <GenericButton
                     title={'Créer une recette'}
@@ -41,9 +42,17 @@ const RecipePage = () => {
                         container: recipePageStyle.greenButtonContainer,
                         text: recipePageStyle.greenButtonText
                     }}
-                    onPress={onPressShowRecipePage}
+                    onPress={onPressCreateRecipe}
                 />
             </View>
+
+            {activeRecipe && (
+                <ActiveRecipeItem
+                    activeRecipe={activeRecipe}
+                    toggleFavourite={toggleFavourite}
+                    goBack={onPressGoBack}
+                />
+            )}
         </View>
     );
 };

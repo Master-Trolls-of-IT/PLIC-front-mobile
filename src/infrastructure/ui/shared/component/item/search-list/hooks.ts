@@ -58,7 +58,9 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                     );
                 case ItemEnum.Recipe:
                     return (mockedData as RecipeItemProps[]).filter(
-                        (item) => compareStrings(item.title, search) || compareStrings(item.title, search)
+                        (item) =>
+                            compareStrings(item.recipeItem.title, search) ||
+                            compareStrings(item.recipeItem.title, search)
                     );
                 default:
                     return prevState;
@@ -204,58 +206,68 @@ const useSearchListData = (inputType: SearchListInputType, data: SearchListData)
                             case 'aphaasc':
                                 setDisplayData(
                                     [...(mockedData as RecipeItemProps[])].sort((a, b) =>
-                                        a.title.localeCompare(b.title)
+                                        a.recipeItem.title.localeCompare(b.recipeItem.title)
                                     )
                                 );
                                 break;
                             case 'aphades':
                                 setDisplayData(
                                     [...(mockedData as RecipeItemProps[])]
-                                        .sort((a, b) => a.title.localeCompare(b.title))
+                                        .sort((a, b) => a.recipeItem.title.localeCompare(b.recipeItem.title))
                                         .reverse()
                                 );
                                 break;
                             case 'scoreasc':
                                 setDisplayData(
-                                    [...(mockedData as RecipeItemProps[])].sort((a, b) => a.score - b.score)
+                                    [...(mockedData as RecipeItemProps[])].sort(
+                                        (a, b) => a.recipeItem.score - b.recipeItem.score
+                                    )
                                 );
                                 break;
                             case 'scoredes':
                                 setDisplayData(
-                                    [...(mockedData as RecipeItemProps[])].sort((a, b) => b.score - a.score)
+                                    [...(mockedData as RecipeItemProps[])].sort(
+                                        (a, b) => b.recipeItem.score - a.recipeItem.score
+                                    )
                                 );
                                 break;
                             case 'favasc':
                                 setDisplayData(
-                                    [...(mockedData as RecipeItemProps[])].filter((elem) => elem.isFavourite)
+                                    [...(mockedData as RecipeItemProps[])].filter((elem) => elem.recipeItem.isFavourite)
                                 );
                                 break;
                             case 'favdes':
                                 setDisplayData(
-                                    [...(mockedData as RecipeItemProps[])].filter((elem) => !elem.isFavourite)
+                                    [...(mockedData as RecipeItemProps[])].filter(
+                                        (elem) => !elem.recipeItem.isFavourite
+                                    )
                                 );
                                 break;
                             case 'ratasc':
                                 setDisplayData(
-                                    [...(mockedData as RecipeItemProps[])].sort((a, b) => a.rating - b.rating)
+                                    [...(mockedData as RecipeItemProps[])].sort(
+                                        (a, b) => a.recipeItem.rating - b.recipeItem.rating
+                                    )
                                 );
                                 break;
                             case 'ratdes':
                                 setDisplayData(
-                                    [...(mockedData as RecipeItemProps[])].sort((a, b) => b.rating - a.rating)
+                                    [...(mockedData as RecipeItemProps[])].sort(
+                                        (a, b) => b.recipeItem.rating - a.recipeItem.rating
+                                    )
                                 );
                                 break;
                             case 'numbratasc':
                                 setDisplayData(
                                     [...(mockedData as RecipeItemProps[])].sort(
-                                        (a, b) => a.numberOfRatings - b.numberOfRatings
+                                        (a, b) => a.recipeItem.numberOfRatings - b.recipeItem.numberOfRatings
                                     )
                                 );
                                 break;
                             case 'numbratdes':
                                 setDisplayData(
                                     [...(mockedData as RecipeItemProps[])].sort(
-                                        (a, b) => b.numberOfRatings - a.numberOfRatings
+                                        (a, b) => b.recipeItem.numberOfRatings - a.recipeItem.numberOfRatings
                                     )
                                 );
                                 break;

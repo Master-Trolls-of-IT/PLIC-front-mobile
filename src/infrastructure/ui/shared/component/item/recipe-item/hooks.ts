@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
-import { RecipeItemDataProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-data-props';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import RecipeItemStyle from '~/infrastructure/ui/shared/component/item/recipe-item/recipe-item-style';
-
-const useRecipeItemData = ({ score }: RecipeItemDataProps) => {
+import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
+import useRecipePageData from '~/infrastructure/ui/pages/recipes-page/hooks';
+const useRecipeItemData = ({ recipeItem }: RecipeItemProps) => {
     const star = require('~/domain/entities/assets/icon/icon-star.svg');
     const profile = require('~/domain/entities/assets/icon/icon-profile.svg');
+    const { onPressViewDetail } = useRecipePageData();
 
     const [imageNewHeight, imageNewWidth] = [92, 69];
     const [favouriteNewHeight, favouriteNewWidth] = [30, 30];
@@ -14,14 +15,14 @@ const useRecipeItemData = ({ score }: RecipeItemDataProps) => {
 
     const scoreStyle = useMemo(() => {
         switch (true) {
-            case score < 33:
+            case recipeItem && recipeItem.score < 33:
                 return { ...RecipeItemStyle.score, color: ColorEnum.ClassicRedWidget };
-            case score < 66:
+            case recipeItem && recipeItem.score < 66:
                 return { ...RecipeItemStyle.score, color: ColorEnum.MealPageOrange };
             default:
                 return { ...RecipeItemStyle.score, color: ColorEnum.ClassicDarkGreen };
         }
-    }, [score]);
+    }, [recipeItem]);
 
     return {
         favouriteNewHeight,
@@ -34,7 +35,8 @@ const useRecipeItemData = ({ score }: RecipeItemDataProps) => {
         editNewWidth,
         scoreStyle,
         star,
-        profile
+        profile,
+        onPressViewDetail
     };
 };
 
