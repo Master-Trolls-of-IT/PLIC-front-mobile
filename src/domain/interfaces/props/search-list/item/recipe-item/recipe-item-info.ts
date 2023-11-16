@@ -13,6 +13,6 @@ export type RecipeItemInfo = {
     steps: string[];
     tags: MealItemTag[];
     isFavourite: boolean;
-    image?: string;
     kcal: number;
+    image?: string;
 };
