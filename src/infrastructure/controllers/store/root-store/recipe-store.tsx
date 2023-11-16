@@ -34,15 +34,15 @@ class RecipeStore {
                     ],
                     steps: ['Boil pasta', 'Add tomato sauce', 'Sprinkle cheese', 'Enjoy!', 'test'],
                     kcal: 350,
-                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS71yJdPSVTxX0SsIfhXR8-0JQ0Wq1IWM1aQ7he2j4&s',
+                    image: 'https://resize.elle.fr/original/var/plain_site/storage/images/elle-a-table/les-dossiers-de-la-redaction/dossier-de-la-redac/plat-familial-en-sauce/97666601-1-fre-FR/Un-plat-familial-en-sauce-comme-chez-mamie.jpg',
                     author: 'Chef John',
                     isFavourite: true,
                     tags: [
                         {
-                            label: 'prout',
+                            label: 'epicé',
                             color: 'red'
                         },
-                        { label: 'prout2', color: 'green' }
+                        { label: 'sauce', color: 'green' }
                     ]
                 }
             }
