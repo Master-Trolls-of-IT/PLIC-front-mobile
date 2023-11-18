@@ -16,6 +16,13 @@ const CreateRecipePageStyle = StyleSheet.create({
         alignSelf: 'center'
     },
 
+    ingredientsContent: {
+        width: '95%',
+        alignSelf: 'center',
+        marginTop: 3,
+        paddingTop: 8
+    },
+
     background: {
         backgroundColor: ColorEnum.ClassicBeige,
         height: '100%',
@@ -70,9 +77,7 @@ const CreateRecipePageStyle = StyleSheet.create({
         color: ColorEnum.ClassicBrown,
         fontSize: 16 * (Dimensions.get('screen').height / 725),
         marginLeft: Dimensions.get('screen').width * 0.1,
-        marginTop: Dimensions.get('screen').height * 0.02,
-        borderBottomColor: ColorEnum.ClassicBrown,
-        borderBottomWidth: 1
+        marginTop: Dimensions.get('screen').height * 0.02
     },
 
     ingredientTitleHairLine: {
@@ -140,6 +145,88 @@ const CreateRecipePageStyle = StyleSheet.create({
         backgroundColor: ColorEnum.ClassicGreen,
         width: 95 * (Dimensions.get('screen').width / 400),
         height: 43 * (Dimensions.get('screen').width / 400)
+    },
+
+    tags: {
+        backgroundColor: ColorEnum.ExtraOpaqueBrown,
+        display: 'flex',
+        flexDirection: 'row',
+        alignSelf: 'flex-start',
+        padding: 6,
+        borderRadius: 10
+    },
+
+    tagsModalContainer: {
+        width: 0.82 * Dimensions.get('screen').width
+    },
+
+    tagsModalText: {
+        marginTop: 15,
+        textAlign: 'justify',
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicBrown
+    },
+
+    ingredientModalText: {
+        marginHorizontal: 5,
+        textAlign: 'justify',
+        fontSize: 13 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicBrown
+    },
+
+    inputContainer: {
+        alignSelf: 'center',
+        width: '100%',
+        marginTop: 5
+    },
+
+    plusContainer: {
+        marginTop: 10,
+        justifyContent: 'center'
+    },
+
+    plus: {
+        alignSelf: 'center'
+    },
+
+    modalTagsScrollViewContainer: {
+        marginTop: 8,
+        height: 0.15 * Dimensions.get('screen').height
+    },
+
+    modalTagsContainer: {
+        marginTop: 8,
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8
+    },
+
+    validateButtonTagsModalContainer: {
+        marginTop: 10,
+        backgroundColor: ColorEnum.ClassicGreen,
+        width: 95 * (Dimensions.get('screen').width / 400),
+        height: 43 * (Dimensions.get('screen').width / 400)
+    },
+
+    validateButtonTextTagsModal: {
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicGrey
+    },
+
+    footerTagsModalContainer: {
+        marginTop: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+
+    footerTagsModalText: {
+        marginTop: 5,
+        textAlign: 'justify',
+        fontSize: 15 * (Dimensions.get('screen').height / 725),
+        color: ColorEnum.ClassicBrown
     }
 });
 

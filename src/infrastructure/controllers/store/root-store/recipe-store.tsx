@@ -3,22 +3,30 @@ import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/reci
 import { RecipeItemInfo } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-info';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
 import { defaultRecipeData } from '~/domain/interfaces/constant/default-recipe-data';
+import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
+import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
 class RecipeStore {
     recipeList: RecipeItemProps[];
+    recipeTags: RecipeItemTag[];
     activeRecipe: RecipeItemInfo | undefined;
     constructor() {
         this.recipeList = defaultRecipeData;
         this.activeRecipe = undefined;
+        this.recipeTags = [];
         makeObservable(
             this,
             {
                 recipeList: observable,
+                recipeTags: observable,
                 activeRecipe: observable,
 
                 resetStore: action,
                 addRecipe: action,
                 toggleFavorite: action,
-                setActiveRecipe: action
+                setActiveRecipe: action,
+                setRecipeTags: action,
+                deleteRecipeTag: action,
+                resetCreateRecipeStore: action
             },
             { autoBind: true }
         );
@@ -35,11 +43,24 @@ class RecipeStore {
         this.recipeList = [...copy];
     };
 
+    setRecipeTags = (newRecipeTags: RecipeItemTag[]) => {
+        this.recipeTags = newRecipeTags;
+    };
+
+    deleteRecipeTag = (tag: RecipeItemTag) => {
+        this.recipeTags = this.recipeTags.filter((tagItem) => tagItem.label != tag.label);
+    };
+
     setActiveRecipe = (activeRecipe: ActiveRecipeInfo | undefined) => {
         this.activeRecipe = activeRecipe;
     };
     resetStore = () => {
         this.recipeList = [];
+    };
+
+    resetCreateRecipeStore = () => {
+        this.activeRecipe = undefined;
+        this.recipeTags = [];
     };
 }
 
