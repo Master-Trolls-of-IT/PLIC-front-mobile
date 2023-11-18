@@ -62,7 +62,7 @@ const RecipeItem = ({ recipeItem, style }: RecipeItemProps) => {
                             </Text>
                         </View>
                         <Text style={{ ...useCustomFontInterBold().text }}>
-                            {/*recipeItem.tags.map((recipeTag, index) => (
+                            {recipeItem.tags.map((recipeTag, index) => (
                                 <Text
                                     key={index}
                                     style={{
@@ -72,7 +72,7 @@ const RecipeItem = ({ recipeItem, style }: RecipeItemProps) => {
                                     {recipeTag.label}
                                     {index < recipeItem.tags.length - 1 && ' • '}
                                 </Text>
-                            ))*/}
+                            ))}
                         </Text>
                     </View>
                 </View>

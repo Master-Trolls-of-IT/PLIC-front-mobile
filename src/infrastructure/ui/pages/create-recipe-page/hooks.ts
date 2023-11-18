@@ -3,12 +3,10 @@ import { useStore } from '~/infrastructure/controllers/store';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
-import recipeTags from '~/infrastructure/ui/pages/create-recipe-page/component/recipe-tags/recipe-tags';
-import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
 
 const useCreateRecipePageData = () => {
     const {
-        RecipeStore: { addRecipe, recipeList, resetCreateRecipeStore },
+        RecipeStore: { addRecipe, recipeList, resetCreateRecipeStore, recipeTags },
         NavigationStore: { goBack },
         UserStore: { userData }
     } = useStore();
@@ -72,7 +70,7 @@ const useCreateRecipePageData = () => {
                 steps: [],
                 title: recipeTitleInput,
                 duration: parseInt(recipeDurationInput),
-                tags: recipeTags as unknown as RecipeItemTag[],
+                tags: recipeTags,
                 ingredients: ingredientList
             }
         };
