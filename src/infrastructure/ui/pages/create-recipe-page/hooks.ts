@@ -2,14 +2,13 @@ import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import useRecipePageService from '~/application/page-service/recipe-page-service';
 import { RecipeData } from '~/domain/interfaces/services/recipe-data';
 
 const useCreateRecipePageData = () => {
     const {
-        RecipeStore: { addRecipe, recipeList, resetCreateRecipeStore, recipeTags },
+        RecipeStore: { addRecipe, resetCreateRecipeStore, recipeTags },
         NavigationStore: { goBack },
         UserStore: { userData }
     } = useStore();
@@ -43,7 +42,7 @@ const useCreateRecipePageData = () => {
     const onPressValidateIngredientModal = () => {
         setIsModalVisible(false);
         setSearchInput('');
-        setIngredientList((ingredientList) => [...ingredientList, searchInput]);
+        setIngredientList([...ingredientList, searchInput]);
     };
 
     const onPressNextButton = () => {
@@ -53,7 +52,7 @@ const useCreateRecipePageData = () => {
     const onPressValidateStepModal = () => {
         setIsModalVisible(false);
         setSearchInput('');
-        setStepList((stepList) => [...stepList, searchInput]);
+        setStepList([...stepList, searchInput]);
     };
 
     const onPressValidateButton = () => {
