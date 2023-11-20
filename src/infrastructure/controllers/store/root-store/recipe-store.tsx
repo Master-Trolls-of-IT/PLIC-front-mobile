@@ -3,14 +3,13 @@ import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/reci
 import { RecipeItemInfo } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-info';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
 import { defaultRecipeData } from '~/domain/interfaces/constant/default-recipe-data';
-import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
 import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
 class RecipeStore {
     recipeList: RecipeItemProps[];
     recipeTags: RecipeItemTag[];
     activeRecipe: RecipeItemInfo | undefined;
     constructor() {
-        this.recipeList = defaultRecipeData;
+        this.recipeList = [];
         this.activeRecipe = undefined;
         this.recipeTags = [];
         makeObservable(
@@ -22,6 +21,7 @@ class RecipeStore {
 
                 resetStore: action,
                 addRecipe: action,
+                setRecipeList: action,
                 toggleFavorite: action,
                 setActiveRecipe: action,
                 setRecipeTags: action,
@@ -61,6 +61,9 @@ class RecipeStore {
     resetCreateRecipeStore = () => {
         this.activeRecipe = undefined;
         this.recipeTags = [];
+    };
+    setRecipeList = (newItems: RecipeItemProps[]) => {
+        this.recipeList = newItems;
     };
 }
 

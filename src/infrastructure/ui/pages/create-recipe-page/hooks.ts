@@ -4,6 +4,8 @@ import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
+import useRecipePageService from '~/application/page-service/recipe-page-service';
+import { RecipeData } from '~/domain/interfaces/services/recipe-data';
 
 const useCreateRecipePageData = () => {
     const {
@@ -12,6 +14,7 @@ const useCreateRecipePageData = () => {
         UserStore: { userData }
     } = useStore();
 
+    const { saveRecipe } = useRecipePageService();
     const [errorMessage, setErrorMessage] = useState(false);
     const [isValidateModalVisible, setIsValidateModalVisible] = useState(false);
     const [recipeTitleInput, setRecipeTitleInput] = useState('');
@@ -69,27 +72,18 @@ const useCreateRecipePageData = () => {
 
     const onPressValidateModalValidate = async () => {
         setIsValidateModalVisible(false);
-
-        const recipeData: RecipeItemProps = {
-            recipeItem: {
-                author: userData.email,
-                difficulty: newDiffuculty?.value as string,
-                id: recipeList.length.toString(),
-                isFavourite: false,
-                kcal: 0,
-                numberOfRatings: 0,
-                rating: 0,
-                score: 0,
-                steps: stepList,
-                title: recipeTitleInput,
-                duration: parseInt(recipeDurationInput),
-                tags: recipeTags,
-                ingredients: ingredientList
-            }
+        const recipeData: RecipeData = {
+            title: recipeTitleInput,
+            tags: recipeTags,
+            email: userData.email,
+            ingredients: ingredientList,
+            steps: stepList,
+            difficulty: newDiffuculty?.value as string,
+            duration: parseInt(recipeDurationInput)
         };
-        addRecipe(recipeData as RecipeItemProps);
+        const recipeItemProps = await saveRecipe(recipeData);
+        addRecipe(recipeItemProps);
         resetCreateRecipeStore();
-        console.log(recipeList);
         goBack();
     };
     const onPressWrongIconModal = () => {

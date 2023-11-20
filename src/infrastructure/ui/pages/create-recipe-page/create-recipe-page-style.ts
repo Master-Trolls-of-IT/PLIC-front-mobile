@@ -22,8 +22,8 @@ const CreateRecipePageStyle = StyleSheet.create({
         marginTop: 3,
         paddingTop: 8
     },
-    ingredientsContainer: {},
-    stepsContainer: {},
+    ingredientsContainer: { height: '50%', display: 'flex', flexDirection: 'column' },
+    stepsContainer: { height: '50%', display: 'flex', flexDirection: 'column' },
 
     background: {
         backgroundColor: ColorEnum.ClassicBeige,

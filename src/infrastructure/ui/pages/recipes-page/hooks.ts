@@ -2,12 +2,20 @@ import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import useRecipePageService from '~/application/page-service/recipe-page-service';
+import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
 
 const useRecipePageData = () => {
     const {
         NavigationStore: { navigate },
-        RecipeStore: { recipeList, activeRecipe, setActiveRecipe }
+        RecipeStore: { recipeList, activeRecipe, setActiveRecipe, setRecipeList }
     } = useStore();
+    const { getRecipes } = useRecipePageService();
+    useEffectOnce(() => {
+        getRecipes().then((recipeItemProps) => {
+            setRecipeList(recipeItemProps);
+        });
+    });
 
     const [errorResponse, setErrorResponse] = useState('');
 
