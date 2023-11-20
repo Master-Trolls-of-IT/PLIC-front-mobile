@@ -2,7 +2,6 @@ import { action, makeObservable, observable } from 'mobx';
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
 import { RecipeItemInfo } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-info';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
-import { defaultRecipeData } from '~/domain/interfaces/constant/default-recipe-data';
 import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
 class RecipeStore {
     recipeList: RecipeItemProps[];
