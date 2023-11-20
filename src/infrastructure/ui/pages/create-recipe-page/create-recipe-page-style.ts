@@ -16,12 +16,14 @@ const CreateRecipePageStyle = StyleSheet.create({
         alignSelf: 'center'
     },
 
-    ingredientsContent: {
+    listContent: {
         width: '95%',
         alignSelf: 'center',
         marginTop: 3,
         paddingTop: 8
     },
+    ingredientsContainer: {},
+    stepsContainer: {},
 
     background: {
         backgroundColor: ColorEnum.ClassicBeige,
@@ -80,7 +82,14 @@ const CreateRecipePageStyle = StyleSheet.create({
         marginTop: Dimensions.get('screen').height * 0.02
     },
 
-    ingredientTitleHairLine: {
+    stepTitle: {
+        color: ColorEnum.ClassicBrown,
+        fontSize: 16 * (Dimensions.get('screen').height / 725),
+        marginLeft: Dimensions.get('screen').width * 0.1,
+        marginTop: Dimensions.get('screen').height * 0.02
+    },
+
+    titleHairLine: {
         borderTopWidth: 1,
         borderTopColor: ColorEnum.ClassicBrown,
         marginTop: 3,
@@ -229,5 +238,4 @@ const CreateRecipePageStyle = StyleSheet.create({
         color: ColorEnum.ClassicBrown
     }
 });
-
 export default CreateRecipePageStyle;

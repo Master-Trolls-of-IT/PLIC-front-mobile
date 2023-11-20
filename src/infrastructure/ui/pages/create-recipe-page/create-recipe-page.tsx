@@ -7,7 +7,6 @@ import GenericHeaderText from '~/infrastructure/ui/shared/component/texts/generi
 import GenericBackArrowIcon from '~/infrastructure/ui/shared/component/generic-back-arrow-icon/generic-back-arrow-icon';
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
-import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import useCreateRecipePageData from '~/infrastructure/ui/pages/create-recipe-page/hooks';
@@ -32,17 +31,22 @@ const CreateRecipePage = () => {
         onPressCancelModal,
         onPressBackArrow,
         onPressValidateButton,
+        onPressNextButton,
+        stepBool,
         onPressValidateModalValidate,
         newPlusHeight,
         newPlusWidth,
         assetPlus,
         onPressIngredientPlus,
         ingredientList,
-        ingredientModalVisible,
+        stepList,
+        ModalVisible,
         searchInput,
         setSearchInput,
-        onPressWrongIconIngredientModal,
-        onPressValidateIngredientModal
+        onPressWrongIconModal,
+        onPressValidateIngredientModal,
+        onPressValidateStepModal,
+        customFontInterBoldValue
     } = useCreateRecipePageData();
 
     return (
@@ -94,81 +98,173 @@ const CreateRecipePage = () => {
                     style={CreateRecipePageStyle.inputDifficulty}
                 />
             </View>
-
-            <Text style={{ ...CreateRecipePageStyle.tagsTitle, ...CustomFontInterBold().text }}>Tags</Text>
-            <View style={CreateRecipePageStyle.tagsContainer}>
-                <RecipeTags />
-            </View>
-
-            <Text style={{ ...CreateRecipePageStyle.ingredientTitle, ...CustomFontInterBold().text }}>
-                Votre liste d&apos;ingrédients ajoutés
-            </Text>
-
-            <View style={CreateRecipePageStyle.ingredientTitleHairLine} />
-
-            <View style={CreateRecipePageStyle.ingredientsContent}>
-                <Text>
-                    {ingredientList.map((ingredient, index) => (
-                        <Text
-                            key={index}
-                            style={{
-                                ...RecipeItemStyle.ingredients
-                            }}>
-                            • {ingredient}
-                            {index < ingredientList.length - 1 && '\n'}
-                        </Text>
-                    ))}
-                </Text>
-                <TouchableOpacity style={CreateRecipePageStyle.plusContainer} onPress={onPressIngredientPlus}>
-                    <View style={CreateRecipePageStyle.tags}>
-                        <Text style={{ ...CreateRecipePageStyle.ingredientModalText, ...CustomFontInterBold().text }}>
-                            Ajouter un ingrédient
-                        </Text>
-                        <CustomSvg
-                            asset={assetPlus}
-                            height={newPlusHeight}
-                            width={newPlusWidth}
-                            style={CreateRecipePageStyle.plus}
-                        />
+            {!stepBool && (
+                <View style={CreateRecipePageStyle.ingredientsContainer}>
+                    <Text style={{ ...CreateRecipePageStyle.tagsTitle, ...customFontInterBoldValue.text }}>Tags</Text>
+                    <View style={CreateRecipePageStyle.tagsContainer}>
+                        <RecipeTags />
                     </View>
-                </TouchableOpacity>
-                <CustomModalWithHeader
-                    title={"Ajout d'un ingrédient"}
-                    isVisible={ingredientModalVisible}
-                    dispatch={onPressWrongIconIngredientModal}>
-                    <View style={CreateRecipePageStyle.tagsModalContainer}>
-                        <Text style={{ ...CreateRecipePageStyle.tagsModalText, ...CustomFontInterBold().text }}>
-                            Veuillez entrer votre ingrédient :
+
+                    <Text style={{ ...CreateRecipePageStyle.ingredientTitle, ...customFontInterBoldValue.text }}>
+                        Votre liste d&apos;ingrédients ajoutés
+                    </Text>
+
+                    <View style={CreateRecipePageStyle.titleHairLine} />
+
+                    <View style={CreateRecipePageStyle.listContent}>
+                        <Text>
+                            {ingredientList.map((ingredient, index) => (
+                                <Text
+                                    key={index}
+                                    style={{
+                                        ...RecipeItemStyle.ingredients
+                                    }}>
+                                    • {ingredient}
+                                    {index < ingredientList.length - 1 && '\n'}
+                                </Text>
+                            ))}
                         </Text>
+                        <TouchableOpacity style={CreateRecipePageStyle.plusContainer} onPress={onPressIngredientPlus}>
+                            <View style={CreateRecipePageStyle.tags}>
+                                <Text
+                                    style={{
+                                        ...CreateRecipePageStyle.ingredientModalText,
+                                        ...customFontInterBoldValue.text
+                                    }}>
+                                    Ajouter un ingrédient
+                                </Text>
+                                <CustomSvg
+                                    asset={assetPlus}
+                                    height={newPlusHeight}
+                                    width={newPlusWidth}
+                                    style={CreateRecipePageStyle.plus}
+                                />
+                            </View>
+                        </TouchableOpacity>
+                        <CustomModalWithHeader
+                            title={"Ajout d'un ingrédient"}
+                            isVisible={ModalVisible}
+                            dispatch={onPressWrongIconModal}>
+                            <View style={CreateRecipePageStyle.tagsModalContainer}>
+                                <Text
+                                    style={{
+                                        ...CreateRecipePageStyle.tagsModalText,
+                                        ...customFontInterBoldValue.text
+                                    }}>
+                                    Veuillez entrer votre ingrédient :
+                                </Text>
 
-                        <GenericInput
-                            type={InputEnum.Search}
-                            input={searchInput}
-                            placeHolder={'3 poivrons'}
-                            dispatch={setSearchInput}
-                            style={CreateRecipePageStyle.inputContainer}
-                        />
+                                <GenericInput
+                                    type={InputEnum.Search}
+                                    input={searchInput}
+                                    placeHolder={'3 poivrons'}
+                                    dispatch={setSearchInput}
+                                    style={CreateRecipePageStyle.inputContainer}
+                                />
 
-                        <GenericButton
-                            title={'Valider'}
-                            onPress={onPressValidateIngredientModal}
-                            style={{
-                                container: CreateRecipePageStyle.validateButtonTagsModalContainer,
-                                text: CreateRecipePageStyle.validateButtonTextTagsModal
-                            }}
-                        />
+                                <GenericButton
+                                    title={'Valider'}
+                                    onPress={onPressValidateIngredientModal}
+                                    style={{
+                                        container: CreateRecipePageStyle.validateButtonTagsModalContainer,
+                                        text: CreateRecipePageStyle.validateButtonTextTagsModal
+                                    }}
+                                />
+                            </View>
+                        </CustomModalWithHeader>
                     </View>
-                </CustomModalWithHeader>
-            </View>
 
-            <GenericButton
-                title={'Suivant'}
-                onPress={onPressValidateButton}
-                style={{
-                    container: CreateRecipePageStyle.validateButtonContainer,
-                    text: CreateRecipePageStyle.greenButtonText
-                }}
-            />
+                    <GenericButton
+                        title={'Suivant'}
+                        onPress={onPressNextButton}
+                        style={{
+                            container: CreateRecipePageStyle.validateButtonContainer,
+                            text: CreateRecipePageStyle.greenButtonText
+                        }}
+                    />
+                </View>
+            )}
+            {stepBool && (
+                <View style={CreateRecipePageStyle.stepsContainer}>
+                    <Text style={{ ...CreateRecipePageStyle.stepTitle, ...customFontInterBoldValue.text }}>
+                        Vos étapes
+                    </Text>
+
+                    <View style={CreateRecipePageStyle.titleHairLine} />
+
+                    <View style={CreateRecipePageStyle.listContent}>
+                        <Text>
+                            {stepList.map((step, index) => (
+                                <Text
+                                    key={index}
+                                    style={{
+                                        ...RecipeItemStyle.ingredients
+                                    }}>
+                                    • {step}
+                                    {index < stepList.length - 1 && '\n'}
+                                </Text>
+                            ))}
+                        </Text>
+                        <TouchableOpacity style={CreateRecipePageStyle.plusContainer} onPress={onPressIngredientPlus}>
+                            <View style={CreateRecipePageStyle.tags}>
+                                <Text
+                                    style={{
+                                        ...CreateRecipePageStyle.ingredientModalText,
+                                        ...customFontInterBoldValue.text
+                                    }}>
+                                    Ajouter une étape
+                                </Text>
+                                <CustomSvg
+                                    asset={assetPlus}
+                                    height={newPlusHeight}
+                                    width={newPlusWidth}
+                                    style={CreateRecipePageStyle.plus}
+                                />
+                            </View>
+                        </TouchableOpacity>
+                        <CustomModalWithHeader
+                            title={"Ajout d'une étape"}
+                            isVisible={ModalVisible}
+                            dispatch={onPressWrongIconModal}>
+                            <View style={CreateRecipePageStyle.tagsModalContainer}>
+                                <Text
+                                    style={{
+                                        ...CreateRecipePageStyle.tagsModalText,
+                                        ...customFontInterBoldValue.text
+                                    }}>
+                                    Veuillez entrer votre étape :
+                                </Text>
+
+                                <GenericInput
+                                    type={InputEnum.Search}
+                                    input={searchInput}
+                                    placeHolder={'Faire cuire les poivrons'}
+                                    dispatch={setSearchInput}
+                                    style={CreateRecipePageStyle.inputContainer}
+                                />
+
+                                <GenericButton
+                                    title={'Valider'}
+                                    onPress={onPressValidateStepModal}
+                                    style={{
+                                        container: CreateRecipePageStyle.validateButtonTagsModalContainer,
+                                        text: CreateRecipePageStyle.validateButtonTextTagsModal
+                                    }}
+                                />
+                            </View>
+                        </CustomModalWithHeader>
+                    </View>
+
+                    <GenericButton
+                        title={'Valider'}
+                        onPress={onPressValidateButton}
+                        style={{
+                            container: CreateRecipePageStyle.validateButtonContainer,
+                            text: CreateRecipePageStyle.greenButtonText
+                        }}
+                    />
+                </View>
+            )}
 
             <CustomModalWithHeader
                 title={recipeTitleInput}
@@ -176,7 +272,10 @@ const CreateRecipePage = () => {
                 dispatch={setIsValidateModalVisible}>
                 <View style={CreateRecipePageStyle.validateModalContainer}>
                     <Text
-                        style={{ ...CreateRecipePageStyle.textValidateModalContainer, ...CustomFontInterBold().text }}>
+                        style={{
+                            ...CreateRecipePageStyle.textValidateModalContainer,
+                            ...customFontInterBoldValue.text
+                        }}>
                         {"Confirmer l'ajout de cette recette à vos recettes enregistrés ?"}
                     </Text>
 
@@ -191,7 +290,7 @@ const CreateRecipePage = () => {
                         />
 
                         <GenericButton
-                            title={'Suivant'}
+                            title={'Valider'}
                             onPress={onPressValidateModalValidate}
                             style={{
                                 container: CreateRecipePageStyle.validateModalButtonContainer,

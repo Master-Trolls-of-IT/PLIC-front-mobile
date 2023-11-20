@@ -3,6 +3,7 @@ import { useStore } from '~/infrastructure/controllers/store';
 import { isValidInput } from '~/infrastructure/ui/shared/helper/is-valid-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
+import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 
 const useCreateRecipePageData = () => {
     const {
@@ -15,14 +16,16 @@ const useCreateRecipePageData = () => {
     const [isValidateModalVisible, setIsValidateModalVisible] = useState(false);
     const [recipeTitleInput, setRecipeTitleInput] = useState('');
     const [recipeDurationInput, setRecipeDurationInput] = useState('');
-    const [ingredientModalVisible, setIsIngredientModalVisible] = useState(false);
+    const [ModalVisible, setIsModalVisible] = useState(false);
     const [ingredientList, setIngredientList] = useState<string[]>([]);
+    const [stepList, setStepList] = useState<string[]>([]);
     const [searchInput, setSearchInput] = useState('');
     const [newPlusHeight, newPlusWidth] = [17, 17];
     const [newDiffuculty, setNewDifficulty] = useState<{ label: string; value: string }>({
         label: 'Facile',
         value: 'Facile'
     });
+    const [stepBool, setStepBool] = useState(false);
 
     const assetPlus = require('~/domain/entities/assets/icon/tags/icon-plus.svg');
 
@@ -31,13 +34,23 @@ const useCreateRecipePageData = () => {
     };
 
     const onPressIngredientPlus = () => {
-        setIsIngredientModalVisible(true);
+        setIsModalVisible(true);
     };
 
     const onPressValidateIngredientModal = () => {
-        setIsIngredientModalVisible(false);
+        setIsModalVisible(false);
         setSearchInput('');
         setIngredientList((ingredientList) => [...ingredientList, searchInput]);
+    };
+
+    const onPressNextButton = () => {
+        setStepBool(true);
+    };
+
+    const onPressValidateStepModal = () => {
+        setIsModalVisible(false);
+        setSearchInput('');
+        setStepList((stepList) => [...stepList, searchInput]);
     };
 
     const onPressValidateButton = () => {
@@ -67,7 +80,7 @@ const useCreateRecipePageData = () => {
                 numberOfRatings: 0,
                 rating: 0,
                 score: 0,
-                steps: [],
+                steps: stepList,
                 title: recipeTitleInput,
                 duration: parseInt(recipeDurationInput),
                 tags: recipeTags,
@@ -79,10 +92,12 @@ const useCreateRecipePageData = () => {
         console.log(recipeList);
         goBack();
     };
-    const onPressWrongIconIngredientModal = () => {
-        setIsIngredientModalVisible(false);
+    const onPressWrongIconModal = () => {
+        setIsModalVisible(false);
         setSearchInput('');
     };
+
+    const customFontInterBoldValue = CustomFontInterBold();
     return {
         errorMessage,
         goBack,
@@ -95,18 +110,23 @@ const useCreateRecipePageData = () => {
         recipeDifficultyInput: { input: newDiffuculty, dispatch: setNewDifficulty },
         onPressCancelModal,
         onPressValidateButton,
+        onPressValidateStepModal,
         onPressValidateModalValidate,
         onPressBackArrow,
         newPlusHeight,
         newPlusWidth,
         assetPlus,
         onPressIngredientPlus,
-        ingredientModalVisible,
+        ModalVisible,
         ingredientList,
+        stepList,
         setSearchInput,
         searchInput,
-        onPressWrongIconIngredientModal,
-        onPressValidateIngredientModal
+        onPressWrongIconModal,
+        onPressValidateIngredientModal,
+        stepBool,
+        onPressNextButton,
+        customFontInterBoldValue
     };
 };
 
