@@ -10,9 +10,9 @@ const useRecipePageData = () => {
         NavigationStore: { navigate },
         RecipeStore: { recipeList, activeRecipe, setActiveRecipe, setRecipeList }
     } = useStore();
-    const { getRecipes } = useRecipePageService();
+    const { getAllRecipes } = useRecipePageService();
     useEffectOnce(() => {
-        getRecipes().then((recipeItemProps) => {
+        getAllRecipes().then((recipeItemProps) => {
             setRecipeList(recipeItemProps);
         });
     });

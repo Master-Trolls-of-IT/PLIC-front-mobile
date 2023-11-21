@@ -4,7 +4,6 @@ export type ActiveRecipeInfo = {
     id: string;
     title: string;
     rating: number;
-    numberOfRatings: number;
     duration: number;
     difficulty: string;
     score: number;

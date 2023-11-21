@@ -8,7 +8,6 @@ export const defaultRecipeData: RecipeItemProps[] = [
             title: 'DELICIOUS PASTA',
             score: 4.5,
             rating: 4.5,
-            numberOfRatings: 45,
             duration: 4,
             difficulty: 'tres dur',
             ingredients: [
