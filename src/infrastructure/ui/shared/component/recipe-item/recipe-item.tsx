@@ -6,6 +6,7 @@ import useRecipeItemData from '~/infrastructure/ui/shared/component/recipe-item/
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import { ActiveRecipeItemProps } from '~/domain/interfaces/props/recipe-item/active-recipe-item-props';
+import useMyRecipeItemData from '~/infrastructure/ui/shared/component/my-recipe-item/hooks';
 const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecipeItemProps) => {
     const {
         unfilledFavouriteAsset,
@@ -15,6 +16,7 @@ const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecip
         deleteButtonStyle,
         editButtonStyle
     } = useRecipeItemData({ activeRecipe });
+
     return (
         <View style={RecipeItemStyle.recipeModal}>
             <TouchableOpacity onPress={toggleFavourite} style={RecipeItemStyle.favourite}>

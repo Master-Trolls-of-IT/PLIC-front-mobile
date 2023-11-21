@@ -6,6 +6,10 @@ import useRecipeItemData from '~/infrastructure/ui/shared/component/recipe-item/
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import { ActiveRecipeItemProps } from '~/domain/interfaces/props/recipe-item/active-recipe-item-props';
+import SettingsPageStyle from '~/infrastructure/ui/pages/settings-page/settings-page-style';
+import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
+import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
+import useMyRecipeItemData from '~/infrastructure/ui/shared/component/my-recipe-item/hooks';
 const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecipeItemProps) => {
     const {
         unfilledFavouriteAsset,
@@ -15,6 +19,15 @@ const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecip
         deleteButtonStyle,
         editButtonStyle
     } = useRecipeItemData({ activeRecipe });
+
+    const {
+        deleteConfirmationModal,
+        setDeleteConfirmationModal,
+        onDeleteRecipeModalPress,
+        onPressCancelDeleteModal,
+        onDeleteConfirm
+    } = useMyRecipeItemData();
+
     return (
         <View style={RecipeItemStyle.recipeModal}>
             <TouchableOpacity onPress={toggleFavourite} style={RecipeItemStyle.favourite}>
@@ -121,10 +134,44 @@ const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecip
                     </View>
                 </TouchableOpacity>
                 <View style={RecipeItemStyle.buttonContainer}>
-                    <GenericButton title="Supprimer" onPress={() => {}} style={deleteButtonStyle} />
+                    <GenericButton
+                        title="Supprimer"
+                        onPress={() => onDeleteRecipeModalPress(activeRecipe?.id || '')}
+                        style={deleteButtonStyle}
+                    />
                     <GenericButton title="Modifier" onPress={() => {}} style={editButtonStyle} />
                 </View>
             </ScrollView>
+            <CustomModalWithHeader
+                isVisible={deleteConfirmationModal}
+                dispatch={setDeleteConfirmationModal}
+                title="Suppression de la recette"
+                titleSize={22}>
+                <View style={SettingsPageStyle.deleteModalContainer}>
+                    <Text style={{ ...SettingsPageStyle.deletePasswordText, ...customFontInterBold().text }}>
+                        Êtes-vous absolument certain de vouloir supprimer cette recette ?
+                    </Text>
+
+                    <View style={SettingsPageStyle.buttonContainer}>
+                        <GenericButton
+                            title="Annuler"
+                            onPress={onPressCancelDeleteModal}
+                            style={{
+                                container: SettingsPageStyle.goBackButtonStyle,
+                                text: SettingsPageStyle.goBackButtonTextStyle
+                            }}
+                        />
+                        <GenericButton
+                            title="Confirmer"
+                            onPress={() => onDeleteConfirm(activeRecipe?.id || '')}
+                            style={{
+                                container: SettingsPageStyle.confirmButtonStyle,
+                                text: SettingsPageStyle.confirmButtonTextStyle
+                            }}
+                        />
+                    </View>
+                </View>
+            </CustomModalWithHeader>
         </View>
     );
 };
