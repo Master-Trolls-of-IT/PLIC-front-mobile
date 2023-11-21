@@ -47,7 +47,7 @@ const useLoginPageData = () => {
             try {
                 const response = await APIServices.POST<UserData, LoginData>('/login', data);
 
-                if (response.status === 202) {
+                if (response.status === 200) {
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
                     const accessToken = await RefreshTokenGen(inputPasswordString);
 

@@ -120,6 +120,10 @@ const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecip
                         </Text>
                     </View>
                 </TouchableOpacity>
+                <View style={RecipeItemStyle.buttonContainer}>
+                    <GenericButton title="Supprimer" onPress={() => {}} style={deleteButtonStyle} />
+                    <GenericButton title="Modifier" onPress={() => {}} style={editButtonStyle} />
+                </View>
             </ScrollView>
         </View>
     );
