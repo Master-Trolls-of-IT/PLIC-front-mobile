@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';

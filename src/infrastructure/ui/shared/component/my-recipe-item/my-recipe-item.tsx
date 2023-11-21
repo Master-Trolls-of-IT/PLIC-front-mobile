@@ -2,7 +2,6 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import RecipeItemStyle from '~/infrastructure/ui/shared/component/recipe-item/recipe-item-style';
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
-import useRecipeItemData from '~/infrastructure/ui/shared/component/recipe-item/hooks';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import { ActiveRecipeItemProps } from '~/domain/interfaces/props/recipe-item/active-recipe-item-props';

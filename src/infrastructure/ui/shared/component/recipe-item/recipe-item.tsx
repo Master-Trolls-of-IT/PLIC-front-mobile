@@ -4,18 +4,11 @@ import RecipeItemStyle from '~/infrastructure/ui/shared/component/recipe-item/re
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useRecipeItemData from '~/infrastructure/ui/shared/component/recipe-item/hooks';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
-import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import { ActiveRecipeItemProps } from '~/domain/interfaces/props/recipe-item/active-recipe-item-props';
-import useMyRecipeItemData from '~/infrastructure/ui/shared/component/my-recipe-item/hooks';
 const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecipeItemProps) => {
-    const {
-        unfilledFavouriteAsset,
-        horizontalScrollLineAsset,
-        scoreStyle,
-        sendReview,
-        deleteButtonStyle,
-        editButtonStyle
-    } = useRecipeItemData({ activeRecipe });
+    const { unfilledFavouriteAsset, horizontalScrollLineAsset, scoreStyle, sendReview } = useRecipeItemData({
+        activeRecipe
+    });
 
     return (
         <View style={RecipeItemStyle.recipeModal}>
