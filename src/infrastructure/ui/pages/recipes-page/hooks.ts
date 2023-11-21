@@ -10,15 +10,12 @@ const useRecipePageData = () => {
         RecipeStore: { recipeList, activeRecipe, setActiveRecipe }
     } = useStore();
 
-    const [errorResponse, setErrorResponse] = useState('');
-    const navigation = useNavigation();
     const onPressViewDetail = (recipe: ActiveRecipeInfo) => {
         setActiveRecipe(recipe);
     };
 
     const onPressGoBack = async () => {
         setActiveRecipe(undefined);
-        setErrorResponse('');
     };
 
     const toggleFavourite = () => {
@@ -30,14 +27,13 @@ const useRecipePageData = () => {
     };
 
     const onPressShowMyRecipes = async () => {
-        navigate(PagesEnum.MyRecipesPage);
+        navigate(PagesEnum.RecipePage);
     };
     return {
         onPressViewDetail,
         activeRecipe,
         recipeList,
         toggleFavourite,
-        errorResponse,
         onPressGoBack,
         onPressShowMyRecipes,
         onPressCreateRecipe

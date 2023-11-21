@@ -10,6 +10,7 @@ import SettingsPageStyle from '~/infrastructure/ui/pages/settings-page/settings-
 import customFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
 import useMyRecipeItemData from '~/infrastructure/ui/shared/component/my-recipe-item/hooks';
+
 const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecipeItemProps) => {
     const {
         unfilledFavouriteAsset,
@@ -17,16 +18,13 @@ const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecip
         scoreStyle,
         sendReview,
         deleteButtonStyle,
-        editButtonStyle
-    } = useRecipeItemData({ activeRecipe });
-
-    const {
+        editButtonStyle,
         deleteConfirmationModal,
         setDeleteConfirmationModal,
         onDeleteRecipeModalPress,
         onPressCancelDeleteModal,
         onDeleteConfirm
-    } = useMyRecipeItemData();
+    } = useMyRecipeItemData({ activeRecipe });
 
     return (
         <View style={RecipeItemStyle.recipeModal}>
