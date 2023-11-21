@@ -49,7 +49,15 @@ class GameStore {
 
         void makePersistable(this, {
             name: storageKey,
-            properties: [],
+            properties: [
+                'lastGameDate',
+                'lastScore',
+                'todayQuestions',
+                'currentQuestion',
+                'isGameEnded',
+                'isGameEnded',
+                'questionsStatus'
+            ],
             storage: AsyncStorage
         });
     }
