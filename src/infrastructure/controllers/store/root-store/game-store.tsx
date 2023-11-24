@@ -55,7 +55,6 @@ class GameStore {
                 'todayQuestions',
                 'currentQuestion',
                 'isGameEnded',
-                'isGameEnded',
                 'questionsStatus'
             ],
             storage: AsyncStorage
@@ -65,13 +64,7 @@ class GameStore {
     getIsGameAlreadyPlayed = () => {
         const today = new Date();
         const lastDate = new Date(this.lastGameDate);
-        console.log('today: ', today);
-        console.log('lastDate: ', lastDate);
-        console.log(
-            lastDate.getFullYear() === today.getFullYear() &&
-                lastDate.getDay() === today.getDay() &&
-                lastDate.getMonth() === today.getMonth()
-        );
+
         return (
             lastDate.getFullYear() === today.getFullYear() &&
             lastDate.getDay() === today.getDay() &&
@@ -104,9 +97,6 @@ class GameStore {
             this.isGameEnded = false;
             this.initTodayQuestions();
         }
-
-        console.log('started: ', this.isGameStarted);
-        console.log('ended: ', this.isGameEnded);
     };
 
     startGame = () => {

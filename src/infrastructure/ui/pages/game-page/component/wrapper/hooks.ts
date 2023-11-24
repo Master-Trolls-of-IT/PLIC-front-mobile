@@ -20,7 +20,7 @@ const useGamePageWrapperData = () => {
     const [numberOfGoodAnswers, setNumberOfGoodAnswers] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState<number[]>([0, 0, 0, 0]);
     const [nbSelectedAnswers, setNbSelectedAnswers] = useState(0);
-    const [displayAnswers, setDisplayAnswers] = useState(GameAnswerEnum.TBD);
+    const [displayAnswers, setDisplayAnswers] = useState(GameAnswerEnum.UNANSWERED);
 
     useEffect(() => {
         setCurrentQuestion(todayQuestions[nbCurrentQuestion]);
@@ -44,7 +44,7 @@ const useGamePageWrapperData = () => {
     const onPressNextQuestion = () => {
         setSelectedAnswers([0, 0, 0, 0]);
         setNbSelectedAnswers(0);
-        setDisplayAnswers(GameAnswerEnum.TBD);
+        setDisplayAnswers(GameAnswerEnum.UNANSWERED);
 
         if (nbCurrentQuestion === 9) {
             endGame();

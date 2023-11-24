@@ -9,7 +9,6 @@ import GamePageWrapper from '~/infrastructure/ui/pages/game-page/component/wrapp
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import { GameStatusEnum } from '~/domain/interfaces/enum/game-status-enum';
 import Chosen from '~/infrastructure/ui/pages/game-page/component/wrapper/icons/chosen';
-import ResetButton from '~/infrastructure/ui/pages/game-page/admin/reset-button';
 
 const GamePage = () => {
     const { gameStatus, lastScore, customFontInterBold, onPressStartGame } = useGamePageData();
@@ -45,7 +44,6 @@ const GamePage = () => {
                         <GamePageWrapper />
                     ) : (
                         <View style={GamePageStyle.endGame}>
-                            <ResetButton />
                             <Chosen big />
                             <Text style={{ ...GamePageStyle.text, ...customFontInterBold.text }}>
                                 Vous avez terminé le quiz journalier

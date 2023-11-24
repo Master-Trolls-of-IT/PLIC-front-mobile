@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
 import GamePageWrapperStyle from '~/infrastructure/ui/pages/game-page/component/wrapper/game-page-wrapper-style';
 import useGamePageWrapperData from '~/infrastructure/ui/pages/game-page/component/wrapper/hooks';
-import TbdCircle from '~/infrastructure/ui/pages/game-page/component/wrapper/icons/tbd-circle';
+import UnansweredCircle from '~/infrastructure/ui/pages/game-page/component/wrapper/icons/unanswered-circle';
 import { GameAnswerEnum } from '~/domain/interfaces/enum/game-answer-enum';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import AnswerCard from '~/infrastructure/ui/pages/game-page/component/answer-card/answer-card';
@@ -88,7 +88,7 @@ const GamePageWrapper = () => {
                     )}
                 </View>
             </View>
-            {displayAnswers === GameAnswerEnum.TBD ? (
+            {displayAnswers === GameAnswerEnum.UNANSWERED ? (
                 <>
                     <View style={GamePageWrapperStyle.contentFooter}>
                         <Text style={{ ...GamePageWrapperStyle.title, ...customFontInterBold.text }}>
@@ -107,8 +107,8 @@ const GamePageWrapper = () => {
                         <View style={GamePageWrapperStyle.footerQuestions}>
                             {questionsStatus.map((question, index) => (
                                 <View key={index}>
-                                    {question === GameAnswerEnum.TBD ? (
-                                        <TbdCircle />
+                                    {question === GameAnswerEnum.UNANSWERED ? (
+                                        <UnansweredCircle />
                                     ) : question === GameAnswerEnum.WRONG ? (
                                         <WrongCircle />
                                     ) : (
