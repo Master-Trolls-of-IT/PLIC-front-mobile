@@ -21,7 +21,8 @@ const useLoginPageData = () => {
         UserStore: { setRefreshToken, setAccessToken, setUserData },
         LogsStore: { warn },
         NavigationStore: { navigate },
-        ConsumedProductStore: { setConsumedProducts }
+        ConsumedProductStore: { setConsumedProducts },
+        GameStore: { initGameData }
     } = useStore();
     const { RefreshTokenGen, getConsumedProducts } = useLoginPageService();
 
@@ -46,8 +47,8 @@ const useLoginPageData = () => {
 
             try {
                 const response = await APIServices.POST<UserData, LoginData>('/login', data);
-
-                if (response.status === 202) {
+                // TODO: Mettre ce truc dans un service
+                if (response.status === 200) {
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
                     const accessToken = await RefreshTokenGen(inputPasswordString);
 
@@ -69,6 +70,7 @@ const useLoginPageData = () => {
                             setConsumedProducts([]);
                         })
                         .finally(() => {
+                            initGameData();
                             navigate(PagesEnum.HomePage);
                         });
                 } else {
