@@ -5,6 +5,7 @@ import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useRecipeItemData from '~/infrastructure/ui/shared/component/recipe-item/hooks';
 import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-bold-hooks';
 import { ActiveRecipeItemProps } from '~/domain/interfaces/props/recipe-item/active-recipe-item-props';
+
 const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecipeItemProps) => {
     const { unfilledFavouriteAsset, horizontalScrollLineAsset, scoreStyle, sendReview } = useRecipeItemData({
         activeRecipe
