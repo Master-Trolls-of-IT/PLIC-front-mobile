@@ -8,8 +8,8 @@ const useStartUpPageService = () => {
     } = useStore();
     const APIPing = async () => {
         try {
-            const response = await APIServices.GET('/ping');
-            return response.status == 200;
+            await APIServices.GET('/ping');
+            return true;
         } catch (err) {
             if (err instanceof AxiosError) error('useStartUpPageService', 'Could not ping the API', err.message);
             return false;
