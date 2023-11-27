@@ -83,16 +83,17 @@ const useLoginPageData = () => {
         }
         setLoader(false);
     }, [
-        RefreshTokenGen,
         inputEmailString,
         inputPasswordString,
-        navigate,
-        setAccessToken,
-        setRefreshToken,
+        RefreshTokenGen,
         setUserData,
-        warn,
         getConsumedProducts,
-        setConsumedProducts
+        setRefreshToken,
+        setAccessToken,
+        warn,
+        setConsumedProducts,
+        initGameData,
+        navigate
     ]);
 
     const selectRightErrorMessage = () => {
