@@ -1,10 +1,9 @@
 import { useStore } from '~/infrastructure/controllers/store';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
-import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
 const useMyRecipePageData = () => {
     const {
-        NavigationStore: { navigate, goBack },
+        NavigationStore: { goBack },
         RecipeStore: { recipeList, activeRecipe, setActiveRecipe },
         UserStore: { userData }
     } = useStore();
@@ -16,7 +15,7 @@ const useMyRecipePageData = () => {
         setActiveRecipe(undefined);
     };
 
-    const myRecipesList = recipeList.filter((recipe) => recipe.recipeItem.author === userData?.username);
+    const myRecipesList = recipeList.filter((recipe) => recipe.author === userData?.username);
     const toggleFavourite = () => {
         //TODO Faire la fonction favourite
     };
