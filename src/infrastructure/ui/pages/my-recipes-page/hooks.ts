@@ -25,16 +25,12 @@ const useMyRecipePageData = () => {
         //TODO Faire ca
     };
 
-    const onPressShowMyRecipes = async () => {
-        navigate(PagesEnum.MyRecipesPage);
-    };
     return {
         onPressViewDetail,
         activeRecipe,
         myRecipesList,
         toggleFavourite,
         onPressGoBack,
-        onPressShowMyRecipes,
         onPressCreateRecipe,
         goBack
     };

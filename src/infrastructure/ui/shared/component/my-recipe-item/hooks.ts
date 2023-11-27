@@ -14,15 +14,12 @@ const useMyRecipeItemData = ({ activeRecipe }: ActiveRecipeItemDataProps) => {
     };
 
     const onPressCancelDeleteModal = () => {
-        setRecipeIdToDelete(null);
+        setRecipeIdToDelete('');
         setDeleteConfirmationModal(false);
     };
 
     const onDeleteConfirm = (recipeId: string) => {
-        // TODO : delete recipe fo real
-        console.log(`Suppression de la recette avec l'ID : ${recipeId}`);
-
-        setRecipeIdToDelete('');
+        setRecipeIdToDelete(recipeId);
         setDeleteConfirmationModal(false);
     };
 
