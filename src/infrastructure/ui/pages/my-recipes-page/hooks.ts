@@ -2,20 +2,21 @@ import { useStore } from '~/infrastructure/controllers/store';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
 
-const useRecipePageData = () => {
+const useMyRecipePageData = () => {
     const {
-        NavigationStore: { navigate },
-        RecipeStore: { recipeList, activeRecipe, setActiveRecipe }
+        NavigationStore: { navigate, goBack },
+        RecipeStore: { recipeList, activeRecipe, setActiveRecipe },
+        UserStore: { userData }
     } = useStore();
 
     const onPressViewDetail = (recipe: ActiveRecipeInfo) => {
         setActiveRecipe(recipe);
     };
-
     const onPressGoBack = async () => {
         setActiveRecipe(undefined);
     };
 
+    const myRecipesList = recipeList.filter((recipe) => recipe.recipeItem.author === userData?.username);
     const toggleFavourite = () => {
         //TODO Faire la fonction favourite
     };
@@ -24,18 +25,15 @@ const useRecipePageData = () => {
         //TODO Faire ca
     };
 
-    const onPressShowMyRecipes = async () => {
-        navigate(PagesEnum.RecipePage);
-    };
     return {
         onPressViewDetail,
         activeRecipe,
-        recipeList,
+        myRecipesList,
         toggleFavourite,
         onPressGoBack,
-        onPressShowMyRecipes,
-        onPressCreateRecipe
+        onPressCreateRecipe,
+        goBack
     };
 };
 
-export default useRecipePageData;
+export default useMyRecipePageData;

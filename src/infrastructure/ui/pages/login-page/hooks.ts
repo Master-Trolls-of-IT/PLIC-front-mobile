@@ -47,6 +47,7 @@ const useLoginPageData = () => {
 
             try {
                 const response = await APIServices.POST<UserData, LoginData>('/login', data);
+
                 // TODO: Mettre ce truc dans un service
                 if (response.status === 200) {
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
