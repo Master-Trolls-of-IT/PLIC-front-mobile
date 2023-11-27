@@ -36,9 +36,9 @@ class RecipeStore {
     };
 
     toggleFavorite = (id: string) => {
-        const index = this.recipeList.findIndex((elem) => elem.recipeItem.id === id);
+        const index = this.recipeList.findIndex((elem) => elem.id === id);
         const copy = [...this.recipeList];
-        copy[index].recipeItem.isFavourite = !copy[index].recipeItem.isFavourite;
+        //copy[index].recipeItem.isFavourite = !copy[index].recipeItem.isFavourite;
         this.recipeList = [...copy];
     };
 

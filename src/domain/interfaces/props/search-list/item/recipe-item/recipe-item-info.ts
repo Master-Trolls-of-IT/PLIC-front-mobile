@@ -4,6 +4,7 @@ export type RecipeItemInfo = {
     id: string;
     title: string;
     rating: number;
+    numberOfRatings: number;
     duration: number;
     difficulty: string;
     score: number;
@@ -11,7 +12,6 @@ export type RecipeItemInfo = {
     author: string;
     steps: string[];
     tags: RecipeItemTag[];
-    isFavourite: boolean;
     kcal: number;
     image?: string;
 };
