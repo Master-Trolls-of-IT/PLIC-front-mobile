@@ -14,6 +14,6 @@ export enum PagesEnum {
     WidgetPage = 'WidgetPage',
     CreateMealPage = 'CreateMealPage',
     CreateMealScanPage = 'CreateMealScanPage',
-    CreateRecipePage = 'CreateRecipePage'
+    CreateRecipePage = 'CreateRecipePage',
     MyRecipesPage = 'MyRecipesPage'
 }

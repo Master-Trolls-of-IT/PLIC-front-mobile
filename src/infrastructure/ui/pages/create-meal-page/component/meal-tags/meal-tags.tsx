@@ -10,7 +10,7 @@ import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/cu
 import GenericInput from '~/infrastructure/ui/shared/component/inputs/generic-input/generic-input';
 import { InputEnum } from '~/domain/interfaces/enum/input-type-enum';
 import TagsComponent from '~/infrastructure/ui/pages/create-meal-page/component/tag-component/tags-component';
-import { mealItemTags } from '~/domain/entities/constants/meal-page-meal-tags';
+import { ItemTags } from '~/domain/entities/constants/item-tags';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import { compareStrings } from '~/infrastructure/ui/shared/helper/compare-strings';
 
@@ -74,7 +74,7 @@ const MealTags = () => {
 
                     <ScrollView style={MealTagsStyle.modalTagsScrollViewContainer} indicatorStyle={'black'}>
                         <View style={MealTagsStyle.modalTagsContainer}>
-                            {mealItemTags.map((tag) => {
+                            {ItemTags.map((tag) => {
                                 if (compareStrings(tag.label, searchInput))
                                     return (
                                         <TagsComponent

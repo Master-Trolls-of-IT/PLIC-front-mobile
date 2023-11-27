@@ -1,4 +1,4 @@
-export const recipeItemTags = [
+export const ItemTags = [
     {
         label: 'Italien',
         color: '#FF5733'
