@@ -1,4 +1,4 @@
-import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 
 export type RecipeData = {
     title: string;
@@ -6,6 +6,6 @@ export type RecipeData = {
     email: string;
     ingredients: string[];
     steps: string[];
-    tags: RecipeItemTag[];
+    tags: ItemTag[];
     difficulty: string;
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import CustomFontInterBold from '~/application/utils/font/custom-font-inter-bold';
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
-import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 import useMealTagsData from '~/infrastructure/ui/pages/create-meal-page/component/meal-tags/hooks';
 import MealTagsStyle from '~/infrastructure/ui/pages/create-meal-page/component/meal-tags/meal-tags-style';
 import CustomModalWithHeader from '~/infrastructure/ui/shared/component/modal/custom-modal-with-header/custom-modal-with-header';
@@ -32,7 +32,7 @@ const MealTags = () => {
 
     return (
         <View style={MealTagsStyle.tagsContainer}>
-            {mealTags.map((tag: MealItemTag) => {
+            {mealTags.map((tag: ItemTag) => {
                 return (
                     <TagsComponent
                         key={tag.label}

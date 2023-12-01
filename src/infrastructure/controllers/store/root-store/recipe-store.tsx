@@ -2,10 +2,10 @@ import { action, makeObservable, observable } from 'mobx';
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
 import { RecipeItemInfo } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-info';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
-import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 class RecipeStore {
     recipeList: RecipeItemProps[];
-    recipeTags: RecipeItemTag[];
+    recipeTags: ItemTag[];
     activeRecipe: RecipeItemInfo | undefined;
     constructor() {
         this.recipeList = [];
@@ -35,18 +35,15 @@ class RecipeStore {
         if (newItem) this.recipeList.push(newItem);
     };
 
-    toggleFavorite = (id: string) => {
-        const index = this.recipeList.findIndex((elem) => elem.id === id);
-        const copy = [...this.recipeList];
-        //copy[index].recipeItem.isFavourite = !copy[index].recipeItem.isFavourite;
-        this.recipeList = [...copy];
+    toggleFavorite = () => {
+        //TODO: implement this properly
     };
 
-    setRecipeTags = (newRecipeTags: RecipeItemTag[]) => {
+    setRecipeTags = (newRecipeTags: ItemTag[]) => {
         this.recipeTags = newRecipeTags;
     };
 
-    deleteRecipeTag = (tag: RecipeItemTag) => {
+    deleteRecipeTag = (tag: ItemTag) => {
         this.recipeTags = this.recipeTags.filter((tagItem) => tagItem.label != tag.label);
     };
 

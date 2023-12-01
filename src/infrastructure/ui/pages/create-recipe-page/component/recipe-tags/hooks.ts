@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
-import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 
 const useRecipeTagsData = () => {
     const {
@@ -9,7 +9,7 @@ const useRecipeTagsData = () => {
 
     const [isTagsModalVisible, setIsTagsModalVisible] = useState(false);
     const [searchInput, setSearchInput] = useState('');
-    const [recipeTagsSelected, setRecipeTagsSelected] = useState<RecipeItemTag[]>([]);
+    const [recipeTagsSelected, setRecipeTagsSelected] = useState<ItemTag[]>([]);
 
     const [newPlusHeight, newPlusWidth] = [17, 17];
     const assetPlus = require('~/domain/entities/assets/icon/tags/icon-plus.svg');

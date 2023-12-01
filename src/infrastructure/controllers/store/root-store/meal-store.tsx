@@ -3,12 +3,12 @@ import { makePersistable } from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-item/meal-item-props';
 import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/item/meal-products-item/meal-products-item-props';
-import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 
 class MealStore {
     mealList: MealItemProps[];
     mealProducts: MealProductsItemProps[];
-    mealTags: MealItemTag[];
+    mealTags: ItemTag[];
 
     constructor(storageKey: string) {
         this.mealList = [];
@@ -79,11 +79,11 @@ class MealStore {
         this.mealProducts = this.mealProducts.filter((product) => product.id != id);
     };
 
-    setMealTags = (newMealTags: MealItemTag[]) => {
+    setMealTags = (newMealTags: ItemTag[]) => {
         this.mealTags = newMealTags;
     };
 
-    deleteMealTag = (tag: MealItemTag) => {
+    deleteMealTag = (tag: ItemTag) => {
         this.mealTags = this.mealTags.filter((tagItem) => tagItem.label != tag.label);
     };
 

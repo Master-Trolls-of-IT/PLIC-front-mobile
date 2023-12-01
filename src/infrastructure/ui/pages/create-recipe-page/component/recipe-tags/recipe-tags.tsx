@@ -11,7 +11,7 @@ import TagsComponent from '~/infrastructure/ui/pages/create-meal-page/component/
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import { compareStrings } from '~/infrastructure/ui/shared/helper/compare-strings';
 import RecipeTagsStyle from '~/infrastructure/ui/pages/create-recipe-page/component/recipe-tags/recipe-tags-style';
-import { RecipeItemTag } from '~/domain/interfaces/props/tags/recipe-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 import useRecipeTagsData from '~/infrastructure/ui/pages/create-recipe-page/component/recipe-tags/hooks';
 import { recipeItemTags } from '~/domain/entities/constants/recipe-page-recipe-tags';
 
@@ -33,7 +33,7 @@ const RecipeTags = () => {
 
     return (
         <View style={RecipeTagsStyle.tagsContainer}>
-            {recipeTags.map((tag: RecipeItemTag) => {
+            {recipeTags.map((tag: ItemTag) => {
                 return (
                     <TagsComponent
                         key={tag.label}

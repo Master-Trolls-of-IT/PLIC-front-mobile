@@ -1,4 +1,4 @@
-import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 import { ProductInfo } from '~/domain/interfaces/props/nutrients/product-nutrients';
 
 export type MealItemProps = {
@@ -8,7 +8,7 @@ export type MealItemProps = {
     score: number;
     numberOfProducts: number;
     products: ProductInfo[];
-    tags: MealItemTag[];
+    tags: ItemTag[];
     isFavourite: boolean;
     style?: object;
 };
