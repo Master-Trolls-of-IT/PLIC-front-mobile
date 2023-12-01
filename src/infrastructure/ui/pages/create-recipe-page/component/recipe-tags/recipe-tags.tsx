@@ -13,7 +13,7 @@ import { compareStrings } from '~/infrastructure/ui/shared/helper/compare-string
 import RecipeTagsStyle from '~/infrastructure/ui/pages/create-recipe-page/component/recipe-tags/recipe-tags-style';
 import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 import useRecipeTagsData from '~/infrastructure/ui/pages/create-recipe-page/component/recipe-tags/hooks';
-import { recipeItemTags } from '~/domain/entities/constants/recipe-page-recipe-tags';
+import { ItemTags } from '~/domain/entities/constants/item-tags';
 
 const RecipeTags = () => {
     const {
@@ -75,7 +75,7 @@ const RecipeTags = () => {
 
                     <ScrollView style={RecipePageStyle.modalTagsScrollViewContainer} indicatorStyle={'black'}>
                         <View style={RecipePageStyle.modalTagsContainer}>
-                            {recipeItemTags.map((tag) => {
+                            {ItemTags.map((tag) => {
                                 if (compareStrings(tag.label, searchInput))
                                     return (
                                         <TagsComponent

@@ -37,7 +37,19 @@ const GetDailyNutrientEarned = (consumedProducts: ConsumedProductItemProps[]): [
         ecoscore = ecoscore + (isNaN(consumedProduct.score) ? 0 : consumedProduct.score);
     });
 
-    return [newDailyNutrientEarned, ecoscore];
+    return [
+        {
+            energy: Math.round(newDailyNutrientEarned.energy),
+            carbohydrate: Math.round(newDailyNutrientEarned.carbohydrate),
+            lipid: Math.round(newDailyNutrientEarned.lipid),
+            protein: Math.round(newDailyNutrientEarned.protein),
+            sugar: Math.round(newDailyNutrientEarned.sugar),
+            salt: Math.round(newDailyNutrientEarned.salt),
+            fattyAcid: Math.round(newDailyNutrientEarned.fattyAcid),
+            fiber: Math.round(newDailyNutrientEarned.fiber)
+        },
+        Math.round(ecoscore)
+    ];
 };
 
 export default GetDailyNutrientEarned;

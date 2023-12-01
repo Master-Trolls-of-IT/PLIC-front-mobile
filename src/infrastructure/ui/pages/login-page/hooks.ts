@@ -21,7 +21,8 @@ const useLoginPageData = () => {
         UserStore: { setRefreshToken, setAccessToken, setUserData },
         LogsStore: { warn },
         NavigationStore: { navigate },
-        ConsumedProductStore: { setConsumedProducts }
+        ConsumedProductStore: { setConsumedProducts },
+        GameStore: { initGameData }
     } = useStore();
     const { RefreshTokenGen, getConsumedProducts } = useLoginPageService();
 
@@ -46,8 +47,7 @@ const useLoginPageData = () => {
 
             try {
                 const response = await APIServices.POST<UserData, LoginData>('/login', data);
-
-                if (response.status === 200) {
+                if (response.status === 202) {
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
                     const accessToken = await RefreshTokenGen(inputPasswordString);
 
@@ -69,6 +69,7 @@ const useLoginPageData = () => {
                             setConsumedProducts([]);
                         })
                         .finally(() => {
+                            initGameData();
                             navigate(PagesEnum.HomePage);
                         });
                 } else {
@@ -82,16 +83,17 @@ const useLoginPageData = () => {
         }
         setLoader(false);
     }, [
-        RefreshTokenGen,
         inputEmailString,
         inputPasswordString,
-        navigate,
-        setAccessToken,
-        setRefreshToken,
+        RefreshTokenGen,
         setUserData,
-        warn,
         getConsumedProducts,
-        setConsumedProducts
+        setRefreshToken,
+        setAccessToken,
+        warn,
+        setConsumedProducts,
+        initGameData,
+        navigate
     ]);
 
     const selectRightErrorMessage = () => {

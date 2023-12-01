@@ -22,6 +22,7 @@ import WidgetPage from '~/infrastructure/ui/pages/widget-page/widget-page';
 import CreateMealPage from '~/infrastructure/ui/pages/create-meal-page/create-meal-page';
 import CreateMealScanPage from '~/infrastructure/ui/pages/create-meal-scan-page/create-meal-scan-page';
 import CreateRecipePage from '~/infrastructure/ui/pages/create-recipe-page/create-recipe-page';
+import MyRecipesPage from '~/infrastructure/ui/pages/my-recipes-page/my-recipes-page';
 
 function App() {
     const { rootStore, Stack, gestureEnabled, gestureDisabled } = useAppData();
@@ -75,7 +76,16 @@ function App() {
                                 component={ConsumedProductsPage}
                                 options={gestureEnabled}
                             />
-
+                            <Stack.Screen
+                                name={PagesEnum.RecipePage}
+                                component={RecipePage}
+                                options={gestureDisabled}
+                            />
+                            <Stack.Screen
+                                name={PagesEnum.MyRecipesPage}
+                                component={MyRecipesPage}
+                                options={gestureDisabled}
+                            />
                             <Stack.Screen name={PagesEnum.GamePage} component={GamePage} options={gestureDisabled} />
                         </Stack.Group>
 

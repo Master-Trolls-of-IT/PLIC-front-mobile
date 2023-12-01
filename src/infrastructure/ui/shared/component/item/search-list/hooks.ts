@@ -10,6 +10,7 @@ import { MealProductsItemProps } from '~/domain/interfaces/props/search-list/ite
 import { RecipeItemProps } from '~/domain/interfaces/props/search-list/item/recipe-item/recipe-item-props';
 import { compareStrings } from '~/infrastructure/ui/shared/helper/compare-strings';
 
+// eslint-disable-next-line max-lines-per-function
 const useSearchListData = (inputType: SearchListInputType, data: SearchListData) => {
     const [searchedText, setSearchedText] = useState('');
 

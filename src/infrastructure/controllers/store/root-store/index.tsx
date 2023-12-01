@@ -4,6 +4,7 @@ import UserStore from '~/infrastructure/controllers/store/root-store/user-store'
 import LogsStore from '~/infrastructure/controllers/store/root-store/logs-store';
 import DataStore from '~/infrastructure/controllers/store/root-store/data-store';
 import MealStore from '~/infrastructure/controllers/store/root-store/meal-store';
+import GameStore from '~/infrastructure/controllers/store/root-store/game-store';
 import HistoryStore from '~/infrastructure/controllers/store/root-store/history-store';
 import ConsumedProductStore from '~/infrastructure/controllers/store/root-store/consumed-product-store';
 import RecipeStore from '~/infrastructure/controllers/store/root-store/recipe-store';
@@ -16,6 +17,7 @@ class RootStore {
     HistoryStore: HistoryStore;
     ConsumedProductStore: ConsumedProductStore;
     RecipeStore: RecipeStore;
+    GameStore: GameStore;
 
     static instance: RootStore;
 
@@ -36,6 +38,7 @@ class RootStore {
         this.MealStore = new MealStore('MealStore');
         this.LogsStore = new LogsStore('LogsStore');
         this.RecipeStore = new RecipeStore();
+        this.GameStore = new GameStore(this, 'GameStore');
     }
 
     resetAllObservables = () => {
