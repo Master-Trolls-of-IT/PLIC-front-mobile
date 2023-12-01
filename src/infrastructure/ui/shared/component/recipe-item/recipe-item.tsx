@@ -39,14 +39,14 @@ const ActiveRecipeItem = ({ toggleFavourite, goBack, activeRecipe }: ActiveRecip
                     </View>
                     <View style={RecipeItemStyle.mealTags}>
                         <Text style={{ ...useCustomFontInterBold().text }}>
-                            {activeRecipe?.tags.map((mealTag, index) => (
+                            {activeRecipe?.tags.map((recipeTag, index) => (
                                 <Text
                                     key={index}
                                     style={{
                                         ...RecipeItemStyle.mealTags,
-                                        color: mealTag.color
+                                        color: recipeTag.color
                                     }}>
-                                    {mealTag.label}
+                                    {recipeTag.label}
                                     {index < activeRecipe?.tags.length - 1 && ' • '}
                                 </Text>
                             ))}

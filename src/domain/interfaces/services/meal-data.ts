@@ -1,10 +1,10 @@
-import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 
 export type MealData = {
     title: string;
     email: string;
     products: ProductQuantity[];
-    tags: MealItemTag[];
+    tags: ItemTag[];
 };
 
 export type ProductQuantity = {

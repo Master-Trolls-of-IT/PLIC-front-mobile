@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { useStore } from '~/infrastructure/controllers/store';
 import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 
-const useMealTagsData = () => {
+const useRecipeTagsData = () => {
     const {
-        MealStore: { mealTags, setMealTags }
+        RecipeStore: { recipeTags, setRecipeTags }
     } = useStore();
 
     const [isTagsModalVisible, setIsTagsModalVisible] = useState(false);
     const [searchInput, setSearchInput] = useState('');
-    const [mealTagsSelected, setMealTagsSelected] = useState<ItemTag[]>([]);
+    const [recipeTagsSelected, setRecipeTagsSelected] = useState<ItemTag[]>([]);
 
     const [newPlusHeight, newPlusWidth] = [17, 17];
     const assetPlus = require('~/domain/entities/assets/icon/tags/icon-plus.svg');
@@ -26,7 +26,7 @@ const useMealTagsData = () => {
     const onPressValidateTagsModal = () => {
         setIsTagsModalVisible(false);
         setSearchInput('');
-        setMealTags(mealTagsSelected);
+        setRecipeTags(recipeTagsSelected);
     };
 
     return {
@@ -37,12 +37,12 @@ const useMealTagsData = () => {
         setSearchInput,
         newPlusHeight,
         newPlusWidth,
-        mealTags,
-        mealTagsSelected,
-        setMealTagsSelected,
+        recipeTags,
+        recipeTagsSelected,
+        setRecipeTagsSelected,
         onPressTagPlus,
         onPressValidateTagsModal
     };
 };
 
-export default useMealTagsData;
+export default useRecipeTagsData;

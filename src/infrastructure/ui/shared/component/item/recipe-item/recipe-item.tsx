@@ -8,15 +8,15 @@ import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-b
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useRecipeItemData from '~/infrastructure/ui/shared/component/item/recipe-item/hooks';
 
-const RecipeItem = ({ recipeItem, style }: RecipeItemProps) => {
-    const { scoreStyle, star, profile, onPressViewDetail } = useRecipeItemData({ recipeItem });
+const RecipeItem = (recipeItem: RecipeItemProps) => {
+    const { scoreStyle, star, profile, onPressViewDetail } = useRecipeItemData(recipeItem);
 
     return (
         <TouchableOpacity
             onPress={() => {
                 onPressViewDetail(recipeItem);
             }}>
-            <View style={[RecipeItemStyle.item, style]}>
+            <View style={[RecipeItemStyle.item, recipeItem.style]}>
                 <View style={RecipeItemStyle.container}>
                     <View style={RecipeItemStyle.imageContainer}>
                         <Image source={{ uri: recipeItem.image }} style={RecipeItemStyle.image} />

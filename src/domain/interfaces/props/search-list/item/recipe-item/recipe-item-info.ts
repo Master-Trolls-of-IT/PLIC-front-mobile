@@ -1,4 +1,4 @@
-import { MealItemTag } from '~/domain/interfaces/props/tags/meal-item-tag';
+import { ItemTag } from '~/domain/interfaces/props/tags/item-tag';
 
 export type RecipeItemInfo = {
     id: string;
@@ -11,8 +11,7 @@ export type RecipeItemInfo = {
     ingredients: string[];
     author: string;
     steps: string[];
-    tags: MealItemTag[];
-    isFavourite: boolean;
+    tags: ItemTag[];
     kcal: number;
     image?: string;
 };

@@ -1,12 +1,20 @@
 import { useStore } from '~/infrastructure/controllers/store';
 import { ActiveRecipeInfo } from '~/domain/interfaces/props/recipe-item/active-recipe-info';
 import { PagesEnum } from '~/domain/interfaces/enum/pages-enum';
+import useRecipePageService from '~/application/page-service/recipe-page-service';
+import useEffectOnce from '~/infrastructure/ui/shared/helper/use-effect-once';
 
 const useRecipePageData = () => {
     const {
         NavigationStore: { navigate },
-        RecipeStore: { recipeList, activeRecipe, setActiveRecipe }
+        RecipeStore: { recipeList, activeRecipe, setActiveRecipe, setRecipeList }
     } = useStore();
+    const { getAllRecipes } = useRecipePageService();
+    useEffectOnce(() => {
+        getAllRecipes().then((recipeItemProps) => {
+            setRecipeList(recipeItemProps);
+        });
+    });
 
     const onPressViewDetail = (recipe: ActiveRecipeInfo) => {
         setActiveRecipe(recipe);
@@ -21,7 +29,7 @@ const useRecipePageData = () => {
     };
 
     const onPressCreateRecipe = () => {
-        //TODO Faire ca
+        navigate(PagesEnum.CreateRecipePage);
     };
 
     const onPressShowMyRecipes = async () => {

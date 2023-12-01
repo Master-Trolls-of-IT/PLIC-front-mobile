@@ -8,7 +8,7 @@ export const defaultRecipeData: RecipeItemProps[] = [
             title: 'DELICIOUS PASTA',
             score: 4.5,
             rating: 4.5,
-            numberOfRatings: 45,
+            numberOfRatings: 100,
             duration: 4,
             difficulty: 'tres dur',
             ingredients: [
@@ -29,7 +29,6 @@ export const defaultRecipeData: RecipeItemProps[] = [
             kcal: 350,
             image: 'https://resize.elle.fr/original/var/plain_site/storage/images/elle-a-table/les-dossiers-de-la-redaction/dossier-de-la-redac/plat-familial-en-sauce/97666601-1-fre-FR/Un-plat-familial-en-sauce-comme-chez-mamie.jpg',
             author: 'Chef John',
-            isFavourite: true,
             tags: [
                 {
                     label: 'epicé',

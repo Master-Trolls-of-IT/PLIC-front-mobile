@@ -47,9 +47,7 @@ const useLoginPageData = () => {
 
             try {
                 const response = await APIServices.POST<UserData, LoginData>('/login', data);
-
-                // TODO: Mettre ce truc dans un service
-                if (response.status === 200) {
+                if (response.status === 202) {
                     const refreshToken = await RefreshTokenGen(inputPasswordString);
                     const accessToken = await RefreshTokenGen(inputPasswordString);
 
@@ -85,16 +83,17 @@ const useLoginPageData = () => {
         }
         setLoader(false);
     }, [
-        RefreshTokenGen,
         inputEmailString,
         inputPasswordString,
-        navigate,
-        setAccessToken,
-        setRefreshToken,
+        RefreshTokenGen,
         setUserData,
-        warn,
         getConsumedProducts,
-        setConsumedProducts
+        setRefreshToken,
+        setAccessToken,
+        warn,
+        setConsumedProducts,
+        initGameData,
+        navigate
     ]);
 
     const selectRightErrorMessage = () => {
