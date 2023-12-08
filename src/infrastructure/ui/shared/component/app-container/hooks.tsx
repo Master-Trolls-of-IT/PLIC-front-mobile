@@ -56,6 +56,10 @@ const useAppContainerData = () => {
         activeScreen == PagesEnum.ScanPage ||
         (previousScreen == PagesEnum.ScanPage && activeScreen == PagesEnum.HistoricalPage) ||
         (previousScreen == PagesEnum.ScanPage && activeScreen == PagesEnum.ConsumedProducts);
+    const isRecipePageSlideBar =
+        activeScreen == PagesEnum.RecipePage ||
+        activeScreen == PagesEnum.CreateRecipePage ||
+        activeScreen == PagesEnum.MyRecipesPage;
 
     if (isMealPageSlideBar) {
         animatedMealIconStyle.icon = { marginBottom: 20 };
@@ -63,7 +67,7 @@ const useAppContainerData = () => {
     } else if (isScanPageSlideBar) {
         animatedScanIconStyle.icon = { marginBottom: 20 };
         animatedSlideBar.slideBar = { left: 12 + Dimensions.get('screen').width / 5 };
-    } else if (activeScreen == PagesEnum.RecipePage) {
+    } else if (isRecipePageSlideBar) {
         animatedRecipeIconStyle.icon = { marginBottom: 20 };
         animatedSlideBar.slideBar = { left: 12 + (3 * Dimensions.get('screen').width) / 5 };
     } else if (activeScreen == PagesEnum.GamePage) {

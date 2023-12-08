@@ -2,9 +2,13 @@ import { Dimensions, StyleSheet } from 'react-native';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 
 const RecipeItemStyle = StyleSheet.create({
+    container: {
+        height: '100%',
+        width: '100%'
+    },
+
     item: {
         width: '95%',
-        minHeight: 134,
         backgroundColor: ColorEnum.ExtraOpaqueBrown,
         marginBottom: 10,
         padding: 5,
@@ -12,38 +16,37 @@ const RecipeItemStyle = StyleSheet.create({
         alignSelf: 'center'
     },
 
-    container: {
+    topContainer: {
         display: 'flex',
         flexDirection: 'row',
-        minHeight: 164,
-        marginBottom: 0
+        padding: 5
     },
 
     imageContainer: {
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
-        height: 115,
-        margin: 10
+        alignItems: 'center'
     },
 
     textField: {
         display: 'flex',
         flexDirection: 'column',
-        marginBottom: 0
+        paddingHorizontal: 5
     },
 
     title: {
-        fontSize: 24,
-        color: ColorEnum.ClassicGrey,
-        marginTop: 3,
-        marginBottom: 5,
-        flexWrap: 'wrap',
-        maxWidth: '90%',
-        textTransform: 'uppercase'
+        fontSize: 18,
+        color: ColorEnum.ClassicGrey
+    },
+
+    star: {
+        marginTop: 1
     },
 
     favourite: {
+        marginTop: 4,
+        marginLeft: 3,
+        fontSize: 14,
         height: '100%'
     },
 
@@ -54,35 +57,45 @@ const RecipeItemStyle = StyleSheet.create({
     secondText: {
         color: ColorEnum.ClassicGrey,
         display: 'flex',
-        flexDirection: 'row',
-        marginBottom: 3
+        flexDirection: 'row'
     },
 
     ingredients: {
         fontSize: 12,
+        marginTop: 5,
         color: ColorEnum.SlightlyOpaqueGrey,
         flexWrap: 'wrap',
-        maxWidth: '80%'
+        maxWidth: '90%'
     },
 
     mealTags: {
+        alignSelf: 'center',
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap',
         fontSize: 14,
-        marginTop: -25,
-        margin: 5
+        marginRight: 5
     },
+
+    bottomContainer: {
+        width: '95%',
+        alignSelf: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
     authorContainer: {
         display: 'flex',
-        flexDirection: 'row',
-        margin: 5,
-        width: '40%'
+        flexDirection: 'row'
+    },
+
+    authorContainerText: {
+        alignSelf: 'center'
     },
 
     image: {
-        width: 115,
-        height: 115,
+        width: 100,
+        height: 100,
         borderRadius: 20,
         borderColor: ColorEnum.ClassicBrown,
         borderWidth: 2

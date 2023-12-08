@@ -11,7 +11,6 @@ const useGamePageData = () => {
     const [gameStatus, setGameStatus] = useState(GameStatusEnum.NOT_STARTED);
 
     useEffect(() => {
-        console.log('set');
         setGameStatus(() => {
             if (isGameEnded) {
                 return GameStatusEnum.ENDED;

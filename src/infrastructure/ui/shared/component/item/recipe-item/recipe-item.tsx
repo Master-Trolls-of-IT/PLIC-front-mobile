@@ -9,36 +9,42 @@ import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 import useRecipeItemData from '~/infrastructure/ui/shared/component/item/recipe-item/hooks';
 
 const RecipeItem = (recipeItem: RecipeItemProps) => {
-    const { scoreStyle, star, profile, onPressViewDetail } = useRecipeItemData(recipeItem);
+    const { scoreStyle, star, profile, onPressViewDetail, image, author, rating } = useRecipeItemData(recipeItem);
 
     return (
-        <TouchableOpacity
-            onPress={() => {
-                onPressViewDetail(recipeItem);
-            }}>
-            <View style={[RecipeItemStyle.item, recipeItem.style]}>
-                <View style={RecipeItemStyle.container}>
+        <View style={[RecipeItemStyle.item, recipeItem.style]}>
+            <TouchableOpacity
+                onPress={() => {
+                    onPressViewDetail(recipeItem);
+                }}>
+                <View style={RecipeItemStyle.topContainer}>
                     <View style={RecipeItemStyle.imageContainer}>
-                        <Image source={{ uri: recipeItem.image }} style={RecipeItemStyle.image} />
+                        <Image source={image} style={RecipeItemStyle.image} />
                     </View>
                     <View style={RecipeItemStyle.textField}>
                         <Text style={{ ...RecipeItemStyle.title, ...useCustomFontInterBold().text }}>
                             {recipeItem.title}
                         </Text>
                         <View style={RecipeItemStyle.secondText}>
-                            <CustomSvg asset={star} height={20} width={20} />
+                            <CustomSvg asset={star} height={23} width={23} style={RecipeItemStyle.star} />
                             <Text style={{ ...RecipeItemStyle.favourite, ...useCustomFontInterBold().text }}>
-                                {recipeItem.rating}
+                                {rating}
                             </Text>
                             <Text style={{ ...RecipeItemStyle.favourite, ...useCustomFontInterBold().text }}>
-                                {'  '}({recipeItem.numberOfRatings} évaluations)
+                                {' '}
+                                ({recipeItem.numberOfRatings} évaluations)
                             </Text>
                         </View>
                         <View style={RecipeItemStyle.secondText}>
                             <Text style={{ ...RecipeItemStyle.favourite, ...useCustomFontInterBold().text }}>
                                 {recipeItem.duration} {'min'} • {recipeItem.difficulty} •{' '}
                             </Text>
-                            <Text style={{ ...scoreStyle, ...useCustomFontInterBold().text }}>
+                            <Text
+                                style={{
+                                    ...RecipeItemStyle.favourite,
+                                    ...scoreStyle,
+                                    ...useCustomFontInterBold().text
+                                }}>
                                 Score: {recipeItem.score}
                             </Text>
                         </View>
@@ -48,36 +54,34 @@ const RecipeItem = (recipeItem: RecipeItemProps) => {
                         </Text>
                     </View>
                 </View>
-                <View>
-                    <View style={RecipeItemStyle.mealTags}>
-                        <View style={RecipeItemStyle.authorContainer}>
-                            <CustomSvg asset={profile} height={20} width={20} />
-                            <Text
-                                style={{
-                                    ...RecipeItemStyle.favourite,
-                                    ...useCustomFontInterBold().text,
-                                    marginLeft: 5
-                                }}>
-                                {recipeItem.author}
-                            </Text>
-                        </View>
-                        <Text style={{ ...useCustomFontInterBold().text }}>
-                            {recipeItem.tags.map((recipeTag, index) => (
-                                <Text
-                                    key={index}
-                                    style={{
-                                        ...RecipeItemStyle.mealTags,
-                                        color: recipeTag.color
-                                    }}>
-                                    {recipeTag.label}
-                                    {index < recipeItem.tags.length - 1 && ' • '}
-                                </Text>
-                            ))}
+                <View style={RecipeItemStyle.bottomContainer}>
+                    <View style={RecipeItemStyle.authorContainer}>
+                        <CustomSvg asset={profile} height={22} width={22} />
+                        <Text
+                            style={{
+                                ...RecipeItemStyle.authorContainerText,
+                                ...useCustomFontInterBold().text,
+                                marginLeft: 5
+                            }}>
+                            {author}
                         </Text>
                     </View>
+                    <Text style={{ ...RecipeItemStyle.mealTags, ...useCustomFontInterBold().text }}>
+                        {recipeItem.tags.map((recipeTag, index) => (
+                            <Text
+                                key={index}
+                                style={{
+                                    ...RecipeItemStyle.mealTags,
+                                    color: recipeTag.color
+                                }}>
+                                {recipeTag.label}
+                                {index < recipeItem.tags.length - 1 && ' • '}
+                            </Text>
+                        ))}
+                    </Text>
                 </View>
-            </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
+        </View>
     );
 };
 

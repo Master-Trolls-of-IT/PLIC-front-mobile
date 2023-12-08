@@ -4,18 +4,20 @@ import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 const RecipePageStyle = StyleSheet.create({
     container: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        height: '100%'
     },
 
-    recipeContainer: {
-        alignItems: 'center',
-        marginBottom: 100
+    background: {
+        backgroundColor: ColorEnum.ClassicBeige,
+        height: '100%',
+        width: Dimensions.get('screen').width,
+        position: 'absolute'
     },
 
     header: {
-        fontSize: 30,
-        marginTop: 20,
-        marginLeft: 16
+        marginTop: '33%',
+        marginLeft: '10%'
     },
 
     title: {
@@ -27,43 +29,43 @@ const RecipePageStyle = StyleSheet.create({
         fontSize: 16
     },
 
-    background: {
-        backgroundColor: ColorEnum.ClassicBeige,
-        height: '100%',
-        width: Dimensions.get('screen').width,
-        position: 'absolute'
-    },
-
     headerContainer: {
         marginTop: '20%',
         marginLeft: '10%'
     },
 
     buttonContainer: {
+        position: 'absolute',
+        width: '95%',
+        bottom: 14,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-between',
+        alignSelf: 'center'
     },
+
     brownButtonContainer: {
         backgroundColor: ColorEnum.ClassicBrown,
-        height: 43 * (Dimensions.get('screen').height / 900),
-        width: 123 * (Dimensions.get('screen').width / 400)
+        borderRadius: 20,
+        width: 144 * (Dimensions.get('screen').width / 400),
+        height: 45
     },
 
     brownButtonText: {
-        fontSize: 16,
+        fontSize: 18,
         color: ColorEnum.ClassicBeige
     },
 
     greenButtonContainer: {
         backgroundColor: ColorEnum.ClassicGreen,
-        height: 43 * (Dimensions.get('screen').height / 900),
-        width: 163 * (Dimensions.get('screen').width / 400)
+        borderRadius: 20,
+        width: 185 * (Dimensions.get('screen').width / 400),
+        height: 45
     },
 
     greenButtonText: {
-        fontSize: 16,
-        color: ColorEnum.SlightlyOpaqueGrey
+        color: ColorEnum.ClassicGrey,
+        fontSize: 18
     }
 });
 
