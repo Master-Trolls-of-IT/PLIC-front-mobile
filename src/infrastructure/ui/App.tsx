@@ -76,16 +76,6 @@ function App() {
                                 component={ConsumedProductsPage}
                                 options={gestureEnabled}
                             />
-                            <Stack.Screen
-                                name={PagesEnum.RecipePage}
-                                component={RecipePage}
-                                options={gestureDisabled}
-                            />
-                            <Stack.Screen
-                                name={PagesEnum.MyRecipesPage}
-                                component={MyRecipesPage}
-                                options={gestureDisabled}
-                            />
                             <Stack.Screen name={PagesEnum.GamePage} component={GamePage} options={gestureDisabled} />
                         </Stack.Group>
 
@@ -108,6 +98,11 @@ function App() {
                             <Stack.Screen
                                 name={PagesEnum.RecipePage}
                                 component={RecipePage}
+                                options={gestureDisabled}
+                            />
+                            <Stack.Screen
+                                name={PagesEnum.MyRecipesPage}
+                                component={MyRecipesPage}
                                 options={gestureDisabled}
                             />
                             <Stack.Screen
