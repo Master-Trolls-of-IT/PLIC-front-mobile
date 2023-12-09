@@ -9,13 +9,13 @@ const RecipeItemStyle = StyleSheet.create({
         bottom: 0,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        borderWidth: 4,
+        borderWidth: 2,
         borderColor: ColorEnum.ClassicBrown,
         borderBottomWidth: 0,
         display: 'flex',
         flexDirection: 'column',
-        paddingBottom: 30,
-        maxHeight: 600 * (Dimensions.get('screen').height / 725)
+        paddingBottom: 10,
+        maxHeight: 500 * (Dimensions.get('screen').height / 725)
     },
 
     favourite: {
@@ -29,78 +29,92 @@ const RecipeItemStyle = StyleSheet.create({
     },
 
     headerContainer: {
-        width: '95%',
+        width: '90%',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
         marginTop: 15,
         alignSelf: 'center',
         gap: 10
     },
+
     contentContainer: {
         width: '95%',
         display: 'flex',
         flexDirection: 'column',
-        borderTopWidth: 2,
+        borderTopWidth: 1,
         borderColor: ColorEnum.ClassicBrown,
         alignSelf: 'center',
         marginTop: 5
     },
+
     reviewText: {
-        fontSize: 11,
+        alignSelf: 'center',
+        marginLeft: 3,
+        fontSize: 14,
         color: ColorEnum.ClassicGrey
     },
-    ingredientsContainer: {},
+
     ingredientsHeader: {
         marginHorizontal: 10,
         marginTop: 10
     },
+
     ingredientsContent: {
         width: '95%',
         alignSelf: 'center',
         marginTop: 3,
         paddingTop: 8,
-        borderTopWidth: 2,
+        borderTopWidth: 1,
         borderColor: ColorEnum.ClassicBrown
     },
+
     preperationContent: {
         width: '95%',
         alignSelf: 'center',
         marginTop: 3,
         paddingTop: 8,
-        borderTopWidth: 2,
+        borderTopWidth: 1,
         borderColor: ColorEnum.ClassicBrown
     },
-    preperationContainer: {},
+
     preperationHeader: {
         marginHorizontal: 10,
-        marginTop: 10
+        marginTop: 20
     },
 
     ingredientsText: {
         color: ColorEnum.ClassicBrown,
         fontSize: 16 * (Dimensions.get('screen').height / 725)
     },
+
     preperationText: {
         color: ColorEnum.ClassicBrown,
         fontSize: 16 * (Dimensions.get('screen').height / 725)
     },
+
     authorText: {
+        marginLeft: 4,
+        alignSelf: 'center',
         color: ColorEnum.ClassicGrey,
         fontSize: 12 * (Dimensions.get('screen').height / 725)
     },
+
     ingredients: {
+        lineHeight: 24,
         color: ColorEnum.ClassicBrown,
         fontSize: 14 * (Dimensions.get('screen').height / 725)
     },
+
     userReviewContainer1: {
         alignItems: 'baseline'
     },
+
     userReviewContainer2: {
         marginLeft: 10,
         borderBottomWidth: 2,
         borderColor: ColorEnum.ClassicGrey
     },
+
     userReview: {
         color: ColorEnum.ClassicGrey,
         fontSize: 12 * (Dimensions.get('screen').height / 725),
@@ -108,19 +122,16 @@ const RecipeItemStyle = StyleSheet.create({
     },
 
     imageContainer: {
-        borderColor: ColorEnum.ClassicBrown,
-        width: 140,
-        height: 90,
-        borderRadius: 15,
-        borderWidth: 3,
         justifyContent: 'center',
         marginLeft: 10
     },
 
     image: {
-        width: '100%',
-        height: '100%',
-        borderRadius: 12
+        width: 105,
+        height: 105,
+        borderRadius: 20,
+        borderColor: ColorEnum.ClassicBrown,
+        borderWidth: 2
     },
 
     imageText: {
@@ -149,11 +160,9 @@ const RecipeItemStyle = StyleSheet.create({
         color: ColorEnum.ClassicBrown
     },
 
-    scoreContainer: {
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around'
+    score: {
+        alignSelf: 'center',
+        fontSize: 12 * (Dimensions.get('screen').height / 725)
     },
 
     nutriscoreContainer: {
@@ -257,34 +266,43 @@ const RecipeItemStyle = StyleSheet.create({
         width: 'auto',
         marginRight: 10
     },
-    titleContainer: {},
+
     title: {
         fontSize: 18,
-        color: ColorEnum.ClassicGrey,
-        marginTop: 4,
-        marginLeft: 4
+        color: ColorEnum.ClassicGrey
     },
+
     review: {
-        marginHorizontal: 4,
-        marginTop: 4
+        marginLeft: -2,
+        marginTop: 4,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
     },
+
+    star: {
+        marginTop: -1
+    },
+
     mealTags: {
+        marginTop: 4,
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
         maxWidth: '90%',
-        fontSize: 13,
-        marginTop: 5,
-        marginLeft: 4
+        fontSize: 16
     },
+
     authorAndScoreContainer: {
+        marginTop: 4,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 4,
-        marginTop: 4
+        justifyContent: 'space-between'
     },
-    author: {},
-    score: {}
+
+    author: {
+        display: 'flex',
+        flexDirection: 'row'
+    }
 });
 export default RecipeItemStyle;

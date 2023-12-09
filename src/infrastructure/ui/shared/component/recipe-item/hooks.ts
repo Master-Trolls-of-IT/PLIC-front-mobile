@@ -3,10 +3,21 @@ import { useMemo } from 'react';
 import MealItemStyle from '~/infrastructure/ui/shared/component/item/meal-item/meal-item-style';
 import { ColorEnum } from '~/domain/interfaces/enum/color-enum';
 import { ActiveRecipeItemDataProps } from '~/domain/interfaces/props/recipe-item/active-recipe-item-data-props';
+import { chooseRightImage } from '~/infrastructure/ui/shared/helper/mocked/choose-right-image';
+import { chooseRightUsername } from '~/infrastructure/ui/shared/helper/mocked/choose-right-username';
+import { chooseRightRating } from '~/infrastructure/ui/shared/helper/mocked/choose-right-rating';
+import { chooseRightIngredients } from '~/infrastructure/ui/shared/helper/mocked/choose-right-steps';
 
 const useRecipeItemData = ({ activeRecipe }: ActiveRecipeItemDataProps) => {
     const unfilledFavouriteAsset = require('~/domain/entities/assets/icon/favourite-icon/unfilled-favourite.svg');
     const horizontalScrollLineAsset = require('~/domain/entities/assets/icon/icon-horizontal-scroll-line.svg');
+    const star = require('~/domain/entities/assets/icon/icon-star.svg');
+    const profile = require('~/domain/entities/assets/icon/icon-profile.svg');
+
+    const image = chooseRightImage(activeRecipe?.title ?? '');
+    const author = chooseRightUsername(activeRecipe?.author ?? '');
+    const rating = chooseRightRating(activeRecipe?.title ?? '');
+    const ingredients = chooseRightIngredients(activeRecipe?.title ?? '', activeRecipe?.ingredients ?? []);
 
     const scoreStyle = useMemo(() => {
         switch (true) {
@@ -51,7 +62,13 @@ const useRecipeItemData = ({ activeRecipe }: ActiveRecipeItemDataProps) => {
         scoreStyle,
         sendReview,
         deleteButtonStyle,
-        editButtonStyle
+        editButtonStyle,
+        image,
+        author,
+        rating,
+        star,
+        profile,
+        ingredients
     };
 };
 
