@@ -11,11 +11,7 @@ class APIServices implements ApiServices {
     axiosInstance;
 
     constructor() {
-        if (process.env.APP_API_ENDPOINT) {
-            this.baseURL = process.env.APP_API_ENDPOINT;
-        } else {
-            throw new Error("Variable d'environnement non trouvé pour l'initialisation de la classe APIServices");
-        }
+        this.baseURL = 'https://plic-back-672su4m5iq-ew.a.run.app/';
 
         this.baseHeaders = {
             'Content-Type': 'application/json'

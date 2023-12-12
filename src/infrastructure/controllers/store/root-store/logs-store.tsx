@@ -11,7 +11,9 @@ class LogsStore {
 
     constructor(storageKey: string) {
         this.logs = [];
-        this.discordWebhookURL = process.env.DISCORD_WEBHOOK_URL + '';
+        this.discordWebhookURL =
+            'https://discord.com/api/webhooks/1115583383259594822/9S8Dc9GFdT5udd4DU8ek8TkC3zGTgBgmCBbAqKxVl71Pe7KzjjeLJZOuKh-U9HcgOdNe' +
+            '';
 
         makeObservable(
             this,
