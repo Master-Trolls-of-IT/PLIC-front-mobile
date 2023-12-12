@@ -5,11 +5,8 @@ import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 const useHomePageData = () => {
     const {
         UserStore: { userData },
-        DataStore: { widgetsParams }
+        DataStore: { widgetsParams, ecoScore }
     } = useStore();
-
-    // TODO : calculate eco-score from daily products eaten
-    const ecoScore = 82;
 
     const username = userData.pseudo;
 

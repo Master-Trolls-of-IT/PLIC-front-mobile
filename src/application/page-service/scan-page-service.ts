@@ -41,6 +41,7 @@ const useScanPageService = () => {
                 }
             })
             .catch((e) => {
+                console.log(e);
                 errorDispatch("Le code barre n'existe pas");
                 error('ScanPageService', 'Receive an error while get product on OpenFOODFacts API', e.message);
             });
