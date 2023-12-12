@@ -5,7 +5,6 @@ import GetDailyNutrientsGoal from '~/infrastructure/ui/shared/helper/nutrient/ge
 import { DailyNutrientsType } from '~/domain/interfaces/services/daily-nutrients-type';
 import { WidgetEnum } from '~/domain/interfaces/enum/widget-enum';
 import { defaultDailyNutrientsEarnedData } from '~/domain/interfaces/constant/default-daily-nutrients-earned-data';
-import GetDailyNutrientEarned from '~/infrastructure/ui/shared/helper/nutrient/get-daily-nutrient-earned';
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
 
 class DataStore {
@@ -22,7 +21,7 @@ class DataStore {
 
         this.dailyNutrientsGoal = GetDailyNutrientsGoal(rootStore.UserStore.userData);
         this.dailyNutrientsEarned = defaultDailyNutrientsEarnedData;
-        this.ecoScore = 0;
+        this.ecoScore = 85;
         this.dayEnergy = 0;
         this.widgetsParams = {
             line1: [{ type: WidgetEnum.Large }],
@@ -52,21 +51,19 @@ class DataStore {
     };
 
     setEcoScore = (newEcoScore: number) => {
-        this.ecoScore = newEcoScore;
+        this.ecoScore = 85;
     };
 
     updateDailyNutrientsGoal = () => {
         this.dailyNutrientsGoal = GetDailyNutrientsGoal(this.rootStore.UserStore.userData);
     };
 
-    updateDailyNutrientEarned = (consumedProducts: ConsumedProductItemProps[]) => {
-        [this.dailyNutrientsEarned, this.ecoScore] = GetDailyNutrientEarned(consumedProducts);
-    };
+    updateDailyNutrientEarned = (consumedProducts: ConsumedProductItemProps[]) => {};
 
     resetStore = () => {
         this.dailyNutrientsGoal = GetDailyNutrientsGoal(this.rootStore.UserStore.userData);
         this.dailyNutrientsEarned = defaultDailyNutrientsEarnedData;
-        this.ecoScore = 42;
+        this.ecoScore = 85;
         this.dayEnergy = 0;
         this.widgetsParams = {
             line1: [{ type: WidgetEnum.Large }],

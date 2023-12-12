@@ -5,9 +5,10 @@ import HomePageStyle from '~/infrastructure/ui/pages/home-page/home-page-style';
 const useHomePageData = () => {
     const {
         UserStore: { userData },
-        DataStore: { widgetsParams, ecoScore }
+        DataStore: { widgetsParams }
     } = useStore();
 
+    const ecoScore = 82;
     const username = userData.pseudo;
 
     // TODO : retrieve the right nutrients earned from daily products eaten for all nutrients type
