@@ -7,6 +7,7 @@ import { MealItemProps } from '~/domain/interfaces/props/search-list/item/meal-i
 import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/item/consumed-product/consumed-product-item-props';
 import useMapConsumedProductResponse from '~/infrastructure/ui/shared/helper/useMapConsumedProductResponse';
 import { ConsumedProduct } from '~/domain/interfaces/services/consumed-product';
+import MealItem from '~/infrastructure/ui/shared/component/item/meal-item/meal-item';
 
 const useMealPageService = () => {
     const {
@@ -14,6 +15,10 @@ const useMealPageService = () => {
     } = useStore();
 
     const { mapResponse } = useMapConsumedProductResponse();
+    const isEmpty = (obj: any) => {
+        return Object.keys(obj).length === 0;
+    };
+
     const saveMeal = async (mealData: MealData): Promise<MealItemProps> => {
         try {
             const response = await APIServices.POST<MealItemProps, MealData>('/meal', mealData);
@@ -28,7 +33,8 @@ const useMealPageService = () => {
         async (email: string): Promise<MealItemProps[]> => {
             try {
                 const response = await APIServices.GET<MealItemProps[]>(`/meal/${email}`);
-                return (response.data ?? []) as MealItemProps[];
+                console.log([] as MealItemProps[]);
+                return (isEmpty(response.data) ? [] : (response.data as MealItemProps[])) as MealItemProps[];
             } catch (err) {
                 error('useMealPageService', 'GetMeals: Caught an exception.', (err as AxiosError).message);
                 return [];
