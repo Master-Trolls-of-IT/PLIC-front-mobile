@@ -51,9 +51,7 @@ const CreateMealPageStyle = StyleSheet.create({
         color: ColorEnum.ClassicBrown,
         fontSize: 16 * (Dimensions.get('screen').height / 725),
         marginLeft: Dimensions.get('screen').width * 0.1,
-        marginTop: Dimensions.get('screen').height * 0.02,
-        borderBottomColor: ColorEnum.ClassicBrown,
-        borderBottomWidth: 1
+        marginTop: Dimensions.get('screen').height * 0.02
     },
 
     ingredientTitleHairLine: {

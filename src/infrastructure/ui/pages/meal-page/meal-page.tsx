@@ -8,7 +8,6 @@ import { ItemEnum } from '~/domain/interfaces/enum/item-enum';
 import useMealPageData from '~/infrastructure/ui/pages/meal-page/hooks';
 import GenericButton from '~/infrastructure/ui/shared/component/generic-button/generic-button';
 import MealPageBlobsTop from '~/infrastructure/ui/pages/meal-page/component/background/meal-page-blobs-top';
-import { MockedMeal } from '~/infrastructure/ui/shared/helper/mocked/mocked-meal';
 
 const MealPage = () => {
     const { mealList, onPressCreateMeal } = useMealPageData();
@@ -25,7 +24,7 @@ const MealPage = () => {
                 containerStyle={MealPageStyle.headerContainer}
             />
 
-            <SearchList itemType={ItemEnum.Meal} data={MockedMeal} />
+            <SearchList itemType={ItemEnum.Meal} data={mealList} />
 
             <GenericButton
                 title={'Créer un repas'}

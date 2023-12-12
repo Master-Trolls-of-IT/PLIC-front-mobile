@@ -8,6 +8,7 @@ import { ConsumedProductItemProps } from '~/domain/interfaces/props/search-list/
 import useMapConsumedProductResponse from '~/infrastructure/ui/shared/helper/useMapConsumedProductResponse';
 import { ConsumedProduct } from '~/domain/interfaces/services/consumed-product';
 import MealItem from '~/infrastructure/ui/shared/component/item/meal-item/meal-item';
+import { MockedMeal } from '~/infrastructure/ui/shared/helper/mocked/mocked-meal';
 
 const useMealPageService = () => {
     const {
@@ -34,7 +35,9 @@ const useMealPageService = () => {
             try {
                 const response = await APIServices.GET<MealItemProps[]>(`/meal/${email}`);
                 console.log([] as MealItemProps[]);
-                return (isEmpty(response.data) ? [] : (response.data as MealItemProps[])) as MealItemProps[];
+                return ((isEmpty(response.data) ? [] : (response.data as MealItemProps[])) as MealItemProps[]).concat(
+                    MockedMeal
+                );
             } catch (err) {
                 error('useMealPageService', 'GetMeals: Caught an exception.', (err as AxiosError).message);
                 return [];

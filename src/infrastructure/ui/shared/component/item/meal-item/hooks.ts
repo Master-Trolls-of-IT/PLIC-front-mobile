@@ -9,7 +9,8 @@ import useCustomFontInterBold from '~/application/utils/font/custom-font-inter-b
 
 const useMealItemData = ({ score, isFavourite, products, id }: MealItemDataProps) => {
     const {
-        MealStore: { toggleFavorite, deleteMeal, getMeal }
+        MealStore: { toggleFavorite, deleteMeal, getMeal },
+        ConsumedProductStore: { setConsumedProducts }
     } = useStore();
 
     const { deleteMeal: deleteMealService, consumeMeal } = useMealPageService();
