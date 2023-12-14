@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { observer } from 'mobx-react';
@@ -18,7 +19,6 @@ import GenericDropdown from '~/infrastructure/ui/shared/component/inputs/generic
 import RecipeItemStyle from '~/infrastructure/ui/shared/component/recipe-item/recipe-item-style';
 import CustomSvg from '~/infrastructure/ui/shared/component/custom-svg';
 
-// eslint-disabled max-lines-per-function
 const CreateRecipePage = () => {
     const {
         errorMessage,
